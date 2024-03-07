@@ -9,4 +9,12 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Controller\" />
+    <Folder Include="Model\" />
+    <Folder Include="DAL\" />
+    <Folder Include="DB\" />
+    <Folder Include="View\" />
+  </ItemGroup>
+
 </Project>
