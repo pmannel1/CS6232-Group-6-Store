@@ -10,10 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Controller\" />
-    <Folder Include="DAL\" />
     <Folder Include="DB\" />
-    <Folder Include="View\" />
   </ItemGroup>
 
 </Project>
