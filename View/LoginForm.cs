@@ -2,11 +2,19 @@
 
 namespace CS6232_Group_6_Store.View
 {
+    /// <summary>
+    /// Login form for program
+    /// </summary>
+    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class LoginForm : Form
     {
         private EmployeeController _employeeController;
         private MainDashBoard _mainDashBoard;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LoginForm"/> class.
+        /// </summary>
+        /// <param name="md">The md.</param>
         public LoginForm(MainDashBoard md)
         {
             InitializeComponent();
@@ -14,6 +22,11 @@ namespace CS6232_Group_6_Store.View
             this._employeeController = new EmployeeController();
         }
 
+        /// <summary>
+        /// Handles the Click event of the loginButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void loginButton_Click(object sender, EventArgs e)
         {
             string idStr = this.idTextBox.Text;
@@ -38,6 +51,11 @@ namespace CS6232_Group_6_Store.View
             }
         }
 
+        /// <summary>
+        /// Handles the FormClosed event of the LoginForm control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void LoginForm_FormClosed(object sender, EventArgs e)
         {
             Application.Exit();
