@@ -32,6 +32,7 @@ namespace CS6232_Group_6_Store.View
                 this._mainDashBoard.SetGreetingLabel("Employee ID: " + idStr);
                 this.Visible = false;
                 this._mainDashBoard.Visible = true;
+                this.errorLabel.Text = "";
                 this.idTextBox.Text = "";
                 this.passwordTextBox.Text = "";
             }
