@@ -12,5 +12,10 @@ namespace CS6232_Group_6_Store.Controller
         {
             _employeeDal = new EmployeeDal();
         }
+
+        public bool ValidateEmployee(int id, string password)
+        {
+            return this._employeeDal.ValidateEmployee(id, password);
+        }
     }
 }

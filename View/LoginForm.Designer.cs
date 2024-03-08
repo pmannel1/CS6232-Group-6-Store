@@ -69,6 +69,7 @@
             passwordTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             passwordTextBox.Location = new Point(150, 69);
             passwordTextBox.Name = "passwordTextBox";
+            passwordTextBox.PasswordChar = '*';
             passwordTextBox.Size = new Size(147, 23);
             passwordTextBox.TabIndex = 3;
             // 
@@ -81,12 +82,13 @@
             loginButton.TabIndex = 4;
             loginButton.Text = "Login";
             loginButton.UseVisualStyleBackColor = true;
+            loginButton.Click += loginButton_Click;
             // 
             // errorLabel
             // 
             errorLabel.AutoSize = true;
             errorLabel.ForeColor = Color.Red;
-            errorLabel.Location = new Point(114, 157);
+            errorLabel.Location = new Point(105, 145);
             errorLabel.Name = "errorLabel";
             errorLabel.Size = new Size(0, 15);
             errorLabel.TabIndex = 5;
@@ -102,8 +104,11 @@
             Controls.Add(idTextBox);
             Controls.Add(passwordLabel);
             Controls.Add(idLabel);
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "LoginForm";
             Text = "LoginForm";
+            FormClosed += LoginForm_FormClosed;
             ResumeLayout(false);
             PerformLayout();
         }

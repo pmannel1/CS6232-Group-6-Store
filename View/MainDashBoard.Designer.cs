@@ -58,21 +58,23 @@
             // greetingLabel
             // 
             greetingLabel.AutoSize = true;
-            greetingLabel.Location = new Point(12, 9);
+            greetingLabel.Dock = DockStyle.Left;
+            greetingLabel.Location = new Point(0, 0);
             greetingLabel.Name = "greetingLabel";
-            greetingLabel.Size = new Size(41, 15);
+            greetingLabel.Size = new Size(0, 15);
             greetingLabel.TabIndex = 1;
-            greetingLabel.Text = "Hello, ";
             // 
             // logoutLinkLabel
             // 
             logoutLinkLabel.AutoSize = true;
-            logoutLinkLabel.Location = new Point(728, 9);
+            logoutLinkLabel.Dock = DockStyle.Right;
+            logoutLinkLabel.Location = new Point(747, 0);
             logoutLinkLabel.Name = "logoutLinkLabel";
             logoutLinkLabel.Size = new Size(53, 15);
             logoutLinkLabel.TabIndex = 2;
             logoutLinkLabel.TabStop = true;
             logoutLinkLabel.Text = "LOGOUT";
+            logoutLinkLabel.LinkClicked += logoutLinkLabel_LinkClicked;
             // 
             // MainDashBoard
             // 
