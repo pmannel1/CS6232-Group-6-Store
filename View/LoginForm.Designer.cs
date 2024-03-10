@@ -34,15 +34,16 @@
             passwordTextBox = new TextBox();
             loginButton = new Button();
             errorLabel = new Label();
+            clearButton = new Button();
             SuspendLayout();
             // 
             // idLabel
             // 
             idLabel.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             idLabel.AutoSize = true;
-            idLabel.Location = new Point(65, 43);
+            idLabel.Location = new Point(74, 57);
             idLabel.Name = "idLabel";
-            idLabel.Size = new Size(79, 15);
+            idLabel.Size = new Size(101, 20);
             idLabel.TabIndex = 0;
             idLabel.Text = "Employee ID: ";
             // 
@@ -50,35 +51,40 @@
             // 
             passwordLabel.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             passwordLabel.AutoSize = true;
-            passwordLabel.Location = new Point(65, 72);
+            passwordLabel.Location = new Point(74, 96);
             passwordLabel.Name = "passwordLabel";
-            passwordLabel.Size = new Size(63, 15);
+            passwordLabel.Size = new Size(77, 20);
             passwordLabel.TabIndex = 1;
             passwordLabel.Text = "Password: ";
             // 
             // idTextBox
             // 
             idTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            idTextBox.Location = new Point(150, 40);
+            idTextBox.Location = new Point(171, 53);
+            idTextBox.Margin = new Padding(3, 4, 3, 4);
             idTextBox.Name = "idTextBox";
-            idTextBox.Size = new Size(147, 23);
+            idTextBox.Size = new Size(293, 27);
             idTextBox.TabIndex = 2;
+            idTextBox.TextChanged += idTextBox_TextChanged;
             // 
             // passwordTextBox
             // 
             passwordTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            passwordTextBox.Location = new Point(150, 69);
+            passwordTextBox.Location = new Point(171, 92);
+            passwordTextBox.Margin = new Padding(3, 4, 3, 4);
             passwordTextBox.Name = "passwordTextBox";
             passwordTextBox.PasswordChar = '*';
-            passwordTextBox.Size = new Size(147, 23);
+            passwordTextBox.Size = new Size(293, 27);
             passwordTextBox.TabIndex = 3;
+            passwordTextBox.TextChanged += passwordTextBox_TextChanged;
             // 
             // loginButton
             // 
             loginButton.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            loginButton.Location = new Point(138, 115);
+            loginButton.Location = new Point(112, 175);
+            loginButton.Margin = new Padding(3, 4, 3, 4);
             loginButton.Name = "loginButton";
-            loginButton.Size = new Size(75, 23);
+            loginButton.Size = new Size(210, 31);
             loginButton.TabIndex = 4;
             loginButton.Text = "Login";
             loginButton.UseVisualStyleBackColor = true;
@@ -88,22 +94,34 @@
             // 
             errorLabel.AutoSize = true;
             errorLabel.ForeColor = Color.Red;
-            errorLabel.Location = new Point(105, 145);
+            errorLabel.Location = new Point(175, 137);
             errorLabel.Name = "errorLabel";
-            errorLabel.Size = new Size(0, 15);
+            errorLabel.Size = new Size(0, 20);
             errorLabel.TabIndex = 5;
+            // 
+            // clearButton
+            // 
+            clearButton.Location = new Point(340, 175);
+            clearButton.Name = "clearButton";
+            clearButton.Size = new Size(174, 31);
+            clearButton.TabIndex = 7;
+            clearButton.Text = "Clear";
+            clearButton.UseVisualStyleBackColor = true;
+            clearButton.Click += clearButton_Click;
             // 
             // LoginForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(377, 191);
+            ClientSize = new Size(555, 255);
+            Controls.Add(clearButton);
             Controls.Add(errorLabel);
             Controls.Add(loginButton);
             Controls.Add(passwordTextBox);
             Controls.Add(idTextBox);
             Controls.Add(passwordLabel);
             Controls.Add(idLabel);
+            Margin = new Padding(3, 4, 3, 4);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "LoginForm";
@@ -121,5 +139,6 @@
         private TextBox passwordTextBox;
         private Button loginButton;
         private Label errorLabel;
+        private Button clearButton;
     }
 }
