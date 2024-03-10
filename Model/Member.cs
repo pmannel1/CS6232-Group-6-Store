@@ -3,7 +3,7 @@
     /// <summary>
     /// Model class for members table in DB
     /// </summary>
-    internal class Member
+    public class Member
     {
         /// <summary>
         /// Gets or sets the identifier.
