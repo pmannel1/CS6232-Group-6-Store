@@ -20,6 +20,8 @@ namespace CS6232_Group_6_Store
             this._loginForm = new LoginForm(this);
             this._loginForm.ShowDialog();
             this.Visible = false;
+            this.employeeNameLebel.Text = "Emplyee Name: " + this._loginForm.EmployeeName;
+            this.userNameLabel.Text = "User Account: " + this._loginForm.UserName;
         }
 
         /// <summary>
@@ -40,6 +42,8 @@ namespace CS6232_Group_6_Store
         {
             this.Visible = false;
             this._loginForm.Visible = true;
+
+            this._loginForm.Logout();
         }
     }
 }
