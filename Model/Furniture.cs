@@ -54,12 +54,12 @@
         public decimal RentalRate { get; set; }
 
         /// <summary>
-        /// Gets or sets the quantity.
+        /// Gets or sets the in stock number.
         /// </summary>
         /// <value>
-        /// The quantity.
+        /// The in stock number.
         /// </value>
-        public int quantity { get; set; }
+        public int InStockNumber { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Furniture"/> class.

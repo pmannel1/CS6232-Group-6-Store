@@ -6,6 +6,14 @@
     internal class ReturnItem
     {
         /// <summary>
+        /// Gets or sets the identifier.
+        /// </summary>
+        /// <value>
+        /// The identifier.
+        /// </value>
+        public int Id { get; set; }
+
+        /// <summary>
         /// Gets or sets the return identifier.
         /// </summary>
         /// <value>
@@ -14,20 +22,12 @@
         public int ReturnId { get; set; }
 
         /// <summary>
-        /// Gets or sets the furniture identifier.
+        /// Gets or sets the rental item identifier.
         /// </summary>
         /// <value>
-        /// The furniture identifier.
+        /// The rental item identifier.
         /// </value>
-        public int FurnitureId { get; set; }
-
-        /// <summary>
-        /// Gets or sets the transaction identifier.
-        /// </summary>
-        /// <value>
-        /// The transaction identifier.
-        /// </value>
-        public int TransactionId { get; set; }
+        public int RentalItemId {  get; set; }
 
         /// <summary>
         /// Gets or sets the quantity.
@@ -36,5 +36,6 @@
         /// The quantity.
         /// </value>
         public int Quantity { get; set; }
+
     }
 }

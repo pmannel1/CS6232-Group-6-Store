@@ -6,6 +6,14 @@
     internal class RentalItem
     {
         /// <summary>
+        /// Gets or sets the identifier.
+        /// </summary>
+        /// <value>
+        /// The identifier.
+        /// </value>
+        public int Id { get; set; }
+        
+        /// <summary>
         /// Gets or sets the transaction identifier.
         /// </summary>
         /// <value>
@@ -28,5 +36,13 @@
         /// The quantity.
         /// </value>
         public int Quantity { get; set; }
+
+        /// <summary>
+        /// Gets or sets the quantity returned.
+        /// </summary>
+        /// <value>
+        /// The quantity returned.
+        /// </value>
+        public int QuantityReturned { get; set; }
     }
 }

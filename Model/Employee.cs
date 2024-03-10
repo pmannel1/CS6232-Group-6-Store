@@ -32,9 +32,9 @@
         //TODO Create field/property for enum sex attribute in DB, below is my attempt
         public enum Sex
         {
-            Female = 0,
-            Male = 1,
-            NonBinary = 2
+            M = 0,
+            F = 1,
+            Other = 2
         }
 
         /// <summary>
@@ -70,6 +70,22 @@
         public String State { get; set; }
 
         /// <summary>
+        /// Gets or sets the zip code.
+        /// </summary>
+        /// <value>
+        /// The zip code.
+        /// </value>
+        public int ZipCode { get; set; }
+
+        /// <summary>
+        /// Gets or sets the country.
+        /// </summary>
+        /// <value>
+        /// The country.
+        /// </value>
+        public String Country { get; set; }
+
+        /// <summary>
         /// Gets or sets the contact phone.
         /// </summary>
         /// <value>
@@ -96,6 +112,7 @@
             City = "";
             State = "";
             ContactPhone = "";
+            Country = "";
             Password = "";
         }
     }
