@@ -1,5 +1,4 @@
 ﻿using CS6232_Group_6_Store.Model;
-
 using System.Data.SqlClient;
 
 
@@ -45,6 +44,12 @@ namespace CS6232_Group_6_Store.DAL
             return memberList;
         }
 
+        /// <summary>
+        /// Retruns the members.
+        /// </summary>
+        /// <param name="searchMethod">The search method.</param>
+        /// <param name="searchField">The search field.</param>
+        /// <returns></returns>
         public List<Member> RetrunMembers(string searchMethod, string searchField)
         {
             List<Member> memberList = new List<Member>();
@@ -80,16 +85,10 @@ namespace CS6232_Group_6_Store.DAL
 
                     if ((lastName != null && lastName != "") && (firstName != null && firstName != ""))
                     {
-                        selectStatement += " lastName like '%' + @lastName + '%' and firstName like '%' + @firstname + '%' ";
+                       
+                        selectStatement += " lastName = @lastName and firstName =  @firstname  ";
                     }
-                    else if ((lastName != null && lastName != "") && (firstName == null || firstName == ""))
-                    {
-                        selectStatement += " lastName like '%' + @lastName + '%'  ";
-                    }
-                    else if ((lastName == null || lastName == "") && (firstName != null && firstName != ""))
-                    {
-                        selectStatement += "   firstName like '%' + @firstname + '%'  ";
-                    }
+                 
 
                 }
                 else if (searchMethod == "Id")
@@ -112,16 +111,14 @@ namespace CS6232_Group_6_Store.DAL
                     if (searchMethod == "Name")
                     {
 
-                        if (lastName != null && lastName != "")
+                        if (lastName != null && lastName != "" && firstName != null && firstName != "")
                         {
                             selectCommand.Parameters.Add("@lastName", System.Data.SqlDbType.VarChar);
                             selectCommand.Parameters["@lastName"].Value = lastName.Trim();
-                        }
-                        if (firstName != null && firstName != "")
-                        {
                             selectCommand.Parameters.Add("@firstname", System.Data.SqlDbType.VarChar);
                             selectCommand.Parameters["@firstname"].Value = firstName.Trim();
                         }
+                     
                     }
                     else if (searchMethod == "Phone")
                     {

@@ -1,17 +1,13 @@
 ﻿using CS6232_Group_6_Store.Controller;
 using CS6232_Group_6_Store.Model;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+
 
 namespace CS6232_Group_6_Store.UserControls
 {
+    /// <summary>
+    /// Class representing MemeberMangement : User Control
+    /// </summary>
+    /// <seealso cref="System.Windows.Forms.UserControl" />
     public partial class MemberManagement : UserControl
     {
         private readonly MemberController _memberController;
@@ -23,6 +19,22 @@ namespace CS6232_Group_6_Store.UserControls
             this.searchMethodLabel.Hide();
         }
 
+        /// <summary>
+        /// Clears the data.
+        /// </summary>
+        public void ClearData()
+        {
+            membersListView.Clear();
+            searchBox.Text = "";
+            searchMethodBox.Text = "";
+            PopulateMembersNameCombobox();
+            this.searchMessageLabel.Hide();
+            this.searchMethodLabel.Hide();
+        }
+
+        /// <summary>
+        /// Populates the members name combobox.
+        /// </summary>
         public void PopulateMembersNameCombobox()
         {
 
@@ -45,6 +57,11 @@ namespace CS6232_Group_6_Store.UserControls
 
         }
 
+        /// <summary>
+        /// Displaus the membes.
+        /// </summary>
+        /// <param name="searchMethod">The search method.</param>
+        /// <param name="searchParameter">The search parameter.</param>
         public void DisplauMembes(string searchMethod, string searchParameter)
         {
             try
@@ -90,6 +107,11 @@ namespace CS6232_Group_6_Store.UserControls
             }
         }
 
+        /// <summary>
+        /// Handles the SelectedIndexChanged event of the searchMethodBox control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void searchMethodBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             searchBox.Text = "";
@@ -98,21 +120,36 @@ namespace CS6232_Group_6_Store.UserControls
             this.searchMessageLabel.Hide();
         }
 
+        /// <summary>
+        /// Handles the SelectedIndexChanged event of the customerListBox control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void customerListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             searchBox.Text = customerListBox.Text;
             //DisplauMembes("Name", searchBox.Text);
         }
 
+        /// <summary>
+        /// Handles the TextChanged event of the searchBox control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void searchBox_TextChanged(object sender, EventArgs e)
         {
             this.searchMessageLabel.Text = "";
             this.searchMessageLabel.Hide();
         }
 
+        /// <summary>
+        /// Handles the Click event of the searchButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void searchButton_Click(object sender, EventArgs e)
         {
-
+            membersListView.Clear();
             try
             {
                 if (searchMethodBox.Text == "")
@@ -146,8 +183,18 @@ namespace CS6232_Group_6_Store.UserControls
                     // not typed in search box set searchbox with customer dropdown selection
                     if (customerListBox.Text != "" || searchBox.Text.Trim() == "")
                     {
-                        searchBox.Text = customerListBox.Text;
+                        searchBox.Text = customerListBox.Text.Trim();
                     }
+
+                    if (searchBox.Text.IndexOf(" ") == searchBox.Text.Length || searchBox.Text.IndexOf(" ") == -1)
+                    {
+                        this.searchMessageLabel.Text = "Customer last name and first name is rquired. Last name " +
+                            "and first name should be separated by blank space";
+                        this.searchMessageLabel.ForeColor = Color.Red;
+                        this.searchMessageLabel.Show();
+                        return;
+                    }
+
                 }
                 if (searchMethodBox.Text == "Phone")
                 {
@@ -169,6 +216,11 @@ namespace CS6232_Group_6_Store.UserControls
 
         }
 
+        /// <summary>
+        /// Handles the Load event of the MemberManagement control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void MemberManagement_Load(object sender, EventArgs e)
         {
             PopulateMembersNameCombobox();

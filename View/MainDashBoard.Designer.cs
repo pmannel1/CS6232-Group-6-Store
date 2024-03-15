@@ -43,30 +43,29 @@
             // 
             mainTabControl.Controls.Add(customerTabPage);
             mainTabControl.Dock = DockStyle.Bottom;
-            mainTabControl.Location = new Point(0, 47);
-            mainTabControl.Margin = new Padding(3, 4, 3, 4);
+            mainTabControl.Location = new Point(0, 35);
             mainTabControl.Name = "mainTabControl";
             mainTabControl.SelectedIndex = 0;
-            mainTabControl.Size = new Size(1206, 657);
+            mainTabControl.Size = new Size(1055, 493);
             mainTabControl.TabIndex = 0;
             // 
             // customerTabPage
             // 
             customerTabPage.Controls.Add(memberManagement1);
-            customerTabPage.Location = new Point(4, 29);
-            customerTabPage.Margin = new Padding(3, 4, 3, 4);
+            customerTabPage.Location = new Point(4, 24);
             customerTabPage.Name = "customerTabPage";
-            customerTabPage.Padding = new Padding(3, 4, 3, 4);
-            customerTabPage.Size = new Size(1198, 624);
+            customerTabPage.Padding = new Padding(3);
+            customerTabPage.Size = new Size(1047, 465);
             customerTabPage.TabIndex = 0;
             customerTabPage.Text = "Customer";
             customerTabPage.UseVisualStyleBackColor = true;
             // 
             // memberManagement1
             // 
-            memberManagement1.Location = new Point(8, 7);
+            memberManagement1.Location = new Point(7, 5);
+            memberManagement1.Margin = new Padding(3, 2, 3, 2);
             memberManagement1.Name = "memberManagement1";
-            memberManagement1.Size = new Size(1386, 775);
+            memberManagement1.Size = new Size(1213, 581);
             memberManagement1.TabIndex = 0;
             // 
             // greetingLabel
@@ -75,16 +74,16 @@
             greetingLabel.Dock = DockStyle.Left;
             greetingLabel.Location = new Point(0, 0);
             greetingLabel.Name = "greetingLabel";
-            greetingLabel.Size = new Size(0, 20);
+            greetingLabel.Size = new Size(0, 15);
             greetingLabel.TabIndex = 1;
             // 
             // logoutLinkLabel
             // 
             logoutLinkLabel.AutoSize = true;
             logoutLinkLabel.Dock = DockStyle.Right;
-            logoutLinkLabel.Location = new Point(1141, 0);
+            logoutLinkLabel.Location = new Point(1002, 0);
             logoutLinkLabel.Name = "logoutLinkLabel";
-            logoutLinkLabel.Size = new Size(65, 20);
+            logoutLinkLabel.Size = new Size(53, 15);
             logoutLinkLabel.TabIndex = 2;
             logoutLinkLabel.TabStop = true;
             logoutLinkLabel.Text = "LOGOUT";
@@ -93,32 +92,31 @@
             // userNameLabel
             // 
             userNameLabel.AutoSize = true;
-            userNameLabel.Location = new Point(799, 9);
+            userNameLabel.Location = new Point(699, 7);
             userNameLabel.Name = "userNameLabel";
-            userNameLabel.Size = new Size(78, 20);
+            userNameLabel.Size = new Size(62, 15);
             userNameLabel.TabIndex = 6;
             userNameLabel.Text = "UserName";
             // 
             // employeeNameLebel
             // 
             employeeNameLebel.AutoSize = true;
-            employeeNameLebel.Location = new Point(532, 9);
+            employeeNameLebel.Location = new Point(466, 7);
             employeeNameLebel.Name = "employeeNameLebel";
-            employeeNameLebel.Size = new Size(115, 20);
+            employeeNameLebel.Size = new Size(91, 15);
             employeeNameLebel.TabIndex = 5;
             employeeNameLebel.Text = "EmployeeName";
             // 
             // MainDashBoard
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1206, 704);
+            ClientSize = new Size(1055, 528);
             Controls.Add(userNameLabel);
             Controls.Add(employeeNameLebel);
             Controls.Add(logoutLinkLabel);
             Controls.Add(greetingLabel);
             Controls.Add(mainTabControl);
-            Margin = new Padding(3, 4, 3, 4);
             Name = "MainDashBoard";
             Text = "Main Dashboard";
             mainTabControl.ResumeLayout(false);

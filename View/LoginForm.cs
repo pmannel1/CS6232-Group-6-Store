@@ -104,28 +104,6 @@ namespace CS6232_Group_6_Store.View
             }
 
 
-            /*-----------old code
-             string idStr = this.idTextBox.Text;
-             string password = this.passwordTextBox.Text;
-             int id = 0;
-
-             if (!int.TryParse(idStr, out id) || id < 1 || string.IsNullOrEmpty(password)
-                 || !this._employeeController.ValidateEmployee(id, password))
-             {
-                 this.errorLabel.Text = "Invalid username or password.";
-                 this.idTextBox.Text = "";
-                 this.passwordTextBox.Text = "";
-             }
-             else
-             {
-                 this._mainDashBoard.SetGreetingLabel("Employee ID: " + idStr);
-                 this.Visible = false;
-                 this._mainDashBoard.Visible = true;
-                 this.errorLabel.Text = "";
-                 this.idTextBox.Text = "";
-                 this.passwordTextBox.Text = "";
-             }
-            */
         }
 
         /// <summary>

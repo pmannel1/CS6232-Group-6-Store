@@ -40,10 +40,15 @@ namespace CS6232_Group_6_Store
         /// <param name="e">The <see cref="LinkLabelLinkClickedEventArgs"/> instance containing the event data.</param>
         private void logoutLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            this.memberManagement1.ClearData();
             this.Visible = false;
             this._loginForm.Visible = true;
-
             this._loginForm.Logout();
+        }
+
+        private void memberManagement1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
