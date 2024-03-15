@@ -31,17 +31,21 @@
             mainTabControl = new TabControl();
             customerTabPage = new TabPage();
             memberManagement1 = new UserControls.MemberManagement();
+            editMemberTabPage = new TabPage();
+            memberEdit1 = new UserControls.MemberEdit();
             greetingLabel = new Label();
             logoutLinkLabel = new LinkLabel();
             userNameLabel = new Label();
             employeeNameLebel = new Label();
             mainTabControl.SuspendLayout();
             customerTabPage.SuspendLayout();
+            editMemberTabPage.SuspendLayout();
             SuspendLayout();
             // 
             // mainTabControl
             // 
             mainTabControl.Controls.Add(customerTabPage);
+            mainTabControl.Controls.Add(editMemberTabPage);
             mainTabControl.Dock = DockStyle.Bottom;
             mainTabControl.Location = new Point(0, 47);
             mainTabControl.Margin = new Padding(3, 4, 3, 4);
@@ -68,6 +72,26 @@
             memberManagement1.Name = "memberManagement1";
             memberManagement1.Size = new Size(1386, 775);
             memberManagement1.TabIndex = 0;
+            // 
+            // editMemberTabPage
+            // 
+            editMemberTabPage.Controls.Add(memberEdit1);
+            editMemberTabPage.Location = new Point(4, 29);
+            editMemberTabPage.Name = "editMemberTabPage";
+            editMemberTabPage.Padding = new Padding(3);
+            editMemberTabPage.Size = new Size(1198, 624);
+            editMemberTabPage.TabIndex = 1;
+            editMemberTabPage.Text = "Edit Member";
+            editMemberTabPage.UseVisualStyleBackColor = true;
+            // 
+            // memberEdit1
+            // 
+            memberEdit1.AutoSize = true;
+            memberEdit1.Dock = DockStyle.Fill;
+            memberEdit1.Location = new Point(3, 3);
+            memberEdit1.Name = "memberEdit1";
+            memberEdit1.Size = new Size(1192, 618);
+            memberEdit1.TabIndex = 0;
             // 
             // greetingLabel
             // 
@@ -123,6 +147,8 @@
             Text = "Main Dashboard";
             mainTabControl.ResumeLayout(false);
             customerTabPage.ResumeLayout(false);
+            editMemberTabPage.ResumeLayout(false);
+            editMemberTabPage.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -136,5 +162,7 @@
         private UserControls.MemberManagement memberManagement1;
         private Label userNameLabel;
         private Label employeeNameLebel;
+        private TabPage editMemberTabPage;
+        private UserControls.MemberEdit memberEdit1;
     }
 }
