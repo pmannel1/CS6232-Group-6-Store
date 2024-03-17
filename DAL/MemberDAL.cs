@@ -166,6 +166,45 @@ namespace CS6232_Group_6_Store.DAL
             return memberList;
         }
 
+        public void AddDBMember(string firstName, string lastName, string sex, DateTime dob, string street, string city, string state, string zipCode, string country, string contactPhone)
+        {
+            string insertStatement =
+       "INSERT INTO Members (firstName, lastName, sex, DOB, Street, City, State, zipCode, country, contactPhone) " +
+       "VALUES (@FirstName, @LastName, @Sex, @DOB, @Street, @City, @State, @ZipCode, @Country, @ContactPhone)";
+
+            SqlConnection connection = null;
+
+            try
+            {
+                using (connection = DBConnection.GetConnection()) 
+                {
+                    connection.Open();
+                    using (SqlCommand cmd = new SqlCommand(insertStatement, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@FirstName", firstName);
+                        cmd.Parameters.AddWithValue("@LastName", lastName);
+                        cmd.Parameters.AddWithValue("@Sex", sex);
+                        cmd.Parameters.AddWithValue("@DOB", dob);
+                        cmd.Parameters.AddWithValue("@Street", street);
+                        cmd.Parameters.AddWithValue("@City", city);
+                        cmd.Parameters.AddWithValue("@State", state);
+                        cmd.Parameters.AddWithValue("@ZipCode", zipCode);
+                        cmd.Parameters.AddWithValue("@Country", country);
+                        cmd.Parameters.AddWithValue("@ContactPhone", contactPhone);
+
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (SqlException sqlEx)
+            {
+                throw sqlEx;
+            }
+            finally
+            {
+                connection?.Close();
+            }
+        }
 
     }
 }

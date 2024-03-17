@@ -1,6 +1,6 @@
 ﻿namespace CS6232_Group_6_Store.UserControls
 {
-    partial class MemberEdit
+    partial class MemberAdd
     {
         /// <summary> 
         /// Required designer variable.
@@ -43,176 +43,208 @@
             phoneText = new TextBox();
             stateComboBox = new ComboBox();
             cancelButton = new Button();
-            updateButton = new Button();
-            customerIDLabel = new Label();
-            memberIDText = new TextBox();
-            memberSearchButton = new Button();
+            addButton = new Button();
+            genderBox = new ComboBox();
+            genderLabel = new Label();
+            errorLabel = new Label();
+            dobLabel = new Label();
+            dobPicker = new DateTimePicker();
             SuspendLayout();
             // 
             // memberFNameLabel
             // 
             memberFNameLabel.AutoSize = true;
-            memberFNameLabel.Location = new Point(23, 101);
+            memberFNameLabel.Location = new Point(23, 26);
             memberFNameLabel.Name = "memberFNameLabel";
-            memberFNameLabel.Size = new Size(80, 20);
+            memberFNameLabel.Size = new Size(64, 15);
             memberFNameLabel.TabIndex = 20;
             memberFNameLabel.Text = "First Name";
             // 
             // memberLastNameLabel
             // 
             memberLastNameLabel.AutoSize = true;
-            memberLastNameLabel.Location = new Point(23, 148);
+            memberLastNameLabel.Location = new Point(23, 61);
             memberLastNameLabel.Name = "memberLastNameLabel";
-            memberLastNameLabel.Size = new Size(79, 20);
+            memberLastNameLabel.Size = new Size(63, 15);
             memberLastNameLabel.TabIndex = 21;
             memberLastNameLabel.Text = "Last Name";
             // 
             // memberAddressStreetLabel
             // 
             memberAddressStreetLabel.AutoSize = true;
-            memberAddressStreetLabel.Location = new Point(24, 193);
+            memberAddressStreetLabel.Location = new Point(24, 114);
             memberAddressStreetLabel.Name = "memberAddressStreetLabel";
-            memberAddressStreetLabel.Size = new Size(62, 20);
+            memberAddressStreetLabel.Size = new Size(49, 15);
             memberAddressStreetLabel.TabIndex = 22;
             memberAddressStreetLabel.Text = "Address";
             // 
             // memberCityLabel
             // 
             memberCityLabel.AutoSize = true;
-            memberCityLabel.Location = new Point(23, 235);
+            memberCityLabel.Location = new Point(23, 146);
             memberCityLabel.Name = "memberCityLabel";
-            memberCityLabel.Size = new Size(34, 20);
+            memberCityLabel.Size = new Size(28, 15);
             memberCityLabel.TabIndex = 23;
             memberCityLabel.Text = "City";
             // 
             // memberStateLabel
             // 
             memberStateLabel.AutoSize = true;
-            memberStateLabel.Location = new Point(24, 276);
+            memberStateLabel.Location = new Point(24, 176);
             memberStateLabel.Name = "memberStateLabel";
-            memberStateLabel.Size = new Size(43, 20);
+            memberStateLabel.Size = new Size(33, 15);
             memberStateLabel.TabIndex = 24;
             memberStateLabel.Text = "State";
             // 
             // memebrZipCodeLabel
             // 
             memebrZipCodeLabel.AutoSize = true;
-            memebrZipCodeLabel.Location = new Point(23, 316);
+            memebrZipCodeLabel.Location = new Point(23, 206);
             memebrZipCodeLabel.Name = "memebrZipCodeLabel";
-            memebrZipCodeLabel.Size = new Size(66, 20);
+            memebrZipCodeLabel.Size = new Size(52, 15);
             memebrZipCodeLabel.TabIndex = 25;
             memebrZipCodeLabel.Text = "ZipCode";
             // 
             // memberPhoneNumberLabel
             // 
             memberPhoneNumberLabel.AutoSize = true;
-            memberPhoneNumberLabel.Location = new Point(24, 353);
+            memberPhoneNumberLabel.Location = new Point(24, 234);
             memberPhoneNumberLabel.Name = "memberPhoneNumberLabel";
-            memberPhoneNumberLabel.Size = new Size(50, 20);
+            memberPhoneNumberLabel.Size = new Size(41, 15);
             memberPhoneNumberLabel.TabIndex = 26;
             memberPhoneNumberLabel.Text = "Phone";
             // 
             // firstNameText
             // 
-            firstNameText.Location = new Point(169, 94);
+            firstNameText.Location = new Point(150, 20);
+            firstNameText.Margin = new Padding(3, 2, 3, 2);
             firstNameText.Name = "firstNameText";
-            firstNameText.Size = new Size(267, 27);
+            firstNameText.Size = new Size(234, 23);
             firstNameText.TabIndex = 27;
             // 
             // lastNameText
             // 
-            lastNameText.Location = new Point(169, 141);
+            lastNameText.Location = new Point(150, 56);
+            lastNameText.Margin = new Padding(3, 2, 3, 2);
             lastNameText.Name = "lastNameText";
-            lastNameText.Size = new Size(267, 27);
+            lastNameText.Size = new Size(234, 23);
             lastNameText.TabIndex = 28;
             // 
             // addressTextBox
             // 
-            addressTextBox.Location = new Point(169, 186);
+            addressTextBox.Location = new Point(150, 109);
+            addressTextBox.Margin = new Padding(3, 2, 3, 2);
             addressTextBox.Name = "addressTextBox";
-            addressTextBox.Size = new Size(267, 27);
+            addressTextBox.Size = new Size(234, 23);
             addressTextBox.TabIndex = 29;
             // 
             // cityText
             // 
-            cityText.Location = new Point(169, 228);
+            cityText.Location = new Point(150, 140);
+            cityText.Margin = new Padding(3, 2, 3, 2);
             cityText.Name = "cityText";
-            cityText.Size = new Size(267, 27);
+            cityText.Size = new Size(234, 23);
             cityText.TabIndex = 30;
             // 
             // zipText
             // 
-            zipText.Location = new Point(169, 309);
+            zipText.Location = new Point(150, 201);
+            zipText.Margin = new Padding(3, 2, 3, 2);
             zipText.Name = "zipText";
-            zipText.Size = new Size(267, 27);
+            zipText.Size = new Size(234, 23);
             zipText.TabIndex = 31;
             // 
             // phoneText
             // 
-            phoneText.Location = new Point(169, 346);
+            phoneText.Location = new Point(150, 229);
+            phoneText.Margin = new Padding(3, 2, 3, 2);
             phoneText.Name = "phoneText";
-            phoneText.Size = new Size(267, 27);
+            phoneText.Size = new Size(234, 23);
             phoneText.TabIndex = 32;
             // 
             // stateComboBox
             // 
+            stateComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
             stateComboBox.FormattingEnabled = true;
-            stateComboBox.Location = new Point(169, 268);
+            stateComboBox.Location = new Point(150, 170);
+            stateComboBox.Margin = new Padding(3, 2, 3, 2);
             stateComboBox.Name = "stateComboBox";
-            stateComboBox.Size = new Size(151, 28);
+            stateComboBox.Size = new Size(133, 23);
             stateComboBox.TabIndex = 33;
             // 
             // cancelButton
             // 
-            cancelButton.Location = new Point(169, 398);
+            cancelButton.Location = new Point(150, 301);
+            cancelButton.Margin = new Padding(3, 2, 3, 2);
             cancelButton.Name = "cancelButton";
-            cancelButton.Size = new Size(94, 29);
+            cancelButton.Size = new Size(82, 22);
             cancelButton.TabIndex = 34;
             cancelButton.Text = "Cancel";
             cancelButton.UseVisualStyleBackColor = true;
             // 
-            // updateButton
+            // addButton
             // 
-            updateButton.Location = new Point(342, 398);
-            updateButton.Name = "updateButton";
-            updateButton.Size = new Size(94, 29);
-            updateButton.TabIndex = 35;
-            updateButton.Text = "Update";
-            updateButton.UseVisualStyleBackColor = true;
+            addButton.Location = new Point(302, 301);
+            addButton.Margin = new Padding(3, 2, 3, 2);
+            addButton.Name = "addButton";
+            addButton.Size = new Size(82, 22);
+            addButton.TabIndex = 35;
+            addButton.Text = "Add";
+            addButton.UseVisualStyleBackColor = true;
             // 
-            // customerIDLabel
+            // genderBox
             // 
-            customerIDLabel.AutoSize = true;
-            customerIDLabel.Location = new Point(24, 26);
-            customerIDLabel.Name = "customerIDLabel";
-            customerIDLabel.Size = new Size(80, 20);
-            customerIDLabel.TabIndex = 36;
-            customerIDLabel.Text = "MemberID";
+            genderBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            genderBox.FormattingEnabled = true;
+            genderBox.Location = new Point(150, 83);
+            genderBox.Margin = new Padding(3, 2, 3, 2);
+            genderBox.Name = "genderBox";
+            genderBox.Size = new Size(133, 23);
+            genderBox.TabIndex = 37;
             // 
-            // memberIDText
+            // genderLabel
             // 
-            memberIDText.Location = new Point(169, 19);
-            memberIDText.Name = "memberIDText";
-            memberIDText.Size = new Size(267, 27);
-            memberIDText.TabIndex = 37;
+            genderLabel.AutoSize = true;
+            genderLabel.Location = new Point(24, 89);
+            genderLabel.Name = "genderLabel";
+            genderLabel.Size = new Size(45, 15);
+            genderLabel.TabIndex = 36;
+            genderLabel.Text = "Gender";
             // 
-            // memberSearchButton
+            // errorLabel
             // 
-            memberSearchButton.Location = new Point(534, 17);
-            memberSearchButton.Name = "memberSearchButton";
-            memberSearchButton.Size = new Size(94, 29);
-            memberSearchButton.TabIndex = 38;
-            memberSearchButton.Text = "Search";
-            memberSearchButton.UseVisualStyleBackColor = true;
+            errorLabel.AutoSize = true;
+            errorLabel.Location = new Point(458, 23);
+            errorLabel.Name = "errorLabel";
+            errorLabel.Size = new Size(0, 15);
+            errorLabel.TabIndex = 38;
             // 
-            // MemberEdit
+            // dobLabel
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            dobLabel.AutoSize = true;
+            dobLabel.Location = new Point(24, 265);
+            dobLabel.Name = "dobLabel";
+            dobLabel.Size = new Size(73, 15);
+            dobLabel.TabIndex = 39;
+            dobLabel.Text = "Date of Birth";
+            // 
+            // dobPicker
+            // 
+            dobPicker.Location = new Point(150, 259);
+            dobPicker.Name = "dobPicker";
+            dobPicker.Size = new Size(200, 23);
+            dobPicker.TabIndex = 40;
+            // 
+            // MemberAdd
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(memberSearchButton);
-            Controls.Add(memberIDText);
-            Controls.Add(customerIDLabel);
-            Controls.Add(updateButton);
+            Controls.Add(dobPicker);
+            Controls.Add(dobLabel);
+            Controls.Add(errorLabel);
+            Controls.Add(genderBox);
+            Controls.Add(genderLabel);
+            Controls.Add(addButton);
             Controls.Add(cancelButton);
             Controls.Add(stateComboBox);
             Controls.Add(phoneText);
@@ -228,8 +260,9 @@
             Controls.Add(memberAddressStreetLabel);
             Controls.Add(memberLastNameLabel);
             Controls.Add(memberFNameLabel);
-            Name = "MemberEdit";
-            Size = new Size(703, 473);
+            Margin = new Padding(3, 2, 3, 2);
+            Name = "MemberAdd";
+            Size = new Size(615, 355);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -251,9 +284,11 @@
         private TextBox phoneText;
         private ComboBox stateComboBox;
         private Button cancelButton;
-        private Button updateButton;
-        private Label customerIDLabel;
-        private TextBox memberIDText;
-        private Button memberSearchButton;
+        private Button addButton;
+        private ComboBox genderBox;
+        private Label genderLabel;
+        private Label errorLabel;
+        private Label dobLabel;
+        private DateTimePicker dobPicker;
     }
 }
