@@ -30,18 +30,22 @@
         {
             mainTabControl = new TabControl();
             customerTabPage = new TabPage();
-            memberManagement1 = new UserControls.MemberManagement();
+            memberManagement2 = new UserControls.MemberManagement();
+            addMemberTabPage = new TabPage();
+            memberAdd1 = new UserControls.MemberAdd();
             greetingLabel = new Label();
             logoutLinkLabel = new LinkLabel();
             userNameLabel = new Label();
             employeeNameLebel = new Label();
             mainTabControl.SuspendLayout();
             customerTabPage.SuspendLayout();
+            addMemberTabPage.SuspendLayout();
             SuspendLayout();
             // 
             // mainTabControl
             // 
             mainTabControl.Controls.Add(customerTabPage);
+            mainTabControl.Controls.Add(addMemberTabPage);
             mainTabControl.Dock = DockStyle.Bottom;
             mainTabControl.Location = new Point(0, 35);
             mainTabControl.Name = "mainTabControl";
@@ -51,7 +55,7 @@
             // 
             // customerTabPage
             // 
-            customerTabPage.Controls.Add(memberManagement1);
+            customerTabPage.Controls.Add(memberManagement2);
             customerTabPage.Location = new Point(4, 24);
             customerTabPage.Name = "customerTabPage";
             customerTabPage.Padding = new Padding(3);
@@ -60,13 +64,35 @@
             customerTabPage.Text = "Customer";
             customerTabPage.UseVisualStyleBackColor = true;
             // 
-            // memberManagement1
+            // memberManagement2
             // 
-            memberManagement1.Location = new Point(7, 5);
-            memberManagement1.Margin = new Padding(3, 2, 3, 2);
-            memberManagement1.Name = "memberManagement1";
-            memberManagement1.Size = new Size(1213, 581);
-            memberManagement1.TabIndex = 0;
+            memberManagement2.Dock = DockStyle.Fill;
+            memberManagement2.Location = new Point(3, 3);
+            memberManagement2.Margin = new Padding(3, 2, 3, 2);
+            memberManagement2.Name = "memberManagement2";
+            memberManagement2.Size = new Size(1041, 459);
+            memberManagement2.TabIndex = 0;
+            // 
+            // addMemberTabPage
+            // 
+            addMemberTabPage.Controls.Add(memberAdd1);
+            addMemberTabPage.Location = new Point(4, 24);
+            addMemberTabPage.Margin = new Padding(3, 2, 3, 2);
+            addMemberTabPage.Name = "addMemberTabPage";
+            addMemberTabPage.Padding = new Padding(3, 2, 3, 2);
+            addMemberTabPage.Size = new Size(1047, 465);
+            addMemberTabPage.TabIndex = 1;
+            addMemberTabPage.Text = "Add Member";
+            addMemberTabPage.UseVisualStyleBackColor = true;
+            // 
+            // memberAdd1
+            // 
+            memberAdd1.Dock = DockStyle.Fill;
+            memberAdd1.Location = new Point(3, 2);
+            memberAdd1.Margin = new Padding(3, 2, 3, 2);
+            memberAdd1.Name = "memberAdd1";
+            memberAdd1.Size = new Size(1041, 461);
+            memberAdd1.TabIndex = 0;
             // 
             // greetingLabel
             // 
@@ -121,6 +147,7 @@
             Text = "Main Dashboard";
             mainTabControl.ResumeLayout(false);
             customerTabPage.ResumeLayout(false);
+            addMemberTabPage.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -134,5 +161,9 @@
         private UserControls.MemberManagement memberManagement1;
         private Label userNameLabel;
         private Label employeeNameLebel;
+        private TabPage addMemberTabPage;
+        private UserControls.MemberAdd memberEdit1;
+        private UserControls.MemberManagement memberManagement2;
+        private UserControls.MemberAdd memberAdd1;
     }
 }

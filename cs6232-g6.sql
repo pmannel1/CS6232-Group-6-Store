@@ -17,7 +17,7 @@ hashedPassword VARCHAR(255)
 );
 create table members
 (
-id int primary key,
+id int primary key IDENTITY (1,1),
 firstName VARCHAR(255),
 lastName VARCHAR(255),
 sex VARCHAR(15),
@@ -39,8 +39,8 @@ insert into employees select 1, 'Jone','Albert','Male','10-23-1990','DC','091104
 --.
 
 
-insert into members select 8, 'Jakson','Regen','Male','01-06-1990','streetAddress','DC','DC','1345','USA','240123456';
-insert into members select 7, 'Mikele','Winger','Male','01-06-1987','streetAddress','DC','DC','1456','USA','202345678';
+insert into members select 'Jakson','Regen','Male','01-06-1990','streetAddress','DC','DC','1345','USA','240123456';
+insert into members select 'Mikele','Winger','Male','01-06-1987','streetAddress','DC','DC','1456','USA','202345678';
 
 --.
 --.

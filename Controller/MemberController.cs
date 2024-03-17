@@ -38,5 +38,10 @@ namespace CS6232_Group_6_Store.Controller
         {
             return this.memeberDAL.RetrunMembers(searchMethod, searchField);
         }
+
+        public void AddDBMember(string firstName, string lastName, string sex, DateTime dob, string street, string city, string state, string zipCode, string country, string contactPhone)
+        {
+            MemberDAL.AddDBMember(firstName, lastName, sex, dob, street, city, state, zipCode, country, contactPhone);
+        }
     }
 }
