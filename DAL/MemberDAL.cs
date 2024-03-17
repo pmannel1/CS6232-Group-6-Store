@@ -1,5 +1,6 @@
 ﻿using CS6232_Group_6_Store.Model;
 using System.Data.SqlClient;
+using System.Data;
 
 
 namespace CS6232_Group_6_Store.DAL
@@ -199,6 +200,51 @@ namespace CS6232_Group_6_Store.DAL
             {
                 connection?.Close();
             }
+        }
+
+        /// <summary>
+        /// Gets the open incidents.
+        /// </summary>
+        /// <returns></returns>
+        public Member RetrieveMember(int id)
+        {
+            Member member = null;
+            string selectStatement =
+               "SELECT members.* " +
+               "FROM members " +
+               "WHERE members.id = @id ";
+
+
+            using (SqlConnection connection = DBConnection.GetConnection())
+            {
+                connection.Open();
+
+                using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
+                {
+                    selectCommand.Parameters.Add("@id", SqlDbType.Int);
+                    selectCommand.Parameters["@id"].Value = id;
+
+                    using (SqlDataReader reader = selectCommand.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var firstName = reader["firstName"].ToString();
+                            var lastName = reader["lastName"].ToString();
+                            var sex = reader["sex"].ToString();
+                            var dateOfBirth = (DateTime)reader["dob"];
+                            var street = reader["street"].ToString();
+                            var city = reader["city"].ToString();
+                            var state = reader["state"].ToString();
+                            var zipCode = Convert.ToInt32(reader["zipCode"]);
+                            var country = reader["country"].ToString();
+                            var contactPhone = reader["contactPhone"].ToString();
+                            var password = reader["password"].ToString();
+                            member = new Member(id, lastName, firstName, dateOfBirth, street, city, state, zipCode, country, contactPhone, password, sex);
+                        }
+                    }
+                }
+            }
+            return member;
         }
 
     }

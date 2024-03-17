@@ -29,13 +29,13 @@
         /// </value>
         public string FirstName { get; set; }
 
-        //TODO Create field/property for enum sex attribute in DB, below is my attempt
-        public enum Sex
-        {
-            M = 0,
-            F = 1,
-            Other = 2
-        }
+        /// <summary>
+        /// Gets or sets the sex.
+        /// </summary>
+        /// <value>
+        /// The sex.
+        /// </value>
+        public string Sex{ get; set; }
 
         /// <summary>
         /// Gets or sets the date of birth.
@@ -114,6 +114,70 @@
             Country = "";
             ContactPhone = "";
             Password = "";
+        }
+
+        public Member(int id, string lastName, string firstName, DateTime dateOfBirth, string streetAddress, string city, string state, int zipCode, string country, string contactPhone, string password, string sex)
+        {
+            if(id <= 0) 
+            {
+                throw new ArgumentException("id cannot be less than or equal to zero");
+            }
+            if(string.IsNullOrEmpty(lastName)) 
+            {
+                throw new ArgumentException("last name cannot be null or empty");
+            }
+            if (string.IsNullOrEmpty(firstName))
+            {
+                throw new ArgumentException("first name cannot be null or empty");
+            }
+            if (string.IsNullOrEmpty(streetAddress))
+            {
+                throw new ArgumentException("street address cannot be null or empty");
+            }
+            if (string.IsNullOrEmpty(city))
+            {
+                throw new ArgumentException("city cannot be null or empty");
+            }
+            if (string.IsNullOrEmpty(state))
+            {
+                throw new ArgumentException("state cannot be null or empty");
+            }
+            if (string.IsNullOrEmpty(country))
+            {
+                throw new ArgumentException("country cannot be null or empty");
+            }
+            if (string.IsNullOrEmpty(contactPhone) && contactPhone.Length != 7 && !contactPhone.All(char.IsDigit))
+            {
+                throw new ArgumentException("phone number cannot be null or empty, must be seven digits and only numerical");
+            }
+            if (string.IsNullOrEmpty(password))
+            {
+                throw new ArgumentException("password cannot be null or empty");
+            }
+            if (string.IsNullOrEmpty(lastName))
+            {
+                throw new ArgumentException("last name cannot be null or empty");
+            }
+            if (zipCode < 10000 || zipCode > 99999)
+            {
+                throw new ArgumentException("Zipcode is out of range");
+            }
+            if (!(sex == "M" || sex == "F" || sex == "O"))
+            {
+                throw new ArgumentException("Sex is invalid");
+            }
+            Id = id;
+            LastName = lastName;
+            FirstName = firstName;
+            DateOfBirth = dateOfBirth;
+            StreetAddress = streetAddress;
+            City = city;
+            State = state;
+            ZipCode = zipCode;
+            Country = country;
+            ContactPhone = contactPhone;
+            Password = password;
+            Sex = sex;
         }
     }
 }

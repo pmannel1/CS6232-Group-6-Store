@@ -80,7 +80,7 @@
             addMemberTabPage.Margin = new Padding(3, 2, 3, 2);
             addMemberTabPage.Name = "addMemberTabPage";
             addMemberTabPage.Padding = new Padding(3, 2, 3, 2);
-            addMemberTabPage.Size = new Size(1047, 465);
+            addMemberTabPage.Size = new Size(192, 72);
             addMemberTabPage.TabIndex = 1;
             addMemberTabPage.Text = "Add Member";
             addMemberTabPage.UseVisualStyleBackColor = true;
@@ -91,7 +91,7 @@
             memberAdd1.Location = new Point(3, 2);
             memberAdd1.Margin = new Padding(3, 2, 3, 2);
             memberAdd1.Name = "memberAdd1";
-            memberAdd1.Size = new Size(1041, 461);
+            memberAdd1.Size = new Size(186, 68);
             memberAdd1.TabIndex = 0;
             // 
             // greetingLabel

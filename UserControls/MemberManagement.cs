@@ -1,5 +1,6 @@
 ﻿using CS6232_Group_6_Store.Controller;
 using CS6232_Group_6_Store.Model;
+using CS6232_Group_6_Store.View;
 
 
 namespace CS6232_Group_6_Store.UserControls
@@ -10,6 +11,7 @@ namespace CS6232_Group_6_Store.UserControls
     /// <seealso cref="System.Windows.Forms.UserControl" />
     public partial class MemberManagement : UserControl
     {
+        public int selectedMember;
         private readonly MemberController _memberController;
         public MemberManagement()
         {
@@ -17,6 +19,7 @@ namespace CS6232_Group_6_Store.UserControls
             this._memberController = new MemberController();
             this.searchMessageLabel.Hide();
             this.searchMethodLabel.Hide();
+            this.editButton.Enabled = false;
         }
 
         /// <summary>
@@ -224,6 +227,24 @@ namespace CS6232_Group_6_Store.UserControls
         private void MemberManagement_Load(object sender, EventArgs e)
         {
             PopulateMembersNameCombobox();
+        }
+
+        private void EditButton_Click(object sender, EventArgs e)
+        {
+            this.selectedMember = int.Parse(membersListView.SelectedItems[0].SubItems[0].Text);
+            EditMemberForm editForm = new EditMemberForm(this);
+            DialogResult result = editForm.ShowDialog();
+
+
+
+        }
+
+        private void MemberListView_Select(object sender, EventArgs e)
+        {
+            this.editButton.Enabled = true;
+
+
+
         }
     }
 }

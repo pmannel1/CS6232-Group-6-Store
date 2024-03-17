@@ -43,5 +43,10 @@ namespace CS6232_Group_6_Store.Controller
         {
             MemberDAL.AddDBMember(firstName, lastName, sex, dob, street, city, state, zipCode, country, contactPhone);
         }
+
+        public Member RetrieveMember(int id)
+        {
+            return this.memeberDAL.RetrieveMember(id);
+        }
     }
 }

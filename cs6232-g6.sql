@@ -153,6 +153,30 @@ CREATE TABLE categories (
 );
 GO
 
+-- Create the 'states' table
+IF OBJECT_ID('states', 'U') IS NOT NULL
+    DROP TABLE states;
+GO
+
+CREATE TABLE states (
+    stateAbbreviation CHAR(2) PRIMARY KEY
+);
+GO
+
+-- Insert abbreviated state names into the 'states' table
+INSERT INTO states (stateAbbreviation) VALUES
+('AL'), ('AK'), ('AZ'), ('AR'), ('CA'),
+('CO'), ('CT'), ('DE'), ('FL'), ('GA'),
+('HI'), ('ID'), ('IL'), ('IN'), ('IA'),
+('KS'), ('KY'), ('LA'), ('ME'), ('MD'),
+('MA'), ('MI'), ('MN'), ('MS'), ('MO'),
+('MT'), ('NE'), ('NV'), ('NH'), ('NJ'),
+('NM'), ('NY'), ('NC'), ('ND'), ('OH'),
+('OK'), ('OR'), ('PA'), ('RI'), ('SC'),
+('SD'), ('TN'), ('TX'), ('UT'), ('VT'),
+('VA'), ('WA'), ('WV'), ('WI'), ('WY');
+GO
+
 -- Inserting sample data into the 'styles' table
 INSERT INTO styles (name) VALUES ('Modern'), ('Classic'), ('Vintage');
 GO
