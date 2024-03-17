@@ -31,21 +31,21 @@
             mainTabControl = new TabControl();
             customerTabPage = new TabPage();
             memberManagement2 = new UserControls.MemberManagement();
-            editMemberTabPage = new TabPage();
+            addMemberTabPage = new TabPage();
+            memberAdd1 = new UserControls.MemberAdd();
             greetingLabel = new Label();
             logoutLinkLabel = new LinkLabel();
             userNameLabel = new Label();
             employeeNameLebel = new Label();
-            memberAdd1 = new UserControls.MemberAdd();
             mainTabControl.SuspendLayout();
             customerTabPage.SuspendLayout();
-            editMemberTabPage.SuspendLayout();
+            addMemberTabPage.SuspendLayout();
             SuspendLayout();
             // 
             // mainTabControl
             // 
             mainTabControl.Controls.Add(customerTabPage);
-            mainTabControl.Controls.Add(editMemberTabPage);
+            mainTabControl.Controls.Add(addMemberTabPage);
             mainTabControl.Dock = DockStyle.Bottom;
             mainTabControl.Location = new Point(0, 35);
             mainTabControl.Name = "mainTabControl";
@@ -73,17 +73,26 @@
             memberManagement2.Size = new Size(1041, 459);
             memberManagement2.TabIndex = 0;
             // 
-            // editMemberTabPage
+            // addMemberTabPage
             // 
-            editMemberTabPage.Controls.Add(memberAdd1);
-            editMemberTabPage.Location = new Point(4, 24);
-            editMemberTabPage.Margin = new Padding(3, 2, 3, 2);
-            editMemberTabPage.Name = "editMemberTabPage";
-            editMemberTabPage.Padding = new Padding(3, 2, 3, 2);
-            editMemberTabPage.Size = new Size(1047, 465);
-            editMemberTabPage.TabIndex = 1;
-            editMemberTabPage.Text = "Edit Member";
-            editMemberTabPage.UseVisualStyleBackColor = true;
+            addMemberTabPage.Controls.Add(memberAdd1);
+            addMemberTabPage.Location = new Point(4, 24);
+            addMemberTabPage.Margin = new Padding(3, 2, 3, 2);
+            addMemberTabPage.Name = "addMemberTabPage";
+            addMemberTabPage.Padding = new Padding(3, 2, 3, 2);
+            addMemberTabPage.Size = new Size(1047, 465);
+            addMemberTabPage.TabIndex = 1;
+            addMemberTabPage.Text = "Add Member";
+            addMemberTabPage.UseVisualStyleBackColor = true;
+            // 
+            // memberAdd1
+            // 
+            memberAdd1.Dock = DockStyle.Fill;
+            memberAdd1.Location = new Point(3, 2);
+            memberAdd1.Margin = new Padding(3, 2, 3, 2);
+            memberAdd1.Name = "memberAdd1";
+            memberAdd1.Size = new Size(1041, 461);
+            memberAdd1.TabIndex = 0;
             // 
             // greetingLabel
             // 
@@ -124,15 +133,6 @@
             employeeNameLebel.TabIndex = 5;
             employeeNameLebel.Text = "EmployeeName";
             // 
-            // memberAdd1
-            // 
-            memberAdd1.Dock = DockStyle.Fill;
-            memberAdd1.Location = new Point(3, 2);
-            memberAdd1.Margin = new Padding(3, 2, 3, 2);
-            memberAdd1.Name = "memberAdd1";
-            memberAdd1.Size = new Size(1041, 461);
-            memberAdd1.TabIndex = 0;
-            // 
             // MainDashBoard
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -147,7 +147,7 @@
             Text = "Main Dashboard";
             mainTabControl.ResumeLayout(false);
             customerTabPage.ResumeLayout(false);
-            editMemberTabPage.ResumeLayout(false);
+            addMemberTabPage.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -161,7 +161,7 @@
         private UserControls.MemberManagement memberManagement1;
         private Label userNameLabel;
         private Label employeeNameLebel;
-        private TabPage editMemberTabPage;
+        private TabPage addMemberTabPage;
         private UserControls.MemberAdd memberEdit1;
         private UserControls.MemberManagement memberManagement2;
         private UserControls.MemberAdd memberAdd1;

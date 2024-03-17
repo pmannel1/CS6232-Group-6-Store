@@ -49,6 +49,8 @@
             errorLabel = new Label();
             dobLabel = new Label();
             dobPicker = new DateTimePicker();
+            countryTextBox = new TextBox();
+            countryLabel = new Label();
             SuspendLayout();
             // 
             // memberFNameLabel
@@ -120,7 +122,7 @@
             firstNameText.Margin = new Padding(3, 2, 3, 2);
             firstNameText.Name = "firstNameText";
             firstNameText.Size = new Size(234, 23);
-            firstNameText.TabIndex = 27;
+            firstNameText.TabIndex = 1;
             // 
             // lastNameText
             // 
@@ -128,7 +130,7 @@
             lastNameText.Margin = new Padding(3, 2, 3, 2);
             lastNameText.Name = "lastNameText";
             lastNameText.Size = new Size(234, 23);
-            lastNameText.TabIndex = 28;
+            lastNameText.TabIndex = 2;
             // 
             // addressTextBox
             // 
@@ -136,7 +138,7 @@
             addressTextBox.Margin = new Padding(3, 2, 3, 2);
             addressTextBox.Name = "addressTextBox";
             addressTextBox.Size = new Size(234, 23);
-            addressTextBox.TabIndex = 29;
+            addressTextBox.TabIndex = 4;
             // 
             // cityText
             // 
@@ -144,7 +146,7 @@
             cityText.Margin = new Padding(3, 2, 3, 2);
             cityText.Name = "cityText";
             cityText.Size = new Size(234, 23);
-            cityText.TabIndex = 30;
+            cityText.TabIndex = 5;
             // 
             // zipText
             // 
@@ -152,7 +154,7 @@
             zipText.Margin = new Padding(3, 2, 3, 2);
             zipText.Name = "zipText";
             zipText.Size = new Size(234, 23);
-            zipText.TabIndex = 31;
+            zipText.TabIndex = 7;
             // 
             // phoneText
             // 
@@ -160,7 +162,7 @@
             phoneText.Margin = new Padding(3, 2, 3, 2);
             phoneText.Name = "phoneText";
             phoneText.Size = new Size(234, 23);
-            phoneText.TabIndex = 32;
+            phoneText.TabIndex = 8;
             // 
             // stateComboBox
             // 
@@ -170,27 +172,29 @@
             stateComboBox.Margin = new Padding(3, 2, 3, 2);
             stateComboBox.Name = "stateComboBox";
             stateComboBox.Size = new Size(133, 23);
-            stateComboBox.TabIndex = 33;
+            stateComboBox.TabIndex = 6;
             // 
             // cancelButton
             // 
-            cancelButton.Location = new Point(150, 301);
+            cancelButton.Location = new Point(150, 330);
             cancelButton.Margin = new Padding(3, 2, 3, 2);
             cancelButton.Name = "cancelButton";
             cancelButton.Size = new Size(82, 22);
-            cancelButton.TabIndex = 34;
+            cancelButton.TabIndex = 11;
             cancelButton.Text = "Cancel";
             cancelButton.UseVisualStyleBackColor = true;
+            cancelButton.Click += ClearButton_Click;
             // 
             // addButton
             // 
-            addButton.Location = new Point(302, 301);
+            addButton.Location = new Point(302, 330);
             addButton.Margin = new Padding(3, 2, 3, 2);
             addButton.Name = "addButton";
             addButton.Size = new Size(82, 22);
-            addButton.TabIndex = 35;
+            addButton.TabIndex = 12;
             addButton.Text = "Add";
             addButton.UseVisualStyleBackColor = true;
+            addButton.Click += AddButton_Click;
             // 
             // genderBox
             // 
@@ -200,7 +204,7 @@
             genderBox.Margin = new Padding(3, 2, 3, 2);
             genderBox.Name = "genderBox";
             genderBox.Size = new Size(133, 23);
-            genderBox.TabIndex = 37;
+            genderBox.TabIndex = 3;
             // 
             // genderLabel
             // 
@@ -222,7 +226,7 @@
             // dobLabel
             // 
             dobLabel.AutoSize = true;
-            dobLabel.Location = new Point(24, 265);
+            dobLabel.Location = new Point(24, 294);
             dobLabel.Name = "dobLabel";
             dobLabel.Size = new Size(73, 15);
             dobLabel.TabIndex = 39;
@@ -230,15 +234,34 @@
             // 
             // dobPicker
             // 
-            dobPicker.Location = new Point(150, 259);
+            dobPicker.Location = new Point(150, 288);
             dobPicker.Name = "dobPicker";
             dobPicker.Size = new Size(200, 23);
-            dobPicker.TabIndex = 40;
+            dobPicker.TabIndex = 10;
+            // 
+            // countryTextBox
+            // 
+            countryTextBox.Location = new Point(150, 260);
+            countryTextBox.Margin = new Padding(3, 2, 3, 2);
+            countryTextBox.Name = "countryTextBox";
+            countryTextBox.Size = new Size(234, 23);
+            countryTextBox.TabIndex = 9;
+            // 
+            // countryLabel
+            // 
+            countryLabel.AutoSize = true;
+            countryLabel.Location = new Point(24, 265);
+            countryLabel.Name = "countryLabel";
+            countryLabel.Size = new Size(50, 15);
+            countryLabel.TabIndex = 41;
+            countryLabel.Text = "Country";
             // 
             // MemberAdd
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(countryTextBox);
+            Controls.Add(countryLabel);
             Controls.Add(dobPicker);
             Controls.Add(dobLabel);
             Controls.Add(errorLabel);
@@ -290,5 +313,7 @@
         private Label errorLabel;
         private Label dobLabel;
         private DateTimePicker dobPicker;
+        private TextBox countryTextBox;
+        private Label countryLabel;
     }
 }

@@ -30,7 +30,7 @@ namespace CS6232_Group_6_Store.Controller
 
         public void AddDBMember(string firstName, string lastName, string sex, DateTime dob, string street, string city, string state, string zipCode, string country, string contactPhone)
         {
-            this.memeberDAL.AddDBMember(firstName, lastName, sex, dob, street, city, state, zipCode, country, contactPhone);
+            MemberDAL.AddDBMember(firstName, lastName, sex, dob, street, city, state, zipCode, country, contactPhone);
         }
     }
 }
