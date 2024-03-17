@@ -1,14 +1,14 @@
 -- SQL Server script
 
 -- Drop and recreate the database
-IF EXISTS (SELECT * FROM sys.databases WHERE name = 'furniturerental')
+IF EXISTS (SELECT * FROM sys.databases WHERE name = 'cs6232-6')
 BEGIN
-    DROP DATABASE furniturerental;
+    DROP DATABASE [cs6232-6];
 END
-CREATE DATABASE furniturerental;
+CREATE DATABASE [cs6232-6];
 GO
 
-USE furniturerental;
+USE [cs6232-6];
 GO
 
 -- Table employees

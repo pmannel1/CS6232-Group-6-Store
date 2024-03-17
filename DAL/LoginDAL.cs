@@ -15,7 +15,7 @@ namespace CS6232_Group_6_Store.DAL
         {
             string selectStatement =
               "SELECT lastName  + ' ' + firstName[user] FROM employees " +
-              "Where id = @userName and hashedPassword=@hashedPassword;";
+              "Where id = @userName and password=@hashedPassword;";
 
             using (SqlConnection connection = DBConnection.GetConnection())
             {
