@@ -247,5 +247,75 @@ namespace CS6232_Group_6_Store.DAL
             return member;
         }
 
+        public void UpdateMember(Member member)
+        {
+            string updateStatement =
+                "UPDATE  members " +
+                "SET lastName = @lName, firstName = @fName, sex = @sex, dob = @dob, street = @sAddress, " +
+                "city = @city, state = @state, zipCode = @zip, country = @country, contactPhone = @pNum, " +
+                "password = @pWord " +
+                "WHERE id = @id;";
+            using (SqlConnection connection = DBConnection.GetConnection())
+            {
+                connection.Open();
+                using (var transaction = connection.BeginTransaction())
+                {
+                    try
+                    {
+                        using (SqlCommand updateCommand = new SqlCommand(updateStatement, connection, transaction))
+                        {
+                            updateCommand.Parameters.Add("@id", SqlDbType.Int);
+                            updateCommand.Parameters["@id"].Value = member.Id;
+
+                            updateCommand.Parameters.Add("@lName", SqlDbType.NVarChar);
+                            updateCommand.Parameters["@lName"].Value = member.LastName;
+
+                            updateCommand.Parameters.Add("@fName", SqlDbType.VarChar);
+                            updateCommand.Parameters["@fName"].Value = member.FirstName;
+
+                            updateCommand.Parameters.Add("@sex", SqlDbType.VarChar);
+                            updateCommand.Parameters["@sex"].Value = member.Sex;
+
+                            updateCommand.Parameters.Add("@dob", SqlDbType.DateTime2);
+                            updateCommand.Parameters["@dob"].Value = member.DateOfBirth;
+
+                            updateCommand.Parameters.Add("@sAddress", SqlDbType.VarChar);
+                            updateCommand.Parameters["@sAddress"].Value = member.StreetAddress;
+
+                            updateCommand.Parameters.Add("@city", SqlDbType.VarChar);
+                            updateCommand.Parameters["@city"].Value = member.City;
+
+                            updateCommand.Parameters.Add("@state", SqlDbType.VarChar);
+                            updateCommand.Parameters["@state"].Value = member.State;
+
+                            updateCommand.Parameters.Add("@zip", SqlDbType.VarChar);
+                            updateCommand.Parameters["@zip"].Value = member.ZipCode.ToString();
+
+                            updateCommand.Parameters.Add("@country", SqlDbType.VarChar);
+                            updateCommand.Parameters["@country"].Value = member.Country;
+
+                            updateCommand.Parameters.Add("@pNum", SqlDbType.VarChar);
+                            updateCommand.Parameters["@pNum"].Value = member.ContactPhone;
+
+                            updateCommand.Parameters.Add("@pWord", SqlDbType.VarChar);
+                            updateCommand.Parameters["@pWord"].Value = member.Password;
+
+
+                            updateCommand.ExecuteNonQuery();
+                        }
+
+                        transaction.Commit();
+                    }
+                    catch
+                    {
+                        transaction.Rollback();
+                        throw;
+                    }
+                }
+
+
+            }
+        }
+
     }
 }

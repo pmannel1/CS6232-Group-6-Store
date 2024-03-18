@@ -48,5 +48,10 @@ namespace CS6232_Group_6_Store.Controller
         {
             return this.memeberDAL.RetrieveMember(id);
         }
+
+        public void UpdateMember(Member member)
+        {
+            this.memeberDAL.UpdateMember(member);
+        }
     }
 }

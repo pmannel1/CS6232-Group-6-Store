@@ -292,6 +292,7 @@
             confirmButton.TabIndex = 11;
             confirmButton.Text = "Confirm";
             confirmButton.UseVisualStyleBackColor = true;
+            confirmButton.Click += ConfirmButton_Click;
             // 
             // clearButton
             // 

@@ -10,6 +10,7 @@ namespace CS6232_Group_6_Store.View
         private readonly StateController _stateController;
         readonly MemberManagement dashboard;
         int selectedMember;
+        Member updatedMember = null;
 
         public EditMemberForm(MemberManagement currentDashboard)
         {
@@ -40,9 +41,9 @@ namespace CS6232_Group_6_Store.View
                 this.zipCodeTextBox.Text = member.ZipCode.ToString();
                 this.phoneNumberTextBox.Text = member.ContactPhone;
                 this.passwordTextBox.Text = member.Password;
-                
 
-                stateTextBox.SelectedValue = member.State; 
+
+                stateTextBox.SelectedValue = member.State;
                 sexComboBox.SelectedValue = member.Sex;
 
             }
@@ -65,7 +66,7 @@ namespace CS6232_Group_6_Store.View
             {
                 { "M", "Male" },
                 { "F", "Female" },
-                { "O", "Other" }
+                { "Other", "Other" }
             };
 
             sexComboBox.DataSource = new BindingSource(options, null);
@@ -78,6 +79,37 @@ namespace CS6232_Group_6_Store.View
         private void EditMemberForm_Load(object sender, EventArgs e)
         {
             this.PopulateFields();
+        }
+
+        private void UpdateMember()
+        {
+            var id = this.selectedMember;
+            var fName = this.firstNameTextBox.Text;
+            var lName = this.lastNameTextBox.Text;
+            var sex = this.sexComboBox.SelectedValue.ToString();
+            var dob = this.dateOfBirthPicker.Value;
+            var sAddress = this.streetAddressTextBox.Text;
+            var city = this.cityTextBox.Text;
+            var state = this.stateTextBox.Text;
+            var zip = int.Parse(this.zipCodeTextBox.Text);
+            var pNum = this.phoneNumberTextBox.Text;
+            var pWord = this.passwordTextBox.Text;
+            var country = "USA";
+
+            updatedMember = new Member(id, lName, fName, dob, sAddress, city, state, zip, country, pNum, pWord, sex);
+        }
+
+        private void ConfirmButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.UpdateMember();
+                _memberController.UpdateMember(updatedMember);
+                DialogResult = DialogResult.OK;
+            }catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, ex.GetType().ToString());
+            }
         }
     }
 }

@@ -162,11 +162,72 @@
             {
                 throw new ArgumentException("Zipcode is out of range");
             }
-            if (!(sex == "M" || sex == "F" || sex == "O"))
+            if (!(sex == "M" || sex == "F" || sex == "Other"))
             {
                 throw new ArgumentException("Sex is invalid");
             }
             Id = id;
+            LastName = lastName;
+            FirstName = firstName;
+            DateOfBirth = dateOfBirth;
+            StreetAddress = streetAddress;
+            City = city;
+            State = state;
+            ZipCode = zipCode;
+            Country = country;
+            ContactPhone = contactPhone;
+            Password = password;
+            Sex = sex;
+        }
+
+        public Member(string lastName, string firstName, DateTime dateOfBirth, string streetAddress, string city, string state, int zipCode, string country, string contactPhone, string password, string sex)
+        {
+
+            if (string.IsNullOrEmpty(lastName))
+            {
+                throw new ArgumentException("last name cannot be null or empty");
+            }
+            if (string.IsNullOrEmpty(firstName))
+            {
+                throw new ArgumentException("first name cannot be null or empty");
+            }
+            if (string.IsNullOrEmpty(streetAddress))
+            {
+                throw new ArgumentException("street address cannot be null or empty");
+            }
+            if (string.IsNullOrEmpty(city))
+            {
+                throw new ArgumentException("city cannot be null or empty");
+            }
+            if (string.IsNullOrEmpty(state))
+            {
+                throw new ArgumentException("state cannot be null or empty");
+            }
+            if (string.IsNullOrEmpty(country))
+            {
+                throw new ArgumentException("country cannot be null or empty");
+            }
+            if (string.IsNullOrEmpty(contactPhone) && contactPhone.Length != 7 && !contactPhone.All(char.IsDigit))
+            {
+                throw new ArgumentException("phone number cannot be null or empty, must be seven digits and only numerical");
+            }
+            if (string.IsNullOrEmpty(password))
+            {
+                throw new ArgumentException("password cannot be null or empty");
+            }
+            if (string.IsNullOrEmpty(lastName))
+            {
+                throw new ArgumentException("last name cannot be null or empty");
+            }
+            if (zipCode < 10000 || zipCode > 99999)
+            {
+                throw new ArgumentException("Zipcode is out of range");
+            }
+            if (!(sex == "M" || sex == "F" || sex == "Other"))
+            {
+                throw new ArgumentException("Sex is invalid");
+            }
+
             LastName = lastName;
             FirstName = firstName;
             DateOfBirth = dateOfBirth;
