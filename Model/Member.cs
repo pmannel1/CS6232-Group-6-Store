@@ -125,6 +125,44 @@
             FullName = FirstName + " " + LastName;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Member"/> class.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="lastName">The last name.</param>
+        /// <param name="firstName">The first name.</param>
+        /// <param name="dateOfBirth">The date of birth.</param>
+        /// <param name="streetAddress">The street address.</param>
+        /// <param name="city">The city.</param>
+        /// <param name="state">The state.</param>
+        /// <param name="zipCode">The zip code.</param>
+        /// <param name="country">The country.</param>
+        /// <param name="contactPhone">The contact phone.</param>
+        /// <param name="password">The password.</param>
+        /// <param name="sex">The sex.</param>
+        /// <exception cref="System.ArgumentException">
+        /// id cannot be less than or equal to zero
+        /// or
+        /// last name cannot be null or empty
+        /// or
+        /// first name cannot be null or empty
+        /// or
+        /// street address cannot be null or empty
+        /// or
+        /// city cannot be null or empty
+        /// or
+        /// state cannot be null or empty
+        /// or
+        /// country cannot be null or empty
+        /// or
+        /// phone number cannot be null or empty, must be seven digits and only numerical
+        /// or
+        /// password cannot be null or empty
+        /// or
+        /// Zipcode is out of range
+        /// or
+        /// Sex is invalid
+        /// </exception>
         public Member(int id, string lastName, string firstName, DateTime dateOfBirth, string streetAddress, string city, string state, int zipCode, string country, string contactPhone, string password, string sex)
         {
             if(id <= 0) 
@@ -191,6 +229,41 @@
 
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Member"/> class.
+        /// </summary>
+        /// <param name="lastName">The last name.</param>
+        /// <param name="firstName">The first name.</param>
+        /// <param name="dateOfBirth">The date of birth.</param>
+        /// <param name="streetAddress">The street address.</param>
+        /// <param name="city">The city.</param>
+        /// <param name="state">The state.</param>
+        /// <param name="zipCode">The zip code.</param>
+        /// <param name="country">The country.</param>
+        /// <param name="contactPhone">The contact phone.</param>
+        /// <param name="password">The password.</param>
+        /// <param name="sex">The sex.</param>
+        /// <exception cref="System.ArgumentException">
+        /// last name cannot be null or empty
+        /// or
+        /// first name cannot be null or empty
+        /// or
+        /// street address cannot be null or empty
+        /// or
+        /// city cannot be null or empty
+        /// or
+        /// state cannot be null or empty
+        /// or
+        /// country cannot be null or empty
+        /// or
+        /// phone number cannot be null or empty, must be seven digits and only numerical
+        /// or
+        /// password cannot be null or empty
+        /// or
+        /// Zipcode is out of range
+        /// or
+        /// Sex is invalid
+        /// </exception>
         public Member(string lastName, string firstName, DateTime dateOfBirth, string streetAddress, string city, string state, int zipCode, string country, string contactPhone, string password, string sex)
         {
 

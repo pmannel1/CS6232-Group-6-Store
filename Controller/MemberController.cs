@@ -38,16 +38,29 @@ namespace CS6232_Group_6_Store.Controller
             return this.memeberDAL.ReturnMembersSearch(searchItem);
         }
 
+        /// <summary>
+        /// Adds the member.
+        /// </summary>
+        /// <param name="member">The member.</param>
         public void AddMember(Member member)
         {
             this.memeberDAL.AddMember(member);
         }
 
+        /// <summary>
+        /// Retrieves the member.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         public Member RetrieveMember(int id)
         {
             return this.memeberDAL.RetrieveMember(id);
         }
 
+        /// <summary>
+        /// Updates the member.
+        /// </summary>
+        /// <param name="member">The member.</param>
         public void UpdateMember(Member member)
         {
             this.memeberDAL.UpdateMember(member);

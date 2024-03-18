@@ -11,8 +11,14 @@ namespace CS6232_Group_6_Store.UserControls
     /// <seealso cref="System.Windows.Forms.UserControl" />
     public partial class MemberManagement : UserControl
     {
+        /// <summary>
+        /// The selected member
+        /// </summary>
         public int selectedMember;
         private readonly MemberController _memberController;
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MemberManagement"/> class.
+        /// </summary>
         public MemberManagement()
         {
             InitializeComponent();

@@ -3,9 +3,16 @@ using System.Data.SqlClient;
 
 namespace CS6232_Group_6_Store.DAL
 {
+    /// <summary>
+    /// data access for state table
+    /// </summary>
     public class StateDAL
     {
 
+        /// <summary>
+        /// Gets the states.
+        /// </summary>
+        /// <returns></returns>
         public List<State> GetStates()
         {
             List<State> states = new List<State>();

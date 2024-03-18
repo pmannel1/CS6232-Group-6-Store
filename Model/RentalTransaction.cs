@@ -3,7 +3,7 @@
     /// <summary>
     /// Model class for rental_transaction table in DB
     /// </summary>
-    internal class RentalTransaction
+    public class RentalTransaction
     {
         /// <summary>
         /// Gets or sets the identifier.

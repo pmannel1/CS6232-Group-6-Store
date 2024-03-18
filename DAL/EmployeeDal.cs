@@ -10,7 +10,13 @@ namespace CS6232_Group_6_Store.DAL
     /// </summary>
     internal class EmployeeDal
     {
-        
+
+        /// <summary>
+        /// Validates the employee.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="password">The password.</param>
+        /// <returns></returns>
         public string ValidateEmployee(int id, string password)
         {
             string selectStatement =

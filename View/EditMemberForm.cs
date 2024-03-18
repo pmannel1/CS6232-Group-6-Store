@@ -4,6 +4,10 @@ using CS6232_Group_6_Store.Model;
 
 namespace CS6232_Group_6_Store.View
 {
+    /// <summary>
+    /// edit member form
+    /// </summary>
+    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class EditMemberForm : Form
     {
         private readonly MemberController _memberController;
@@ -12,6 +16,10 @@ namespace CS6232_Group_6_Store.View
         int selectedMember;
         Member updatedMember = null;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EditMemberForm"/> class.
+        /// </summary>
+        /// <param name="currentDashboard">The current dashboard.</param>
         public EditMemberForm(MemberManagement currentDashboard)
         {
             InitializeComponent();

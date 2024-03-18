@@ -3,6 +3,9 @@
 
 namespace CS6232_Group_6_Store.DAL
 {
+    /// <summary>
+    /// database connection class
+    /// </summary>
     public class DBConnection
     {
         /// <summary>

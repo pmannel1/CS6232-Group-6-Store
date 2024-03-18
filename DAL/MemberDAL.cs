@@ -6,6 +6,9 @@ using System;
 
 namespace CS6232_Group_6_Store.DAL
 {
+    /// <summary>
+    /// Member table data access class
+    /// </summary>
     public class MemberDAL
     {
 
@@ -101,6 +104,10 @@ namespace CS6232_Group_6_Store.DAL
             return memberList;
         }
 
+        /// <summary>
+        /// Adds the member.
+        /// </summary>
+        /// <param name="member">The member.</param>
         public void AddMember(Member member)
         {
             string updateStatement =
@@ -208,6 +215,10 @@ namespace CS6232_Group_6_Store.DAL
             return member;
         }
 
+        /// <summary>
+        /// Updates the member.
+        /// </summary>
+        /// <param name="member">The member.</param>
         public void UpdateMember(Member member)
         {
             string updateStatement =

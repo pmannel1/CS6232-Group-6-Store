@@ -4,6 +4,10 @@ using CS6232_Group_6_Store.UserControls;
 
 namespace CS6232_Group_6_Store.View
 {
+    /// <summary>
+    /// add members form
+    /// </summary>
+    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class AddMemberForm : Form
     {
         private readonly MemberController _memberController;
@@ -11,6 +15,10 @@ namespace CS6232_Group_6_Store.View
         readonly MemberManagement dashboard;
         Member newMember = null;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AddMemberForm"/> class.
+        /// </summary>
+        /// <param name="currentDashboard">The current dashboard.</param>
         public AddMemberForm(MemberManagement currentDashboard)
         {
             InitializeComponent();
