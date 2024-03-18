@@ -106,10 +106,21 @@ namespace CS6232_Group_6_Store.View
                 this.UpdateMember();
                 _memberController.UpdateMember(updatedMember);
                 DialogResult = DialogResult.OK;
-            }catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, ex.GetType().ToString());
             }
+        }
+
+        private void ClearButton_Click(object sender, EventArgs e)
+        {
+            this.PopulateFields();
+        }
+
+        private void CancelButton_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
         }
     }
 }

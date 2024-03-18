@@ -300,8 +300,9 @@
             clearButton.Name = "clearButton";
             clearButton.Size = new Size(73, 23);
             clearButton.TabIndex = 12;
-            clearButton.Text = "Clear";
+            clearButton.Text = "Reset";
             clearButton.UseVisualStyleBackColor = true;
+            clearButton.Click += ClearButton_Click;
             // 
             // cancelButton
             // 
@@ -311,6 +312,7 @@
             cancelButton.TabIndex = 23;
             cancelButton.Text = "Cancel";
             cancelButton.UseVisualStyleBackColor = true;
+            cancelButton.Click += CancelButton_Click;
             // 
             // EditMemberForm
             // 

@@ -33,9 +33,7 @@
             label3 = new Label();
             searchMethodBox = new ComboBox();
             membersListView = new ListView();
-            label2 = new Label();
             searchBox = new TextBox();
-            label1 = new Label();
             searchButton = new Button();
             customerListBox = new ComboBox();
             ID = new ColumnHeader();
@@ -83,6 +81,7 @@
             // 
             // searchMethodBox
             // 
+            searchMethodBox.DropDownStyle = ComboBoxStyle.DropDownList;
             searchMethodBox.FormattingEnabled = true;
             searchMethodBox.Items.AddRange(new object[] { "Name", "Id", "Phone" });
             searchMethodBox.Location = new Point(324, 2);
@@ -94,22 +93,14 @@
             // 
             // membersListView
             // 
-            membersListView.Location = new Point(3, 141);
+            membersListView.Dock = DockStyle.Bottom;
+            membersListView.Location = new Point(3, 189);
             membersListView.Margin = new Padding(3, 2, 3, 2);
             membersListView.Name = "membersListView";
-            membersListView.Size = new Size(964, 221);
+            membersListView.Size = new Size(964, 180);
             membersListView.TabIndex = 17;
             membersListView.UseCompatibleStateImageBehavior = false;
             membersListView.SelectedIndexChanged += MemberListView_Select;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(3, 88);
-            label2.Name = "label2";
-            label2.Size = new Size(85, 15);
-            label2.TabIndex = 16;
-            label2.Text = "General Search";
             // 
             // searchBox
             // 
@@ -119,15 +110,6 @@
             searchBox.Size = new Size(298, 23);
             searchBox.TabIndex = 15;
             searchBox.TextChanged += searchBox_TextChanged;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(3, 44);
-            label1.Name = "label1";
-            label1.Size = new Size(87, 15);
-            label1.TabIndex = 14;
-            label1.Text = "Member Name";
             // 
             // searchButton
             // 
@@ -162,8 +144,6 @@
             tableLayoutPanel1.Controls.Add(searchMethodLabel, 2, 0);
             tableLayoutPanel1.Controls.Add(searchMethodBox, 1, 0);
             tableLayoutPanel1.Controls.Add(searchBox, 1, 2);
-            tableLayoutPanel1.Controls.Add(label2, 0, 2);
-            tableLayoutPanel1.Controls.Add(label1, 0, 1);
             tableLayoutPanel1.Controls.Add(customerListBox, 1, 1);
             tableLayoutPanel1.Controls.Add(searchButton, 2, 1);
             tableLayoutPanel1.Location = new Point(3, 3);
@@ -202,6 +182,7 @@
             clearButton.TabIndex = 25;
             clearButton.Text = "Clear";
             clearButton.UseVisualStyleBackColor = true;
+            clearButton.Click += ClearButton_Click;
             // 
             // tableLayoutPanel2
             // 
@@ -209,8 +190,8 @@
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutPanel2.Controls.Add(tableLayoutPanel3, 0, 3);
             tableLayoutPanel2.Controls.Add(tableLayoutPanel1, 0, 0);
-            tableLayoutPanel2.Controls.Add(membersListView, 0, 1);
             tableLayoutPanel2.Controls.Add(editButton, 0, 2);
+            tableLayoutPanel2.Controls.Add(membersListView, 0, 1);
             tableLayoutPanel2.Dock = DockStyle.Fill;
             tableLayoutPanel2.Location = new Point(0, 0);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -260,9 +241,7 @@
         private Label label3;
         private ComboBox searchMethodBox;
         private ListView membersListView;
-        private Label label2;
         private TextBox searchBox;
-        private Label label1;
         private Button searchButton;
         private ComboBox customerListBox;
         private ColumnHeader ID;

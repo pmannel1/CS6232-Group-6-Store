@@ -22,7 +22,7 @@ namespace CS6232_Group_6_Store.Controller
         /// <param name="id">The identifier.</param>
         /// <param name="password">The password.</param>
         /// <returns></returns>
-        public bool ValidateEmployee(int id, string password)
+        public string ValidateEmployee(int id, string password)
         {
             return this._employeeDal.ValidateEmployee(id, password);
         }

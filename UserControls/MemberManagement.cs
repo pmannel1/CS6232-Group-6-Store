@@ -40,17 +40,17 @@ namespace CS6232_Group_6_Store.UserControls
         /// </summary>
         public void PopulateMembersNameCombobox()
         {
-
-            List<Member> memberList = this._memberController.ReturnMembersName();
+            customerListBox.Items.Clear();
             try
             {
-                customerListBox.Items.Clear();
-                Member member;
-                for (int i = 0; i < memberList.Count; i++)
+                if (searchMethodBox.Text == "Name")
                 {
-                    member = memberList[i];
-                    customerListBox.Items.Add(member.LastName.ToString() + " " + member.FirstName);
+                    List<Member> memberList = this._memberController.ReturnMembersName();
+                    this.customerListBox.DataSource = memberList;
                 }
+                
+                
+               
 
             }
             catch (Exception ex)
@@ -119,8 +119,8 @@ namespace CS6232_Group_6_Store.UserControls
         {
             searchBox.Text = "";
             PopulateMembersNameCombobox();
-            this.searchMethodLabel.Hide();
-            this.searchMessageLabel.Hide();
+            this.searchMethodLabel.Text = null;
+            this.searchMessageLabel.Text = null;
         }
 
         /// <summary>
@@ -155,7 +155,7 @@ namespace CS6232_Group_6_Store.UserControls
             membersListView.Clear();
             try
             {
-                if (searchMethodBox.Text == "")
+                if (string.IsNullOrEmpty(searchMethodBox.Text))
                 {
                     this.searchMethodLabel.Text = "Please select search method";
                     this.searchMethodLabel.ForeColor = Color.Red;
@@ -234,17 +234,23 @@ namespace CS6232_Group_6_Store.UserControls
             this.selectedMember = int.Parse(membersListView.SelectedItems[0].SubItems[0].Text);
             EditMemberForm editForm = new EditMemberForm(this);
             DialogResult result = editForm.ShowDialog();
-
-
-
         }
 
         private void MemberListView_Select(object sender, EventArgs e)
         {
             this.editButton.Enabled = true;
+        }
 
+        private void ClearButton_Click(object sender, EventArgs e)
+        {
+            this.Clear();
+        }
 
-
+        private void Clear()
+        {
+            this.membersListView.Clear();
+            this.searchMethodBox.SelectedIndex = -1;
+            this.customerListBox.Items.Clear();
         }
     }
 }

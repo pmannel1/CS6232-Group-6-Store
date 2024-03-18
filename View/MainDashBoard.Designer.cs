@@ -144,7 +144,9 @@
             Controls.Add(greetingLabel);
             Controls.Add(mainTabControl);
             Name = "MainDashBoard";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Main Dashboard";
+            FormClosing += MainClosing;
             mainTabControl.ResumeLayout(false);
             customerTabPage.ResumeLayout(false);
             addMemberTabPage.ResumeLayout(false);
