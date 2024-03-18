@@ -28,12 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            searchMethodLabel = new Label();
-            searchMessageLabel = new Label();
             label3 = new Label();
             searchMethodBox = new ComboBox();
             membersListView = new ListView();
-            searchBox = new TextBox();
             searchButton = new Button();
             customerListBox = new ComboBox();
             ID = new ColumnHeader();
@@ -47,28 +44,11 @@
             clearButton = new Button();
             tableLayoutPanel2 = new TableLayoutPanel();
             tableLayoutPanel3 = new TableLayoutPanel();
+            editingInstructionLabel = new Label();
             tableLayoutPanel1.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
             tableLayoutPanel3.SuspendLayout();
             SuspendLayout();
-            // 
-            // searchMethodLabel
-            // 
-            searchMethodLabel.AutoSize = true;
-            searchMethodLabel.Location = new Point(645, 0);
-            searchMethodLabel.Name = "searchMethodLabel";
-            searchMethodLabel.Size = new Size(86, 15);
-            searchMethodLabel.TabIndex = 21;
-            searchMethodLabel.Text = "search method";
-            // 
-            // searchMessageLabel
-            // 
-            searchMessageLabel.AutoSize = true;
-            searchMessageLabel.Location = new Point(645, 88);
-            searchMessageLabel.Name = "searchMessageLabel";
-            searchMessageLabel.Size = new Size(91, 15);
-            searchMessageLabel.TabIndex = 20;
-            searchMessageLabel.Text = "Search Message";
             // 
             // label3
             // 
@@ -84,7 +64,7 @@
             searchMethodBox.DropDownStyle = ComboBoxStyle.DropDownList;
             searchMethodBox.FormattingEnabled = true;
             searchMethodBox.Items.AddRange(new object[] { "Name", "Id", "Phone" });
-            searchMethodBox.Location = new Point(324, 2);
+            searchMethodBox.Location = new Point(141, 2);
             searchMethodBox.Margin = new Padding(3, 2, 3, 2);
             searchMethodBox.Name = "searchMethodBox";
             searchMethodBox.Size = new Size(154, 23);
@@ -93,27 +73,18 @@
             // 
             // membersListView
             // 
-            membersListView.Dock = DockStyle.Bottom;
-            membersListView.Location = new Point(3, 189);
+            membersListView.Dock = DockStyle.Fill;
+            membersListView.Location = new Point(3, 182);
             membersListView.Margin = new Padding(3, 2, 3, 2);
             membersListView.Name = "membersListView";
-            membersListView.Size = new Size(964, 180);
+            membersListView.Size = new Size(694, 136);
             membersListView.TabIndex = 17;
             membersListView.UseCompatibleStateImageBehavior = false;
             membersListView.SelectedIndexChanged += MemberListView_Select;
             // 
-            // searchBox
-            // 
-            searchBox.Location = new Point(324, 90);
-            searchBox.Margin = new Padding(3, 2, 3, 2);
-            searchBox.Name = "searchBox";
-            searchBox.Size = new Size(298, 23);
-            searchBox.TabIndex = 15;
-            searchBox.TextChanged += searchBox_TextChanged;
-            // 
             // searchButton
             // 
-            searchButton.Location = new Point(645, 46);
+            searchButton.Location = new Point(141, 76);
             searchButton.Margin = new Padding(3, 2, 3, 2);
             searchButton.Name = "searchButton";
             searchButton.Size = new Size(110, 28);
@@ -126,7 +97,7 @@
             // 
             customerListBox.DropDownStyle = ComboBoxStyle.DropDownList;
             customerListBox.FormattingEnabled = true;
-            customerListBox.Location = new Point(324, 46);
+            customerListBox.Location = new Point(141, 39);
             customerListBox.Margin = new Padding(3, 2, 3, 2);
             customerListBox.Name = "customerListBox";
             customerListBox.Size = new Size(298, 23);
@@ -135,29 +106,25 @@
             // 
             // tableLayoutPanel1
             // 
-            tableLayoutPanel1.ColumnCount = 3;
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333359F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333359F));
+            tableLayoutPanel1.ColumnCount = 2;
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 80F));
             tableLayoutPanel1.Controls.Add(label3, 0, 0);
-            tableLayoutPanel1.Controls.Add(searchMessageLabel, 2, 2);
-            tableLayoutPanel1.Controls.Add(searchMethodLabel, 2, 0);
             tableLayoutPanel1.Controls.Add(searchMethodBox, 1, 0);
-            tableLayoutPanel1.Controls.Add(searchBox, 1, 2);
             tableLayoutPanel1.Controls.Add(customerListBox, 1, 1);
-            tableLayoutPanel1.Controls.Add(searchButton, 2, 1);
+            tableLayoutPanel1.Controls.Add(searchButton, 1, 2);
             tableLayoutPanel1.Location = new Point(3, 3);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 3;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
-            tableLayoutPanel1.Size = new Size(964, 133);
+            tableLayoutPanel1.Size = new Size(694, 114);
             tableLayoutPanel1.TabIndex = 22;
             // 
             // editButton
             // 
-            editButton.Location = new Point(3, 374);
+            editButton.Location = new Point(3, 363);
             editButton.Name = "editButton";
             editButton.Size = new Size(102, 23);
             editButton.TabIndex = 23;
@@ -176,7 +143,7 @@
             // 
             // clearButton
             // 
-            clearButton.Location = new Point(485, 3);
+            clearButton.Location = new Point(350, 3);
             clearButton.Name = "clearButton";
             clearButton.Size = new Size(75, 23);
             clearButton.TabIndex = 25;
@@ -190,17 +157,19 @@
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutPanel2.Controls.Add(tableLayoutPanel3, 0, 3);
             tableLayoutPanel2.Controls.Add(tableLayoutPanel1, 0, 0);
-            tableLayoutPanel2.Controls.Add(editButton, 0, 2);
-            tableLayoutPanel2.Controls.Add(membersListView, 0, 1);
+            tableLayoutPanel2.Controls.Add(editButton, 0, 3);
+            tableLayoutPanel2.Controls.Add(membersListView, 0, 2);
+            tableLayoutPanel2.Controls.Add(editingInstructionLabel, 0, 1);
             tableLayoutPanel2.Dock = DockStyle.Fill;
             tableLayoutPanel2.Location = new Point(0, 0);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
-            tableLayoutPanel2.RowCount = 4;
+            tableLayoutPanel2.RowCount = 5;
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 30F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 15F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 35F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
-            tableLayoutPanel2.Size = new Size(970, 465);
+            tableLayoutPanel2.Size = new Size(700, 400);
             tableLayoutPanel2.TabIndex = 26;
             // 
             // tableLayoutPanel3
@@ -211,12 +180,23 @@
             tableLayoutPanel3.Controls.Add(addButton, 0, 0);
             tableLayoutPanel3.Controls.Add(clearButton, 1, 0);
             tableLayoutPanel3.Dock = DockStyle.Fill;
-            tableLayoutPanel3.Location = new Point(3, 420);
+            tableLayoutPanel3.Location = new Point(3, 323);
             tableLayoutPanel3.Name = "tableLayoutPanel3";
             tableLayoutPanel3.RowCount = 1;
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel3.Size = new Size(964, 42);
+            tableLayoutPanel3.Size = new Size(694, 34);
             tableLayoutPanel3.TabIndex = 27;
+            // 
+            // editingInstructionLabel
+            // 
+            editingInstructionLabel.AutoSize = true;
+            editingInstructionLabel.Dock = DockStyle.Fill;
+            editingInstructionLabel.Location = new Point(3, 120);
+            editingInstructionLabel.Name = "editingInstructionLabel";
+            editingInstructionLabel.Size = new Size(694, 60);
+            editingInstructionLabel.TabIndex = 28;
+            editingInstructionLabel.Text = "Please Click the ID Value of the Member to Edit";
+            editingInstructionLabel.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // MemberManagement
             // 
@@ -225,23 +205,20 @@
             Controls.Add(tableLayoutPanel2);
             Margin = new Padding(3, 2, 3, 2);
             Name = "MemberManagement";
-            Size = new Size(970, 465);
-            Load += MemberManagement_Load;
+            Size = new Size(700, 400);
+            VisibleChanged += MemberManagement_VisibleChanged;
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.PerformLayout();
             tableLayoutPanel2.ResumeLayout(false);
+            tableLayoutPanel2.PerformLayout();
             tableLayoutPanel3.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
-
-        private Label searchMethodLabel;
-        private Label searchMessageLabel;
         private Label label3;
         private ComboBox searchMethodBox;
         private ListView membersListView;
-        private TextBox searchBox;
         private Button searchButton;
         private ComboBox customerListBox;
         private ColumnHeader ID;
@@ -255,5 +232,6 @@
         private Button clearButton;
         private TableLayoutPanel tableLayoutPanel2;
         private TableLayoutPanel tableLayoutPanel3;
+        private Label editingInstructionLabel;
     }
 }

@@ -17,22 +17,8 @@ namespace CS6232_Group_6_Store.UserControls
         {
             InitializeComponent();
             this._memberController = new MemberController();
-            this.searchMessageLabel.Hide();
-            this.searchMethodLabel.Hide();
             this.editButton.Enabled = false;
-        }
-
-        /// <summary>
-        /// Clears the data.
-        /// </summary>
-        public void ClearData()
-        {
-            membersListView.Clear();
-            searchBox.Text = "";
-            searchMethodBox.Text = "";
-            PopulateMembersNameCombobox();
-            this.searchMessageLabel.Hide();
-            this.searchMethodLabel.Hide();
+            customerListBox.Enabled = false;
         }
 
         /// <summary>
@@ -40,17 +26,35 @@ namespace CS6232_Group_6_Store.UserControls
         /// </summary>
         public void PopulateMembersNameCombobox()
         {
-            customerListBox.Items.Clear();
             try
             {
-                if (searchMethodBox.Text == "Name")
+                var field = this.searchMethodBox.Text;
+                if (customerListBox.DataSource == null)
                 {
-                    List<Member> memberList = this._memberController.ReturnMembersName();
+                    List<Member> memberList = this._memberController.ReturnMembers();
                     this.customerListBox.DataSource = memberList;
                 }
-                
-                
-               
+
+                if (field == "Name")
+                {
+                    customerListBox.DisplayMember = "FullName";
+                    customerListBox.ValueMember = "Id";
+                    customerListBox.Enabled = true;
+                }
+
+                if (searchMethodBox.Text == "Id")
+                {
+                    customerListBox.DisplayMember = "Id";
+                    customerListBox.ValueMember = "Id";
+                    customerListBox.Enabled = true;
+                }
+
+                if (searchMethodBox.Text == "Phone")
+                {
+                    customerListBox.DisplayMember = "ContactPhone";
+                    customerListBox.ValueMember = "Id";
+                    customerListBox.Enabled = true;
+                }
 
             }
             catch (Exception ex)
@@ -65,10 +69,11 @@ namespace CS6232_Group_6_Store.UserControls
         /// </summary>
         /// <param name="searchMethod">The search method.</param>
         /// <param name="searchParameter">The search parameter.</param>
-        public void DisplauMembes(string searchMethod, string searchParameter)
+        public void DisplayMembers(string searchItem)
         {
             try
             {
+                int searchInt = int.Parse(searchItem);
                 membersListView.Clear();
                 membersListView.View = System.Windows.Forms.View.Details;
                 membersListView.GridLines = true;
@@ -82,7 +87,7 @@ namespace CS6232_Group_6_Store.UserControls
                 membersListView.Columns.Add("ZipCode", 100);
                 membersListView.Columns.Add("Country", 150);
                 membersListView.Columns.Add("Phone", 150);
-                List<Member> searchResult = _memberController.RetrunMembers(searchMethod, searchParameter);
+                List<Member> searchResult = _memberController.ReturnMembersSearch(searchInt);
                 foreach (var dr in searchResult)
                 {
                     var membersList = membersListView.Items.Add(dr.Id.ToString());
@@ -117,10 +122,7 @@ namespace CS6232_Group_6_Store.UserControls
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void searchMethodBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            searchBox.Text = "";
             PopulateMembersNameCombobox();
-            this.searchMethodLabel.Text = null;
-            this.searchMessageLabel.Text = null;
         }
 
         /// <summary>
@@ -130,19 +132,7 @@ namespace CS6232_Group_6_Store.UserControls
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void customerListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            searchBox.Text = customerListBox.Text;
-            //DisplauMembes("Name", searchBox.Text);
-        }
-
-        /// <summary>
-        /// Handles the TextChanged event of the searchBox control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void searchBox_TextChanged(object sender, EventArgs e)
-        {
-            this.searchMessageLabel.Text = "";
-            this.searchMessageLabel.Hide();
+            membersListView.Items.Clear();
         }
 
         /// <summary>
@@ -155,78 +145,14 @@ namespace CS6232_Group_6_Store.UserControls
             membersListView.Clear();
             try
             {
-                if (string.IsNullOrEmpty(searchMethodBox.Text))
-                {
-                    this.searchMethodLabel.Text = "Please select search method";
-                    this.searchMethodLabel.ForeColor = Color.Red;
-                    this.searchMethodLabel.Show();
-                    return;
-                }
-
-                if (searchMethodBox.Text == "Id")
-                {
-                    if (!int.TryParse(searchBox.Text, out int id) || id <= 0)
-                    {
-                        this.searchMessageLabel.Text = "Invalid Customer ID, only positive integers.";
-                        this.searchMessageLabel.ForeColor = Color.Red;
-                        this.searchMessageLabel.Show();
-                        return;
-                    }
-                }
-                if (searchMethodBox.Text == "Name")
-                {
-                    if (customerListBox.Text == "" && searchBox.Text.Trim() == "")
-                    {
-                        this.searchMessageLabel.Text = "Please specift customer name";
-                        this.searchMessageLabel.ForeColor = Color.Red;
-                        this.searchMessageLabel.Show();
-                        return;
-                    }
-                    // if customer is selected from dropdown and
-                    // not typed in search box set searchbox with customer dropdown selection
-                    if (customerListBox.Text != "" || searchBox.Text.Trim() == "")
-                    {
-                        searchBox.Text = customerListBox.Text.Trim();
-                    }
-
-                    if (searchBox.Text.IndexOf(" ") == searchBox.Text.Length || searchBox.Text.IndexOf(" ") == -1)
-                    {
-                        this.searchMessageLabel.Text = "Customer last name and first name is rquired. Last name " +
-                            "and first name should be separated by blank space";
-                        this.searchMessageLabel.ForeColor = Color.Red;
-                        this.searchMessageLabel.Show();
-                        return;
-                    }
-
-                }
-                if (searchMethodBox.Text == "Phone")
-                {
-                    if (searchBox.Text == "")
-                    {
-                        this.searchMessageLabel.Text = "Invalid contact phone";
-                        this.searchMessageLabel.ForeColor = Color.Red;
-                        this.searchMessageLabel.Show();
-                        return;
-                    }
-                }
-
-                DisplauMembes(searchMethodBox.Text, searchBox.Text);
+                DisplayMembers(customerListBox.SelectedValue.ToString());
+                this.MemberSelection();
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-        }
-
-        /// <summary>
-        /// Handles the Load event of the MemberManagement control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void MemberManagement_Load(object sender, EventArgs e)
-        {
-            PopulateMembersNameCombobox();
         }
 
         private void EditButton_Click(object sender, EventArgs e)
@@ -238,7 +164,19 @@ namespace CS6232_Group_6_Store.UserControls
 
         private void MemberListView_Select(object sender, EventArgs e)
         {
-            this.editButton.Enabled = true;
+            this.MemberSelection();
+        }
+
+        private void MemberSelection()
+        {
+            if (membersListView.SelectedItems.Count > 0)
+            {
+                this.editButton.Enabled = true;
+            }
+            else
+            {
+                this.editButton.Enabled = false;
+            }
         }
 
         private void ClearButton_Click(object sender, EventArgs e)
@@ -249,8 +187,16 @@ namespace CS6232_Group_6_Store.UserControls
         private void Clear()
         {
             this.membersListView.Clear();
+            this.customerListBox.SelectedIndex = -1;
             this.searchMethodBox.SelectedIndex = -1;
-            this.customerListBox.Items.Clear();
+            this.MemberSelection();
+            customerListBox.Enabled = false;
+
+        }
+
+        private void MemberManagement_VisibleChanged(object sender, EventArgs e)
+        {
+            this.Clear();
         }
     }
 }

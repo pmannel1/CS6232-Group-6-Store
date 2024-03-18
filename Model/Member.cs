@@ -102,6 +102,14 @@
         public string Password { get; set; }
 
         /// <summary>
+        /// Gets or sets the full name.
+        /// </summary>
+        /// <value>
+        /// The full name.
+        /// </value>
+        public String FullName { get; set; }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="Member"/> class.
         /// </summary>
         public Member()
@@ -178,6 +186,8 @@
             ContactPhone = contactPhone;
             Password = password;
             Sex = sex;
+            FullName = FirstName + " " + LastName;
+
         }
 
         public Member(string lastName, string firstName, DateTime dateOfBirth, string streetAddress, string city, string state, int zipCode, string country, string contactPhone, string password, string sex)

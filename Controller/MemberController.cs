@@ -19,13 +19,12 @@ namespace CS6232_Group_6_Store.Controller
         }
 
         /// <summary>
-        /// Returns the name of the members.
+        /// Retruns the members.
         /// </summary>
         /// <returns></returns>
-        public List<Member> ReturnMembersName()
+        public List<Member> ReturnMembers()
         {
-
-            return this.memeberDAL.ReturnMemberNames();
+            return this.memeberDAL.ReturnMembers();
         }
 
         /// <summary>
@@ -34,9 +33,9 @@ namespace CS6232_Group_6_Store.Controller
         /// <param name="searchMethod">The search method.</param>
         /// <param name="searchField">The search field.</param>
         /// <returns></returns>
-        public List<Member> RetrunMembers(string searchMethod, string searchField)
+        public List<Member> ReturnMembersSearch(int searchItem)
         {
-            return this.memeberDAL.RetrunMembers(searchMethod, searchField);
+            return this.memeberDAL.ReturnMembersSearch(searchItem);
         }
 
         public void AddDBMember(string firstName, string lastName, string sex, DateTime dob, string street, string city, string state, string zipCode, string country, string contactPhone)
