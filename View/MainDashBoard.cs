@@ -11,6 +11,20 @@ namespace CS6232_Group_6_Store
     {
         bool logout;
         readonly LoginForm _loginForm;
+        /// <summary>
+        /// Gets or sets the employee.
+        /// </summary>
+        /// <value>
+        /// The employee.
+        /// </value>
+        public string Employee { get; set; }
+        /// <summary>
+        /// Gets or sets the account.
+        /// </summary>
+        /// <value>
+        /// The account.
+        /// </value>
+        public string Account { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MainDashBoard"/> class.
@@ -19,8 +33,10 @@ namespace CS6232_Group_6_Store
         {
             InitializeComponent();
             this._loginForm = newLogin;
-            this.employeeNameLebel.Text = "Emplyee Name: " + this._loginForm.EmployeeName;
-            this.userNameLabel.Text = "User Account: " + this._loginForm.UserName;
+            Account = "User Account: " + this._loginForm.UserName;
+            Employee = "Empolyee Name: " + this._loginForm.EmployeeName;
+            this.employeeNameLebel.Text = Employee;
+            this.userNameLabel.Text = Account;
             this.logout = false;
         }
 

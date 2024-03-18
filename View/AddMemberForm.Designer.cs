@@ -53,14 +53,22 @@
             tableLayoutPanel2 = new TableLayoutPanel();
             clearButton = new Button();
             tableLayoutPanel1 = new TableLayoutPanel();
+            userNameLabel = new Label();
+            employeeNameLebel = new Label();
+            tableLayoutPanel3 = new TableLayoutPanel();
+            tableLayoutPanel4 = new TableLayoutPanel();
+            label1 = new Label();
+            label2 = new Label();
             tableLayoutPanel2.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
+            tableLayoutPanel3.SuspendLayout();
+            tableLayoutPanel4.SuspendLayout();
             SuspendLayout();
             // 
             // firstNameLabel
             // 
             firstNameLabel.AutoSize = true;
-            firstNameLabel.Location = new Point(3, 0);
+            firstNameLabel.Location = new Point(3, 30);
             firstNameLabel.Name = "firstNameLabel";
             firstNameLabel.Size = new Size(64, 15);
             firstNameLabel.TabIndex = 0;
@@ -79,7 +87,7 @@
             // lastNameLabel
             // 
             lastNameLabel.AutoSize = true;
-            lastNameLabel.Location = new Point(3, 40);
+            lastNameLabel.Location = new Point(3, 68);
             lastNameLabel.Name = "lastNameLabel";
             lastNameLabel.Size = new Size(63, 15);
             lastNameLabel.TabIndex = 1;
@@ -88,7 +96,7 @@
             // sexLabel
             // 
             sexLabel.AutoSize = true;
-            sexLabel.Location = new Point(3, 80);
+            sexLabel.Location = new Point(3, 106);
             sexLabel.Name = "sexLabel";
             sexLabel.Size = new Size(25, 15);
             sexLabel.TabIndex = 4;
@@ -107,7 +115,7 @@
             // streetLabel
             // 
             streetLabel.AutoSize = true;
-            streetLabel.Location = new Point(3, 160);
+            streetLabel.Location = new Point(3, 182);
             streetLabel.Name = "streetLabel";
             streetLabel.Size = new Size(82, 15);
             streetLabel.TabIndex = 8;
@@ -116,7 +124,7 @@
             // dobLabel
             // 
             dobLabel.AutoSize = true;
-            dobLabel.Location = new Point(3, 120);
+            dobLabel.Location = new Point(3, 144);
             dobLabel.Name = "dobLabel";
             dobLabel.Size = new Size(73, 15);
             dobLabel.TabIndex = 6;
@@ -125,7 +133,7 @@
             // cityLabel
             // 
             cityLabel.AutoSize = true;
-            cityLabel.Location = new Point(3, 200);
+            cityLabel.Location = new Point(3, 220);
             cityLabel.Name = "cityLabel";
             cityLabel.Size = new Size(28, 15);
             cityLabel.TabIndex = 7;
@@ -134,7 +142,7 @@
             // stateLabel
             // 
             stateLabel.AutoSize = true;
-            stateLabel.Location = new Point(3, 240);
+            stateLabel.Location = new Point(3, 258);
             stateLabel.Name = "stateLabel";
             stateLabel.Size = new Size(33, 15);
             stateLabel.TabIndex = 5;
@@ -143,7 +151,7 @@
             // zipCodeLabel
             // 
             zipCodeLabel.AutoSize = true;
-            zipCodeLabel.Location = new Point(3, 280);
+            zipCodeLabel.Location = new Point(3, 296);
             zipCodeLabel.Name = "zipCodeLabel";
             zipCodeLabel.Size = new Size(50, 15);
             zipCodeLabel.TabIndex = 3;
@@ -152,7 +160,7 @@
             // phoneNumberLabel
             // 
             phoneNumberLabel.AutoSize = true;
-            phoneNumberLabel.Location = new Point(3, 320);
+            phoneNumberLabel.Location = new Point(3, 334);
             phoneNumberLabel.Name = "phoneNumberLabel";
             phoneNumberLabel.Size = new Size(88, 15);
             phoneNumberLabel.TabIndex = 2;
@@ -161,7 +169,7 @@
             // passwordLabel
             // 
             passwordLabel.AutoSize = true;
-            passwordLabel.Location = new Point(3, 360);
+            passwordLabel.Location = new Point(3, 372);
             passwordLabel.Name = "passwordLabel";
             passwordLabel.Size = new Size(57, 15);
             passwordLabel.TabIndex = 10;
@@ -169,35 +177,35 @@
             // 
             // firstNameTextBox
             // 
-            firstNameTextBox.Location = new Point(163, 3);
+            firstNameTextBox.Location = new Point(163, 33);
             firstNameTextBox.Name = "firstNameTextBox";
             firstNameTextBox.Size = new Size(100, 23);
             firstNameTextBox.TabIndex = 0;
             // 
             // lastNameTextBox
             // 
-            lastNameTextBox.Location = new Point(163, 43);
+            lastNameTextBox.Location = new Point(163, 71);
             lastNameTextBox.Name = "lastNameTextBox";
             lastNameTextBox.Size = new Size(100, 23);
             lastNameTextBox.TabIndex = 1;
             // 
             // streetAddressTextBox
             // 
-            streetAddressTextBox.Location = new Point(163, 163);
+            streetAddressTextBox.Location = new Point(163, 185);
             streetAddressTextBox.Name = "streetAddressTextBox";
             streetAddressTextBox.Size = new Size(100, 23);
             streetAddressTextBox.TabIndex = 4;
             // 
             // cityTextBox
             // 
-            cityTextBox.Location = new Point(163, 203);
+            cityTextBox.Location = new Point(163, 223);
             cityTextBox.Name = "cityTextBox";
             cityTextBox.Size = new Size(100, 23);
             cityTextBox.TabIndex = 5;
             // 
             // zipCodeTextBox
             // 
-            zipCodeTextBox.Location = new Point(163, 283);
+            zipCodeTextBox.Location = new Point(163, 299);
             zipCodeTextBox.Name = "zipCodeTextBox";
             zipCodeTextBox.Size = new Size(100, 23);
             zipCodeTextBox.TabIndex = 7;
@@ -205,14 +213,14 @@
             // sexComboBox
             // 
             sexComboBox.FormattingEnabled = true;
-            sexComboBox.Location = new Point(163, 83);
+            sexComboBox.Location = new Point(163, 109);
             sexComboBox.Name = "sexComboBox";
             sexComboBox.Size = new Size(121, 23);
             sexComboBox.TabIndex = 2;
             // 
             // dateOfBirthPicker
             // 
-            dateOfBirthPicker.Location = new Point(163, 123);
+            dateOfBirthPicker.Location = new Point(163, 147);
             dateOfBirthPicker.Name = "dateOfBirthPicker";
             dateOfBirthPicker.Size = new Size(200, 23);
             dateOfBirthPicker.TabIndex = 3;
@@ -220,21 +228,21 @@
             // stateTextBox
             // 
             stateTextBox.FormattingEnabled = true;
-            stateTextBox.Location = new Point(163, 243);
+            stateTextBox.Location = new Point(163, 261);
             stateTextBox.Name = "stateTextBox";
             stateTextBox.Size = new Size(121, 23);
             stateTextBox.TabIndex = 6;
             // 
             // phoneNumberTextBox
             // 
-            phoneNumberTextBox.Location = new Point(163, 323);
+            phoneNumberTextBox.Location = new Point(163, 337);
             phoneNumberTextBox.Name = "phoneNumberTextBox";
             phoneNumberTextBox.Size = new Size(100, 23);
             phoneNumberTextBox.TabIndex = 8;
             // 
             // passwordTextBox
             // 
-            passwordTextBox.Location = new Point(163, 363);
+            passwordTextBox.Location = new Point(163, 375);
             passwordTextBox.Name = "passwordTextBox";
             passwordTextBox.Size = new Size(100, 23);
             passwordTextBox.TabIndex = 9;
@@ -252,11 +260,11 @@
             tableLayoutPanel2.Controls.Add(cancelButton, 4, 0);
             tableLayoutPanel2.Controls.Add(clearButton, 2, 0);
             tableLayoutPanel2.Dock = DockStyle.Fill;
-            tableLayoutPanel2.Location = new Point(163, 403);
+            tableLayoutPanel2.Location = new Point(163, 413);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
             tableLayoutPanel2.RowCount = 1;
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel2.Size = new Size(474, 44);
+            tableLayoutPanel2.Size = new Size(474, 34);
             tableLayoutPanel2.TabIndex = 24;
             // 
             // clearButton
@@ -275,44 +283,111 @@
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 60F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
-            tableLayoutPanel1.Controls.Add(streetLabel, 0, 4);
-            tableLayoutPanel1.Controls.Add(dobLabel, 0, 3);
-            tableLayoutPanel1.Controls.Add(sexLabel, 0, 2);
-            tableLayoutPanel1.Controls.Add(firstNameLabel, 0, 0);
-            tableLayoutPanel1.Controls.Add(lastNameLabel, 0, 1);
-            tableLayoutPanel1.Controls.Add(cityLabel, 0, 5);
-            tableLayoutPanel1.Controls.Add(stateLabel, 0, 6);
-            tableLayoutPanel1.Controls.Add(zipCodeLabel, 0, 7);
-            tableLayoutPanel1.Controls.Add(phoneNumberLabel, 0, 8);
-            tableLayoutPanel1.Controls.Add(passwordLabel, 0, 9);
-            tableLayoutPanel1.Controls.Add(firstNameTextBox, 1, 0);
-            tableLayoutPanel1.Controls.Add(lastNameTextBox, 1, 1);
-            tableLayoutPanel1.Controls.Add(streetAddressTextBox, 1, 4);
-            tableLayoutPanel1.Controls.Add(cityTextBox, 1, 5);
-            tableLayoutPanel1.Controls.Add(zipCodeTextBox, 1, 7);
-            tableLayoutPanel1.Controls.Add(sexComboBox, 1, 2);
-            tableLayoutPanel1.Controls.Add(dateOfBirthPicker, 1, 3);
-            tableLayoutPanel1.Controls.Add(stateTextBox, 1, 6);
-            tableLayoutPanel1.Controls.Add(phoneNumberTextBox, 1, 8);
-            tableLayoutPanel1.Controls.Add(passwordTextBox, 1, 9);
-            tableLayoutPanel1.Controls.Add(tableLayoutPanel2, 1, 10);
+            tableLayoutPanel1.Controls.Add(streetLabel, 0, 5);
+            tableLayoutPanel1.Controls.Add(dobLabel, 0, 4);
+            tableLayoutPanel1.Controls.Add(sexLabel, 0, 3);
+            tableLayoutPanel1.Controls.Add(firstNameLabel, 0, 1);
+            tableLayoutPanel1.Controls.Add(lastNameLabel, 0, 2);
+            tableLayoutPanel1.Controls.Add(cityLabel, 0, 6);
+            tableLayoutPanel1.Controls.Add(stateLabel, 0, 7);
+            tableLayoutPanel1.Controls.Add(zipCodeLabel, 0, 8);
+            tableLayoutPanel1.Controls.Add(phoneNumberLabel, 0, 9);
+            tableLayoutPanel1.Controls.Add(passwordLabel, 0, 10);
+            tableLayoutPanel1.Controls.Add(firstNameTextBox, 1, 1);
+            tableLayoutPanel1.Controls.Add(lastNameTextBox, 1, 2);
+            tableLayoutPanel1.Controls.Add(streetAddressTextBox, 1, 5);
+            tableLayoutPanel1.Controls.Add(cityTextBox, 1, 6);
+            tableLayoutPanel1.Controls.Add(zipCodeTextBox, 1, 8);
+            tableLayoutPanel1.Controls.Add(sexComboBox, 1, 3);
+            tableLayoutPanel1.Controls.Add(dateOfBirthPicker, 1, 4);
+            tableLayoutPanel1.Controls.Add(stateTextBox, 1, 7);
+            tableLayoutPanel1.Controls.Add(phoneNumberTextBox, 1, 9);
+            tableLayoutPanel1.Controls.Add(passwordTextBox, 1, 10);
+            tableLayoutPanel1.Controls.Add(tableLayoutPanel2, 1, 11);
+            tableLayoutPanel1.Controls.Add(tableLayoutPanel4, 1, 0);
             tableLayoutPanel1.Dock = DockStyle.Fill;
             tableLayoutPanel1.Location = new Point(0, 0);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
-            tableLayoutPanel1.RowCount = 11;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 9.090908F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 9.090908F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 9.090908F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 9.090908F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 9.090908F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 9.090908F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 9.090908F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 9.090908F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 9.090908F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 9.090908F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 9.090908F));
+            tableLayoutPanel1.RowCount = 12;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 6.82853746F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 8.470134F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 8.470134F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 8.470134F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 8.470134F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 8.470134F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 8.470134F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 8.470134F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 8.470134F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 8.470134F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 8.470134F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 8.470134F));
             tableLayoutPanel1.Size = new Size(800, 450);
             tableLayoutPanel1.TabIndex = 1;
+            // 
+            // userNameLabel
+            // 
+            userNameLabel.AutoSize = true;
+            userNameLabel.Location = new Point(3, 0);
+            userNameLabel.Name = "userNameLabel";
+            userNameLabel.Size = new Size(62, 15);
+            userNameLabel.TabIndex = 8;
+            userNameLabel.Text = "UserName";
+            // 
+            // employeeNameLebel
+            // 
+            employeeNameLebel.AutoSize = true;
+            employeeNameLebel.Location = new Point(3, 0);
+            employeeNameLebel.Name = "employeeNameLebel";
+            employeeNameLebel.Size = new Size(91, 15);
+            employeeNameLebel.TabIndex = 7;
+            employeeNameLebel.Text = "EmployeeName";
+            // 
+            // tableLayoutPanel3
+            // 
+            tableLayoutPanel3.ColumnCount = 2;
+            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel3.Controls.Add(userNameLabel, 0, 0);
+            tableLayoutPanel3.Dock = DockStyle.Fill;
+            tableLayoutPanel3.Location = new Point(0, 0);
+            tableLayoutPanel3.Name = "tableLayoutPanel3";
+            tableLayoutPanel3.RowCount = 1;
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel3.Size = new Size(200, 100);
+            tableLayoutPanel3.TabIndex = 0;
+            // 
+            // tableLayoutPanel4
+            // 
+            tableLayoutPanel4.ColumnCount = 2;
+            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel4.Controls.Add(label1, 0, 0);
+            tableLayoutPanel4.Controls.Add(label2, 0, 0);
+            tableLayoutPanel4.Dock = DockStyle.Fill;
+            tableLayoutPanel4.Location = new Point(163, 3);
+            tableLayoutPanel4.Name = "tableLayoutPanel4";
+            tableLayoutPanel4.RowCount = 1;
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel4.Size = new Size(474, 24);
+            tableLayoutPanel4.TabIndex = 25;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(240, 0);
+            label1.Name = "label1";
+            label1.Size = new Size(62, 15);
+            label1.TabIndex = 10;
+            label1.Text = "UserName";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(3, 0);
+            label2.Name = "label2";
+            label2.Size = new Size(91, 15);
+            label2.TabIndex = 9;
+            label2.Text = "EmployeeName";
             // 
             // AddMemberForm
             // 
@@ -329,6 +404,10 @@
             tableLayoutPanel2.ResumeLayout(false);
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.PerformLayout();
+            tableLayoutPanel3.ResumeLayout(false);
+            tableLayoutPanel3.PerformLayout();
+            tableLayoutPanel4.ResumeLayout(false);
+            tableLayoutPanel4.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -359,5 +438,11 @@
         private TableLayoutPanel tableLayoutPanel2;
         private TableLayoutPanel tableLayoutPanel1;
         private Button clearButton;
+        private TableLayoutPanel tableLayoutPanel4;
+        private Label userNameLabel;
+        private Label employeeNameLebel;
+        private TableLayoutPanel tableLayoutPanel3;
+        private Label label1;
+        private Label label2;
     }
 }
