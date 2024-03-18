@@ -70,7 +70,7 @@
             searchMethodBox.Margin = new Padding(3, 2, 3, 2);
             searchMethodBox.Name = "searchMethodBox";
             searchMethodBox.Size = new Size(154, 23);
-            searchMethodBox.TabIndex = 18;
+            searchMethodBox.TabIndex = 0;
             searchMethodBox.SelectedIndexChanged += searchMethodBox_SelectedIndexChanged;
             // 
             // membersListView
@@ -80,7 +80,7 @@
             membersListView.Margin = new Padding(3, 2, 3, 2);
             membersListView.Name = "membersListView";
             membersListView.Size = new Size(694, 165);
-            membersListView.TabIndex = 17;
+            membersListView.TabIndex = 3;
             membersListView.UseCompatibleStateImageBehavior = false;
             membersListView.SelectedIndexChanged += MemberListView_Select;
             // 
@@ -90,7 +90,7 @@
             searchButton.Margin = new Padding(3, 2, 3, 2);
             searchButton.Name = "searchButton";
             searchButton.Size = new Size(110, 28);
-            searchButton.TabIndex = 13;
+            searchButton.TabIndex = 2;
             searchButton.Text = "Search";
             searchButton.UseVisualStyleBackColor = true;
             searchButton.Click += searchButton_Click;
@@ -103,7 +103,7 @@
             customerListBox.Margin = new Padding(3, 2, 3, 2);
             customerListBox.Name = "customerListBox";
             customerListBox.Size = new Size(298, 23);
-            customerListBox.TabIndex = 12;
+            customerListBox.TabIndex = 1;
             customerListBox.SelectedIndexChanged += customerListBox_SelectedIndexChanged;
             // 
             // tableLayoutPanel1
@@ -129,7 +129,7 @@
             editButton.Location = new Point(350, 3);
             editButton.Name = "editButton";
             editButton.Size = new Size(93, 23);
-            editButton.TabIndex = 23;
+            editButton.TabIndex = 4;
             editButton.Text = "Edit Member";
             editButton.UseVisualStyleBackColor = true;
             editButton.Click += EditButton_Click;
@@ -139,7 +139,7 @@
             addButton.Location = new Point(3, 3);
             addButton.Name = "addButton";
             addButton.Size = new Size(93, 23);
-            addButton.TabIndex = 24;
+            addButton.TabIndex = 5;
             addButton.Text = "Add Member";
             addButton.UseVisualStyleBackColor = true;
             addButton.Click += AddButton_Click;
@@ -149,7 +149,7 @@
             clearButton.Location = new Point(350, 3);
             clearButton.Name = "clearButton";
             clearButton.Size = new Size(93, 23);
-            clearButton.TabIndex = 25;
+            clearButton.TabIndex = 6;
             clearButton.Text = "Clear";
             clearButton.UseVisualStyleBackColor = true;
             clearButton.Click += ClearButton_Click;

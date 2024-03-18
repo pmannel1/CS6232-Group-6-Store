@@ -67,7 +67,7 @@
             idTextBox.Location = new Point(89, 3);
             idTextBox.Name = "idTextBox";
             idTextBox.Size = new Size(342, 23);
-            idTextBox.TabIndex = 2;
+            idTextBox.TabIndex = 0;
             idTextBox.TextChanged += idTextBox_TextChanged;
             // 
             // passwordTextBox
@@ -77,7 +77,7 @@
             passwordTextBox.Name = "passwordTextBox";
             passwordTextBox.PasswordChar = '*';
             passwordTextBox.Size = new Size(342, 23);
-            passwordTextBox.TabIndex = 3;
+            passwordTextBox.TabIndex = 1;
             passwordTextBox.TextChanged += passwordTextBox_TextChanged;
             // 
             // loginButton
@@ -86,7 +86,7 @@
             loginButton.Location = new Point(3, 3);
             loginButton.Name = "loginButton";
             loginButton.Size = new Size(165, 27);
-            loginButton.TabIndex = 4;
+            loginButton.TabIndex = 2;
             loginButton.Text = "Login";
             loginButton.UseVisualStyleBackColor = true;
             loginButton.Click += loginButton_Click;
@@ -107,7 +107,7 @@
             clearButton.Margin = new Padding(3, 2, 3, 2);
             clearButton.Name = "clearButton";
             clearButton.Size = new Size(165, 29);
-            clearButton.TabIndex = 7;
+            clearButton.TabIndex = 3;
             clearButton.Text = "Clear";
             clearButton.UseVisualStyleBackColor = true;
             clearButton.Click += clearButton_Click;
@@ -149,8 +149,10 @@
             // 
             // LoginForm
             // 
+            AcceptButton = loginButton;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            CancelButton = clearButton;
             ClientSize = new Size(434, 161);
             Controls.Add(tableLayoutPanel1);
             Controls.Add(errorLabel);

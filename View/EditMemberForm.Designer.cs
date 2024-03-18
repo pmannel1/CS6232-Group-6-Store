@@ -197,35 +197,35 @@
             firstNameTextBox.Location = new Point(163, 3);
             firstNameTextBox.Name = "firstNameTextBox";
             firstNameTextBox.Size = new Size(100, 23);
-            firstNameTextBox.TabIndex = 13;
+            firstNameTextBox.TabIndex = 0;
             // 
             // lastNameTextBox
             // 
             lastNameTextBox.Location = new Point(163, 43);
             lastNameTextBox.Name = "lastNameTextBox";
             lastNameTextBox.Size = new Size(100, 23);
-            lastNameTextBox.TabIndex = 14;
+            lastNameTextBox.TabIndex = 1;
             // 
             // streetAddressTextBox
             // 
             streetAddressTextBox.Location = new Point(163, 163);
             streetAddressTextBox.Name = "streetAddressTextBox";
             streetAddressTextBox.Size = new Size(100, 23);
-            streetAddressTextBox.TabIndex = 15;
+            streetAddressTextBox.TabIndex = 4;
             // 
             // cityTextBox
             // 
             cityTextBox.Location = new Point(163, 203);
             cityTextBox.Name = "cityTextBox";
             cityTextBox.Size = new Size(100, 23);
-            cityTextBox.TabIndex = 16;
+            cityTextBox.TabIndex = 5;
             // 
             // zipCodeTextBox
             // 
             zipCodeTextBox.Location = new Point(163, 283);
             zipCodeTextBox.Name = "zipCodeTextBox";
             zipCodeTextBox.Size = new Size(100, 23);
-            zipCodeTextBox.TabIndex = 17;
+            zipCodeTextBox.TabIndex = 7;
             // 
             // sexComboBox
             // 
@@ -233,14 +233,14 @@
             sexComboBox.Location = new Point(163, 83);
             sexComboBox.Name = "sexComboBox";
             sexComboBox.Size = new Size(121, 23);
-            sexComboBox.TabIndex = 20;
+            sexComboBox.TabIndex = 2;
             // 
             // dateOfBirthPicker
             // 
             dateOfBirthPicker.Location = new Point(163, 123);
             dateOfBirthPicker.Name = "dateOfBirthPicker";
             dateOfBirthPicker.Size = new Size(200, 23);
-            dateOfBirthPicker.TabIndex = 21;
+            dateOfBirthPicker.TabIndex = 3;
             // 
             // stateTextBox
             // 
@@ -248,21 +248,21 @@
             stateTextBox.Location = new Point(163, 243);
             stateTextBox.Name = "stateTextBox";
             stateTextBox.Size = new Size(121, 23);
-            stateTextBox.TabIndex = 22;
+            stateTextBox.TabIndex = 6;
             // 
             // phoneNumberTextBox
             // 
             phoneNumberTextBox.Location = new Point(163, 323);
             phoneNumberTextBox.Name = "phoneNumberTextBox";
             phoneNumberTextBox.Size = new Size(100, 23);
-            phoneNumberTextBox.TabIndex = 18;
+            phoneNumberTextBox.TabIndex = 8;
             // 
             // passwordTextBox
             // 
             passwordTextBox.Location = new Point(163, 363);
             passwordTextBox.Name = "passwordTextBox";
             passwordTextBox.Size = new Size(100, 23);
-            passwordTextBox.TabIndex = 19;
+            passwordTextBox.TabIndex = 9;
             // 
             // tableLayoutPanel2
             // 
@@ -289,7 +289,7 @@
             confirmButton.Location = new Point(3, 3);
             confirmButton.Name = "confirmButton";
             confirmButton.Size = new Size(73, 23);
-            confirmButton.TabIndex = 11;
+            confirmButton.TabIndex = 10;
             confirmButton.Text = "Confirm";
             confirmButton.UseVisualStyleBackColor = true;
             confirmButton.Click += ConfirmButton_Click;
@@ -299,7 +299,7 @@
             clearButton.Location = new Point(161, 3);
             clearButton.Name = "clearButton";
             clearButton.Size = new Size(73, 23);
-            clearButton.TabIndex = 12;
+            clearButton.TabIndex = 11;
             clearButton.Text = "Reset";
             clearButton.UseVisualStyleBackColor = true;
             clearButton.Click += ClearButton_Click;
@@ -309,15 +309,17 @@
             cancelButton.Location = new Point(319, 3);
             cancelButton.Name = "cancelButton";
             cancelButton.Size = new Size(73, 23);
-            cancelButton.TabIndex = 23;
+            cancelButton.TabIndex = 12;
             cancelButton.Text = "Cancel";
             cancelButton.UseVisualStyleBackColor = true;
             cancelButton.Click += CancelButton_Click;
             // 
             // EditMemberForm
             // 
+            AcceptButton = confirmButton;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            CancelButton = cancelButton;
             ClientSize = new Size(800, 450);
             Controls.Add(tableLayoutPanel1);
             FormBorderStyle = FormBorderStyle.FixedDialog;
