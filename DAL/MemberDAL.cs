@@ -1,6 +1,7 @@
 ﻿using CS6232_Group_6_Store.Model;
 using System.Data.SqlClient;
 using System.Data;
+using System;
 
 
 namespace CS6232_Group_6_Store.DAL
@@ -100,42 +101,66 @@ namespace CS6232_Group_6_Store.DAL
             return memberList;
         }
 
-        public static void AddDBMember(string firstName, string lastName, string sex, DateTime dob, string street, string city, string state, string zipCode, string country, string contactPhone)
+        public void AddMember(Member member)
         {
-            string? insertStatement =
-       "INSERT INTO members (firstName, lastName, sex, DOB, Street, City, State, zipCode, country, contactPhone) " +
-       "VALUES (@FirstName, @LastName, @Sex, @DOB, @Street, @City, @State, @ZipCode, @Country, @ContactPhone)";
-
-            SqlConnection? connection = null;
-
-            try
+            string updateStatement =
+              "INSERT INTO members(lastName, firstName, sex, dob, street, city, state, zipCode, country, contactPhone, password) " +
+              "VALUES(@lName, @fName, @sex, @dob, @street, @city, @state, @zipCode, @country, @contactPhone, @password);";
+            using (SqlConnection connection = DBConnection.GetConnection())
             {
-                using (connection = DBConnection.GetConnection()) 
+                connection.Open();
+                using (var transaction = connection.BeginTransaction())
                 {
-                    connection.Open();
-                    using SqlCommand cmd = new(insertStatement, connection);
-                    cmd.Parameters.AddWithValue("@FirstName", firstName);
-                    cmd.Parameters.AddWithValue("@LastName", lastName);
-                    cmd.Parameters.AddWithValue("@Sex", sex);
-                    cmd.Parameters.AddWithValue("@DOB", dob);
-                    cmd.Parameters.AddWithValue("@Street", street);
-                    cmd.Parameters.AddWithValue("@City", city);
-                    cmd.Parameters.AddWithValue("@State", state);
-                    cmd.Parameters.AddWithValue("@ZipCode", zipCode);
-                    cmd.Parameters.AddWithValue("@Country", country);
-                    cmd.Parameters.AddWithValue("@ContactPhone", contactPhone);
+                    try
+                    {
+                        using (SqlCommand updateCommand = new SqlCommand(updateStatement, connection, transaction))
+                        {
+                            updateCommand.Parameters.Add("@lName", SqlDbType.VarChar);
+                            updateCommand.Parameters["@lName"].Value = member.LastName;
 
-                    cmd.ExecuteNonQuery();
+                            updateCommand.Parameters.Add("@fName", SqlDbType.VarChar);
+                            updateCommand.Parameters["@fName"].Value = member.FirstName;
+
+                            updateCommand.Parameters.Add("@sex", SqlDbType.VarChar);
+                            updateCommand.Parameters["@sex"].Value = member.Sex;
+
+                            updateCommand.Parameters.Add("@dob", SqlDbType.DateTime2);
+                            updateCommand.Parameters["@dob"].Value = member.DateOfBirth;
+
+                            updateCommand.Parameters.Add("@street", SqlDbType.VarChar);
+                            updateCommand.Parameters["@street"].Value = member.StreetAddress;
+
+                            updateCommand.Parameters.Add("@city", SqlDbType.VarChar);
+                            updateCommand.Parameters["@city"].Value = member.City;
+
+                            updateCommand.Parameters.Add("@state", SqlDbType.VarChar);
+                            updateCommand.Parameters["@state"].Value = member.State;
+
+                            updateCommand.Parameters.Add("@zipCode", SqlDbType.VarChar);
+                            updateCommand.Parameters["@zipCode"].Value = member.ZipCode.ToString();
+
+                            updateCommand.Parameters.Add("@country", SqlDbType.VarChar);
+                            updateCommand.Parameters["@country"].Value = member.Country;
+
+                            updateCommand.Parameters.Add("@contactPhone", SqlDbType.VarChar);
+                            updateCommand.Parameters["@contactPhone"].Value = member.ContactPhone;
+
+                            updateCommand.Parameters.Add("@password", SqlDbType.VarChar);
+                            updateCommand.Parameters["@password"].Value = member.Password;
+
+                            updateCommand.ExecuteScalar();
+                        }
+
+                        transaction.Commit();
+                    }
+                    catch
+                    {
+                        transaction.Rollback();
+                        throw;
+                    }
                 }
             }
-            catch (SqlException)
-            {
-                throw;
-            }
-            finally
-            {
-                connection?.Close();
-            }
+
         }
 
         /// <summary>

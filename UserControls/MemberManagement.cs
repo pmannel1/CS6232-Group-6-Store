@@ -19,6 +19,7 @@ namespace CS6232_Group_6_Store.UserControls
             this._memberController = new MemberController();
             this.editButton.Enabled = false;
             customerListBox.Enabled = false;
+            searchButton.Enabled = false;
         }
 
         /// <summary>
@@ -28,13 +29,12 @@ namespace CS6232_Group_6_Store.UserControls
         {
             try
             {
+                this.searchButton.Enabled = true;
+                this.customerListBox.DataSource = null;
                 var field = this.searchMethodBox.Text;
-                if (customerListBox.DataSource == null)
-                {
-                    List<Member> memberList = this._memberController.ReturnMembers();
-                    this.customerListBox.DataSource = memberList;
-                }
-
+                List<Member> memberList = this._memberController.ReturnMembers();
+                this.customerListBox.DataSource = memberList;
+        
                 if (field == "Name")
                 {
                     customerListBox.DisplayMember = "FullName";
@@ -160,6 +160,7 @@ namespace CS6232_Group_6_Store.UserControls
             this.selectedMember = int.Parse(membersListView.SelectedItems[0].SubItems[0].Text);
             EditMemberForm editForm = new EditMemberForm(this);
             DialogResult result = editForm.ShowDialog();
+            this.Clear();
         }
 
         private void MemberListView_Select(object sender, EventArgs e)
@@ -190,7 +191,10 @@ namespace CS6232_Group_6_Store.UserControls
             this.customerListBox.SelectedIndex = -1;
             this.searchMethodBox.SelectedIndex = -1;
             this.MemberSelection();
-            customerListBox.Enabled = false;
+            this.customerListBox.Enabled = false;
+            this.customerListBox.DataSource = null;
+            this.customerListBox.Items.Clear();
+            this.searchButton.Enabled = false;
 
         }
 
@@ -198,5 +202,13 @@ namespace CS6232_Group_6_Store.UserControls
         {
             this.Clear();
         }
+
+        private void AddButton_Click(object sender, EventArgs e)
+        {
+            AddMemberForm addForm = new AddMemberForm(this);
+            DialogResult result = addForm.ShowDialog();
+            this.Clear();
+        }
+
     }
 }

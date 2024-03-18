@@ -38,9 +38,9 @@ namespace CS6232_Group_6_Store.Controller
             return this.memeberDAL.ReturnMembersSearch(searchItem);
         }
 
-        public void AddDBMember(string firstName, string lastName, string sex, DateTime dob, string street, string city, string state, string zipCode, string country, string contactPhone)
+        public void AddMember(Member member)
         {
-            MemberDAL.AddDBMember(firstName, lastName, sex, dob, street, city, state, zipCode, country, contactPhone);
+            this.memeberDAL.AddMember(member);
         }
 
         public Member RetrieveMember(int id)

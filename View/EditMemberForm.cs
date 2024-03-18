@@ -83,20 +83,28 @@ namespace CS6232_Group_6_Store.View
 
         private void UpdateMember()
         {
-            var id = this.selectedMember;
-            var fName = this.firstNameTextBox.Text;
-            var lName = this.lastNameTextBox.Text;
-            var sex = this.sexComboBox.SelectedValue.ToString();
-            var dob = this.dateOfBirthPicker.Value;
-            var sAddress = this.streetAddressTextBox.Text;
-            var city = this.cityTextBox.Text;
-            var state = this.stateTextBox.Text;
-            var zip = int.Parse(this.zipCodeTextBox.Text);
-            var pNum = this.phoneNumberTextBox.Text;
-            var pWord = this.passwordTextBox.Text;
-            var country = "USA";
+            try
+            {
+                var id = this.selectedMember;
+                var fName = this.firstNameTextBox.Text;
+                var lName = this.lastNameTextBox.Text;
+                var sex = this.sexComboBox.SelectedValue.ToString();
+                var dob = this.dateOfBirthPicker.Value;
+                var sAddress = this.streetAddressTextBox.Text;
+                var city = this.cityTextBox.Text;
+                var state = this.stateTextBox.Text;
+                var zip = int.Parse(this.zipCodeTextBox.Text);
+                var pNum = this.phoneNumberTextBox.Text;
+                var pWord = this.passwordTextBox.Text;
+                var country = "USA";
 
-            updatedMember = new Member(id, lName, fName, dob, sAddress, city, state, zip, country, pNum, pWord, sex);
+                updatedMember = new Member(id, lName, fName, dob, sAddress, city, state, zip, country, pNum, pWord, sex);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, ex.GetType().ToString());
+            }
+
         }
 
         private void ConfirmButton_Click(object sender, EventArgs e)

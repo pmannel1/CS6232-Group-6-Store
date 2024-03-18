@@ -122,6 +122,7 @@
             Country = "";
             ContactPhone = "";
             Password = "";
+            FullName = FirstName + " " + LastName;
         }
 
         public Member(int id, string lastName, string firstName, DateTime dateOfBirth, string streetAddress, string city, string state, int zipCode, string country, string contactPhone, string password, string sex)
@@ -154,7 +155,7 @@
             {
                 throw new ArgumentException("country cannot be null or empty");
             }
-            if (string.IsNullOrEmpty(contactPhone) && contactPhone.Length != 7 && !contactPhone.All(char.IsDigit))
+            if (string.IsNullOrEmpty(contactPhone) || contactPhone.Length != 10 || !contactPhone.All(char.IsDigit))
             {
                 throw new ArgumentException("phone number cannot be null or empty, must be seven digits and only numerical");
             }
@@ -217,7 +218,7 @@
             {
                 throw new ArgumentException("country cannot be null or empty");
             }
-            if (string.IsNullOrEmpty(contactPhone) && contactPhone.Length != 7 && !contactPhone.All(char.IsDigit))
+            if (string.IsNullOrEmpty(contactPhone) || contactPhone.Length != 10 || !contactPhone.All(char.IsDigit))
             {
                 throw new ArgumentException("phone number cannot be null or empty, must be seven digits and only numerical");
             }
@@ -249,6 +250,7 @@
             ContactPhone = contactPhone;
             Password = password;
             Sex = sex;
+            FullName = FirstName + " " + LastName;
         }
     }
 }

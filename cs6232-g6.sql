@@ -188,15 +188,15 @@ GO
 -- Inserting sample data into the 'employees' table
 INSERT INTO employees (lastName, firstName, sex, dob, street, city, state, zipCode, country, contactPhone, password) 
 VALUES 
-('Smith', 'John', 'M', '1980-06-15', '123 Maple St', 'Anytown', 'CA', '90001', 'USA', '555-1234', 'pass123'),
-('Doe', 'Jane', 'F', '1985-07-20', '456 Oak Ave', 'Othertown', 'NY', '10001', 'USA', '555-5678', 'pass456');
+('Smith', 'John', 'M', '1980-06-15', '123 Maple St', 'Anytown', 'CA', '90001', 'USA', '1235551234', 'pass123'),
+('Doe', 'Jane', 'F', '1985-07-20', '456 Oak Ave', 'Othertown', 'NY', '10001', 'USA', '1235555678', 'pass456');
 GO
 
 -- Inserting sample data into the 'members' table
 INSERT INTO members (lastName, firstName, sex, dob, street, city, state, zipCode, country, contactPhone, password) 
 VALUES 
-('Johnson', 'Bill', 'M', '1990-08-30', '789 Pine Rd', 'Sometown', 'TX', '75001', 'USA', '555-9012', 'pw123'),
-('Williams', 'Sara', 'F', '1992-09-25', '321 Birch Blvd', 'Newcity', 'FL', '32001', 'USA', '555-3456', 'pw456');
+('Johnson', 'Bill', 'M', '1990-08-30', '789 Pine Rd', 'Sometown', 'TX', '75001', 'USA', '1235559012', 'pw123'),
+('Williams', 'Sara', 'F', '1992-09-25', '321 Birch Blvd', 'Newcity', 'FL', '32001', 'USA', '1235553456', 'pw456');
 GO
 
 -- Inserting sample data into the 'furniture' table

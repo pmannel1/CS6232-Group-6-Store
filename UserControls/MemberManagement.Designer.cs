@@ -44,10 +44,12 @@
             clearButton = new Button();
             tableLayoutPanel2 = new TableLayoutPanel();
             tableLayoutPanel3 = new TableLayoutPanel();
+            tableLayoutPanel4 = new TableLayoutPanel();
             editingInstructionLabel = new Label();
             tableLayoutPanel1.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
             tableLayoutPanel3.SuspendLayout();
+            tableLayoutPanel4.SuspendLayout();
             SuspendLayout();
             // 
             // label3
@@ -74,10 +76,10 @@
             // membersListView
             // 
             membersListView.Dock = DockStyle.Fill;
-            membersListView.Location = new Point(3, 182);
+            membersListView.Location = new Point(3, 189);
             membersListView.Margin = new Padding(3, 2, 3, 2);
             membersListView.Name = "membersListView";
-            membersListView.Size = new Size(694, 136);
+            membersListView.Size = new Size(694, 165);
             membersListView.TabIndex = 17;
             membersListView.UseCompatibleStateImageBehavior = false;
             membersListView.SelectedIndexChanged += MemberListView_Select;
@@ -124,9 +126,9 @@
             // 
             // editButton
             // 
-            editButton.Location = new Point(3, 363);
+            editButton.Location = new Point(350, 3);
             editButton.Name = "editButton";
-            editButton.Size = new Size(102, 23);
+            editButton.Size = new Size(93, 23);
             editButton.TabIndex = 23;
             editButton.Text = "Edit Member";
             editButton.UseVisualStyleBackColor = true;
@@ -140,12 +142,13 @@
             addButton.TabIndex = 24;
             addButton.Text = "Add Member";
             addButton.UseVisualStyleBackColor = true;
+            addButton.Click += AddButton_Click;
             // 
             // clearButton
             // 
             clearButton.Location = new Point(350, 3);
             clearButton.Name = "clearButton";
-            clearButton.Size = new Size(75, 23);
+            clearButton.Size = new Size(93, 23);
             clearButton.TabIndex = 25;
             clearButton.Text = "Clear";
             clearButton.UseVisualStyleBackColor = true;
@@ -157,18 +160,16 @@
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutPanel2.Controls.Add(tableLayoutPanel3, 0, 3);
             tableLayoutPanel2.Controls.Add(tableLayoutPanel1, 0, 0);
-            tableLayoutPanel2.Controls.Add(editButton, 0, 3);
             tableLayoutPanel2.Controls.Add(membersListView, 0, 2);
-            tableLayoutPanel2.Controls.Add(editingInstructionLabel, 0, 1);
+            tableLayoutPanel2.Controls.Add(tableLayoutPanel4, 0, 1);
             tableLayoutPanel2.Dock = DockStyle.Fill;
             tableLayoutPanel2.Location = new Point(0, 0);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
-            tableLayoutPanel2.RowCount = 5;
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 30F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 15F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 35F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
+            tableLayoutPanel2.RowCount = 4;
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 31.41361F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 15.7068081F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 42.4083824F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 10.4712048F));
             tableLayoutPanel2.Size = new Size(700, 400);
             tableLayoutPanel2.TabIndex = 26;
             // 
@@ -180,23 +181,37 @@
             tableLayoutPanel3.Controls.Add(addButton, 0, 0);
             tableLayoutPanel3.Controls.Add(clearButton, 1, 0);
             tableLayoutPanel3.Dock = DockStyle.Fill;
-            tableLayoutPanel3.Location = new Point(3, 323);
+            tableLayoutPanel3.Location = new Point(3, 359);
             tableLayoutPanel3.Name = "tableLayoutPanel3";
             tableLayoutPanel3.RowCount = 1;
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel3.Size = new Size(694, 34);
+            tableLayoutPanel3.Size = new Size(694, 38);
             tableLayoutPanel3.TabIndex = 27;
+            // 
+            // tableLayoutPanel4
+            // 
+            tableLayoutPanel4.ColumnCount = 2;
+            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel4.Controls.Add(editingInstructionLabel, 0, 0);
+            tableLayoutPanel4.Controls.Add(editButton, 1, 0);
+            tableLayoutPanel4.Dock = DockStyle.Fill;
+            tableLayoutPanel4.Location = new Point(3, 128);
+            tableLayoutPanel4.Name = "tableLayoutPanel4";
+            tableLayoutPanel4.RowCount = 1;
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel4.Size = new Size(694, 56);
+            tableLayoutPanel4.TabIndex = 29;
             // 
             // editingInstructionLabel
             // 
             editingInstructionLabel.AutoSize = true;
             editingInstructionLabel.Dock = DockStyle.Fill;
-            editingInstructionLabel.Location = new Point(3, 120);
+            editingInstructionLabel.Location = new Point(3, 0);
             editingInstructionLabel.Name = "editingInstructionLabel";
-            editingInstructionLabel.Size = new Size(694, 60);
-            editingInstructionLabel.TabIndex = 28;
+            editingInstructionLabel.Size = new Size(341, 56);
+            editingInstructionLabel.TabIndex = 29;
             editingInstructionLabel.Text = "Please Click the ID Value of the Member to Edit";
-            editingInstructionLabel.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // MemberManagement
             // 
@@ -210,8 +225,9 @@
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.PerformLayout();
             tableLayoutPanel2.ResumeLayout(false);
-            tableLayoutPanel2.PerformLayout();
             tableLayoutPanel3.ResumeLayout(false);
+            tableLayoutPanel4.ResumeLayout(false);
+            tableLayoutPanel4.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -232,6 +248,7 @@
         private Button clearButton;
         private TableLayoutPanel tableLayoutPanel2;
         private TableLayoutPanel tableLayoutPanel3;
+        private TableLayoutPanel tableLayoutPanel4;
         private Label editingInstructionLabel;
     }
 }
