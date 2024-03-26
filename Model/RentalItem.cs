@@ -44,5 +44,16 @@
         /// The quantity returned.
         /// </value>
         public int QuantityReturned { get; set; }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RentalItem"/> class.
+        /// </summary>
+        /// <param name="itemId">The item identifier.</param>
+        /// <param name="quantity">The quantity.</param>
+        public RentalItem(int itemId, int quantity)
+        {
+            Id = itemId;
+            Quantity = quantity;
+        }
     }
 }
