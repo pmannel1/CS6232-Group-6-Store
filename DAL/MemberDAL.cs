@@ -1,7 +1,6 @@
 ﻿using CS6232_Group_6_Store.Model;
 using System.Data.SqlClient;
 using System.Data;
-using System;
 
 
 namespace CS6232_Group_6_Store.DAL
