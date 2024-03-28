@@ -224,6 +224,7 @@
             viewRentalHistoryButton.TabIndex = 30;
             viewRentalHistoryButton.Text = "Rental History";
             viewRentalHistoryButton.UseVisualStyleBackColor = true;
+            viewRentalHistoryButton.Click += viewRentalHistoryButton_Click;
             // 
             // MemberManagement
             // 

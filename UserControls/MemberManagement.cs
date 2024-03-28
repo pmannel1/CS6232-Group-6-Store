@@ -26,6 +26,7 @@ namespace CS6232_Group_6_Store.UserControls
             this.editButton.Enabled = false;
             customerListBox.Enabled = false;
             searchButton.Enabled = false;
+            this.viewRentalHistoryButton.Enabled = false;
         }
 
         /// <summary>
@@ -40,7 +41,7 @@ namespace CS6232_Group_6_Store.UserControls
                 var field = this.searchMethodBox.Text;
                 List<Member> memberList = this._memberController.ReturnMembers();
                 this.customerListBox.DataSource = memberList;
-        
+
                 if (field == "Name")
                 {
                     customerListBox.DisplayMember = "FullName";
@@ -179,10 +180,12 @@ namespace CS6232_Group_6_Store.UserControls
             if (membersListView.SelectedItems.Count > 0)
             {
                 this.editButton.Enabled = true;
+                this.viewRentalHistoryButton.Enabled = true;
             }
             else
             {
                 this.editButton.Enabled = false;
+                this.viewRentalHistoryButton.Enabled = false;
             }
         }
 
@@ -216,5 +219,12 @@ namespace CS6232_Group_6_Store.UserControls
             this.Clear();
         }
 
+        private void viewRentalHistoryButton_Click(object sender, EventArgs e)
+        {
+            this.selectedMember = int.Parse(membersListView.SelectedItems[0].SubItems[0].Text);
+            MemberRentalHistory editForm = new MemberRentalHistory(this.selectedMember);
+            DialogResult result = editForm.ShowDialog();
+            this.Clear();
+        }
     }
 }

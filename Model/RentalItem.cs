@@ -61,6 +61,9 @@
         /// </value>
         public Furniture Furniture { get; set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RentalItem"/> class.
+        /// </summary>
         public RentalItem ()
         {
             RentalTransaction = new RentalTransaction();

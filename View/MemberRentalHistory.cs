@@ -16,6 +16,10 @@ namespace CS6232_Group_6_Store.View
     {
         private RentalItemController _rentalItemController;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MemberRentalHistory"/> class.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
         public MemberRentalHistory(int id)
         {
             InitializeComponent();
@@ -23,6 +27,10 @@ namespace CS6232_Group_6_Store.View
             this.DisplayMemberRentalHistory(id);
         }
 
+        /// <summary>
+        /// Displays the member rental history.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
         private void DisplayMemberRentalHistory(int id)
         {            
             this.memberRentalHistoryListView.Clear();
@@ -46,6 +54,11 @@ namespace CS6232_Group_6_Store.View
                 rentalItemList.SubItems.Add(dr.Quantity.ToString());
                 rentalItemList.SubItems.Add(dr.Furniture.RentalRate.ToString());
                 rentalItemList.SubItems.Add(dr.QuantityReturned.ToString());
+            }
+
+            for(int index = 0; index < this.memberRentalHistoryListView.Columns.Count; index++)
+            {
+                this.memberRentalHistoryListView.Columns[index].Width = -2;
             }
 
         }

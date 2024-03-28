@@ -5,6 +5,12 @@ namespace CS6232_Group_6_Store.DAL
 {
     internal class RentalItemDAL
     {
+        /// <summary>
+        /// Gets the member rental item history.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
+        /// <exception cref="System.ArgumentOutOfRangeException">id must be greater than 0</exception>
         internal List<RentalItem> GetMemberRentalItemHistory(int id)
         {
             if (id < 1)
@@ -50,7 +56,7 @@ namespace CS6232_Group_6_Store.DAL
                             item.RentalTransaction.DueDate = reader.GetDateTime(dueDateOrdinal);
                             item.Furniture.Name = reader.GetString(nameOrdinal);
                             item.Quantity = reader.GetInt32(quantityOrdinal);
-                            item.Furniture.RentalRate = reader.GetInt32(rentalRateOrdinal);
+                            item.Furniture.RentalRate = reader.GetDecimal(rentalRateOrdinal);
                             item.QuantityReturned = reader.GetInt32(quantityReturnedOrdinal);
 
                             list.Add(item);
