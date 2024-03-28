@@ -44,5 +44,27 @@
         /// The quantity returned.
         /// </value>
         public int QuantityReturned { get; set; }
+
+        /// <summary>
+        /// Gets or sets the rental transaction.
+        /// </summary>
+        /// <value>
+        /// The rental transaction.
+        /// </value>
+        public RentalTransaction RentalTransaction { get; set; }
+
+        /// <summary>
+        /// Gets or sets the furniture.
+        /// </summary>
+        /// <value>
+        /// The furniture.
+        /// </value>
+        public Furniture Furniture { get; set; }
+
+        public RentalItem ()
+        {
+            RentalTransaction = new RentalTransaction();
+            Furniture = new Furniture ();
+        }
     }
 }

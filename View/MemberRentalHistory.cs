@@ -36,30 +36,18 @@ namespace CS6232_Group_6_Store.View
             this.memberRentalHistoryListView.Columns.Add("Rental Rate", 100);
             this.memberRentalHistoryListView.Columns.Add("Quantity Returned", 50);
             List<RentalItem> searchResult = this._rentalItemController.GetMemberRentalItemHistory(id);
-            /*
+
             foreach (var dr in searchResult)
             {
-                var membersList = this.memberRentalHistoryListView.Items.Add(dr.emp);
-                membersList.SubItems.Add(dr.LastName.ToString());
-                membersList.SubItems.Add(dr.FirstName.ToString());
-                if (!Convert.IsDBNull(dr.DateOfBirth))
-                {
-                    membersList.SubItems.Add(Convert.ToDateTime(dr.DateOfBirth.ToString()).ToString("MM/dd/yyyy"));
-                }
-                else
-                {
-                    membersList.SubItems.Add(dr.DateOfBirth.ToString());
-                }
-                membersList.SubItems.Add(dr.StreetAddress.ToString());
-                membersList.SubItems.Add(dr.City.ToString());
-                membersList.SubItems.Add(dr.State.ToString());
-                membersList.SubItems.Add(dr.ZipCode.ToString());
-                membersList.SubItems.Add(dr.Country.ToString());
-                membersList.SubItems.Add(dr.ContactPhone.ToString());
-
-                var rentalItem
+                var rentalItemList = this.memberRentalHistoryListView.Items.Add(dr.RentalTransaction.EmployeeId.ToString());
+                rentalItemList.SubItems.Add(dr.RentalTransaction.RentalDate.ToString());
+                rentalItemList.SubItems.Add(dr.RentalTransaction.DueDate.ToString());
+                rentalItemList.SubItems.Add(dr.Furniture.Name);
+                rentalItemList.SubItems.Add(dr.Quantity.ToString());
+                rentalItemList.SubItems.Add(dr.Furniture.RentalRate.ToString());
+                rentalItemList.SubItems.Add(dr.QuantityReturned.ToString());
             }
-            */
+
         }
     }
 }
