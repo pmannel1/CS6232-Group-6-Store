@@ -45,9 +45,11 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            AutoScroll = true;
             ClientSize = new Size(800, 450);
             Controls.Add(memberRentalHistoryListView);
             Name = "MemberRentalHistory";
+            StartPosition = FormStartPosition.CenterParent;
             Text = "MemberRentalHistory";
             ResumeLayout(false);
         }
