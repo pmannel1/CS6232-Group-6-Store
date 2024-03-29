@@ -18,6 +18,7 @@ namespace CS6232_Group_6_Store.DAL
             "Data Source=localhost;Initial Catalog=cs6232-6;" +
             "Integrated Security=True";
 
+       
             SqlConnection connection = new SqlConnection(connectionString);
             return connection;
         }
