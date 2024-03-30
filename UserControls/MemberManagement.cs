@@ -219,7 +219,7 @@ namespace CS6232_Group_6_Store.UserControls
             this.Clear();
         }
 
-        private void viewRentalHistoryButton_Click(object sender, EventArgs e)
+        private void ViewRentalHistoryButton_Click(object sender, EventArgs e)
         {
             this.selectedMember = int.Parse(membersListView.SelectedItems[0].SubItems[0].Text);
             MemberRentalHistory editForm = new MemberRentalHistory(this.selectedMember);
