@@ -17,24 +17,24 @@ namespace CS6232_Group_6_Store.Controller
             this.rentalTransactionDal.CreateRentalTransaction(employeeId, memberId, rentalDate, dueDate);
         }
 
-        public bool AddItemToTransaction(int transactionId, int itemId, int quantity)
+        public void AddItemToTransaction(int transactionId, int itemId, int quantity)
         {
-            return rentalTransactionDal.AddRentalItem(transactionId, itemId, quantity);
+             this.rentalTransactionDal.AddRentalItem(transactionId, itemId, quantity);
         }
 
-        public bool UpdateItemQuantity(int transactionId, int itemId, int newQuantity)
+        public void UpdateItemQuantity(int transactionId, int itemId, int newQuantity)
         {
-            return rentalTransactionDal.UpdateRentalItemQuantity(transactionId, itemId, newQuantity);
+             this.rentalTransactionDal.UpdateRentalItemQuantity(transactionId, itemId, newQuantity);
         }
 
-        public bool RemoveItemFromTransaction(int transactionId, int itemId)
+        public void RemoveItemFromTransaction(int transactionId, int itemId)
         {
-            return rentalTransactionDal.RemoveRentalItem(transactionId, itemId);
+            this.rentalTransactionDal.RemoveRentalItem(transactionId, itemId);
         }
 
         public RentalTransaction GetTransactionDetails(int transactionId)
         {
-            return rentalTransactionDal.GetRentalTransactionById(transactionId);
+            return this.rentalTransactionDal.GetRentalTransactionById(transactionId);
         }
 
         public void FinalizeTransaction(int transactionId)
