@@ -46,28 +46,14 @@
         public int QuantityReturned { get; set; }
 
         /// <summary>
-        /// Gets or sets the rental transaction.
-        /// </summary>
-        /// <value>
-        /// The rental transaction.
-        /// </value>
-        public RentalTransaction RentalTransaction { get; set; }
-
-        /// <summary>
-        /// Gets or sets the furniture.
-        /// </summary>
-        /// <value>
-        /// The furniture.
-        /// </value>
-        public Furniture Furniture { get; set; }
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="RentalItem"/> class.
         /// </summary>
-        public RentalItem ()
+        /// <param name="itemId">The item identifier.</param>
+        /// <param name="quantity">The quantity.</param>
+        public RentalItem(int itemId, int quantity)
         {
-            RentalTransaction = new RentalTransaction();
-            Furniture = new Furniture ();
+            Id = itemId;
+            Quantity = quantity;
         }
     }
 }
