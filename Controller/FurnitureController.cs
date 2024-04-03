@@ -23,7 +23,7 @@ namespace CS6232_Group_6_Store.Controller
         /// <param name="searchMethod">The search method.</param>
         /// <param name="searchField">The search field.</param>
         /// <returns></returns>
-        public List<Furniture> ReturnFurnituresSearch(string searchMethod, string searchItem)
+        public List<Furniture> SearchFurniture(string searchMethod, string searchItem)
         {
             return this.furnitureDAL.ReturnFurnituresSearch(searchMethod, searchItem);
         }

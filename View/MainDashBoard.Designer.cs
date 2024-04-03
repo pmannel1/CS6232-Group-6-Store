@@ -32,7 +32,7 @@
             customerTabPage = new TabPage();
             memberManagement2 = new UserControls.MemberManagement();
             inventoryAndRentTabPage = new TabPage();
-            inventoryandRentalProcessing1 = new UserControls.InventoryandRentalProcessing();
+            inventoryRental1 = new UserControls.InventoryRental();
             greetingLabel = new Label();
             logoutLinkLabel = new LinkLabel();
             userNameLabel = new Label();
@@ -47,21 +47,19 @@
             mainTabControl.Controls.Add(customerTabPage);
             mainTabControl.Controls.Add(inventoryAndRentTabPage);
             mainTabControl.Dock = DockStyle.Bottom;
-            mainTabControl.Location = new Point(0, 173);
-            mainTabControl.Margin = new Padding(3, 4, 3, 4);
+            mainTabControl.Location = new Point(0, 129);
             mainTabControl.Name = "mainTabControl";
             mainTabControl.SelectedIndex = 0;
-            mainTabControl.Size = new Size(1206, 657);
+            mainTabControl.Size = new Size(1055, 493);
             mainTabControl.TabIndex = 0;
             // 
             // customerTabPage
             // 
             customerTabPage.Controls.Add(memberManagement2);
-            customerTabPage.Location = new Point(4, 29);
-            customerTabPage.Margin = new Padding(3, 4, 3, 4);
+            customerTabPage.Location = new Point(4, 24);
             customerTabPage.Name = "customerTabPage";
-            customerTabPage.Padding = new Padding(3, 4, 3, 4);
-            customerTabPage.Size = new Size(1198, 624);
+            customerTabPage.Padding = new Padding(3);
+            customerTabPage.Size = new Size(1047, 465);
             customerTabPage.TabIndex = 0;
             customerTabPage.Text = "Customer";
             customerTabPage.UseVisualStyleBackColor = true;
@@ -69,27 +67,30 @@
             // memberManagement2
             // 
             memberManagement2.Dock = DockStyle.Fill;
-            memberManagement2.Location = new Point(3, 4);
+            memberManagement2.Location = new Point(3, 3);
+            memberManagement2.Margin = new Padding(3, 2, 3, 2);
             memberManagement2.Name = "memberManagement2";
-            memberManagement2.Size = new Size(1192, 616);
+            memberManagement2.Size = new Size(1041, 459);
             memberManagement2.TabIndex = 0;
             // 
             // inventoryAndRentTabPage
             // 
-            inventoryAndRentTabPage.Controls.Add(inventoryandRentalProcessing1);
-            inventoryAndRentTabPage.Location = new Point(4, 29);
+            inventoryAndRentTabPage.Controls.Add(inventoryRental1);
+            inventoryAndRentTabPage.Location = new Point(4, 24);
+            inventoryAndRentTabPage.Margin = new Padding(3, 2, 3, 2);
             inventoryAndRentTabPage.Name = "inventoryAndRentTabPage";
-            inventoryAndRentTabPage.Size = new Size(1198, 624);
+            inventoryAndRentTabPage.Size = new Size(1047, 465);
             inventoryAndRentTabPage.TabIndex = 1;
             inventoryAndRentTabPage.Text = "Inventory and Rental Processing ";
             inventoryAndRentTabPage.UseVisualStyleBackColor = true;
             // 
-            // inventoryandRentalProcessing1
+            // inventoryRental1
             // 
-            inventoryandRentalProcessing1.Location = new Point(8, 3);
-            inventoryandRentalProcessing1.Name = "inventoryandRentalProcessing1";
-            inventoryandRentalProcessing1.Size = new Size(1385, 786);
-            inventoryandRentalProcessing1.TabIndex = 0;
+            inventoryRental1.Dock = DockStyle.Fill;
+            inventoryRental1.Location = new Point(0, 0);
+            inventoryRental1.Name = "inventoryRental1";
+            inventoryRental1.Size = new Size(1047, 465);
+            inventoryRental1.TabIndex = 0;
             // 
             // greetingLabel
             // 
@@ -97,16 +98,16 @@
             greetingLabel.Dock = DockStyle.Left;
             greetingLabel.Location = new Point(0, 0);
             greetingLabel.Name = "greetingLabel";
-            greetingLabel.Size = new Size(0, 20);
+            greetingLabel.Size = new Size(0, 15);
             greetingLabel.TabIndex = 1;
             // 
             // logoutLinkLabel
             // 
             logoutLinkLabel.AutoSize = true;
             logoutLinkLabel.Dock = DockStyle.Right;
-            logoutLinkLabel.Location = new Point(1141, 0);
+            logoutLinkLabel.Location = new Point(1002, 0);
             logoutLinkLabel.Name = "logoutLinkLabel";
-            logoutLinkLabel.Size = new Size(65, 20);
+            logoutLinkLabel.Size = new Size(53, 15);
             logoutLinkLabel.TabIndex = 2;
             logoutLinkLabel.TabStop = true;
             logoutLinkLabel.Text = "LOGOUT";
@@ -115,32 +116,31 @@
             // userNameLabel
             // 
             userNameLabel.AutoSize = true;
-            userNameLabel.Location = new Point(799, 9);
+            userNameLabel.Location = new Point(699, 7);
             userNameLabel.Name = "userNameLabel";
-            userNameLabel.Size = new Size(78, 20);
+            userNameLabel.Size = new Size(62, 15);
             userNameLabel.TabIndex = 6;
             userNameLabel.Text = "UserName";
             // 
             // employeeNameLebel
             // 
             employeeNameLebel.AutoSize = true;
-            employeeNameLebel.Location = new Point(533, 9);
+            employeeNameLebel.Location = new Point(466, 7);
             employeeNameLebel.Name = "employeeNameLebel";
-            employeeNameLebel.Size = new Size(115, 20);
+            employeeNameLebel.Size = new Size(91, 15);
             employeeNameLebel.TabIndex = 5;
             employeeNameLebel.Text = "EmployeeName";
             // 
             // MainDashBoard
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1206, 830);
+            ClientSize = new Size(1055, 622);
             Controls.Add(userNameLabel);
             Controls.Add(employeeNameLebel);
             Controls.Add(logoutLinkLabel);
             Controls.Add(greetingLabel);
             Controls.Add(mainTabControl);
-            Margin = new Padding(3, 4, 3, 4);
             Name = "MainDashBoard";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Main Dashboard";
@@ -164,5 +164,6 @@
         private UserControls.MemberManagement memberManagement2;
         private TabPage inventoryAndRentTabPage;
         private UserControls.InventoryandRentalProcessing inventoryandRentalProcessing1;
+        private UserControls.InventoryRental inventoryRental1;
     }
 }

@@ -49,17 +49,8 @@ namespace CS6232_Group_6_Store.DAL
                         
                         while (reader.Read())
                         {
-                            RentalItem item = new RentalItem();
-
-                            item.RentalTransaction.EmployeeId = reader.GetInt32(employeeIdOrdinal);
-                            item.RentalTransaction.RentalDate = reader.GetDateTime(rentalDateOrdinal);
-                            item.RentalTransaction.DueDate = reader.GetDateTime(dueDateOrdinal);
-                            item.Furniture.Name = reader.GetString(nameOrdinal);
-                            item.Quantity = reader.GetInt32(quantityOrdinal);
-                            item.Furniture.RentalRate = reader.GetDecimal(rentalRateOrdinal);
-                            item.QuantityReturned = reader.GetInt32(quantityReturnedOrdinal);
-
-                            list.Add(item);
+                            
+                            
                         }
                     }
                 }

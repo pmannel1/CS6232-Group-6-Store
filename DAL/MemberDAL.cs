@@ -288,5 +288,115 @@ namespace CS6232_Group_6_Store.DAL
             }
         }
 
+        public List<Member> SearchMember(string method, string search)
+        {
+            List<Member> memberList = new List<Member>();
+            string selectStatement;
+            SqlCommand selectCommand;
+
+            using (SqlConnection connection = DBConnection.GetConnection())
+            {
+                connection.Open();
+
+                if (method == "Name")
+                {
+                    string[] names = search.Trim().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                    string firstName = names.Length > 0 ? names[0] : "";
+                    string lastName = names.Length > 1 ? names[1] : "";
+
+                    // Check if only one name part is provided and it's more than one character
+                    if ((firstName.Length > 1 && lastName == "") || (lastName.Length > 1 && firstName == ""))
+                    {
+                        selectStatement =
+                            "SELECT members.* " +
+                            "FROM members " +
+                            "WHERE firstName LIKE @FirstName OR lastName LIKE @LastName";
+                        firstName = firstName.Length > 1 ? firstName : lastName;
+                        lastName = firstName;
+                    }
+                    // If a full first name and at least the first character of the last name is provided.
+                    else if (firstName.Length > 1 && (lastName == "" || lastName.Length == 1))
+                    {
+                        selectStatement =
+                            "SELECT members.* " +
+                            "FROM members " +
+                            "WHERE firstName = @FirstName AND (lastName LIKE @LastName + '%' OR @LastName = '')";
+                    }
+                    // If a full last name and at least the first character of the first name is provided.
+                    else if (lastName.Length > 1 && (firstName == "" || firstName.Length == 1))
+                    {
+                        selectStatement =
+                            "SELECT members.* " +
+                            "FROM members " +
+                            "WHERE lastName = @LastName AND (firstName LIKE @FirstName + '%' OR @FirstName = '')";
+                    }
+                    // If both full first name and last name are provided.
+                    else
+                    {
+                        selectStatement =
+                            "SELECT members.* " +
+                            "FROM members " +
+                            "WHERE firstName = @FirstName AND lastName LIKE @LastName + '%'";
+                    }
+
+                    selectCommand = new SqlCommand(selectStatement, connection);
+                    selectCommand.Parameters.Add("@FirstName", SqlDbType.NVarChar);
+                    selectCommand.Parameters["@FirstName"].Value = firstName;
+                    selectCommand.Parameters.Add("@LastName", SqlDbType.NVarChar);
+                    selectCommand.Parameters["@LastName"].Value = lastName != "" ? lastName : firstName;
+                }
+                else if ( method == "ID")
+                {
+                   selectStatement =
+                        "SELECT members.* " +
+                        "FROM members " +
+                        "WHERE members.id = @SearchTerm ";
+
+                    selectCommand = new SqlCommand(selectStatement, connection);
+                    selectCommand.Parameters.Add("@SearchTerm", SqlDbType.Int);
+                    selectCommand.Parameters["@SearchTerm"].Value = search;
+                } else
+                {
+                   selectStatement =
+                        "SELECT members.* " +
+                        "FROM members " +
+                        "WHERE contactPhone LIKE @SearchTerm ";
+
+                    selectCommand = new SqlCommand(selectStatement, connection);
+                    selectCommand.Parameters.Add("@SearchTerm", SqlDbType.NVarChar);
+                    selectCommand.Parameters["@SearchTerm"].Value = "%" + search.Trim() + "%";
+                }
+                using (SqlDataReader reader = selectCommand.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var id = int.Parse(reader["id"].ToString());
+                        var firstName = reader["firstName"].ToString();
+                        var lastName = reader["lastName"].ToString();
+                        var sex = reader["sex"].ToString();
+                        var dateOfBirth = (DateTime)reader["dob"];
+                        var street = reader["street"].ToString();
+                        var city = reader["city"].ToString();
+                        var state = reader["state"].ToString();
+                        var zipCode = Convert.ToInt32(reader["zipCode"]);
+                        var country = reader["country"].ToString();
+                        var contactPhone = reader["contactPhone"].ToString();
+                        var password = reader["password"].ToString();
+                        Member member = new Member(id, lastName, firstName, dateOfBirth, street, city, state, zipCode, country, contactPhone, password, sex);
+                        memberList.Add(member);
+                    }
+                }
+            }
+            return memberList;
+        }
     }
 }
+
+
+
+
+
+
+
+
+

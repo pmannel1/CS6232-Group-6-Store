@@ -52,8 +52,10 @@
         /// <param name="quantity">The quantity.</param>
         public RentalItem(int itemId, int quantity)
         {
-            Id = itemId;
+            FurnitureId = itemId;
             Quantity = quantity;
         }
+
+        
     }
 }

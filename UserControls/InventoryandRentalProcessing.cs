@@ -47,7 +47,7 @@ namespace CS6232_Group_6_Store.UserControls
                 furnituresListView.Columns.Add("Rental rate", 150);
                 furnituresListView.Columns.Add("Instock Number", 150);
 
-                List<Furniture> searchResult = _furnitureController.ReturnFurnituresSearch(searchMethod, searchItem);
+                List<Furniture> searchResult = _furnitureController.SearchFurniture(searchMethod, searchItem);
                 foreach (var dr in searchResult)
                 {
                     var furnitureList = furnituresListView.Items.Add(dr.Id.ToString());

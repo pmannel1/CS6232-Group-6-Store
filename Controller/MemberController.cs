@@ -65,5 +65,10 @@ namespace CS6232_Group_6_Store.Controller
         {
             this.memeberDAL.UpdateMember(member);
         }
+
+        public List<Member> SearchMember(string method, string search)
+        {
+            return this.memeberDAL.SearchMember(method, search);
+        }
     }
 }

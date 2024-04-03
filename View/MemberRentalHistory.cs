@@ -47,13 +47,7 @@ namespace CS6232_Group_6_Store.View
 
             foreach (var dr in searchResult)
             {
-                var rentalItemList = this.memberRentalHistoryListView.Items.Add(dr.RentalTransaction.EmployeeId.ToString());
-                rentalItemList.SubItems.Add(dr.RentalTransaction.RentalDate.ToString());
-                rentalItemList.SubItems.Add(dr.RentalTransaction.DueDate.ToString());
-                rentalItemList.SubItems.Add(dr.Furniture.Name);
-                rentalItemList.SubItems.Add(dr.Quantity.ToString());
-                rentalItemList.SubItems.Add(dr.Furniture.RentalRate.ToString());
-                rentalItemList.SubItems.Add(dr.QuantityReturned.ToString());
+              
             }
 
             for(int index = 0; index < this.memberRentalHistoryListView.Columns.Count; index++)

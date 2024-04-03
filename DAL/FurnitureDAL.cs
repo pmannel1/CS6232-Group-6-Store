@@ -7,79 +7,67 @@ namespace CS6232_Group_6_Store.DAL
 {
     public class FurnitureDAL
     {
-      
+
 
         public List<Furniture> ReturnFurnituresSearch(string searchMethod, string searchItem)
         {
             List<Furniture> furnitureList = new List<Furniture>();
-            string selectStatement =
-                "select furniture.* " +
-                " from furniture ";
-
-            
-            if(searchMethod == "Id")
-            {
-
-                selectStatement = selectStatement+ " where id = @searchId";
-            }
-            else if (searchMethod == "Category")
-            {
-                selectStatement = selectStatement + " where categoryName =@searchItem";
-            }
-            else if (searchMethod == "Style")
-            {
-                selectStatement = selectStatement + " where styleName =@searchItem";
-            }
+            string selectStatement = "SELECT furniture.* FROM furniture";
+            SqlCommand selectCommand;
 
             using (SqlConnection connection = DBConnection.GetConnection())
             {
                 connection.Open();
 
-                using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
+                if (searchMethod == "ID")
                 {
-                   
+                    selectStatement += " WHERE id = @SearchTerm";
+                    selectCommand = new SqlCommand(selectStatement, connection);
+                    selectCommand.Parameters.Add("@SearchTerm", SqlDbType.Int);
+                    selectCommand.Parameters["@SearchTerm"].Value = int.Parse(searchItem);
+                }
+                else if (searchMethod == "Category")
+                {
+                    selectStatement += " WHERE categoryName = @SearchTerm";
+                    selectCommand = new SqlCommand(selectStatement, connection);
+                    selectCommand.Parameters.Add("@SearchTerm", SqlDbType.NVarChar);
+                    selectCommand.Parameters["@SearchTerm"].Value = searchItem;
+                }
+                else if (searchMethod == "Style")
+                {
+                    selectStatement += " WHERE styleName = @SearchTerm";
+                    selectCommand = new SqlCommand(selectStatement, connection);
+                    selectCommand.Parameters.Add("@SearchTerm", SqlDbType.NVarChar);
+                    selectCommand.Parameters["@SearchTerm"].Value = searchItem;
+                }
+                else
+                {
+                    // If no valid search method is provided, perhaps throw an error or return empty list
+                    throw new ArgumentException("Invalid search method.");
+                }
 
-                    if (searchMethod == "Id")
+                using (SqlDataReader reader = selectCommand.ExecuteReader())
+                {
+                    while (reader.Read())
                     {
-                        selectCommand.Parameters.Add("@searchId", SqlDbType.Int);
-                        selectCommand.Parameters["@searchId"].Value = int.Parse(searchItem);
-                    }
-                    else if (searchMethod == "Category" || searchMethod == "Style")
-                    {
-                        selectCommand.Parameters.Add("@searchItem", SqlDbType.VarChar);
-                        selectCommand.Parameters["@searchItem"].Value = searchItem;
-                    }
-                    
-
-                    using (SqlDataReader reader = selectCommand.ExecuteReader())
-                    {
-                        while (reader.Read())
+                        Furniture furniture = new Furniture
                         {
-                            Furniture furniture = new Furniture();
-                            var id = int.Parse(reader["id"].ToString());
-                            var name = reader["name"].ToString();
-                            var description = reader["description"].ToString();
-                            var styles = reader["styleName"].ToString();
-                            var categoryName = reader["categoryName"].ToString();
-                            var rentalRate = Convert.IsDBNull(reader["rentalRate"]) ? 0 : Convert.ToDecimal(reader["rentalRate"].ToString());
-                            var instockNumber = Convert.IsDBNull(reader["instockNumber"]) ? 0 : int.Parse(reader["instockNumber"].ToString());
+                            Id = int.Parse(reader["id"].ToString()),
+                            Name = reader["name"].ToString(),
+                            Description = reader["description"].ToString(),
+                            Style = reader["styleName"].ToString(),
+                            Category = reader["categoryName"].ToString(),
+                            RentalRate = Convert.IsDBNull(reader["rentalRate"]) ? 0 : Convert.ToDecimal(reader["rentalRate"]),
+                            InStockNumber = Convert.IsDBNull(reader["instockNumber"]) ? 0 : int.Parse(reader["instockNumber"].ToString())
+                        };
 
-                            furniture.Id = id;
-                            furniture.Name = name;
-                            furniture.Description = description;
-                            furniture.Style = styles;
-                            furniture.Category = categoryName;
-                            furniture.RentalRate = rentalRate;
-                            furniture.InStockNumber = instockNumber;
-                            furnitureList.Add(furniture);
-
-                        }
+                        furnitureList.Add(furniture);
                     }
                 }
             }
 
             return furnitureList;
         }
-       
+
     }
 }
