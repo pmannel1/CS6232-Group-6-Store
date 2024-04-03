@@ -27,5 +27,10 @@ namespace CS6232_Group_6_Store.Controller
         {
             return this.furnitureDAL.ReturnFurnituresSearch(searchMethod, searchItem);
         }
+
+        public Furniture GetFurniture(int id)
+        {
+            return this.furnitureDAL.GetFurniture(id);
+        }
     }
 }

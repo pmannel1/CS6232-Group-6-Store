@@ -1,7 +1,9 @@
 ﻿
 using System.Data;
 using System.Data.SqlClient;
+using System.Xml.Linq;
 using CS6232_Group_6_Store.Model;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace CS6232_Group_6_Store.DAL
 {
@@ -67,6 +69,46 @@ namespace CS6232_Group_6_Store.DAL
             }
 
             return furnitureList;
+        }
+
+        public Furniture GetFurniture(int id)
+        {
+            Furniture furniture = null;
+            string selectStatement =
+               "SELECT furniture.* " +
+               "FROM furniture " +
+               "WHERE furniture.id = @id ";
+
+
+            using (SqlConnection connection = DBConnection.GetConnection())
+            {
+                connection.Open();
+
+                using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
+                {
+                    selectCommand.Parameters.Add("@id", SqlDbType.Int);
+                    selectCommand.Parameters["@id"].Value = id;
+
+                    using (SqlDataReader reader = selectCommand.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            furniture = new Furniture
+                            {
+                                Id = int.Parse(reader["id"].ToString()),
+                                Name = reader["name"].ToString(),
+                                Description = reader["description"].ToString(),
+                                Style = reader["styleName"].ToString(),
+                                Category = reader["categoryName"].ToString(),
+                                RentalRate = Convert.IsDBNull(reader["rentalRate"]) ? 0 : Convert.ToDecimal(reader["rentalRate"]),
+                                InStockNumber = Convert.IsDBNull(reader["instockNumber"]) ? 0 : int.Parse(reader["instockNumber"].ToString())
+                            };
+                        
+                        }
+                    }
+                }
+            }
+            return furniture;
         }
 
     }

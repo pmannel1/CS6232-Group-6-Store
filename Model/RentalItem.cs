@@ -46,6 +46,40 @@
         public int QuantityReturned { get; set; }
 
         /// <summary>
+        /// Gets or sets the rental date.
+        /// </summary>
+        /// <value>
+        /// The rental date.
+        /// </value>
+        public DateTime RentalDate { get; set; }
+
+        /// <summary>
+        /// Gets or sets the due date.
+        /// </summary>
+        /// <value>
+        /// The due date.
+        /// </value>
+        public DateTime DueDate { get; set; }
+
+        /// <summary>
+        /// Gets or sets the rental rate.
+        /// </summary>
+        /// <value>
+        /// The rental rate.
+        /// </value>
+        public decimal RentalRate { get; set; }
+
+        /// <summary>
+        /// Gets or sets the name of the furniture.
+        /// </summary>
+        /// <value>
+        /// The name of the furniture.
+        /// </value>
+        public string FurnitureName { get; set; }
+
+        public RentalItem() { }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="RentalItem"/> class.
         /// </summary>
         /// <param name="itemId">The item identifier.</param>

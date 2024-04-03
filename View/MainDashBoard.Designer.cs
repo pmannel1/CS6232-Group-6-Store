@@ -33,6 +33,8 @@
             memberManagement2 = new UserControls.MemberManagement();
             inventoryAndRentTabPage = new TabPage();
             inventoryRental1 = new UserControls.InventoryRental();
+            tabPage1 = new TabPage();
+            transactionManagement1 = new UserControls.TransactionManagement();
             greetingLabel = new Label();
             logoutLinkLabel = new LinkLabel();
             userNameLabel = new Label();
@@ -40,12 +42,14 @@
             mainTabControl.SuspendLayout();
             customerTabPage.SuspendLayout();
             inventoryAndRentTabPage.SuspendLayout();
+            tabPage1.SuspendLayout();
             SuspendLayout();
             // 
             // mainTabControl
             // 
             mainTabControl.Controls.Add(customerTabPage);
             mainTabControl.Controls.Add(inventoryAndRentTabPage);
+            mainTabControl.Controls.Add(tabPage1);
             mainTabControl.Dock = DockStyle.Bottom;
             mainTabControl.Location = new Point(0, 129);
             mainTabControl.Name = "mainTabControl";
@@ -79,7 +83,7 @@
             inventoryAndRentTabPage.Location = new Point(4, 24);
             inventoryAndRentTabPage.Margin = new Padding(3, 2, 3, 2);
             inventoryAndRentTabPage.Name = "inventoryAndRentTabPage";
-            inventoryAndRentTabPage.Size = new Size(1047, 465);
+            inventoryAndRentTabPage.Size = new Size(192, 72);
             inventoryAndRentTabPage.TabIndex = 1;
             inventoryAndRentTabPage.Text = "Inventory and Rental Processing ";
             inventoryAndRentTabPage.UseVisualStyleBackColor = true;
@@ -89,8 +93,27 @@
             inventoryRental1.Dock = DockStyle.Fill;
             inventoryRental1.Location = new Point(0, 0);
             inventoryRental1.Name = "inventoryRental1";
-            inventoryRental1.Size = new Size(1047, 465);
+            inventoryRental1.Size = new Size(192, 72);
             inventoryRental1.TabIndex = 0;
+            // 
+            // tabPage1
+            // 
+            tabPage1.Controls.Add(transactionManagement1);
+            tabPage1.Location = new Point(4, 24);
+            tabPage1.Name = "tabPage1";
+            tabPage1.Padding = new Padding(3);
+            tabPage1.Size = new Size(1047, 465);
+            tabPage1.TabIndex = 2;
+            tabPage1.Text = "Transaction Management";
+            tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // transactionManagement1
+            // 
+            transactionManagement1.Dock = DockStyle.Fill;
+            transactionManagement1.Location = new Point(3, 3);
+            transactionManagement1.Name = "transactionManagement1";
+            transactionManagement1.Size = new Size(1041, 459);
+            transactionManagement1.TabIndex = 0;
             // 
             // greetingLabel
             // 
@@ -148,6 +171,7 @@
             mainTabControl.ResumeLayout(false);
             customerTabPage.ResumeLayout(false);
             inventoryAndRentTabPage.ResumeLayout(false);
+            tabPage1.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -165,5 +189,7 @@
         private TabPage inventoryAndRentTabPage;
         private UserControls.InventoryandRentalProcessing inventoryandRentalProcessing1;
         private UserControls.InventoryRental inventoryRental1;
+        private TabPage tabPage1;
+        private UserControls.TransactionManagement transactionManagement1;
     }
 }

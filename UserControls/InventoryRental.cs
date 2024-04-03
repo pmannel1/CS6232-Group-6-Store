@@ -56,7 +56,8 @@ namespace CS6232_Group_6_Store.UserControls
                     membersList.SubItems.Add(dr.LastName.ToString());
                     membersList.SubItems.Add(dr.FirstName.ToString());
                 }
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -107,15 +108,15 @@ namespace CS6232_Group_6_Store.UserControls
         private void memberListView_ItemChecked(object sender, ItemCheckedEventArgs e)
         {
             if (e.Item.Checked)
+            {
+                foreach (ListViewItem item in memberListView.Items)
                 {
-                    foreach (ListViewItem item in memberListView.Items)
+                    // Uncheck all other items
+                    if (item != e.Item)
                     {
-                        // Uncheck all other items
-                        if (item != e.Item)
-                        {
-                            item.Checked = false;
-                        }
+                        item.Checked = false;
                     }
+                }
                 this.checkoutButton.Enabled = true;
                 this.clearButton.Enabled = true;
             }
@@ -125,13 +126,14 @@ namespace CS6232_Group_6_Store.UserControls
                 this.clearButton.Enabled = false;
             }
             if (furnitureListView.CheckedItems.Count > 0 && memberListView.CheckedItems.Count > 0)
-                {
-                    this.addFurnitureButton.Enabled = true;
-                } else
-                {
-                    this.addFurnitureButton.Enabled= false;
-                }
+            {
+                this.addFurnitureButton.Enabled = true;
             }
+            else
+            {
+                this.addFurnitureButton.Enabled = false;
+            }
+        }
 
         private void furnitureListView_ItemChecked(object sender, ItemCheckedEventArgs e)
         {
@@ -145,8 +147,8 @@ namespace CS6232_Group_6_Store.UserControls
                         item.Checked = false;
                     }
                 }
-                
-            } 
+
+            }
             if (furnitureListView.CheckedItems.Count > 0 && memberListView.CheckedItems.Count > 0)
             {
                 this.addFurnitureButton.Enabled = true;
@@ -158,6 +160,19 @@ namespace CS6232_Group_6_Store.UserControls
 
         }
 
+        private void addFurnitureButton_Click(object sender, EventArgs e)
+        {
+            ListViewItem checkedItem = furnitureListView.CheckedItems[0];
+            int furnitureId = int.Parse(checkedItem.Text);
+            Furniture selectedFurniture = _furnitureController.GetFurniture(furnitureId);
 
+            ItemQuantity detailsForm = new ItemQuantity(selectedFurniture);
+
+            if (detailsForm.ShowDialog() == DialogResult.OK)
+            {
+                int selectedQuantity = detailsForm.SelectedQuantity;
+
+            }
+        }
     }
 }

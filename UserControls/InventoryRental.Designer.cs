@@ -108,6 +108,7 @@
             addFurnitureButton.TabIndex = 6;
             addFurnitureButton.Text = "Add to Cart";
             addFurnitureButton.UseVisualStyleBackColor = true;
+            addFurnitureButton.Click += addFurnitureButton_Click;
             // 
             // clearFurnitureButton
             // 
