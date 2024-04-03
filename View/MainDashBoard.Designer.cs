@@ -102,7 +102,7 @@
             tabPage1.Location = new Point(4, 24);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(1047, 465);
+            tabPage1.Size = new Size(192, 72);
             tabPage1.TabIndex = 2;
             tabPage1.Text = "Transaction Management";
             tabPage1.UseVisualStyleBackColor = true;
@@ -112,7 +112,7 @@
             transactionManagement1.Dock = DockStyle.Fill;
             transactionManagement1.Location = new Point(3, 3);
             transactionManagement1.Name = "transactionManagement1";
-            transactionManagement1.Size = new Size(1041, 459);
+            transactionManagement1.Size = new Size(186, 66);
             transactionManagement1.TabIndex = 0;
             // 
             // greetingLabel

@@ -100,11 +100,26 @@ namespace CS6232_Group_6_Store.UserControls
                     furnitureList.SubItems.Add("$" + dr.RentalRate.ToString());
                     furnitureList.SubItems.Add(dr.QuantityReturned.ToString());
                 }
+                this.memberHistoryListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+                this.memberHistoryListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-}
+        }
+
+        private void clearMemberSearchButton_Click(object sender, EventArgs e)
+        {
+            this.memberListView.Clear();
+            this.memberSearchBox.Clear();
+            this.memberHistorySearchButton.Enabled = false;
+            this.memberHistoryListView.Clear();
+        }
+
+        private void clearMemberHistorySearchButton_Click(object sender, EventArgs e)
+        {
+            this.memberHistoryListView.Clear();
+        }
     }
 }

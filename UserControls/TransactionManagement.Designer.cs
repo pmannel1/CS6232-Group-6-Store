@@ -205,6 +205,7 @@
             clearMemberSearchButton.TabIndex = 2;
             clearMemberSearchButton.Text = "Clear Search";
             clearMemberSearchButton.UseVisualStyleBackColor = true;
+            clearMemberSearchButton.Click += clearMemberSearchButton_Click;
             // 
             // tableLayoutPanel5
             // 
@@ -245,6 +246,7 @@
             clearMemberHistorySearchButton.TabIndex = 0;
             clearMemberHistorySearchButton.Text = "Clear History";
             clearMemberHistorySearchButton.UseVisualStyleBackColor = true;
+            clearMemberHistorySearchButton.Click += clearMemberHistorySearchButton_Click;
             // 
             // memberHistoryLabel
             // 
