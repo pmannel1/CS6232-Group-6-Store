@@ -1,4 +1,4 @@
-using CS6232_Group_6_Store.Model;
+
 using CS6232_Group_6_Store.View;
 
 namespace CS6232_Group_6_Store
@@ -9,28 +9,35 @@ namespace CS6232_Group_6_Store
     /// <seealso cref="System.Windows.Forms.Form" />
     public partial class MainDashBoard : Form
     {
-        private LoginForm _loginForm;
+        bool logout;
+        readonly LoginForm _loginForm;
+        /// <summary>
+        /// Gets or sets the employee.
+        /// </summary>
+        /// <value>
+        /// The employee.
+        /// </value>
+        public string Employee { get; set; }
+        /// <summary>
+        /// Gets or sets the account.
+        /// </summary>
+        /// <value>
+        /// The account.
+        /// </value>
+        public string Account { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MainDashBoard"/> class.
         /// </summary>
-        public MainDashBoard()
+        public MainDashBoard(LoginForm newLogin)
         {
             InitializeComponent();
-            this._loginForm = new LoginForm(this);
-            this._loginForm.ShowDialog();
-            this.Visible = false;
-            this.employeeNameLebel.Text = "Emplyee Name: " + this._loginForm.EmployeeName;
-            this.userNameLabel.Text = "User Account: " + this._loginForm.UserName;
-        }
-
-        /// <summary>
-        /// Sets the greeting label.
-        /// </summary>
-        /// <param name="greeting">The greeting.</param>
-        public void SetGreetingLabel(string greeting)
-        {
-            this.greetingLabel.Text = greeting;
+            this._loginForm = newLogin;
+            Account = "User Account: " + this._loginForm.UserName;
+            Employee = "Empolyee Name: " + this._loginForm.EmployeeName;
+            this.employeeNameLebel.Text = Employee;
+            this.userNameLabel.Text = Account;
+            this.logout = false;
         }
 
         /// <summary>
@@ -40,15 +47,17 @@ namespace CS6232_Group_6_Store
         /// <param name="e">The <see cref="LinkLabelLinkClickedEventArgs"/> instance containing the event data.</param>
         private void logoutLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            this.memberManagement2.ClearData();
-            this.Visible = false;
-            this._loginForm.Visible = true;
-            this._loginForm.Logout();
+            logout = true;
+            _loginForm.Logout();
+            this.Close();
         }
 
-        private void memberManagement1_Load(object sender, EventArgs e)
+        private void MainClosing(object sender, FormClosingEventArgs e)
         {
-
+            if (!logout)
+            {
+                Application.Exit();
+            }
         }
     }
 }

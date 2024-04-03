@@ -3,7 +3,7 @@
     /// <summary>
     /// Model for return_transactions table in DB
     /// </summary>
-    internal class ReturnTransaction
+    public class ReturnTransaction
     {
         /// <summary>
         /// Gets or sets the identifier.

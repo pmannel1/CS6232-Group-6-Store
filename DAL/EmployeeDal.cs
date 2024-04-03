@@ -1,4 +1,8 @@
 ﻿
+using CS6232_Group_6_Store.Model;
+using System.Data.SqlClient;
+using System.Data;
+
 namespace CS6232_Group_6_Store.DAL
 {
     /// <summary>
@@ -6,32 +10,36 @@ namespace CS6232_Group_6_Store.DAL
     /// </summary>
     internal class EmployeeDal
     {
+
         /// <summary>
         /// Validates the employee.
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <param name="password">The password.</param>
         /// <returns></returns>
-        /// <exception cref="System.ArgumentOutOfRangeException">Employee ID cannot be less than 1.</exception>
-        /// <exception cref="System.ArgumentNullException">Password cannot be empty or null.</exception>
-        public bool ValidateEmployee(int id, string password)
+        public string ValidateEmployee(int id, string password)
         {
-            if (id < 1)
-            {
-                throw new ArgumentOutOfRangeException("Employee ID cannot be less than 1.");
-            }
-            if (string.IsNullOrEmpty(password)) 
-            {
-                throw new ArgumentNullException("Password cannot be empty or null.");
-            }
+            string selectStatement =
+              "SELECT lastName  + ' ' + firstName[user] FROM employees " +
+              "Where id = @userName and password=@hashedPassword;";
 
-            //TODO Implement check to DB once DB is created
-            if (id == 1 && "test1234".Equals(password))
+            using (SqlConnection connection = DBConnection.GetConnection())
             {
-                return true;
-            }
+                connection.Open();
 
-            return false;
+                using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
+                {
+                    selectCommand.Parameters.Add("@userName", SqlDbType.Int);
+                    selectCommand.Parameters["@userName"].Value = id;
+                    selectCommand.Parameters.Add("@hashedPassword", SqlDbType.VarChar);
+                    selectCommand.Parameters["@hashedPassword"].Value = password;
+
+                    string code = Convert.ToString(selectCommand.ExecuteScalar());
+
+                    return code;
+                }
+            }
         }
+
     }
 }

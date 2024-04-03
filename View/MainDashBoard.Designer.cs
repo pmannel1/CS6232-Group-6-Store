@@ -30,20 +30,28 @@
         {
             mainTabControl = new TabControl();
             customerTabPage = new TabPage();
-            memberManagement1 = new UserControls.MemberManagement();
+            memberManagement2 = new UserControls.MemberManagement();
+            inventoryAndRentTabPage = new TabPage();
+            inventoryRental1 = new UserControls.InventoryRental();
+            tabPage1 = new TabPage();
+            transactionManagement1 = new UserControls.TransactionManagement();
             greetingLabel = new Label();
             logoutLinkLabel = new LinkLabel();
             userNameLabel = new Label();
             employeeNameLebel = new Label();
             mainTabControl.SuspendLayout();
             customerTabPage.SuspendLayout();
+            inventoryAndRentTabPage.SuspendLayout();
+            tabPage1.SuspendLayout();
             SuspendLayout();
             // 
             // mainTabControl
             // 
             mainTabControl.Controls.Add(customerTabPage);
+            mainTabControl.Controls.Add(inventoryAndRentTabPage);
+            mainTabControl.Controls.Add(tabPage1);
             mainTabControl.Dock = DockStyle.Bottom;
-            mainTabControl.Location = new Point(0, 35);
+            mainTabControl.Location = new Point(0, 129);
             mainTabControl.Name = "mainTabControl";
             mainTabControl.SelectedIndex = 0;
             mainTabControl.Size = new Size(1055, 493);
@@ -51,7 +59,7 @@
             // 
             // customerTabPage
             // 
-            customerTabPage.Controls.Add(memberManagement1);
+            customerTabPage.Controls.Add(memberManagement2);
             customerTabPage.Location = new Point(4, 24);
             customerTabPage.Name = "customerTabPage";
             customerTabPage.Padding = new Padding(3);
@@ -60,13 +68,52 @@
             customerTabPage.Text = "Customer";
             customerTabPage.UseVisualStyleBackColor = true;
             // 
-            // memberManagement1
+            // memberManagement2
             // 
-            memberManagement1.Location = new Point(7, 5);
-            memberManagement1.Margin = new Padding(3, 2, 3, 2);
-            memberManagement1.Name = "memberManagement1";
-            memberManagement1.Size = new Size(1213, 581);
-            memberManagement1.TabIndex = 0;
+            memberManagement2.Dock = DockStyle.Fill;
+            memberManagement2.Location = new Point(3, 3);
+            memberManagement2.Margin = new Padding(3, 2, 3, 2);
+            memberManagement2.Name = "memberManagement2";
+            memberManagement2.Size = new Size(1041, 459);
+            memberManagement2.TabIndex = 0;
+            // 
+            // inventoryAndRentTabPage
+            // 
+            inventoryAndRentTabPage.Controls.Add(inventoryRental1);
+            inventoryAndRentTabPage.Location = new Point(4, 24);
+            inventoryAndRentTabPage.Margin = new Padding(3, 2, 3, 2);
+            inventoryAndRentTabPage.Name = "inventoryAndRentTabPage";
+            inventoryAndRentTabPage.Size = new Size(192, 72);
+            inventoryAndRentTabPage.TabIndex = 1;
+            inventoryAndRentTabPage.Text = "Inventory and Rental Processing ";
+            inventoryAndRentTabPage.UseVisualStyleBackColor = true;
+            // 
+            // inventoryRental1
+            // 
+            inventoryRental1.Dock = DockStyle.Fill;
+            inventoryRental1.Location = new Point(0, 0);
+            inventoryRental1.Name = "inventoryRental1";
+            inventoryRental1.Size = new Size(192, 72);
+            inventoryRental1.TabIndex = 0;
+            // 
+            // tabPage1
+            // 
+            tabPage1.Controls.Add(transactionManagement1);
+            tabPage1.Location = new Point(4, 24);
+            tabPage1.Name = "tabPage1";
+            tabPage1.Padding = new Padding(3);
+            tabPage1.Size = new Size(1047, 465);
+            tabPage1.TabIndex = 2;
+            tabPage1.Text = "Transaction Management";
+            tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // transactionManagement1
+            // 
+            transactionManagement1.Dock = DockStyle.Fill;
+            transactionManagement1.Location = new Point(3, 3);
+            transactionManagement1.Name = "transactionManagement1";
+            transactionManagement1.Size = new Size(1041, 459);
+            transactionManagement1.TabIndex = 0;
             // 
             // greetingLabel
             // 
@@ -111,16 +158,20 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1055, 528);
+            ClientSize = new Size(1055, 622);
             Controls.Add(userNameLabel);
             Controls.Add(employeeNameLebel);
             Controls.Add(logoutLinkLabel);
             Controls.Add(greetingLabel);
             Controls.Add(mainTabControl);
             Name = "MainDashBoard";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Main Dashboard";
+            FormClosing += MainClosing;
             mainTabControl.ResumeLayout(false);
             customerTabPage.ResumeLayout(false);
+            inventoryAndRentTabPage.ResumeLayout(false);
+            tabPage1.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -134,5 +185,11 @@
         private UserControls.MemberManagement memberManagement1;
         private Label userNameLabel;
         private Label employeeNameLebel;
+        private UserControls.MemberManagement memberManagement2;
+        private TabPage inventoryAndRentTabPage;
+        private UserControls.InventoryandRentalProcessing inventoryandRentalProcessing1;
+        private UserControls.InventoryRental inventoryRental1;
+        private TabPage tabPage1;
+        private UserControls.TransactionManagement transactionManagement1;
     }
 }

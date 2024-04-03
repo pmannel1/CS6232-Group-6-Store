@@ -1,21 +1,27 @@
 ﻿using CS6232_Group_6_Store.Model;
 using System.Data.SqlClient;
+using System.Data;
 
 
 namespace CS6232_Group_6_Store.DAL
 {
+    /// <summary>
+    /// Member table data access class
+    /// </summary>
     public class MemberDAL
     {
+
         /// <summary>
         /// Returns the Members.
         /// </summary>
         /// <returns></returns>
-        public List<Member> ReturnMemberNames()
+        public List<Member> ReturnMembers()
         {
             List<Member> memberList = new List<Member>();
             string selectStatement =
-               "SELECT  firstName, LastName " +
-               "FROM members ";
+                "SELECT members.* " +
+                "FROM members " ;
+
 
             using (SqlConnection connection = DBConnection.GetConnection())
             {
@@ -23,20 +29,73 @@ namespace CS6232_Group_6_Store.DAL
 
                 using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
                 {
+                    
                     using (SqlDataReader reader = selectCommand.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-
-                            var firstName = Convert.IsDBNull(reader["firstName"]) ? "" : reader["firstName"].ToString();
-                            var lastName = Convert.IsDBNull(reader["lastName"]) ? "" : reader["lastName"].ToString();
-
-                            Member member = new Member();
-                            member.LastName = lastName;
-                            member.FirstName = firstName;
+                            var id = int.Parse(reader["id"].ToString());
+                            var firstName = reader["firstName"].ToString();
+                            var lastName = reader["lastName"].ToString();
+                            var sex = reader["sex"].ToString();
+                            var dateOfBirth = (DateTime)reader["dob"];
+                            var street = reader["street"].ToString();
+                            var city = reader["city"].ToString();
+                            var state = reader["state"].ToString();
+                            var zipCode = Convert.ToInt32(reader["zipCode"]);
+                            var country = reader["country"].ToString();
+                            var contactPhone = reader["contactPhone"].ToString();
+                            var password = reader["password"].ToString();
+                            Member member = new Member(id, lastName, firstName, dateOfBirth, street, city, state, zipCode, country, contactPhone, password, sex);
                             memberList.Add(member);
                         }
+                    }
+                }
+            }
 
+            return memberList;
+        }
+        /// <summary>
+        /// Returns the Members.
+        /// </summary>
+        /// <returns></returns>
+        public List<Member> ReturnMembersSearch(int searchItem)
+        {
+            List<Member> memberList = new List<Member>();
+            string selectStatement =
+                "SELECT members.* " +
+                "FROM members " +
+                "WHERE members.id = @searchItem ";
+
+
+            using (SqlConnection connection = DBConnection.GetConnection())
+            {
+                connection.Open();
+
+                using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
+                {
+                    selectCommand.Parameters.Add("@searchItem", SqlDbType.Int);
+                    selectCommand.Parameters["@searchItem"].Value = searchItem;
+                    
+                    using (SqlDataReader reader = selectCommand.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var id = int.Parse(reader["id"].ToString());
+                            var firstName = reader["firstName"].ToString();
+                            var lastName = reader["lastName"].ToString();
+                            var sex = reader["sex"].ToString();
+                            var dateOfBirth = (DateTime)reader["dob"];
+                            var street = reader["street"].ToString();
+                            var city = reader["city"].ToString();
+                            var state = reader["state"].ToString();
+                            var zipCode = Convert.ToInt32(reader["zipCode"]);
+                            var country = reader["country"].ToString();
+                            var contactPhone = reader["contactPhone"].ToString();
+                            var password = reader["password"].ToString();
+                            Member member = new Member(id, lastName, firstName, dateOfBirth, street, city, state, zipCode, country, contactPhone, password, sex);
+                            memberList.Add(member);
+                        }
                     }
                 }
             }
@@ -45,62 +104,83 @@ namespace CS6232_Group_6_Store.DAL
         }
 
         /// <summary>
-        /// Retruns the members.
+        /// Adds the member.
         /// </summary>
-        /// <param name="searchMethod">The search method.</param>
-        /// <param name="searchField">The search field.</param>
-        /// <returns></returns>
-        public List<Member> RetrunMembers(string searchMethod, string searchField)
+        /// <param name="member">The member.</param>
+        public void AddMember(Member member)
         {
-            List<Member> memberList = new List<Member>();
-            string selectStatement =
-              "SELECT * " +
-              "FROM members ";
-            string lastName = null;
-            string firstName = null;
-            if (searchMethod != null && searchField != null)
+            string updateStatement =
+              "INSERT INTO members(lastName, firstName, sex, dob, street, city, state, zipCode, country, contactPhone, password) " +
+              "VALUES(@lName, @fName, @sex, @dob, @street, @city, @state, @zipCode, @country, @contactPhone, @password);";
+            using (SqlConnection connection = DBConnection.GetConnection())
             {
-                selectStatement = "select id,lastName,firstName,sex,dob," +
-                    "Street,City,State,zipCode,country, contactPhone  FROM members where ";
-                if (searchMethod == "Name")
+                connection.Open();
+                using (var transaction = connection.BeginTransaction())
                 {
-
-                    int lnameLength = searchField.IndexOf(" ");
-                    int nameLength = searchField.Length;
-
-                    if (lnameLength == -1 && nameLength > 0)
+                    try
                     {
-                        lastName = searchField.Substring(0, nameLength);
+                        using (SqlCommand updateCommand = new SqlCommand(updateStatement, connection, transaction))
+                        {
+                            updateCommand.Parameters.Add("@lName", SqlDbType.VarChar);
+                            updateCommand.Parameters["@lName"].Value = member.LastName;
+
+                            updateCommand.Parameters.Add("@fName", SqlDbType.VarChar);
+                            updateCommand.Parameters["@fName"].Value = member.FirstName;
+
+                            updateCommand.Parameters.Add("@sex", SqlDbType.VarChar);
+                            updateCommand.Parameters["@sex"].Value = member.Sex;
+
+                            updateCommand.Parameters.Add("@dob", SqlDbType.DateTime2);
+                            updateCommand.Parameters["@dob"].Value = member.DateOfBirth;
+
+                            updateCommand.Parameters.Add("@street", SqlDbType.VarChar);
+                            updateCommand.Parameters["@street"].Value = member.StreetAddress;
+
+                            updateCommand.Parameters.Add("@city", SqlDbType.VarChar);
+                            updateCommand.Parameters["@city"].Value = member.City;
+
+                            updateCommand.Parameters.Add("@state", SqlDbType.VarChar);
+                            updateCommand.Parameters["@state"].Value = member.State;
+
+                            updateCommand.Parameters.Add("@zipCode", SqlDbType.VarChar);
+                            updateCommand.Parameters["@zipCode"].Value = member.ZipCode.ToString();
+
+                            updateCommand.Parameters.Add("@country", SqlDbType.VarChar);
+                            updateCommand.Parameters["@country"].Value = member.Country;
+
+                            updateCommand.Parameters.Add("@contactPhone", SqlDbType.VarChar);
+                            updateCommand.Parameters["@contactPhone"].Value = member.ContactPhone;
+
+                            updateCommand.Parameters.Add("@password", SqlDbType.VarChar);
+                            updateCommand.Parameters["@password"].Value = member.Password;
+
+                            updateCommand.ExecuteScalar();
+                        }
+
+                        transaction.Commit();
                     }
-                    else
+                    catch
                     {
-                        lastName = searchField.Substring(0, lnameLength);
+                        transaction.Rollback();
+                        throw;
                     }
-
-                    if (lnameLength >= 0 && nameLength > lnameLength)
-                    {
-                        firstName = searchField.Substring(lnameLength + 1, nameLength - (lnameLength + 1));
-                    }
-
-
-                    if ((lastName != null && lastName != "") && (firstName != null && firstName != ""))
-                    {
-                       
-                        selectStatement += " lastName = @lastName and firstName =  @firstname  ";
-                    }
-                 
-
                 }
-                else if (searchMethod == "Id")
-                {
-                    selectStatement += " Id = @searchField";
-                }
-                else if (searchMethod == "Phone")
-                {
-                    selectStatement += " contactPhone = @searchField";
-                }
-
             }
+
+        }
+
+        /// <summary>
+        /// Gets the open incidents.
+        /// </summary>
+        /// <returns></returns>
+        public Member RetrieveMember(int id)
+        {
+            Member member = null;
+            string selectStatement =
+               "SELECT members.* " +
+               "FROM members " +
+               "WHERE members.id = @id ";
+
 
             using (SqlConnection connection = DBConnection.GetConnection())
             {
@@ -108,61 +188,215 @@ namespace CS6232_Group_6_Store.DAL
 
                 using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
                 {
-                    if (searchMethod == "Name")
-                    {
-
-                        if (lastName != null && lastName != "" && firstName != null && firstName != "")
-                        {
-                            selectCommand.Parameters.Add("@lastName", System.Data.SqlDbType.VarChar);
-                            selectCommand.Parameters["@lastName"].Value = lastName.Trim();
-                            selectCommand.Parameters.Add("@firstname", System.Data.SqlDbType.VarChar);
-                            selectCommand.Parameters["@firstname"].Value = firstName.Trim();
-                        }
-                     
-                    }
-                    else if (searchMethod == "Phone")
-                    {
-                        selectCommand.Parameters.Add("@searchField", System.Data.SqlDbType.VarChar);
-                        selectCommand.Parameters["@searchField"].Value = searchField;
-                    }
-                    else if (searchMethod == "Id")
-                    {
-                        selectCommand.Parameters.Add("@searchField", System.Data.SqlDbType.VarChar);
-                        selectCommand.Parameters["@searchField"].Value = searchField;
-                    }
-
+                    selectCommand.Parameters.Add("@id", SqlDbType.Int);
+                    selectCommand.Parameters["@id"].Value = id;
 
                     using (SqlDataReader reader = selectCommand.ExecuteReader())
-
                     {
                         while (reader.Read())
                         {
-
-
-
-                            Member member = new Member();
-                            member.Id = Convert.ToInt32(Convert.IsDBNull(reader["id"]) ? 0 : reader["id"]);
-
-                            member.LastName = Convert.IsDBNull(reader["lastName"]) ? "" : reader["lastName"].ToString();
-                            member.FirstName = Convert.IsDBNull(reader["firstName"]) ? "" : reader["firstName"].ToString();
-                            member.DateOfBirth = Convert.ToDateTime(Convert.IsDBNull(reader["dob"]) ? null : reader["dob"]);
-                            member.StreetAddress = Convert.IsDBNull(reader["street"]) ? "" : reader["street"].ToString();
-                            member.City = Convert.IsDBNull(reader["City"]) ? "" : reader["City"].ToString();
-                            member.State = Convert.IsDBNull(reader["State"]) ? "" : reader["State"].ToString();
-                            member.ZipCode = Convert.ToInt32( Convert.IsDBNull(reader["zipCode"]) ? 0 : reader["zipCode"]);
-                            member.Country = Convert.IsDBNull(reader["country"]) ? "" : reader["country"].ToString();
-                            member.ContactPhone = Convert.IsDBNull(reader["ContactPhone"]) ? "" : reader["ContactPhone"].ToString();
-
-                            memberList.Add(member);
+                            var firstName = reader["firstName"].ToString();
+                            var lastName = reader["lastName"].ToString();
+                            var sex = reader["sex"].ToString();
+                            var dateOfBirth = (DateTime)reader["dob"];
+                            var street = reader["street"].ToString();
+                            var city = reader["city"].ToString();
+                            var state = reader["state"].ToString();
+                            var zipCode = Convert.ToInt32(reader["zipCode"]);
+                            var country = reader["country"].ToString();
+                            var contactPhone = reader["contactPhone"].ToString();
+                            var password = reader["password"].ToString();
+                            member = new Member(id, lastName, firstName, dateOfBirth, street, city, state, zipCode, country, contactPhone, password, sex);
                         }
-
                     }
                 }
             }
-
-            return memberList;
+            return member;
         }
 
+        /// <summary>
+        /// Updates the member.
+        /// </summary>
+        /// <param name="member">The member.</param>
+        public void UpdateMember(Member member)
+        {
+            string updateStatement =
+                "UPDATE  members " +
+                "SET lastName = @lName, firstName = @fName, sex = @sex, dob = @dob, street = @sAddress, " +
+                "city = @city, state = @state, zipCode = @zip, country = @country, contactPhone = @pNum, " +
+                "password = @pWord " +
+                "WHERE id = @id;";
+            using (SqlConnection connection = DBConnection.GetConnection())
+            {
+                connection.Open();
+                using (var transaction = connection.BeginTransaction())
+                {
+                    try
+                    {
+                        using (SqlCommand updateCommand = new SqlCommand(updateStatement, connection, transaction))
+                        {
+                            updateCommand.Parameters.Add("@id", SqlDbType.Int);
+                            updateCommand.Parameters["@id"].Value = member.Id;
 
+                            updateCommand.Parameters.Add("@lName", SqlDbType.NVarChar);
+                            updateCommand.Parameters["@lName"].Value = member.LastName;
+
+                            updateCommand.Parameters.Add("@fName", SqlDbType.VarChar);
+                            updateCommand.Parameters["@fName"].Value = member.FirstName;
+
+                            updateCommand.Parameters.Add("@sex", SqlDbType.VarChar);
+                            updateCommand.Parameters["@sex"].Value = member.Sex;
+
+                            updateCommand.Parameters.Add("@dob", SqlDbType.DateTime2);
+                            updateCommand.Parameters["@dob"].Value = member.DateOfBirth;
+
+                            updateCommand.Parameters.Add("@sAddress", SqlDbType.VarChar);
+                            updateCommand.Parameters["@sAddress"].Value = member.StreetAddress;
+
+                            updateCommand.Parameters.Add("@city", SqlDbType.VarChar);
+                            updateCommand.Parameters["@city"].Value = member.City;
+
+                            updateCommand.Parameters.Add("@state", SqlDbType.VarChar);
+                            updateCommand.Parameters["@state"].Value = member.State;
+
+                            updateCommand.Parameters.Add("@zip", SqlDbType.VarChar);
+                            updateCommand.Parameters["@zip"].Value = member.ZipCode.ToString();
+
+                            updateCommand.Parameters.Add("@country", SqlDbType.VarChar);
+                            updateCommand.Parameters["@country"].Value = member.Country;
+
+                            updateCommand.Parameters.Add("@pNum", SqlDbType.VarChar);
+                            updateCommand.Parameters["@pNum"].Value = member.ContactPhone;
+
+                            updateCommand.Parameters.Add("@pWord", SqlDbType.VarChar);
+                            updateCommand.Parameters["@pWord"].Value = member.Password;
+
+
+                            updateCommand.ExecuteNonQuery();
+                        }
+
+                        transaction.Commit();
+                    }
+                    catch
+                    {
+                        transaction.Rollback();
+                        throw;
+                    }
+                }
+
+
+            }
+        }
+
+        public List<Member> SearchMember(string method, string search)
+        {
+            List<Member> memberList = new List<Member>();
+            string selectStatement;
+            SqlCommand selectCommand;
+
+            using (SqlConnection connection = DBConnection.GetConnection())
+            {
+                connection.Open();
+
+                if (method == "Name")
+                {
+                    string[] names = search.Trim().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                    string firstName = names.Length > 0 ? names[0] : "";
+                    string lastName = names.Length > 1 ? names[1] : "";
+
+                    // Check if only one name part is provided and it's more than one character
+                    if ((firstName.Length > 1 && lastName == "") || (lastName.Length > 1 && firstName == ""))
+                    {
+                        selectStatement =
+                            "SELECT members.* " +
+                            "FROM members " +
+                            "WHERE firstName LIKE @FirstName OR lastName LIKE @LastName";
+                        firstName = firstName.Length > 1 ? firstName : lastName;
+                        lastName = firstName;
+                    }
+                    // If a full first name and at least the first character of the last name is provided.
+                    else if (firstName.Length > 1 && (lastName == "" || lastName.Length == 1))
+                    {
+                        selectStatement =
+                            "SELECT members.* " +
+                            "FROM members " +
+                            "WHERE firstName = @FirstName AND (lastName LIKE @LastName + '%' OR @LastName = '')";
+                    }
+                    // If a full last name and at least the first character of the first name is provided.
+                    else if (lastName.Length > 1 && (firstName == "" || firstName.Length == 1))
+                    {
+                        selectStatement =
+                            "SELECT members.* " +
+                            "FROM members " +
+                            "WHERE lastName = @LastName AND (firstName LIKE @FirstName + '%' OR @FirstName = '')";
+                    }
+                    // If both full first name and last name are provided.
+                    else
+                    {
+                        selectStatement =
+                            "SELECT members.* " +
+                            "FROM members " +
+                            "WHERE firstName = @FirstName AND lastName LIKE @LastName + '%'";
+                    }
+
+                    selectCommand = new SqlCommand(selectStatement, connection);
+                    selectCommand.Parameters.Add("@FirstName", SqlDbType.NVarChar);
+                    selectCommand.Parameters["@FirstName"].Value = firstName;
+                    selectCommand.Parameters.Add("@LastName", SqlDbType.NVarChar);
+                    selectCommand.Parameters["@LastName"].Value = lastName != "" ? lastName : firstName;
+                }
+                else if ( method == "ID")
+                {
+                   selectStatement =
+                        "SELECT members.* " +
+                        "FROM members " +
+                        "WHERE members.id = @SearchTerm ";
+
+                    selectCommand = new SqlCommand(selectStatement, connection);
+                    selectCommand.Parameters.Add("@SearchTerm", SqlDbType.Int);
+                    selectCommand.Parameters["@SearchTerm"].Value = search;
+                } else
+                {
+                   selectStatement =
+                        "SELECT members.* " +
+                        "FROM members " +
+                        "WHERE contactPhone LIKE @SearchTerm ";
+
+                    selectCommand = new SqlCommand(selectStatement, connection);
+                    selectCommand.Parameters.Add("@SearchTerm", SqlDbType.NVarChar);
+                    selectCommand.Parameters["@SearchTerm"].Value = "%" + search.Trim() + "%";
+                }
+                using (SqlDataReader reader = selectCommand.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var id = int.Parse(reader["id"].ToString());
+                        var firstName = reader["firstName"].ToString();
+                        var lastName = reader["lastName"].ToString();
+                        var sex = reader["sex"].ToString();
+                        var dateOfBirth = (DateTime)reader["dob"];
+                        var street = reader["street"].ToString();
+                        var city = reader["city"].ToString();
+                        var state = reader["state"].ToString();
+                        var zipCode = Convert.ToInt32(reader["zipCode"]);
+                        var country = reader["country"].ToString();
+                        var contactPhone = reader["contactPhone"].ToString();
+                        var password = reader["password"].ToString();
+                        Member member = new Member(id, lastName, firstName, dateOfBirth, street, city, state, zipCode, country, contactPhone, password, sex);
+                        memberList.Add(member);
+                    }
+                }
+            }
+            return memberList;
+        }
     }
 }
+
+
+
+
+
+
+
+
+

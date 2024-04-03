@@ -1,3 +1,5 @@
+using CS6232_Group_6_Store.View;
+
 namespace CS6232_Group_6_Store
 {
     internal static class Program
@@ -11,7 +13,7 @@ namespace CS6232_Group_6_Store
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new MainDashBoard());
+            Application.Run(new LoginForm());
         }
     }
 }

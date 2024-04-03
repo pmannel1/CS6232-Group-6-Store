@@ -1,5 +1,4 @@
 ﻿using CS6232_Group_6_Store.Controller;
-using CS6232_Group_6_Store.Model;
 
 namespace CS6232_Group_6_Store.View
 {
@@ -10,8 +9,7 @@ namespace CS6232_Group_6_Store.View
     public partial class LoginForm : Form
     {
         private EmployeeController _employeeController;
-        private MainDashBoard _mainDashBoard;
-        private readonly LoginController _loginController;
+
         /// <summary>
         /// Gets or sets the EmployeeName.
         /// </summary>
@@ -32,13 +30,10 @@ namespace CS6232_Group_6_Store.View
         /// Initializes a new instance of the <see cref="LoginForm"/> class.
         /// </summary>
         /// <param name="md">The md.</param>
-        public LoginForm(MainDashBoard md)
+        public LoginForm()
         {
             InitializeComponent();
-            this._mainDashBoard = md;
             this._employeeController = new EmployeeController();
-            this._loginController = new LoginController();
-
         }
 
         /// <summary>
@@ -47,10 +42,9 @@ namespace CS6232_Group_6_Store.View
         /// <returns>employee name if credintail is valid</returns>
         public string CheckCredentials()
         {
-            Login login = new Login();
-            login.UserName = Convert.ToInt32(idTextBox.Text);
-            login.Password = passwordTextBox.Text;
-            return this._loginController.CheckCredentials(login);
+            var id = Convert.ToInt32(idTextBox.Text);
+            var password = passwordTextBox.Text;
+            return this._employeeController.ValidateEmployee(id, password);
 
         }
         /// <summary>
@@ -91,9 +85,11 @@ namespace CS6232_Group_6_Store.View
             if (EmployeeName != null && EmployeeName.Length > 0)
             {
                 UserName = idTextBox.Text;
+                
+                MainDashBoard mainDashBoard = new MainDashBoard(this);
+                mainDashBoard.Show();
                 this.Hide();
-                this._mainDashBoard.Visible = true;
-               
+
             }
             else
             {

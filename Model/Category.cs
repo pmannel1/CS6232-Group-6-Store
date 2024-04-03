@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace CS6232_Group_6_Store.Model
 {
-    internal class Category
+    /// <summary>
+    /// class for categories of furniture
+    /// </summary>
+    public class Category
     {
         /// <summary>
         /// Gets or sets the name.
@@ -16,6 +14,9 @@ namespace CS6232_Group_6_Store.Model
         /// </value>
         public string Name { get; set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Category"/> class.
+        /// </summary>
         public Category()
         {
             Name = "";

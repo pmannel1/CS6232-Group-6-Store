@@ -3,7 +3,7 @@
     /// <summary>
     /// Model class for rental_transaction table in DB
     /// </summary>
-    internal class RentalTransaction
+    public class RentalTransaction
     {
         /// <summary>
         /// Gets or sets the identifier.
@@ -44,5 +44,22 @@
         /// The due date.
         /// </value>
         public DateTime DueDate { get; set; }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RentalTransaction"/> class.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="employeeId">The employee identifier.</param>
+        /// <param name="memberId">The member identifier.</param>
+        /// <param name="rentalDate">The rental date.</param>
+        /// <param name="dueDate">The due date.</param>
+        public RentalTransaction(int id, int employeeId, int memberId, DateTime rentalDate, DateTime dueDate)
+        {
+            Id = id;
+            EmployeeId = employeeId;
+            MemberId = memberId;
+            RentalDate = rentalDate;
+            DueDate = dueDate;
+        }
     }
 }

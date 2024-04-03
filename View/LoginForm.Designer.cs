@@ -35,15 +35,19 @@
             loginButton = new Button();
             errorLabel = new Label();
             clearButton = new Button();
+            tableLayoutPanel1 = new TableLayoutPanel();
+            tableLayoutPanel2 = new TableLayoutPanel();
+            tableLayoutPanel1.SuspendLayout();
+            tableLayoutPanel2.SuspendLayout();
             SuspendLayout();
             // 
             // idLabel
             // 
             idLabel.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             idLabel.AutoSize = true;
-            idLabel.Location = new Point(74, 57);
+            idLabel.Location = new Point(3, 0);
             idLabel.Name = "idLabel";
-            idLabel.Size = new Size(101, 20);
+            idLabel.Size = new Size(80, 15);
             idLabel.TabIndex = 0;
             idLabel.Text = "Employee ID: ";
             // 
@@ -51,41 +55,38 @@
             // 
             passwordLabel.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             passwordLabel.AutoSize = true;
-            passwordLabel.Location = new Point(74, 96);
+            passwordLabel.Location = new Point(3, 64);
             passwordLabel.Name = "passwordLabel";
-            passwordLabel.Size = new Size(77, 20);
+            passwordLabel.Size = new Size(80, 15);
             passwordLabel.TabIndex = 1;
             passwordLabel.Text = "Password: ";
             // 
             // idTextBox
             // 
             idTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            idTextBox.Location = new Point(171, 53);
-            idTextBox.Margin = new Padding(3, 4, 3, 4);
+            idTextBox.Location = new Point(89, 3);
             idTextBox.Name = "idTextBox";
-            idTextBox.Size = new Size(293, 27);
-            idTextBox.TabIndex = 2;
+            idTextBox.Size = new Size(342, 23);
+            idTextBox.TabIndex = 0;
             idTextBox.TextChanged += idTextBox_TextChanged;
             // 
             // passwordTextBox
             // 
             passwordTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            passwordTextBox.Location = new Point(171, 92);
-            passwordTextBox.Margin = new Padding(3, 4, 3, 4);
+            passwordTextBox.Location = new Point(89, 67);
             passwordTextBox.Name = "passwordTextBox";
             passwordTextBox.PasswordChar = '*';
-            passwordTextBox.Size = new Size(293, 27);
-            passwordTextBox.TabIndex = 3;
+            passwordTextBox.Size = new Size(342, 23);
+            passwordTextBox.TabIndex = 1;
             passwordTextBox.TextChanged += passwordTextBox_TextChanged;
             // 
             // loginButton
             // 
-            loginButton.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            loginButton.Location = new Point(112, 175);
-            loginButton.Margin = new Padding(3, 4, 3, 4);
+            loginButton.Dock = DockStyle.Fill;
+            loginButton.Location = new Point(3, 3);
             loginButton.Name = "loginButton";
-            loginButton.Size = new Size(210, 31);
-            loginButton.TabIndex = 4;
+            loginButton.Size = new Size(165, 27);
+            loginButton.TabIndex = 2;
             loginButton.Text = "Login";
             loginButton.UseVisualStyleBackColor = true;
             loginButton.Click += loginButton_Click;
@@ -94,39 +95,76 @@
             // 
             errorLabel.AutoSize = true;
             errorLabel.ForeColor = Color.Red;
-            errorLabel.Location = new Point(175, 137);
+            errorLabel.Location = new Point(153, 103);
             errorLabel.Name = "errorLabel";
-            errorLabel.Size = new Size(0, 20);
+            errorLabel.Size = new Size(0, 15);
             errorLabel.TabIndex = 5;
             // 
             // clearButton
             // 
-            clearButton.Location = new Point(340, 175);
+            clearButton.Dock = DockStyle.Fill;
+            clearButton.Location = new Point(174, 2);
+            clearButton.Margin = new Padding(3, 2, 3, 2);
             clearButton.Name = "clearButton";
-            clearButton.Size = new Size(174, 31);
-            clearButton.TabIndex = 7;
+            clearButton.Size = new Size(165, 29);
+            clearButton.TabIndex = 3;
             clearButton.Text = "Clear";
             clearButton.UseVisualStyleBackColor = true;
             clearButton.Click += clearButton_Click;
             // 
+            // tableLayoutPanel1
+            // 
+            tableLayoutPanel1.ColumnCount = 2;
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 80F));
+            tableLayoutPanel1.Controls.Add(idLabel, 0, 0);
+            tableLayoutPanel1.Controls.Add(passwordLabel, 0, 1);
+            tableLayoutPanel1.Controls.Add(idTextBox, 1, 0);
+            tableLayoutPanel1.Controls.Add(passwordTextBox, 1, 1);
+            tableLayoutPanel1.Controls.Add(tableLayoutPanel2, 1, 2);
+            tableLayoutPanel1.Dock = DockStyle.Fill;
+            tableLayoutPanel1.Location = new Point(0, 0);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.RowCount = 3;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 40F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 36.64596F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 23.6024837F));
+            tableLayoutPanel1.Size = new Size(434, 161);
+            tableLayoutPanel1.TabIndex = 8;
+            // 
+            // tableLayoutPanel2
+            // 
+            tableLayoutPanel2.ColumnCount = 2;
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel2.Controls.Add(clearButton, 1, 0);
+            tableLayoutPanel2.Controls.Add(loginButton, 0, 0);
+            tableLayoutPanel2.Dock = DockStyle.Fill;
+            tableLayoutPanel2.Location = new Point(89, 125);
+            tableLayoutPanel2.Name = "tableLayoutPanel2";
+            tableLayoutPanel2.RowCount = 1;
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel2.Size = new Size(342, 33);
+            tableLayoutPanel2.TabIndex = 4;
+            // 
             // LoginForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AcceptButton = loginButton;
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(555, 255);
-            Controls.Add(clearButton);
+            CancelButton = clearButton;
+            ClientSize = new Size(434, 161);
+            Controls.Add(tableLayoutPanel1);
             Controls.Add(errorLabel);
-            Controls.Add(loginButton);
-            Controls.Add(passwordTextBox);
-            Controls.Add(idTextBox);
-            Controls.Add(passwordLabel);
-            Controls.Add(idLabel);
-            Margin = new Padding(3, 4, 3, 4);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "LoginForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "LoginForm";
             FormClosed += LoginForm_FormClosed;
+            tableLayoutPanel1.ResumeLayout(false);
+            tableLayoutPanel1.PerformLayout();
+            tableLayoutPanel2.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -140,5 +178,7 @@
         private Button loginButton;
         private Label errorLabel;
         private Button clearButton;
+        private TableLayoutPanel tableLayoutPanel1;
+        private TableLayoutPanel tableLayoutPanel2;
     }
 }

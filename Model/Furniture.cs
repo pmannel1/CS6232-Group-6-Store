@@ -3,7 +3,7 @@
     /// <summary>
     /// Model class for furniture table in DB
     /// </summary>
-    internal class Furniture
+    public class Furniture
     {
         /// <summary>
         /// Gets or sets the identifier.

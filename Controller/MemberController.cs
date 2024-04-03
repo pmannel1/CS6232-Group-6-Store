@@ -19,13 +19,12 @@ namespace CS6232_Group_6_Store.Controller
         }
 
         /// <summary>
-        /// Returns the name of the members.
+        /// Retruns the members.
         /// </summary>
         /// <returns></returns>
-        public List<Member> ReturnMembersName()
+        public List<Member> ReturnMembers()
         {
-
-            return this.memeberDAL.ReturnMemberNames();
+            return this.memeberDAL.ReturnMembers();
         }
 
         /// <summary>
@@ -34,9 +33,42 @@ namespace CS6232_Group_6_Store.Controller
         /// <param name="searchMethod">The search method.</param>
         /// <param name="searchField">The search field.</param>
         /// <returns></returns>
-        public List<Member> RetrunMembers(string searchMethod, string searchField)
+        public List<Member> ReturnMembersSearch(int searchItem)
         {
-            return this.memeberDAL.RetrunMembers(searchMethod, searchField);
+            return this.memeberDAL.ReturnMembersSearch(searchItem);
+        }
+
+        /// <summary>
+        /// Adds the member.
+        /// </summary>
+        /// <param name="member">The member.</param>
+        public void AddMember(Member member)
+        {
+            this.memeberDAL.AddMember(member);
+        }
+
+        /// <summary>
+        /// Retrieves the member.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
+        public Member RetrieveMember(int id)
+        {
+            return this.memeberDAL.RetrieveMember(id);
+        }
+
+        /// <summary>
+        /// Updates the member.
+        /// </summary>
+        /// <param name="member">The member.</param>
+        public void UpdateMember(Member member)
+        {
+            this.memeberDAL.UpdateMember(member);
+        }
+
+        public List<Member> SearchMember(string method, string search)
+        {
+            return this.memeberDAL.SearchMember(method, search);
         }
     }
 }

@@ -3,7 +3,7 @@
     /// <summary>
     /// Model class for employees table in DB
     /// </summary>
-    internal class Employee
+    public class Employee
     {
         /// <summary>
         /// Gets or sets the identifier.
