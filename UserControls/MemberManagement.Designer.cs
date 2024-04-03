@@ -46,7 +46,6 @@
             tableLayoutPanel3 = new TableLayoutPanel();
             tableLayoutPanel4 = new TableLayoutPanel();
             editingInstructionLabel = new Label();
-            viewRentalHistoryButton = new Button();
             tableLayoutPanel1.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
             tableLayoutPanel3.SuspendLayout();
@@ -196,7 +195,6 @@
             tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel4.Controls.Add(editingInstructionLabel, 0, 0);
             tableLayoutPanel4.Controls.Add(editButton, 1, 0);
-            tableLayoutPanel4.Controls.Add(viewRentalHistoryButton, 0, 1);
             tableLayoutPanel4.Dock = DockStyle.Fill;
             tableLayoutPanel4.Location = new Point(3, 128);
             tableLayoutPanel4.Name = "tableLayoutPanel4";
@@ -215,16 +213,6 @@
             editingInstructionLabel.Size = new Size(341, 29);
             editingInstructionLabel.TabIndex = 29;
             editingInstructionLabel.Text = "Please Click the ID Value of the Member to Edit or View History";
-            // 
-            // viewRentalHistoryButton
-            // 
-            viewRentalHistoryButton.Location = new Point(3, 32);
-            viewRentalHistoryButton.Name = "viewRentalHistoryButton";
-            viewRentalHistoryButton.Size = new Size(93, 21);
-            viewRentalHistoryButton.TabIndex = 30;
-            viewRentalHistoryButton.Text = "Rental History";
-            viewRentalHistoryButton.UseVisualStyleBackColor = true;
-            viewRentalHistoryButton.Click += ViewRentalHistoryButton_Click;
             // 
             // MemberManagement
             // 
@@ -263,6 +251,5 @@
         private TableLayoutPanel tableLayoutPanel3;
         private TableLayoutPanel tableLayoutPanel4;
         private Label editingInstructionLabel;
-        private Button viewRentalHistoryButton;
     }
 }

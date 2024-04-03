@@ -310,26 +310,11 @@ namespace CS6232_Group_6_Store.DAL
                         selectStatement =
                             "SELECT members.* " +
                             "FROM members " +
-                            "WHERE firstName LIKE @FirstName OR lastName LIKE @LastName";
+                            "WHERE firstName = @FirstName OR lastName = @LastName";
                         firstName = firstName.Length > 1 ? firstName : lastName;
-                        lastName = firstName;
+                        
                     }
-                    // If a full first name and at least the first character of the last name is provided.
-                    else if (firstName.Length > 1 && (lastName == "" || lastName.Length == 1))
-                    {
-                        selectStatement =
-                            "SELECT members.* " +
-                            "FROM members " +
-                            "WHERE firstName = @FirstName AND (lastName LIKE @LastName + '%' OR @LastName = '')";
-                    }
-                    // If a full last name and at least the first character of the first name is provided.
-                    else if (lastName.Length > 1 && (firstName == "" || firstName.Length == 1))
-                    {
-                        selectStatement =
-                            "SELECT members.* " +
-                            "FROM members " +
-                            "WHERE lastName = @LastName AND (firstName LIKE @FirstName + '%' OR @FirstName = '')";
-                    }
+                    
                     // If both full first name and last name are provided.
                     else
                     {

@@ -26,7 +26,6 @@ namespace CS6232_Group_6_Store.UserControls
             this.editButton.Enabled = false;
             customerListBox.Enabled = false;
             searchButton.Enabled = false;
-            this.viewRentalHistoryButton.Enabled = false;
         }
 
         /// <summary>
@@ -180,12 +179,12 @@ namespace CS6232_Group_6_Store.UserControls
             if (membersListView.SelectedItems.Count > 0)
             {
                 this.editButton.Enabled = true;
-                this.viewRentalHistoryButton.Enabled = true;
+               
             }
             else
             {
                 this.editButton.Enabled = false;
-                this.viewRentalHistoryButton.Enabled = false;
+             
             }
         }
 
@@ -216,14 +215,6 @@ namespace CS6232_Group_6_Store.UserControls
         {
             AddMemberForm addForm = new AddMemberForm(this);
             DialogResult result = addForm.ShowDialog();
-            this.Clear();
-        }
-
-        private void ViewRentalHistoryButton_Click(object sender, EventArgs e)
-        {
-            this.selectedMember = int.Parse(membersListView.SelectedItems[0].SubItems[0].Text);
-            MemberRentalHistory editForm = new MemberRentalHistory(this.selectedMember);
-            DialogResult result = editForm.ShowDialog();
             this.Clear();
         }
     }
