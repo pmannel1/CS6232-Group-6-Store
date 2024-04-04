@@ -34,7 +34,6 @@
             totalCostBox = new TextBox();
             rentalSummaryList = new ListView();
             tableLayoutPanel3 = new TableLayoutPanel();
-            cancelButton = new Button();
             confirmButton = new Button();
             tableLayoutPanel1.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
@@ -105,10 +104,8 @@
             // 
             // tableLayoutPanel3
             // 
-            tableLayoutPanel3.ColumnCount = 2;
+            tableLayoutPanel3.ColumnCount = 1;
             tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel3.Controls.Add(cancelButton, 1, 0);
             tableLayoutPanel3.Controls.Add(confirmButton, 0, 0);
             tableLayoutPanel3.Dock = DockStyle.Fill;
             tableLayoutPanel3.Location = new Point(3, 179);
@@ -117,16 +114,6 @@
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel3.Size = new Size(410, 39);
             tableLayoutPanel3.TabIndex = 2;
-            // 
-            // cancelButton
-            // 
-            cancelButton.Location = new Point(208, 3);
-            cancelButton.Name = "cancelButton";
-            cancelButton.Size = new Size(75, 23);
-            cancelButton.TabIndex = 1;
-            cancelButton.Text = "Cancel";
-            cancelButton.UseVisualStyleBackColor = true;
-            cancelButton.Click += cancelButton_Click;
             // 
             // confirmButton
             // 
@@ -143,7 +130,6 @@
             AcceptButton = confirmButton;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            CancelButton = cancelButton;
             ClientSize = new Size(416, 221);
             Controls.Add(tableLayoutPanel1);
             MaximizeBox = false;
@@ -162,11 +148,10 @@
 
         private TableLayoutPanel tableLayoutPanel1;
         private TableLayoutPanel tableLayoutPanel2;
-        private Button confirmButton;
-        private Button cancelButton;
         private ListView rentalSummaryList;
         private Label totalCostLabel;
         private TextBox totalCostBox;
         private TableLayoutPanel tableLayoutPanel3;
+        private Button confirmButton;
     }
 }

@@ -2,6 +2,7 @@
 using CS6232_Group_6_Store.Model;
 using CS6232_Group_6_Store.View;
 
+
 namespace CS6232_Group_6_Store.UserControls
 {
     public partial class InventoryRental : UserControl
@@ -10,6 +11,7 @@ namespace CS6232_Group_6_Store.UserControls
         private readonly RentalTransactionController _transactionController;
         private readonly MemberController _memberController;
         private readonly FurnitureController _furnitureController;
+        private readonly RentalItemController _rentalItemController;
         List<RentalItem> cart = [];
         RentalTransaction transaction;
         int employeeId;
@@ -23,6 +25,7 @@ namespace CS6232_Group_6_Store.UserControls
             this._transactionController = new RentalTransactionController();
             this._memberController = new MemberController();
             this._furnitureController = new FurnitureController();
+            this._rentalItemController = new RentalItemController();
 
             this.memberSelectionComboBox.SelectedIndex = 0;
             this.memberListView.CheckBoxes = true;
@@ -40,6 +43,7 @@ namespace CS6232_Group_6_Store.UserControls
         private void memberSearchButton_Click(object sender, EventArgs e)
         {
             this.populateMemberListView();
+            this.clearButton_Click(sender, e);
         }
 
         private void populateMemberListView()
@@ -124,7 +128,7 @@ namespace CS6232_Group_6_Store.UserControls
                         item.Checked = false;
                     }
                 }
-                this.checkoutButton.Enabled = true;
+
                 this.clearButton.Enabled = true;
             }
             else
@@ -215,6 +219,7 @@ namespace CS6232_Group_6_Store.UserControls
 
                 this.refreshCartView();
                 this.cartListView.Enabled = true;
+                this.checkoutButton.Enabled = true;
 
             }
         }
@@ -256,7 +261,7 @@ namespace CS6232_Group_6_Store.UserControls
         {
             if (e.Item.Checked)
             {
-                foreach (ListViewItem item in memberListView.Items)
+                foreach (ListViewItem item in cartListView.Items)
                 {
                     // Uncheck all other items
                     if (item != e.Item)
@@ -265,10 +270,12 @@ namespace CS6232_Group_6_Store.UserControls
                     }
                 }
                 this.removeItemButton.Enabled = true;
+                this.updateQuantity.Enabled = true;
             }
             else
             {
                 this.removeItemButton.Enabled = false;
+                this.updateQuantity.Enabled = false;
             }
 
         }
@@ -288,12 +295,25 @@ namespace CS6232_Group_6_Store.UserControls
                     }
                 }
 
+                transaction.Id = _transactionController.StartNewTransaction(transaction);
+
+                foreach (var item in cart)
+                {
+                    item.TransactionId = transaction.Id;
+                    _rentalItemController.AddRentalItem(item);
+                }
+
                 // Proceed to the summary form if validation passes
                 RentalSummary summaryForm = new RentalSummary(cart, transaction);
                 var dialogResult = summaryForm.ShowDialog();
 
                 if (dialogResult == DialogResult.OK)
                 {
+                    this.clearButton_Click(sender, e);
+                    this.clearFurnitureButton_Click(sender, e);
+                    this.memberListView.Clear();
+                    this.furnitureSearchBox.Clear();
+                    this.memberSearchBox.Clear();
                     MessageBox.Show("Transaction completed successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
@@ -301,6 +321,65 @@ namespace CS6232_Group_6_Store.UserControls
             {
                 MessageBox.Show($"An error occurred during checkout: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void updateQuantity_Click(object sender, EventArgs e)
+        {
+            ListViewItem checkedItem = cartListView.CheckedItems[0];
+            int index = checkedItem.Index;
+            RentalItem selectedItem = cart[index];
+
+            ItemQuantity quantityForm = new ItemQuantity(selectedItem);
+
+            if (quantityForm.ShowDialog() == DialogResult.OK)
+            {
+                int newQuantity = quantityForm.SelectedQuantity;
+                if (newQuantity > 0)
+                {
+                    selectedItem.Quantity = newQuantity;
+                    refreshCartView();
+                }
+            }
+        }
+
+        private void removeItemButton_Click(object sender, EventArgs e)
+        {
+            if (cartListView.CheckedItems.Count == 1)
+            {
+                ListViewItem checkedItem = cartListView.CheckedItems[0];
+                cart.RemoveAt(checkedItem.Index);
+                refreshCartView();
+            }
+            else
+            {
+                MessageBox.Show("Please select an item to remove.", "Selection Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void clearButton_Click(object sender, EventArgs e)
+        {
+            this.cartListView.Clear();
+            this.updateQuantity.Enabled = false;
+            this.removeItemButton.Enabled = false;
+            this.checkoutButton.Enabled = false;
+            this.cart.Clear();
+            this.transaction = null;
+        }
+
+        private void clearFurnitureButton_Click(object sender, EventArgs e)
+        {
+            this.furnitureListView.Clear();
+            this.addFurnitureButton.Enabled = false;
+
+        }
+
+        private void InventoryRental_VisibleChanged(object sender, EventArgs e)
+        {
+            this.clearButton_Click(sender, e);
+            this.clearFurnitureButton_Click(sender, e);
+            this.memberListView.Clear();
+            this.furnitureSearchBox.Clear();
+            this.memberSearchBox.Clear();
         }
     }
 }

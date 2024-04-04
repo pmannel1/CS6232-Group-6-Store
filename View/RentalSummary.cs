@@ -1,7 +1,6 @@
 ﻿using CS6232_Group_6_Store.Controller;
 using CS6232_Group_6_Store.Model;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
-using System.Transactions;
+
 
 namespace CS6232_Group_6_Store.View
 {
@@ -9,8 +8,6 @@ namespace CS6232_Group_6_Store.View
     {
         private List<RentalItem> _cart;
         private RentalTransaction _transaction;
-        private readonly RentalTransactionController _transactionController;
-        private readonly RentalItemController _rentalItemController;
         private readonly FurnitureController _furnitureController;
 
         public RentalSummary(List<RentalItem> cart, RentalTransaction transaction)
@@ -18,8 +15,7 @@ namespace CS6232_Group_6_Store.View
             InitializeComponent();
             _cart = cart;
             _transaction = transaction;
-            _transactionController = new RentalTransactionController();
-            _rentalItemController = new RentalItemController();
+           
             _furnitureController = new FurnitureController();
 
             PopulateTotalCostBox();
@@ -33,6 +29,8 @@ namespace CS6232_Group_6_Store.View
                 this.rentalSummaryList.Clear();
                 rentalSummaryList.View = System.Windows.Forms.View.Details;
                 rentalSummaryList.GridLines = true;
+                rentalSummaryList.Columns.Add("Transaction ID", 150);
+                rentalSummaryList.Columns.Add("Furniture ID", 150);
                 rentalSummaryList.Columns.Add("Furniture Name", 150);
                 rentalSummaryList.Columns.Add("Quantity", 150);
                 rentalSummaryList.Columns.Add("Price", 150);
@@ -43,7 +41,8 @@ namespace CS6232_Group_6_Store.View
                 {
                     Furniture furniture = null;
                     furniture = this._furnitureController.GetFurniture(dr.FurnitureId);
-                    var cartList = rentalSummaryList.Items.Add(furniture.Name);
+                    var cartList = rentalSummaryList.Items.Add(_transaction.Id.ToString());
+                    cartList.SubItems.Add(furniture.Id.ToString());
                     cartList.SubItems.Add(dr.Quantity.ToString());
                     TimeSpan timespan = _transaction.DueDate.Subtract(_transaction.RentalDate);
                     int time = (int)timespan.TotalDays;
@@ -76,21 +75,11 @@ namespace CS6232_Group_6_Store.View
 
         private void confirmButton_Click(object sender, EventArgs e)
         {
-            // Add the transaction and get the generated ID
-            _transaction.Id = _transactionController.StartNewTransaction(_transaction);
-
-            foreach (var item in _cart)
-            {
-                item.TransactionId = _transaction.Id;
-                _rentalItemController.AddRentalItem(item);
-            }
+            
 
             this.DialogResult = DialogResult.OK;
         }
 
-        private void cancelButton_Click(object sender, EventArgs e)
-        {
-            this.DialogResult = DialogResult.Cancel;
-        }
+       
     }
 }

@@ -41,6 +41,7 @@
             tableLayoutPanel2 = new TableLayoutPanel();
             tableLayoutPanel3 = new TableLayoutPanel();
             removeItemButton = new Button();
+            updateQuantity = new Button();
             selectionMethodComboBox = new ComboBox();
             memberSearchLabel = new Label();
             furnitureSearchLabel = new Label();
@@ -118,10 +119,11 @@
             clearFurnitureButton.TabIndex = 7;
             clearFurnitureButton.Text = "Clear Search";
             clearFurnitureButton.UseVisualStyleBackColor = true;
+            clearFurnitureButton.Click += clearFurnitureButton_Click;
             // 
             // checkoutButton
             // 
-            checkoutButton.Location = new Point(3, 3);
+            checkoutButton.Location = new Point(3, 365);
             checkoutButton.Name = "checkoutButton";
             checkoutButton.Size = new Size(100, 21);
             checkoutButton.TabIndex = 8;
@@ -137,6 +139,7 @@
             clearButton.TabIndex = 9;
             clearButton.Text = "Clear Cart";
             clearButton.UseVisualStyleBackColor = true;
+            clearButton.Click += clearButton_Click;
             // 
             // cartListView
             // 
@@ -147,12 +150,14 @@
             cartListView.Size = new Size(550, 58);
             cartListView.TabIndex = 10;
             cartListView.UseCompatibleStateImageBehavior = false;
+            cartListView.ItemChecked += cartListView_ItemChecked;
             // 
             // tableLayoutPanel1
             // 
             tableLayoutPanel1.ColumnCount = 2;
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20.57143F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 79.42857F));
+            tableLayoutPanel1.Controls.Add(checkoutButton, 0, 8);
             tableLayoutPanel1.Controls.Add(memberSearchMethod, 0, 0);
             tableLayoutPanel1.Controls.Add(cartListView, 1, 7);
             tableLayoutPanel1.Controls.Add(selectionMethodLabel, 0, 3);
@@ -206,9 +211,9 @@
             tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
             tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
             tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
-            tableLayoutPanel3.Controls.Add(checkoutButton, 0, 0);
             tableLayoutPanel3.Controls.Add(clearButton, 2, 0);
             tableLayoutPanel3.Controls.Add(removeItemButton, 1, 0);
+            tableLayoutPanel3.Controls.Add(updateQuantity, 0, 0);
             tableLayoutPanel3.Dock = DockStyle.Fill;
             tableLayoutPanel3.Location = new Point(147, 365);
             tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -225,6 +230,17 @@
             removeItemButton.TabIndex = 10;
             removeItemButton.Text = "Remove Item";
             removeItemButton.UseVisualStyleBackColor = true;
+            removeItemButton.Click += removeItemButton_Click;
+            // 
+            // updateQuantity
+            // 
+            updateQuantity.Location = new Point(3, 3);
+            updateQuantity.Name = "updateQuantity";
+            updateQuantity.Size = new Size(118, 21);
+            updateQuantity.TabIndex = 11;
+            updateQuantity.Text = "Update Quantity";
+            updateQuantity.UseVisualStyleBackColor = true;
+            updateQuantity.Click += updateQuantity_Click;
             // 
             // selectionMethodComboBox
             // 
@@ -362,6 +378,7 @@
             Controls.Add(tableLayoutPanel1);
             Name = "InventoryRental";
             Size = new Size(700, 400);
+            VisibleChanged += InventoryRental_VisibleChanged;
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.PerformLayout();
             tableLayoutPanel2.ResumeLayout(false);
@@ -401,5 +418,6 @@
         private Label furnitureListViewLabel;
         private Label cartLabel;
         private Button removeItemButton;
+        private Button updateQuantity;
     }
 }
