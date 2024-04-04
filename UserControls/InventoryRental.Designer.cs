@@ -139,6 +139,7 @@
             // 
             // cartListView
             // 
+            cartListView.CheckBoxes = true;
             cartListView.Dock = DockStyle.Fill;
             cartListView.Location = new Point(147, 301);
             cartListView.Name = "cartListView";

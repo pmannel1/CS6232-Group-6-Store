@@ -27,6 +27,14 @@ namespace CS6232_Group_6_Store
         public string Account { get; set; }
 
         /// <summary>
+        /// Gets or sets the employee identifier.
+        /// </summary>
+        /// <value>
+        /// The employee identifier.
+        /// </value>
+        public int EmployeeId { get; set; }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="MainDashBoard"/> class.
         /// </summary>
         public MainDashBoard(LoginForm newLogin)
@@ -35,6 +43,7 @@ namespace CS6232_Group_6_Store
             this._loginForm = newLogin;
             Account = "User Account: " + this._loginForm.UserName;
             Employee = "Empolyee Name: " + this._loginForm.EmployeeName;
+            EmployeeId = this._loginForm.Id;
             this.employeeNameLebel.Text = Employee;
             this.userNameLabel.Text = Account;
             this.logout = false;

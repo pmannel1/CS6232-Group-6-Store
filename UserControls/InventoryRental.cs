@@ -10,6 +10,11 @@ namespace CS6232_Group_6_Store.UserControls
         private readonly RentalTransactionController _transactionController;
         private readonly MemberController _memberController;
         private readonly FurnitureController _furnitureController;
+        List<RentalItem> cart = [];
+        RentalTransaction transaction;
+        int employeeId;
+        int memberId;
+        int furnitureId;
 
         public InventoryRental()
         {
@@ -29,6 +34,7 @@ namespace CS6232_Group_6_Store.UserControls
             this.checkoutButton.Enabled = false;
             this.clearFurnitureButton.Enabled = false;
             this.removeItemButton.Enabled = false;
+            
         }
 
         private void memberSearchButton_Click(object sender, EventArgs e)
@@ -109,6 +115,7 @@ namespace CS6232_Group_6_Store.UserControls
         {
             if (e.Item.Checked)
             {
+                memberId = int.Parse(e.Item.Text);
                 foreach (ListViewItem item in memberListView.Items)
                 {
                     // Uncheck all other items
@@ -139,6 +146,7 @@ namespace CS6232_Group_6_Store.UserControls
         {
             if (e.Item.Checked)
             {
+                furnitureId = int.Parse(e.Item.Text);
                 foreach (ListViewItem item in furnitureListView.Items)
                 {
                     // Uncheck all other items
@@ -170,9 +178,89 @@ namespace CS6232_Group_6_Store.UserControls
 
             if (detailsForm.ShowDialog() == DialogResult.OK)
             {
+                if (cartListView.Items.Count < 1)
+                {
+                    MainDashBoard parentForm = this.FindForm() as MainDashBoard;
+                    if (parentForm != null)
+                    {
+                        employeeId = parentForm.EmployeeId;
+                    }
+                    var now = DateTime.Now;
+                    var threeWeeksFromNow = DateTime.Now.AddDays(21);
+
+                    transaction = null;
+                    transaction = new RentalTransaction(employeeId, memberId, now, threeWeeksFromNow);
+                }
                 int selectedQuantity = detailsForm.SelectedQuantity;
+                RentalItem cartItem = new RentalItem
+                {
+                    TransactionId = transaction.Id,
+                    FurnitureId = furnitureId,
+                    Quantity = selectedQuantity,
+                    QuantityReturned = 0
+                };
+                
+                cart.Add(cartItem);
+
+                this.refreshCartView();
+                this.cartListView.Enabled = true;
 
             }
         }
+
+        private void refreshCartView()
+        {
+            try
+            {
+                this.cartListView.Clear();
+                cartListView.View = System.Windows.Forms.View.Details;
+                cartListView.GridLines = true;
+                cartListView.Columns.Add("Furniture Name", 150);
+                cartListView.Columns.Add("Quantity", 150);
+                cartListView.Columns.Add("Price", 150);
+                cartListView.Columns.Add("Rental Date", 150);
+                cartListView.Columns.Add("Due Date", 150);
+
+                foreach (var dr in cart)
+                {
+                    Furniture furniture = null;
+                    furniture = this._furnitureController.GetFurniture(dr.FurnitureId);
+                    var cartList = cartListView.Items.Add(furniture.Name);
+                    cartList.SubItems.Add(dr.Quantity.ToString());
+                    TimeSpan timespan = transaction.DueDate.Subtract(transaction.RentalDate);
+                    int time = (int)timespan.TotalDays;
+                    decimal quantityTime = dr.Quantity * time;
+                    cartList.SubItems.Add("$" + (Decimal.Multiply(furniture.RentalRate, quantityTime).ToString()));
+                    cartList.SubItems.Add(transaction.RentalDate.ToShortDateString());
+                    cartList.SubItems.Add(transaction.DueDate.ToShortDateString());
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void cartListView_ItemChecked(object sender, ItemCheckedEventArgs e)
+        {
+            if (e.Item.Checked)
+            {
+                foreach (ListViewItem item in memberListView.Items)
+                {
+                    // Uncheck all other items
+                    if (item != e.Item)
+                    {
+                        item.Checked = false;
+                    }
+                }
+                this.removeItemButton.Enabled = true;
+            }
+            else
+            {
+                this.removeItemButton.Enabled = false;
+            }
+          
+        }
+
     }
 }

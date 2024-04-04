@@ -345,7 +345,7 @@ namespace CS6232_Group_6_Store.DAL
                    selectStatement =
                         "SELECT members.* " +
                         "FROM members " +
-                        "WHERE contactPhone LIKE @SearchTerm ";
+                        "WHERE contactPhone = @SearchTerm ";
 
                     selectCommand = new SqlCommand(selectStatement, connection);
                     selectCommand.Parameters.Add("@SearchTerm", SqlDbType.NVarChar);

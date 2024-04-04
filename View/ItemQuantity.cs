@@ -32,12 +32,23 @@ namespace CS6232_Group_6_Store.View
             {
                 quantityComboBox.SelectedIndex = 0;
             }
+            else
+            {
+                quantityComboBox.Enabled = false;
+                confirmButton.Enabled = false;
+                descriptionBox.Text += "\n OUT OF STOCK";
+            }
         }
 
         private void confirmButton_Click(object sender, EventArgs e)
         {
             SelectedQuantity = int.Parse(quantityComboBox.SelectedItem.ToString());
             this.DialogResult = DialogResult.OK;
+        }
+
+        private void cancelButton_Click(object sender, EventArgs e)
+        {
+            this.DialogResult= DialogResult.Cancel;
         }
     }
 }

@@ -187,7 +187,6 @@
         private Label employeeNameLebel;
         private UserControls.MemberManagement memberManagement2;
         private TabPage inventoryAndRentTabPage;
-        private UserControls.InventoryandRentalProcessing inventoryandRentalProcessing1;
         private UserControls.InventoryRental inventoryRental1;
         private TabPage tabPage1;
         private UserControls.TransactionManagement transactionManagement1;
