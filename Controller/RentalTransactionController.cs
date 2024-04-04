@@ -12,9 +12,9 @@ namespace CS6232_Group_6_Store.Controller
             this.rentalTransactionDal = new RentalTransactionDAL();
         }
 
-        public void StartNewTransaction(int employeeId, int memberId, DateTime rentalDate, DateTime dueDate)
+        public int StartNewTransaction(RentalTransaction transaction)
         {
-            this.rentalTransactionDal.CreateRentalTransaction(employeeId, memberId, rentalDate, dueDate);
+            return this.rentalTransactionDal.CreateRentalTransaction(transaction);
         }
 
         public void AddItemToTransaction(int transactionId, int itemId, int quantity)
@@ -30,18 +30,6 @@ namespace CS6232_Group_6_Store.Controller
         public void RemoveItemFromTransaction(int transactionId, int itemId)
         {
             this.rentalTransactionDal.RemoveRentalItem(transactionId, itemId);
-        }
-
-        public RentalTransaction GetTransactionDetails(int transactionId)
-        {
-            return this.rentalTransactionDal.GetRentalTransactionById(transactionId);
-        }
-
-        public void FinalizeTransaction(int transactionId)
-        {
-            // Here you would add any business logic to finalize the transaction
-            // For now, we just call a method that could complete the transaction and calculate the total cost
-             this.rentalTransactionDal.CompleteRentalTransaction(transactionId);
         }
     }
 }

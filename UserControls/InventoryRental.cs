@@ -34,7 +34,7 @@ namespace CS6232_Group_6_Store.UserControls
             this.checkoutButton.Enabled = false;
             this.clearFurnitureButton.Enabled = false;
             this.removeItemButton.Enabled = false;
-            
+
         }
 
         private void memberSearchButton_Click(object sender, EventArgs e)
@@ -192,15 +192,26 @@ namespace CS6232_Group_6_Store.UserControls
                     transaction = new RentalTransaction(employeeId, memberId, now, threeWeeksFromNow);
                 }
                 int selectedQuantity = detailsForm.SelectedQuantity;
-                RentalItem cartItem = new RentalItem
+                // Check if the item is already in the cart
+                var existingCartItem = cart.FirstOrDefault(ci => ci.FurnitureId == furnitureId);
+                if (existingCartItem != null)
                 {
-                    TransactionId = transaction.Id,
-                    FurnitureId = furnitureId,
-                    Quantity = selectedQuantity,
-                    QuantityReturned = 0
-                };
-                
-                cart.Add(cartItem);
+                    // If the item is already in the cart, just update the quantity
+                    existingCartItem.Quantity += selectedQuantity;
+                }
+                else
+                {
+                    // If the item is not in the cart, add it as a new item
+                    RentalItem cartItem = new RentalItem
+                    {
+                        TransactionId = transaction.Id,
+                        FurnitureId = furnitureId,
+                        Quantity = selectedQuantity,
+                        QuantityReturned = 0
+                    };
+
+                    cart.Add(cartItem);
+                }
 
                 this.refreshCartView();
                 this.cartListView.Enabled = true;
@@ -259,8 +270,37 @@ namespace CS6232_Group_6_Store.UserControls
             {
                 this.removeItemButton.Enabled = false;
             }
-          
+
         }
 
+        private void checkoutButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                foreach (var cartItem in cart)
+                {
+                    Furniture furniture = _furnitureController.GetFurniture(cartItem.FurnitureId);
+                    if (cartItem.Quantity > furniture.InStockNumber)
+                    {
+                        // The order exceeds the inventory
+                        MessageBox.Show($"The order exceeds the inventory for {furniture.Name}.", "Inventory Check", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return; // Stop processing the checkout
+                    }
+                }
+
+                // Proceed to the summary form if validation passes
+                RentalSummary summaryForm = new RentalSummary(cart, transaction);
+                var dialogResult = summaryForm.ShowDialog();
+
+                if (dialogResult == DialogResult.OK)
+                {
+                    MessageBox.Show("Transaction completed successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred during checkout: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }
