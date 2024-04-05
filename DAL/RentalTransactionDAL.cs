@@ -6,12 +6,11 @@ namespace CS6232_Group_6_Store.DAL
 {
     public class RentalTransactionDAL
     {
-        public void CreateRentalTransaction(int employeeId, int memberId, DateTime rentalDate, DateTime dueDate)
+        public int CreateRentalTransaction(RentalTransaction rTransaction)
         {
-            
-            string updateStatement = "INSERT INTO rental_transactions (employeeId, memberId, rentalDate, dueDate) " +
-                         "OUTPUT INSERTED.id " +
-                         "VALUES (@EmployeeId, @MemberId, @RentalDate, @DueDate);";
+            string insertStatement = "INSERT INTO rental_transactions (employeeId, memberId, rentalDate, dueDate) " +
+                                     "OUTPUT INSERTED.id " +
+                                     "VALUES (@EmployeeId, @MemberId, @RentalDate, @DueDate);";
 
             using (SqlConnection connection = DBConnection.GetConnection())
             {
@@ -20,24 +19,25 @@ namespace CS6232_Group_6_Store.DAL
                 {
                     try
                     {
-                        using (SqlCommand command = new SqlCommand(updateStatement, connection, transaction))
+                        using (SqlCommand command = new SqlCommand(insertStatement, connection, transaction))
                         {
                             command.Parameters.Add("@EmployeeId", SqlDbType.Int);
-                            command.Parameters["@EmployeeId"].Value = employeeId;
+                            command.Parameters["@EmployeeId"].Value = rTransaction.EmployeeId;
 
                             command.Parameters.Add("@MemberId", SqlDbType.Int);
-                            command.Parameters["@MemberId"].Value = memberId;
+                            command.Parameters["@MemberId"].Value = rTransaction.MemberId;
 
                             command.Parameters.Add("@RentalDate", SqlDbType.DateTime2);
-                            command.Parameters["@RentalDate"].Value = rentalDate;
+                            command.Parameters["@RentalDate"].Value = rTransaction.RentalDate;
 
                             command.Parameters.Add("@DueDate", SqlDbType.DateTime2);
-                            command.Parameters["@DueDate"].Value = dueDate;
+                            command.Parameters["@DueDate"].Value = rTransaction.DueDate;
 
-                            command.ExecuteScalar();
+                            // ExecuteScalar returns the first column of the first row in the result set
+                            int transactionId = (int)command.ExecuteScalar();
+                            transaction.Commit();
+                            return transactionId;
                         }
-
-                        transaction.Commit();
                     }
                     catch
                     {
@@ -47,6 +47,7 @@ namespace CS6232_Group_6_Store.DAL
                 }
             }
         }
+
 
         public void AddRentalItem(int transactionId, int itemId, int quantity)
         {

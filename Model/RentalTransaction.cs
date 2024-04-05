@@ -61,5 +61,14 @@
             RentalDate = rentalDate;
             DueDate = dueDate;
         }
+
+        public RentalTransaction( int employeeId, int memberId, DateTime rentalDate, DateTime dueDate)
+        {
+           
+            EmployeeId = employeeId;
+            MemberId = memberId;
+            RentalDate = rentalDate;
+            DueDate = dueDate;
+        }
     }
 }

@@ -2,6 +2,7 @@
 using CS6232_Group_6_Store.Model;
 using CS6232_Group_6_Store.View;
 
+
 namespace CS6232_Group_6_Store.UserControls
 {
     public partial class InventoryRental : UserControl
@@ -10,6 +11,12 @@ namespace CS6232_Group_6_Store.UserControls
         private readonly RentalTransactionController _transactionController;
         private readonly MemberController _memberController;
         private readonly FurnitureController _furnitureController;
+        private readonly RentalItemController _rentalItemController;
+        List<RentalItem> cart = [];
+        RentalTransaction transaction;
+        int employeeId;
+        int memberId;
+        int furnitureId;
 
         public InventoryRental()
         {
@@ -18,6 +25,7 @@ namespace CS6232_Group_6_Store.UserControls
             this._transactionController = new RentalTransactionController();
             this._memberController = new MemberController();
             this._furnitureController = new FurnitureController();
+            this._rentalItemController = new RentalItemController();
 
             this.memberSelectionComboBox.SelectedIndex = 0;
             this.memberListView.CheckBoxes = true;
@@ -29,11 +37,13 @@ namespace CS6232_Group_6_Store.UserControls
             this.checkoutButton.Enabled = false;
             this.clearFurnitureButton.Enabled = false;
             this.removeItemButton.Enabled = false;
+
         }
 
         private void memberSearchButton_Click(object sender, EventArgs e)
         {
             this.populateMemberListView();
+            this.clearButton_Click(sender, e);
         }
 
         private void populateMemberListView()
@@ -109,6 +119,7 @@ namespace CS6232_Group_6_Store.UserControls
         {
             if (e.Item.Checked)
             {
+                memberId = int.Parse(e.Item.Text);
                 foreach (ListViewItem item in memberListView.Items)
                 {
                     // Uncheck all other items
@@ -117,7 +128,7 @@ namespace CS6232_Group_6_Store.UserControls
                         item.Checked = false;
                     }
                 }
-                this.checkoutButton.Enabled = true;
+
                 this.clearButton.Enabled = true;
             }
             else
@@ -139,6 +150,7 @@ namespace CS6232_Group_6_Store.UserControls
         {
             if (e.Item.Checked)
             {
+                furnitureId = int.Parse(e.Item.Text);
                 foreach (ListViewItem item in furnitureListView.Items)
                 {
                     // Uncheck all other items
@@ -170,9 +182,204 @@ namespace CS6232_Group_6_Store.UserControls
 
             if (detailsForm.ShowDialog() == DialogResult.OK)
             {
+                if (cartListView.Items.Count < 1)
+                {
+                    MainDashBoard parentForm = this.FindForm() as MainDashBoard;
+                    if (parentForm != null)
+                    {
+                        employeeId = parentForm.EmployeeId;
+                    }
+                    var now = DateTime.Now;
+                    var threeWeeksFromNow = DateTime.Now.AddDays(21);
+
+                    transaction = null;
+                    transaction = new RentalTransaction(employeeId, memberId, now, threeWeeksFromNow);
+                }
                 int selectedQuantity = detailsForm.SelectedQuantity;
+                // Check if the item is already in the cart
+                var existingCartItem = cart.FirstOrDefault(ci => ci.FurnitureId == furnitureId);
+                if (existingCartItem != null)
+                {
+                    // If the item is already in the cart, just update the quantity
+                    existingCartItem.Quantity += selectedQuantity;
+                }
+                else
+                {
+                    // If the item is not in the cart, add it as a new item
+                    RentalItem cartItem = new RentalItem
+                    {
+                        TransactionId = transaction.Id,
+                        FurnitureId = furnitureId,
+                        Quantity = selectedQuantity,
+                        QuantityReturned = 0
+                    };
+
+                    cart.Add(cartItem);
+                }
+
+                this.refreshCartView();
+                this.cartListView.Enabled = true;
+                this.checkoutButton.Enabled = true;
 
             }
+        }
+
+        private void refreshCartView()
+        {
+            try
+            {
+                this.cartListView.Clear();
+                cartListView.View = System.Windows.Forms.View.Details;
+                cartListView.GridLines = true;
+                cartListView.Columns.Add("Furniture Name", 150);
+                cartListView.Columns.Add("Quantity", 150);
+                cartListView.Columns.Add("Price", 150);
+                cartListView.Columns.Add("Rental Date", 150);
+                cartListView.Columns.Add("Due Date", 150);
+
+                foreach (var dr in cart)
+                {
+                    Furniture furniture = null;
+                    furniture = this._furnitureController.GetFurniture(dr.FurnitureId);
+                    var cartList = cartListView.Items.Add(furniture.Name);
+                    cartList.SubItems.Add(dr.Quantity.ToString());
+                    TimeSpan timespan = transaction.DueDate.Subtract(transaction.RentalDate);
+                    int time = (int)timespan.TotalDays;
+                    decimal quantityTime = dr.Quantity * time;
+                    cartList.SubItems.Add("$" + (Decimal.Multiply(furniture.RentalRate, quantityTime).ToString()));
+                    cartList.SubItems.Add(transaction.RentalDate.ToShortDateString());
+                    cartList.SubItems.Add(transaction.DueDate.ToShortDateString());
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void cartListView_ItemChecked(object sender, ItemCheckedEventArgs e)
+        {
+            if (e.Item.Checked)
+            {
+                foreach (ListViewItem item in cartListView.Items)
+                {
+                    // Uncheck all other items
+                    if (item != e.Item)
+                    {
+                        item.Checked = false;
+                    }
+                }
+                this.removeItemButton.Enabled = true;
+                this.updateQuantity.Enabled = true;
+            }
+            else
+            {
+                this.removeItemButton.Enabled = false;
+                this.updateQuantity.Enabled = false;
+            }
+
+        }
+
+        private void checkoutButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                foreach (var cartItem in cart)
+                {
+                    Furniture furniture = _furnitureController.GetFurniture(cartItem.FurnitureId);
+                    if (cartItem.Quantity > furniture.InStockNumber)
+                    {
+                        // The order exceeds the inventory
+                        MessageBox.Show($"The order exceeds the inventory for {furniture.Name}.", "Inventory Check", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return; // Stop processing the checkout
+                    }
+                }
+
+                transaction.Id = _transactionController.StartNewTransaction(transaction);
+
+                foreach (var item in cart)
+                {
+                    item.TransactionId = transaction.Id;
+                    _rentalItemController.AddRentalItem(item);
+                }
+
+                // Proceed to the summary form if validation passes
+                RentalSummary summaryForm = new RentalSummary(cart, transaction);
+                var dialogResult = summaryForm.ShowDialog();
+
+                if (dialogResult == DialogResult.OK)
+                {
+                    this.clearButton_Click(sender, e);
+                    this.clearFurnitureButton_Click(sender, e);
+                    this.memberListView.Clear();
+                    this.furnitureSearchBox.Clear();
+                    this.memberSearchBox.Clear();
+                    MessageBox.Show("Transaction completed successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred during checkout: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void updateQuantity_Click(object sender, EventArgs e)
+        {
+            ListViewItem checkedItem = cartListView.CheckedItems[0];
+            int index = checkedItem.Index;
+            RentalItem selectedItem = cart[index];
+
+            ItemQuantity quantityForm = new ItemQuantity(selectedItem);
+
+            if (quantityForm.ShowDialog() == DialogResult.OK)
+            {
+                int newQuantity = quantityForm.SelectedQuantity;
+                if (newQuantity > 0)
+                {
+                    selectedItem.Quantity = newQuantity;
+                    refreshCartView();
+                }
+            }
+        }
+
+        private void removeItemButton_Click(object sender, EventArgs e)
+        {
+            if (cartListView.CheckedItems.Count == 1)
+            {
+                ListViewItem checkedItem = cartListView.CheckedItems[0];
+                cart.RemoveAt(checkedItem.Index);
+                refreshCartView();
+            }
+            else
+            {
+                MessageBox.Show("Please select an item to remove.", "Selection Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void clearButton_Click(object sender, EventArgs e)
+        {
+            this.cartListView.Clear();
+            this.updateQuantity.Enabled = false;
+            this.removeItemButton.Enabled = false;
+            this.checkoutButton.Enabled = false;
+            this.cart.Clear();
+            this.transaction = null;
+        }
+
+        private void clearFurnitureButton_Click(object sender, EventArgs e)
+        {
+            this.furnitureListView.Clear();
+            this.addFurnitureButton.Enabled = false;
+
+        }
+
+        private void InventoryRental_VisibleChanged(object sender, EventArgs e)
+        {
+            this.clearButton_Click(sender, e);
+            this.clearFurnitureButton_Click(sender, e);
+            this.memberListView.Clear();
+            this.furnitureSearchBox.Clear();
+            this.memberSearchBox.Clear();
         }
     }
 }

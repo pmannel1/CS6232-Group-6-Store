@@ -25,6 +25,14 @@ namespace CS6232_Group_6_Store.View
         /// </value>
         public string UserName { get; set; }
 
+        /// <summary>
+        /// Gets or sets the identifier.
+        /// </summary>
+        /// <value>
+        /// The identifier.
+        /// </value>
+        public int Id { get; set; }
+
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LoginForm"/> class.
@@ -42,9 +50,9 @@ namespace CS6232_Group_6_Store.View
         /// <returns>employee name if credintail is valid</returns>
         public string CheckCredentials()
         {
-            var id = Convert.ToInt32(idTextBox.Text);
+            Id = Convert.ToInt32(idTextBox.Text);
             var password = passwordTextBox.Text;
-            return this._employeeController.ValidateEmployee(id, password);
+            return this._employeeController.ValidateEmployee(Id, password);
 
         }
         /// <summary>

@@ -30,5 +30,10 @@ namespace CS6232_Group_6_Store.Controller
 
             return _rentalItemDAL.GetMemberRentalItemHistory(id);
         }
+
+        public void AddRentalItem(RentalItem rental)
+        {
+            this._rentalItemDAL.AddRentalItem(rental);
+        }
     }
 }

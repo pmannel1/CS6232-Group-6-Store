@@ -54,5 +54,45 @@ namespace CS6232_Group_6_Store.DAL
 
             return rentalItems;
         }
+
+        public void AddRentalItem(RentalItem rental)
+        {
+            string insertStatement = @"
+        INSERT INTO rental_items (transactionId, furnitureId, quantity, quantityReturned)
+        VALUES (@TransactionId, @ItemId, @Quantity, @QuantityReturned);";
+
+            using (SqlConnection connection = DBConnection.GetConnection())
+            {
+                connection.Open();
+                using (var transaction = connection.BeginTransaction())
+                {
+                    try
+                    {
+                        using (SqlCommand command = new SqlCommand(insertStatement, connection, transaction))
+                        {
+                            command.Parameters.Add("@TransactionId", SqlDbType.Int);
+                            command.Parameters["@TransactionId"].Value = rental.TransactionId;
+
+                            command.Parameters.Add("@ItemId", SqlDbType.Int);
+                            command.Parameters["@ItemId"].Value = rental.FurnitureId;
+
+                            command.Parameters.Add("@Quantity", SqlDbType.Int);
+                            command.Parameters["@Quantity"].Value = rental.Quantity;
+
+                            command.Parameters.Add("@QuantityReturned", SqlDbType.Int);
+                            command.Parameters["@QuantityReturned"].Value = rental.QuantityReturned;
+
+                            command.ExecuteNonQuery();
+                        }
+                        transaction.Commit();
+                    }
+                    catch
+                    {
+                        transaction.Rollback();
+                        throw;
+                    }
+                }
+            }
+        }
     }
 }
