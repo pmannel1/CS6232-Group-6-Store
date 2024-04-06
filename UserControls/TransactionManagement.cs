@@ -39,9 +39,9 @@ namespace CS6232_Group_6_Store.UserControls
                 var search = memberSearchBox.Text;
                 var searchToInt = 0;
 
-                if (!int.TryParse(search, out searchToInt))
+                if (memberSearchMethodComboBox.Text.Equals("ID") && !int.TryParse(search, out searchToInt))
                 {
-                    this.memberSearchButtonError.Text = "INPUT VALID INTEGER.";
+                    this.memberSearchButtonError.Text = "Input valid data for ID";
                     return;
                 }
                 this.memberSearchButtonError.Text = "";
