@@ -44,6 +44,8 @@ namespace CS6232_Group_6_Store.View
             newMember = new Member(lName, fName, dob, sAddress, city, state, zip, country, pNum, pWord, sex);
         }
 
+      
+
         private void ConfirmButton_Click(object sender, EventArgs e)
         {
             try
