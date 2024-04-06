@@ -14,11 +14,11 @@ namespace CS6232_Group_6_Store.DAL
         /// <returns></returns>
         public static SqlConnection GetConnection()
         {
+        
             var connectionString =
-            "Data Source=localhost;Initial Catalog=cs6232-6;" +
-            "Integrated Security=True";
+                      "Data Source=localhost;Initial Catalog=cs6232-6;" +
+                      "Integrated Security=True";
 
-       
             SqlConnection connection = new SqlConnection(connectionString);
             return connection;
         }

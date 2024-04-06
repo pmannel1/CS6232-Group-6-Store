@@ -37,6 +37,7 @@
             tableLayoutPanel3 = new TableLayoutPanel();
             memberSearchButton = new Button();
             memberSearchBox = new TextBox();
+            memberSearchButtonError = new Label();
             memberListView = new ListView();
             tableLayoutPanel4 = new TableLayoutPanel();
             memberHistorySearchButton = new Button();
@@ -131,11 +132,13 @@
             // 
             // tableLayoutPanel3
             // 
-            tableLayoutPanel3.ColumnCount = 2;
+            tableLayoutPanel3.ColumnCount = 3;
             tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 284F));
             tableLayoutPanel3.Controls.Add(memberSearchButton, 1, 0);
             tableLayoutPanel3.Controls.Add(memberSearchBox, 0, 0);
+            tableLayoutPanel3.Controls.Add(memberSearchButtonError, 2, 0);
             tableLayoutPanel3.Dock = DockStyle.Fill;
             tableLayoutPanel3.Location = new Point(148, 45);
             tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -146,7 +149,7 @@
             // 
             // memberSearchButton
             // 
-            memberSearchButton.Location = new Point(274, 3);
+            memberSearchButton.Location = new Point(132, 3);
             memberSearchButton.Name = "memberSearchButton";
             memberSearchButton.Size = new Size(118, 21);
             memberSearchButton.TabIndex = 0;
@@ -160,6 +163,15 @@
             memberSearchBox.Name = "memberSearchBox";
             memberSearchBox.Size = new Size(100, 23);
             memberSearchBox.TabIndex = 1;
+            // 
+            // memberSearchButtonError
+            // 
+            memberSearchButtonError.AutoSize = true;
+            memberSearchButtonError.ForeColor = Color.Red;
+            memberSearchButtonError.Location = new Point(261, 0);
+            memberSearchButtonError.Name = "memberSearchButtonError";
+            memberSearchButtonError.Size = new Size(0, 15);
+            memberSearchButtonError.TabIndex = 2;
             // 
             // memberListView
             // 
@@ -307,5 +319,6 @@
         private Button clearMemberHistorySearchButton;
         private Label memberHistoryLabel;
         private ListView memberHistoryListView;
+        private Label memberSearchButtonError;
     }
 }

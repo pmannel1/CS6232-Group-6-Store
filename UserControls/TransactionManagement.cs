@@ -37,6 +37,14 @@ namespace CS6232_Group_6_Store.UserControls
 
                 var method = memberSearchMethodComboBox.Text;
                 var search = memberSearchBox.Text;
+                var searchToInt = 0;
+
+                if (memberSearchMethodComboBox.Text.Equals("ID") && !int.TryParse(search, out searchToInt))
+                {
+                    this.memberSearchButtonError.Text = "Input valid data for ID";
+                    return;
+                }
+                this.memberSearchButtonError.Text = "";
                 List<Member> searchResult = _memberController.SearchMember(method, search);
                 foreach (var dr in searchResult)
                 {

@@ -12,7 +12,7 @@ namespace CS6232_Group_6_Store.UserControls
         private readonly MemberController _memberController;
         private readonly FurnitureController _furnitureController;
         private readonly RentalItemController _rentalItemController;
-        List<RentalItem> cart = [];
+        List<RentalItem> cart = new List<RentalItem>();
         RentalTransaction transaction;
         int employeeId;
         int memberId;
@@ -76,6 +76,40 @@ namespace CS6232_Group_6_Store.UserControls
 
         private void furnitureSearchButton_Click(object sender, EventArgs e)
         {
+            var method = selectionMethodComboBox.Text.Trim();
+            var search = furnitureSearchBox.Text.Trim();
+            string message = "Please select search Method";
+            if (method == "")
+            {
+                MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (furnitureSearchBox.Text == "")
+            {
+                if(selectionMethodComboBox.Text =="ID")
+                {
+                   message = "Please specify ID to search";
+                }
+                else if(selectionMethodComboBox.Text == "Category")
+                {
+                    message = "Please specify Category to search";
+                }
+                else if(selectionMethodComboBox.Text == "Style")
+                {
+                    message = "Please specify Style to search";
+                }
+                MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (selectionMethodComboBox.Text == "ID")
+            {
+                if (int.TryParse(furnitureSearchBox.Text, out _) == false)
+                {
+                    message = "Please specify numeric value for ID to search";
+                    MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
             this.populateFurnitureListView();
         }
 
