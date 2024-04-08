@@ -24,15 +24,12 @@ namespace CS6232_Group_6_Store.UserControls
             InitializeComponent();
             this._memberController = new MemberController();
             memberSearchBox.TextChanged += MemberSearchBox_TextChanged;
-            memberListView.SelectedIndexChanged += MemberListView_SelectedIndexChanged;
-
-
+            memberListView.SelectedIndexChanged += memberListView_SelectedIndexChanged; 
+            memberListView.ItemChecked += memberListView_ItemChecked;
         }
 
-
-
         /// <summary>
-        /// Displaus the membes.
+        /// Displays the members.
         /// </summary>
         /// <param name="searchMethod">The search method.</param>
         /// <param name="searchParameter">The search parameter.</param>
@@ -122,6 +119,7 @@ namespace CS6232_Group_6_Store.UserControls
 
         private void EditButton_Click(object sender, EventArgs e)
         {
+
             if (memberListView.SelectedItems.Count > 0)
             {
                 this.selectedMember = int.Parse(memberListView.SelectedItems[0].SubItems[0].Text);
@@ -138,6 +136,25 @@ namespace CS6232_Group_6_Store.UserControls
 
         }
 
+        private void memberListView_ItemChecked(object sender, ItemCheckedEventArgs e)
+        {
+            if (e.Item.Checked)
+            {
+                foreach (ListViewItem item in memberListView.Items)
+                {
+                    if (item != e.Item)
+                    {
+                        item.Checked = false;
+                    }
+                }
+                this.editButton.Enabled = true;
+            }
+            else
+            {
+                this.editButton.Enabled = false;
+            }
+
+        }
         private void MemberListView_Select(object sender, EventArgs e)
         {
             this.MemberSelection();
@@ -160,6 +177,10 @@ namespace CS6232_Group_6_Store.UserControls
         private void ClearButton_Click(object sender, EventArgs e)
         {
             this.Clear();
+        }
+        private void memberListView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+          //  this.Clear();
         }
 
         private void Clear()

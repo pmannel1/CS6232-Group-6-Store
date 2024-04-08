@@ -154,6 +154,8 @@
             memberListView.Size = new Size(550, 184);
             memberListView.TabIndex = 8;
             memberListView.UseCompatibleStateImageBehavior = false;
+            memberListView.SelectedIndexChanged += memberListView_SelectedIndexChanged;
+            memberListView.Click += memberListView_SelectedIndexChanged;
             // 
             // memberSearchListViewLabel
             // 
