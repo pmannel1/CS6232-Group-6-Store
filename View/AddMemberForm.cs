@@ -1,8 +1,6 @@
 ﻿using CS6232_Group_6_Store.Controller;
 using CS6232_Group_6_Store.Model;
 using CS6232_Group_6_Store.UserControls;
-using System.Drawing.Imaging;
-using System.Text;
 
 namespace CS6232_Group_6_Store.View
 {

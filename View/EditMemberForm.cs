@@ -29,10 +29,13 @@ namespace CS6232_Group_6_Store.View
             this.selectedMember = dashboard.selectedMember;
         }
 
+        /// <summary>
+        /// Populates the fields.
+        /// </summary>
+        /// <exception cref="System.ArgumentException">Member could not be found</exception>
         private void PopulateFields()
         {
-            try
-            {
+            
                 Member member = this._memberController.RetrieveMember(this.selectedMember);
                 if (member == null)
                 {
@@ -54,14 +57,13 @@ namespace CS6232_Group_6_Store.View
                 stateTextBox.SelectedValue = member.State;
                 sexComboBox.SelectedValue = member.Sex;
 
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, ex.GetType().ToString());
-            }
+           
 
         }
 
+        /// <summary>
+        /// Fills the combo boxes.
+        /// </summary>
         private void FillComboBoxes()
         {
             stateTextBox.DataSource = _stateController.GetStates();
@@ -84,15 +86,22 @@ namespace CS6232_Group_6_Store.View
             sexComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
+        /// <summary>
+        /// Handles the Load event of the EditMemberForm control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void EditMemberForm_Load(object sender, EventArgs e)
         {
             this.PopulateFields();
         }
 
+        /// <summary>
+        /// Updates the member.
+        /// </summary>
         private void UpdateMember()
         {
-            try
-            {
+            
                 var id = this.selectedMember;
                 var fName = this.firstNameTextBox.Text;
                 var lName = this.lastNameTextBox.Text;
@@ -107,14 +116,13 @@ namespace CS6232_Group_6_Store.View
                 var country = "USA";
 
                 updatedMember = new Member(id, lName, fName, dob, sAddress, city, state, zip, country, pNum, pWord, sex);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, ex.GetType().ToString());
-            }
-
+            
         }
 
+        /// <summary>
+        /// Validates the fields.
+        /// </summary>
+        /// <returns></returns>
         public bool ValidateFields()
         {
             this.ClearErrorLabels();
@@ -196,6 +204,9 @@ namespace CS6232_Group_6_Store.View
             return isValid;
         }
 
+        /// <summary>
+        /// Clears the error labels.
+        /// </summary>
         private void ClearErrorLabels()
         {
             this.firstNameErrorLabel.Text = string.Empty;
@@ -209,6 +220,11 @@ namespace CS6232_Group_6_Store.View
             this.zipCodeErrorLabel.Text = string.Empty;
         }
 
+        /// <summary>
+        /// Handles the Click event of the ConfirmButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void ConfirmButton_Click(object sender, EventArgs e)
         {
 
@@ -220,11 +236,21 @@ namespace CS6232_Group_6_Store.View
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the ClearButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void ClearButton_Click(object sender, EventArgs e)
         {
             this.PopulateFields();
         }
 
+        /// <summary>
+        /// Handles the Click event of the CancelButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void CancelButton_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
