@@ -35,9 +35,16 @@ namespace CS6232_Group_6_Store.UserControls
         /// <param name="searchParameter">The search parameter.</param>
         public void DisplayMembers(string searchItem)
         {
-            try
-            {
-                int searchInt = int.Parse(searchItem);
+                if (!int.TryParse(searchItem, out int searchInt))
+                {
+                    memberErrorLabel.Text = "Invalid search item. Please enter a valid integer ID.";
+                    memberErrorLabel.ForeColor = Color.Red;
+                    memberErrorLabel.Visible = true;
+                    return;
+                }
+
+                memberErrorLabel.Visible = false;
+
                 memberListView.Clear();
                 memberListView.View = System.Windows.Forms.View.Details;
                 memberListView.GridLines = true;
@@ -45,47 +52,46 @@ namespace CS6232_Group_6_Store.UserControls
                 memberListView.Columns.Add("Last Name", 150);
                 memberListView.Columns.Add("First Name", 150);
                 memberListView.Columns.Add("Date Of Birth", 100);
-                memberListView.Columns.Add("Adress", 150);
+                memberListView.Columns.Add("Address", 150);
                 memberListView.Columns.Add("City", 100);
                 memberListView.Columns.Add("State", 50);
                 memberListView.Columns.Add("ZipCode", 100);
                 memberListView.Columns.Add("Country", 150);
                 memberListView.Columns.Add("Phone", 150);
+
                 List<Member> searchResult = _memberController.ReturnMembersSearch(searchInt);
+
+                if (searchResult.Count == 0)
+                {
+                    memberErrorLabel.Text = "No member found matching the search criteria.";
+                    memberErrorLabel.ForeColor = Color.Red;
+                    memberErrorLabel.Visible = true;
+                    return;
+                }
+
                 foreach (var dr in searchResult)
                 {
                     var membersList = memberListView.Items.Add(dr.Id.ToString());
-                    membersList.SubItems.Add(dr.LastName.ToString());
-                    membersList.SubItems.Add(dr.FirstName.ToString());
-                    if (!Convert.IsDBNull(dr.DateOfBirth))
-                    {
-                        membersList.SubItems.Add(Convert.ToDateTime(dr.DateOfBirth.ToString()).ToString("MM/dd/yyyy"));
-                    }
-                    else
-                    {
-                        membersList.SubItems.Add(dr.DateOfBirth.ToString());
-                    }
-                    membersList.SubItems.Add(dr.StreetAddress.ToString());
-                    membersList.SubItems.Add(dr.City.ToString());
-                    membersList.SubItems.Add(dr.State.ToString());
-                    membersList.SubItems.Add(dr.ZipCode.ToString());
-                    membersList.SubItems.Add(dr.Country.ToString());
-                    membersList.SubItems.Add(dr.ContactPhone.ToString());
+                    membersList.SubItems.Add(dr.LastName ?? "");
+                    membersList.SubItems.Add(dr.FirstName ?? "");
+                    membersList.SubItems.Add(dr.DateOfBirth.ToString("MM/dd/yyyy") ?? "");
+                    membersList.SubItems.Add(dr.StreetAddress ?? "");
+                    membersList.SubItems.Add(dr.City ?? "");
+                    membersList.SubItems.Add(dr.State ?? "");
+                    membersList.SubItems.Add(dr.ZipCode.ToString() ?? "");
+                    membersList.SubItems.Add(dr.Country ?? "");
+                    membersList.SubItems.Add(dr.ContactPhone ?? "");
                 }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
 
-       
-        /// <summary>
-        /// Handles the SelectedIndexChanged event of the customerListBox control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void customerListBox_SelectedIndexChanged(object sender, EventArgs e)
+
+
+            /// <summary>
+            /// Handles the SelectedIndexChanged event of the customerListBox control.
+            /// </summary>
+            /// <param name="sender">The source of the event.</param>
+            /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+            private void customerListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             memberListView.Items.Clear();
         }
