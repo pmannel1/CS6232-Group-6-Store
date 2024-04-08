@@ -1,6 +1,5 @@
 ﻿using CS6232_Group_6_Store.Controller;
 using CS6232_Group_6_Store.Model;
-using CS6232_Group_6_Store.View;
 
 namespace CS6232_Group_6_Store.UserControls
 {
@@ -19,11 +18,19 @@ namespace CS6232_Group_6_Store.UserControls
             this.memberHistorySearchButton.Enabled = false;
         }
 
+        /// <summary>
+        /// Handles the Click event of the memberSearchButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void memberSearchButton_Click(object sender, EventArgs e)
         {
             this.populateMemberListView();
         }
 
+        /// <summary>
+        /// Populates the member ListView.
+        /// </summary>
         private void populateMemberListView()
         {
             transactionErrorLabel.Visible = false; // Hide error label initially
@@ -71,7 +78,11 @@ namespace CS6232_Group_6_Store.UserControls
             }
         }
 
-
+        /// <summary>
+        /// Handles the ItemChecked event of the memberListView control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="ItemCheckedEventArgs"/> instance containing the event data.</param>
         private void memberListView_ItemChecked(object sender, ItemCheckedEventArgs e)
         {
             if (e.Item.Checked)
@@ -92,6 +103,11 @@ namespace CS6232_Group_6_Store.UserControls
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the memberHistorySearchButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void memberHistorySearchButton_Click(object sender, EventArgs e)
         {
 
@@ -131,6 +147,11 @@ namespace CS6232_Group_6_Store.UserControls
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the clearMemberSearchButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void clearMemberSearchButton_Click(object sender, EventArgs e)
         {
             this.memberListView.Clear();
@@ -139,6 +160,11 @@ namespace CS6232_Group_6_Store.UserControls
             this.memberHistoryListView.Clear();
         }
 
+        /// <summary>
+        /// Handles the Click event of the clearMemberHistorySearchButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void clearMemberHistorySearchButton_Click(object sender, EventArgs e)
         {
             this.memberHistoryListView.Clear();

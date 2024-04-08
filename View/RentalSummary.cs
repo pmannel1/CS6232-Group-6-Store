@@ -10,6 +10,11 @@ namespace CS6232_Group_6_Store.View
         private RentalTransaction _transaction;
         private readonly FurnitureController _furnitureController;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RentalSummary"/> class.
+        /// </summary>
+        /// <param name="cart">The cart.</param>
+        /// <param name="transaction">The transaction.</param>
         public RentalSummary(List<RentalItem> cart, RentalTransaction transaction)
         {
             InitializeComponent();
@@ -22,6 +27,9 @@ namespace CS6232_Group_6_Store.View
             refreshCartView();
         }
 
+        /// <summary>
+        /// Refreshes the cart view.
+        /// </summary>
         private void refreshCartView()
         {
             try

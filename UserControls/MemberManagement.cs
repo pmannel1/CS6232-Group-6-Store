@@ -96,6 +96,11 @@ namespace CS6232_Group_6_Store.UserControls
             memberListView.Items.Clear();
         }
 
+        /// <summary>
+        /// Handles the Click event of the searchButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void searchButton_Click(object sender, EventArgs e)
         {
             memberListView.Clear();
@@ -121,8 +126,12 @@ namespace CS6232_Group_6_Store.UserControls
           
 
         }
-       
 
+        /// <summary>
+        /// Handles the Click event of the EditButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void EditButton_Click(object sender, EventArgs e)
         {
 
@@ -142,6 +151,11 @@ namespace CS6232_Group_6_Store.UserControls
 
         }
 
+        /// <summary>
+        /// Handles the ItemChecked event of the memberListView control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="ItemCheckedEventArgs"/> instance containing the event data.</param>
         private void memberListView_ItemChecked(object sender, ItemCheckedEventArgs e)
         {
             if (e.Item.Checked)
@@ -161,11 +175,20 @@ namespace CS6232_Group_6_Store.UserControls
             }
 
         }
+
+        /// <summary>
+        /// Handles the Select event of the MemberListView control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void MemberListView_Select(object sender, EventArgs e)
         {
             this.MemberSelection();
         }
 
+        /// <summary>
+        /// Members the selection.
+        /// </summary>
         private void MemberSelection()
         {
             if (memberListView.SelectedItems.Count > 0)
@@ -179,16 +202,29 @@ namespace CS6232_Group_6_Store.UserControls
 
             }
         }
-
+        /// <summary>
+        /// Handles the Click event of the ClearButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void ClearButton_Click(object sender, EventArgs e)
         {
             this.Clear();
         }
+
+        /// <summary>
+        /// Handles the SelectedIndexChanged event of the memberListView control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void memberListView_SelectedIndexChanged(object sender, EventArgs e)
         {
           //  this.Clear();
         }
 
+        /// <summary>
+        /// Clears this instance.
+        /// </summary>
         private void Clear()
         {
             this.memberListView.Clear();
@@ -199,22 +235,41 @@ namespace CS6232_Group_6_Store.UserControls
 
         }
 
+        /// <summary>
+        /// Handles the VisibleChanged event of the MemberManagement control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void MemberManagement_VisibleChanged(object sender, EventArgs e)
         {
             this.Clear();
         }
 
+        /// <summary>
+        /// Handles the TextChanged event of the MemberSearchBox control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void MemberSearchBox_TextChanged(object sender, EventArgs e)
         {
             searchButton.Enabled = !string.IsNullOrEmpty(memberSearchBox.Text);
         }
 
+        /// <summary>
+        /// Handles the SelectedIndexChanged event of the MemberListView control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void MemberListView_SelectedIndexChanged(object sender, EventArgs e)
         {
             editButton.Enabled = memberListView.SelectedItems.Count > 0;
         }
 
-
+        /// <summary>
+        /// Handles the Click event of the AddButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void AddButton_Click(object sender, EventArgs e)
         {
             AddMemberForm addForm = new AddMemberForm(this);
