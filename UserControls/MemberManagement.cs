@@ -118,44 +118,7 @@ namespace CS6232_Group_6_Store.UserControls
           
 
         }
-        /// <summary>
-        /// Handles the Click event of the searchButton control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        /*private void searchButton_Click(object sender, EventArgs e)
-        {
-            memberListView.Clear();
-            if (memberSearchBox.Text.Length == 0)
-            {
-                memberErrorLabel.Text = "Please enter a search term.";
-                memberErrorLabel.ForeColor = Color.Red;
-                memberErrorLabel.Visible = true;
-                return;
-            }
-
-            string searchMethod = searchMethodBox.SelectedItem.ToString();
-            string searchItem = memberSearchBox.Text;
-
-            List<Member> searchResult = _memberController.SearchMember(searchMethod, searchItem);
-
-            if (searchResult.Count == 0)
-            {
-                memberErrorLabel.Text = "No member found matching the search criteria.";
-                memberErrorLabel.ForeColor = Color.Red;
-
-                memberErrorLabel.Visible = true;
-                return;
-            }
-            else
-            {
-                memberErrorLabel.Visible = false;
-            }
-
-            DisplayMembers(memberSearchBox.Text);
-            this.MemberSelection();
-        }
-*/
+       
 
         private void EditButton_Click(object sender, EventArgs e)
         {
