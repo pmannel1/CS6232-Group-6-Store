@@ -120,9 +120,9 @@ namespace CS6232_Group_6_Store.UserControls
         private void EditButton_Click(object sender, EventArgs e)
         {
 
-            if (memberListView.SelectedItems.Count > 0)
+            if (memberListView.CheckedItems.Count > 0)
             {
-                this.selectedMember = int.Parse(memberListView.SelectedItems[0].SubItems[0].Text);
+                this.selectedMember = int.Parse(memberListView.CheckedItems[0].SubItems[0].Text);
                 EditMemberForm editForm = new EditMemberForm(this);
                 DialogResult result = editForm.ShowDialog();
                 this.Clear();
