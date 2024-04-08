@@ -56,6 +56,15 @@
             tableLayoutPanel3 = new TableLayoutPanel();
             userNameLabel = new Label();
             employeeNameLebel = new Label();
+            firstNameErrorLabel = new Label();
+            lastNameErrorLabel = new Label();
+            sexErrorLabel = new Label();
+            streetErrorLabel = new Label();
+            cityErrorLabel = new Label();
+            stateErrorLabel = new Label();
+            zipCodeErrorLabel = new Label();
+            phoneErrorLabel = new Label();
+            passwordErrorLabel = new Label();
             tableLayoutPanel1.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
             tableLayoutPanel3.SuspendLayout();
@@ -89,6 +98,15 @@
             tableLayoutPanel1.Controls.Add(passwordTextBox, 1, 10);
             tableLayoutPanel1.Controls.Add(tableLayoutPanel2, 1, 11);
             tableLayoutPanel1.Controls.Add(tableLayoutPanel3, 1, 0);
+            tableLayoutPanel1.Controls.Add(firstNameErrorLabel, 2, 1);
+            tableLayoutPanel1.Controls.Add(lastNameErrorLabel, 2, 2);
+            tableLayoutPanel1.Controls.Add(sexErrorLabel, 2, 3);
+            tableLayoutPanel1.Controls.Add(streetErrorLabel, 2, 5);
+            tableLayoutPanel1.Controls.Add(cityErrorLabel, 2, 6);
+            tableLayoutPanel1.Controls.Add(stateErrorLabel, 2, 7);
+            tableLayoutPanel1.Controls.Add(zipCodeErrorLabel, 2, 8);
+            tableLayoutPanel1.Controls.Add(phoneErrorLabel, 2, 9);
+            tableLayoutPanel1.Controls.Add(passwordErrorLabel, 2, 10);
             tableLayoutPanel1.Dock = DockStyle.Fill;
             tableLayoutPanel1.Location = new Point(0, 0);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -353,6 +371,78 @@
             employeeNameLebel.TabIndex = 7;
             employeeNameLebel.Text = "EmployeeName";
             // 
+            // firstNameErrorLabel
+            // 
+            firstNameErrorLabel.AutoSize = true;
+            firstNameErrorLabel.Location = new Point(643, 31);
+            firstNameErrorLabel.Name = "firstNameErrorLabel";
+            firstNameErrorLabel.Size = new Size(0, 15);
+            firstNameErrorLabel.TabIndex = 26;
+            // 
+            // lastNameErrorLabel
+            // 
+            lastNameErrorLabel.AutoSize = true;
+            lastNameErrorLabel.Location = new Point(643, 69);
+            lastNameErrorLabel.Name = "lastNameErrorLabel";
+            lastNameErrorLabel.Size = new Size(0, 15);
+            lastNameErrorLabel.TabIndex = 27;
+            // 
+            // sexErrorLabel
+            // 
+            sexErrorLabel.AutoSize = true;
+            sexErrorLabel.Location = new Point(643, 107);
+            sexErrorLabel.Name = "sexErrorLabel";
+            sexErrorLabel.Size = new Size(0, 15);
+            sexErrorLabel.TabIndex = 28;
+            // 
+            // streetErrorLabel
+            // 
+            streetErrorLabel.AutoSize = true;
+            streetErrorLabel.Location = new Point(643, 183);
+            streetErrorLabel.Name = "streetErrorLabel";
+            streetErrorLabel.Size = new Size(0, 15);
+            streetErrorLabel.TabIndex = 29;
+            // 
+            // cityErrorLabel
+            // 
+            cityErrorLabel.AutoSize = true;
+            cityErrorLabel.Location = new Point(643, 221);
+            cityErrorLabel.Name = "cityErrorLabel";
+            cityErrorLabel.Size = new Size(0, 15);
+            cityErrorLabel.TabIndex = 30;
+            // 
+            // stateErrorLabel
+            // 
+            stateErrorLabel.AutoSize = true;
+            stateErrorLabel.Location = new Point(643, 259);
+            stateErrorLabel.Name = "stateErrorLabel";
+            stateErrorLabel.Size = new Size(0, 15);
+            stateErrorLabel.TabIndex = 31;
+            // 
+            // zipCodeErrorLabel
+            // 
+            zipCodeErrorLabel.AutoSize = true;
+            zipCodeErrorLabel.Location = new Point(643, 297);
+            zipCodeErrorLabel.Name = "zipCodeErrorLabel";
+            zipCodeErrorLabel.Size = new Size(0, 15);
+            zipCodeErrorLabel.TabIndex = 32;
+            // 
+            // phoneErrorLabel
+            // 
+            phoneErrorLabel.AutoSize = true;
+            phoneErrorLabel.Location = new Point(643, 335);
+            phoneErrorLabel.Name = "phoneErrorLabel";
+            phoneErrorLabel.Size = new Size(0, 15);
+            phoneErrorLabel.TabIndex = 33;
+            // 
+            // passwordErrorLabel
+            // 
+            passwordErrorLabel.AutoSize = true;
+            passwordErrorLabel.Location = new Point(643, 373);
+            passwordErrorLabel.Name = "passwordErrorLabel";
+            passwordErrorLabel.Size = new Size(0, 15);
+            passwordErrorLabel.TabIndex = 34;
+            // 
             // EditMemberForm
             // 
             AcceptButton = confirmButton;
@@ -406,5 +496,14 @@
         private TableLayoutPanel tableLayoutPanel3;
         private Label userNameLabel;
         private Label employeeNameLebel;
+        private Label firstNameErrorLabel;
+        private Label lastNameErrorLabel;
+        private Label sexErrorLabel;
+        private Label streetErrorLabel;
+        private Label cityErrorLabel;
+        private Label stateErrorLabel;
+        private Label zipCodeErrorLabel;
+        private Label phoneErrorLabel;
+        private Label passwordErrorLabel;
     }
 }
