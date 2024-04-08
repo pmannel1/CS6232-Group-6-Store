@@ -122,10 +122,20 @@ namespace CS6232_Group_6_Store.UserControls
 
         private void EditButton_Click(object sender, EventArgs e)
         {
-            this.selectedMember = int.Parse(memberListView.SelectedItems[0].SubItems[0].Text);
-            EditMemberForm editForm = new EditMemberForm(this);
-            DialogResult result = editForm.ShowDialog();
-            this.Clear();
+            if (memberListView.SelectedItems.Count > 0)
+            {
+                this.selectedMember = int.Parse(memberListView.SelectedItems[0].SubItems[0].Text);
+                EditMemberForm editForm = new EditMemberForm(this);
+                DialogResult result = editForm.ShowDialog();
+                this.Clear();
+            }
+            else
+            { 
+                memberErrorLabel.Text = "No Member Selected";
+            memberErrorLabel.ForeColor = Color.Red;
+            memberErrorLabel.Visible = true;
+            }
+
         }
 
         private void MemberListView_Select(object sender, EventArgs e)
@@ -142,7 +152,7 @@ namespace CS6232_Group_6_Store.UserControls
             }
             else
             {
-                this.editButton.Enabled = false;
+                this.editButton.Enabled = true;
 
             }
         }
