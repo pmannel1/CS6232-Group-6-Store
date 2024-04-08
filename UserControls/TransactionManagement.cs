@@ -26,6 +26,8 @@ namespace CS6232_Group_6_Store.UserControls
 
         private void populateMemberListView()
         {
+            transactionErrorLabel.Visible = false; // Hide error label initially
+
             try
             {
                 this.memberListView.Clear();
@@ -38,6 +40,22 @@ namespace CS6232_Group_6_Store.UserControls
                 var method = memberSearchMethodComboBox.Text;
                 var search = memberSearchBox.Text;
                 List<Member> searchResult = _memberController.SearchMember(method, search);
+
+                if (searchResult.Count == 0)
+                {
+                    transactionErrorLabel.Text = "No matching records found.";
+                    transactionErrorLabel.ForeColor = Color.Red;
+                    transactionErrorLabel.Visible = true;
+                    return;
+                }
+
+                if (memberSearchBox.Text.Length > 0) 
+                {
+                    transactionErrorLabel.Text = "Please input a number for ID/Name for Name";
+                    transactionErrorLabel.ForeColor = Color.Red;
+                    transactionErrorLabel.Visible = true;
+                }
+
                 foreach (var dr in searchResult)
                 {
                     var membersList = memberListView.Items.Add(dr.Id.ToString());
@@ -47,10 +65,12 @@ namespace CS6232_Group_6_Store.UserControls
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                transactionErrorLabel.Text = $"An error occurred: {ex.Message}";
+                transactionErrorLabel.ForeColor = Color.Red;
+                transactionErrorLabel.Visible = true;
             }
-
         }
+
 
         private void memberListView_ItemChecked(object sender, ItemCheckedEventArgs e)
         {
@@ -74,6 +94,8 @@ namespace CS6232_Group_6_Store.UserControls
 
         private void memberHistorySearchButton_Click(object sender, EventArgs e)
         {
+
+            
             try
             {
                 this.memberHistoryListView.Clear();
