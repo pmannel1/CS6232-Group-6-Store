@@ -29,7 +29,7 @@ namespace CS6232_Group_6_Store.View
             this.dashboard = currentDashboard;
         }
 
-        private void AddMember()
+        private void SetMember()
         {
             
             var fName = this.firstNameTextBox.Text;
@@ -133,7 +133,7 @@ namespace CS6232_Group_6_Store.View
 
         {
             if (ValidateFields())            {
-                this.AddMember();
+                this.SetMember();
                 _memberController.AddMember(newMember);
                 DialogResult = DialogResult.OK;
 
