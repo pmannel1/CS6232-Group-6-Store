@@ -291,10 +291,11 @@
             {
                 throw new ArgumentException("country cannot be null or empty");
             }
-            if (string.IsNullOrEmpty(contactPhone) || contactPhone.Length != 10 || !contactPhone.All(char.IsDigit))
+            if (string.IsNullOrEmpty(contactPhone) || contactPhone.Length < 7 || contactPhone.Length > 10 || !contactPhone.All(char.IsDigit))
             {
-                throw new ArgumentException("phone number cannot be null or empty, must be seven digits and only numerical");
+                throw new ArgumentException("Phone number must be between 7 and 10 digits long and contain only numerical characters.");
             }
+
             if (string.IsNullOrEmpty(password))
             {
                 throw new ArgumentException("password cannot be null or empty");
