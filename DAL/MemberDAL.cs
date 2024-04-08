@@ -198,22 +198,22 @@ namespace CS6232_Group_6_Store.DAL
             {
                 connection.Open();
 
-                using (SqlCommand updateCommand = new SqlCommand(updateStatement, connection))
+                using (SqlCommand insertCommand = new SqlCommand(updateStatement, connection))
                 {
-                    updateCommand.Parameters.AddWithValue("@id", member.Id);
-                    updateCommand.Parameters.AddWithValue("@lastName", member.LastName);
-                    updateCommand.Parameters.AddWithValue("@firstName", member.FirstName);
-                    updateCommand.Parameters.AddWithValue("@sex", member.Sex);
-                    updateCommand.Parameters.AddWithValue("@dob", member.DateOfBirth);
-                    updateCommand.Parameters.AddWithValue("@streetAddress", member.StreetAddress);
-                    updateCommand.Parameters.AddWithValue("@city", member.City);
-                    updateCommand.Parameters.AddWithValue("@state", member.State);
-                    updateCommand.Parameters.AddWithValue("@zipCode", member.ZipCode.ToString());
-                    updateCommand.Parameters.AddWithValue("@country", member.Country);
-                    updateCommand.Parameters.AddWithValue("@contactPhone", member.ContactPhone);
-                    updateCommand.Parameters.AddWithValue("@password", member.Password);
+                    insertCommand.Parameters.AddWithValue("@id", member.Id);
+                    insertCommand.Parameters.AddWithValue("@lastName", member.LastName);
+                    insertCommand.Parameters.AddWithValue("@firstName", member.FirstName);
+                    insertCommand.Parameters.AddWithValue("@sex", member.Sex);
+                    insertCommand.Parameters.AddWithValue("@dob", member.DateOfBirth);
+                    insertCommand.Parameters.AddWithValue("@streetAddress", member.StreetAddress);
+                    insertCommand.Parameters.AddWithValue("@city", member.City);
+                    insertCommand.Parameters.AddWithValue("@state", member.State);
+                    insertCommand.Parameters.AddWithValue("@zipCode", member.ZipCode.ToString());
+                    insertCommand.Parameters.AddWithValue("@country", member.Country);
+                    insertCommand.Parameters.AddWithValue("@contactPhone", member.ContactPhone);
+                    insertCommand.Parameters.AddWithValue("@password", member.Password);
 
-                    updateCommand.ExecuteNonQuery();
+                    insertCommand.ExecuteNonQuery();
                 }
             }
         }
