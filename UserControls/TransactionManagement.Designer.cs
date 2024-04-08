@@ -37,7 +37,6 @@
             tableLayoutPanel3 = new TableLayoutPanel();
             memberSearchButton = new Button();
             memberSearchBox = new TextBox();
-            memberSearchButtonError = new Label();
             memberListView = new ListView();
             tableLayoutPanel4 = new TableLayoutPanel();
             memberHistorySearchButton = new Button();
@@ -47,6 +46,7 @@
             clearMemberHistorySearchButton = new Button();
             memberHistoryLabel = new Label();
             memberHistoryListView = new ListView();
+            transactionErrorLabel = new Label();
             tableLayoutPanel1.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
             tableLayoutPanel3.SuspendLayout();
@@ -82,6 +82,7 @@
             tableLayoutPanel2.Controls.Add(tableLayoutPanel3, 1, 1);
             tableLayoutPanel2.Controls.Add(memberListView, 1, 2);
             tableLayoutPanel2.Controls.Add(tableLayoutPanel4, 1, 3);
+            tableLayoutPanel2.Controls.Add(transactionErrorLabel, 0, 3);
             tableLayoutPanel2.Dock = DockStyle.Fill;
             tableLayoutPanel2.Location = new Point(3, 3);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -138,7 +139,6 @@
             tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 284F));
             tableLayoutPanel3.Controls.Add(memberSearchButton, 1, 0);
             tableLayoutPanel3.Controls.Add(memberSearchBox, 0, 0);
-            tableLayoutPanel3.Controls.Add(memberSearchButtonError, 2, 0);
             tableLayoutPanel3.Dock = DockStyle.Fill;
             tableLayoutPanel3.Location = new Point(148, 45);
             tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -163,15 +163,7 @@
             memberSearchBox.Name = "memberSearchBox";
             memberSearchBox.Size = new Size(100, 23);
             memberSearchBox.TabIndex = 1;
-            // 
-            // memberSearchButtonError
-            // 
-            memberSearchButtonError.AutoSize = true;
-            memberSearchButtonError.ForeColor = Color.Red;
-            memberSearchButtonError.Location = new Point(261, 0);
-            memberSearchButtonError.Name = "memberSearchButtonError";
-            memberSearchButtonError.Size = new Size(0, 15);
-            memberSearchButtonError.TabIndex = 2;
+           
             // 
             // memberListView
             // 
@@ -280,6 +272,14 @@
             memberHistoryListView.TabIndex = 2;
             memberHistoryListView.UseCompatibleStateImageBehavior = false;
             // 
+            // transactionErrorLabel
+            // 
+            transactionErrorLabel.AutoSize = true;
+            transactionErrorLabel.Location = new Point(3, 168);
+            transactionErrorLabel.Name = "transactionErrorLabel";
+            transactionErrorLabel.Size = new Size(0, 15);
+            transactionErrorLabel.TabIndex = 7;
+            // 
             // TransactionManagement
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -319,6 +319,6 @@
         private Button clearMemberHistorySearchButton;
         private Label memberHistoryLabel;
         private ListView memberHistoryListView;
-        private Label memberSearchButtonError;
+        private Label transactionErrorLabel;
     }
 }

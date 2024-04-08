@@ -1,6 +1,5 @@
 ﻿using CS6232_Group_6_Store.Controller;
 using CS6232_Group_6_Store.Model;
-using CS6232_Group_6_Store.View;
 
 namespace CS6232_Group_6_Store.UserControls
 {
@@ -19,13 +18,23 @@ namespace CS6232_Group_6_Store.UserControls
             this.memberHistorySearchButton.Enabled = false;
         }
 
+        /// <summary>
+        /// Handles the Click event of the memberSearchButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void memberSearchButton_Click(object sender, EventArgs e)
         {
             this.populateMemberListView();
         }
 
+        /// <summary>
+        /// Populates the member ListView.
+        /// </summary>
         private void populateMemberListView()
         {
+            transactionErrorLabel.Visible = false; // Hide error label initially
+
             try
             {
                 this.memberListView.Clear();
@@ -41,11 +50,27 @@ namespace CS6232_Group_6_Store.UserControls
 
                 if (memberSearchMethodComboBox.Text.Equals("ID") && !int.TryParse(search, out searchToInt))
                 {
-                    this.memberSearchButtonError.Text = "Input valid data for ID";
+                    this.transactionErrorLabel.Text = "Input valid data for ID";
                     return;
                 }
-                this.memberSearchButtonError.Text = "";
+                this.transactionErrorLabel.Text = "";
                 List<Member> searchResult = _memberController.SearchMember(method, search);
+
+                if (searchResult.Count == 0)
+                {
+                    transactionErrorLabel.Text = "No matching records found.";
+                    transactionErrorLabel.ForeColor = Color.Red;
+                    transactionErrorLabel.Visible = true;
+                    return;
+                }
+
+                if (memberSearchBox.Text.Length > 0) 
+                {
+                    transactionErrorLabel.Text = "Please input a number for ID/Name for Name";
+                    transactionErrorLabel.ForeColor = Color.Red;
+                    transactionErrorLabel.Visible = true;
+                }
+
                 foreach (var dr in searchResult)
                 {
                     var membersList = memberListView.Items.Add(dr.Id.ToString());
@@ -55,11 +80,17 @@ namespace CS6232_Group_6_Store.UserControls
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                transactionErrorLabel.Text = $"An error occurred: {ex.Message}";
+                transactionErrorLabel.ForeColor = Color.Red;
+                transactionErrorLabel.Visible = true;
             }
-
         }
 
+        /// <summary>
+        /// Handles the ItemChecked event of the memberListView control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="ItemCheckedEventArgs"/> instance containing the event data.</param>
         private void memberListView_ItemChecked(object sender, ItemCheckedEventArgs e)
         {
             if (e.Item.Checked)
@@ -80,8 +111,15 @@ namespace CS6232_Group_6_Store.UserControls
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the memberHistorySearchButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void memberHistorySearchButton_Click(object sender, EventArgs e)
         {
+
+            
             try
             {
                 this.memberHistoryListView.Clear();
@@ -117,6 +155,11 @@ namespace CS6232_Group_6_Store.UserControls
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the clearMemberSearchButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void clearMemberSearchButton_Click(object sender, EventArgs e)
         {
             this.memberListView.Clear();
@@ -125,6 +168,11 @@ namespace CS6232_Group_6_Store.UserControls
             this.memberHistoryListView.Clear();
         }
 
+        /// <summary>
+        /// Handles the Click event of the clearMemberHistorySearchButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void clearMemberHistorySearchButton_Click(object sender, EventArgs e)
         {
             this.memberHistoryListView.Clear();

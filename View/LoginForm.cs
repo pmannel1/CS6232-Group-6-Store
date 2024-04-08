@@ -73,6 +73,7 @@ namespace CS6232_Group_6_Store.View
         private void loginButton_Click(object sender, EventArgs e)
         {
 
+
             if (idTextBox.Text.Trim() == "" || passwordTextBox.Text.Trim() == "")
             {
                 this.errorLabel.Text = "UserName and/or password is required";
@@ -120,11 +121,21 @@ namespace CS6232_Group_6_Store.View
             Application.Exit();
         }
 
+        /// <summary>
+        /// Handles the TextChanged event of the idTextBox control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void idTextBox_TextChanged(object sender, EventArgs e)
         {
             this.errorLabel.Hide();
         }
 
+        /// <summary>
+        /// Handles the TextChanged event of the passwordTextBox control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void passwordTextBox_TextChanged(object sender, EventArgs e)
         {
             this.errorLabel.Hide();

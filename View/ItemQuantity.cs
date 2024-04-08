@@ -12,6 +12,10 @@ namespace CS6232_Group_6_Store.View
         private RentalItem _rentalItem;
         private readonly FurnitureController furnitureController;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ItemQuantity"/> class.
+        /// </summary>
+        /// <param name="furniture">The furniture.</param>
         public ItemQuantity(Furniture furniture)
         {
             InitializeComponent();
@@ -19,6 +23,10 @@ namespace CS6232_Group_6_Store.View
             DisplayFurnitureDetails();
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ItemQuantity"/> class.
+        /// </summary>
+        /// <param name="rental">The rental.</param>
         public ItemQuantity(RentalItem rental)
         {
             this.furnitureController = new FurnitureController();
@@ -29,6 +37,9 @@ namespace CS6232_Group_6_Store.View
             
         }
 
+        /// <summary>
+        /// Displays the furniture details.
+        /// </summary>
         private void DisplayFurnitureDetails()
         {
             nameBox.Text = _furniture.Name;
@@ -53,6 +64,9 @@ namespace CS6232_Group_6_Store.View
             }
         }
 
+        /// <summary>
+        /// Displays the rental details.
+        /// </summary>
         private void DisplayRentalDetails()
         {
             Furniture furniture = this.furnitureController.GetFurniture(_rentalItem.FurnitureId);
@@ -78,12 +92,22 @@ namespace CS6232_Group_6_Store.View
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the confirmButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void confirmButton_Click(object sender, EventArgs e)
         {
             SelectedQuantity = int.Parse(quantityComboBox.SelectedItem.ToString());
             this.DialogResult = DialogResult.OK;
         }
 
+        /// <summary>
+        /// Handles the Click event of the cancelButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void cancelButton_Click(object sender, EventArgs e)
         {
             this.DialogResult= DialogResult.Cancel;

@@ -53,16 +53,26 @@
             tableLayoutPanel2 = new TableLayoutPanel();
             clearButton = new Button();
             tableLayoutPanel1 = new TableLayoutPanel();
-            userNameLabel = new Label();
-            employeeNameLebel = new Label();
-            tableLayoutPanel3 = new TableLayoutPanel();
             tableLayoutPanel4 = new TableLayoutPanel();
             label1 = new Label();
             label2 = new Label();
+            userNameLabel = new Label();
+            employeeNameLebel = new Label();
+            tableLayoutPanel3 = new TableLayoutPanel();
+            stateErrorLabel = new Label();
+            cityErrorLabel = new Label();
+            streetErrorLabel = new Label();
+            DOBErrorLabel = new Label();
+            sexErrorLabel = new Label();
+            lastNameErrorLabel = new Label();
+            firstNameErrorLabel = new Label();
+            zipCodeErrorLabel = new Label();
+            phoneErrorLabel = new Label();
+            passwordErrorLabel = new Label();
             tableLayoutPanel2.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
-            tableLayoutPanel3.SuspendLayout();
             tableLayoutPanel4.SuspendLayout();
+            tableLayoutPanel3.SuspendLayout();
             SuspendLayout();
             // 
             // firstNameLabel
@@ -305,6 +315,16 @@
             tableLayoutPanel1.Controls.Add(passwordTextBox, 1, 10);
             tableLayoutPanel1.Controls.Add(tableLayoutPanel2, 1, 11);
             tableLayoutPanel1.Controls.Add(tableLayoutPanel4, 1, 0);
+            tableLayoutPanel1.Controls.Add(stateErrorLabel, 2, 7);
+            tableLayoutPanel1.Controls.Add(cityErrorLabel, 2, 6);
+            tableLayoutPanel1.Controls.Add(streetErrorLabel, 2, 5);
+            tableLayoutPanel1.Controls.Add(DOBErrorLabel, 2, 4);
+            tableLayoutPanel1.Controls.Add(sexErrorLabel, 2, 3);
+            tableLayoutPanel1.Controls.Add(lastNameErrorLabel, 2, 2);
+            tableLayoutPanel1.Controls.Add(firstNameErrorLabel, 2, 1);
+            tableLayoutPanel1.Controls.Add(zipCodeErrorLabel, 2, 8);
+            tableLayoutPanel1.Controls.Add(phoneErrorLabel, 2, 9);
+            tableLayoutPanel1.Controls.Add(passwordErrorLabel, 2, 10);
             tableLayoutPanel1.Dock = DockStyle.Fill;
             tableLayoutPanel1.Location = new Point(0, 0);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -323,38 +343,6 @@
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 8.470134F));
             tableLayoutPanel1.Size = new Size(800, 450);
             tableLayoutPanel1.TabIndex = 1;
-            // 
-            // userNameLabel
-            // 
-            userNameLabel.AutoSize = true;
-            userNameLabel.Location = new Point(3, 0);
-            userNameLabel.Name = "userNameLabel";
-            userNameLabel.Size = new Size(62, 15);
-            userNameLabel.TabIndex = 8;
-            userNameLabel.Text = "UserName";
-            // 
-            // employeeNameLebel
-            // 
-            employeeNameLebel.AutoSize = true;
-            employeeNameLebel.Location = new Point(3, 0);
-            employeeNameLebel.Name = "employeeNameLebel";
-            employeeNameLebel.Size = new Size(91, 15);
-            employeeNameLebel.TabIndex = 7;
-            employeeNameLebel.Text = "EmployeeName";
-            // 
-            // tableLayoutPanel3
-            // 
-            tableLayoutPanel3.ColumnCount = 2;
-            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel3.Controls.Add(userNameLabel, 0, 0);
-            tableLayoutPanel3.Dock = DockStyle.Fill;
-            tableLayoutPanel3.Location = new Point(0, 0);
-            tableLayoutPanel3.Name = "tableLayoutPanel3";
-            tableLayoutPanel3.RowCount = 1;
-            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel3.Size = new Size(200, 100);
-            tableLayoutPanel3.TabIndex = 0;
             // 
             // tableLayoutPanel4
             // 
@@ -389,6 +377,118 @@
             label2.TabIndex = 9;
             label2.Text = "EmployeeName";
             // 
+            // userNameLabel
+            // 
+            userNameLabel.AutoSize = true;
+            userNameLabel.Location = new Point(3, 0);
+            userNameLabel.Name = "userNameLabel";
+            userNameLabel.Size = new Size(62, 15);
+            userNameLabel.TabIndex = 8;
+            userNameLabel.Text = "UserName";
+            // 
+            // employeeNameLebel
+            // 
+            employeeNameLebel.AutoSize = true;
+            employeeNameLebel.Location = new Point(3, 0);
+            employeeNameLebel.Name = "employeeNameLebel";
+            employeeNameLebel.Size = new Size(91, 15);
+            employeeNameLebel.TabIndex = 7;
+            employeeNameLebel.Text = "EmployeeName";
+            // 
+            // tableLayoutPanel3
+            // 
+            tableLayoutPanel3.ColumnCount = 2;
+            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel3.Controls.Add(userNameLabel, 0, 0);
+            tableLayoutPanel3.Dock = DockStyle.Fill;
+            tableLayoutPanel3.Location = new Point(0, 0);
+            tableLayoutPanel3.Name = "tableLayoutPanel3";
+            tableLayoutPanel3.RowCount = 1;
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel3.Size = new Size(200, 100);
+            tableLayoutPanel3.TabIndex = 0;
+            // 
+            // stateErrorLabel
+            // 
+            stateErrorLabel.AutoSize = true;
+            stateErrorLabel.Location = new Point(643, 258);
+            stateErrorLabel.Name = "stateErrorLabel";
+            stateErrorLabel.Size = new Size(0, 15);
+            stateErrorLabel.TabIndex = 26;
+            // 
+            // cityErrorLabel
+            // 
+            cityErrorLabel.AutoSize = true;
+            cityErrorLabel.Location = new Point(643, 220);
+            cityErrorLabel.Name = "cityErrorLabel";
+            cityErrorLabel.Size = new Size(0, 15);
+            cityErrorLabel.TabIndex = 27;
+            // 
+            // streetErrorLabel
+            // 
+            streetErrorLabel.AutoSize = true;
+            streetErrorLabel.Location = new Point(643, 182);
+            streetErrorLabel.Name = "streetErrorLabel";
+            streetErrorLabel.Size = new Size(0, 15);
+            streetErrorLabel.TabIndex = 28;
+            // 
+            // DOBErrorLabel
+            // 
+            DOBErrorLabel.AutoSize = true;
+            DOBErrorLabel.Location = new Point(643, 144);
+            DOBErrorLabel.Name = "DOBErrorLabel";
+            DOBErrorLabel.Size = new Size(0, 15);
+            DOBErrorLabel.TabIndex = 29;
+            // 
+            // sexErrorLabel
+            // 
+            sexErrorLabel.AutoSize = true;
+            sexErrorLabel.Location = new Point(643, 106);
+            sexErrorLabel.Name = "sexErrorLabel";
+            sexErrorLabel.Size = new Size(0, 15);
+            sexErrorLabel.TabIndex = 30;
+            // 
+            // lastNameErrorLabel
+            // 
+            lastNameErrorLabel.AutoSize = true;
+            lastNameErrorLabel.Location = new Point(643, 68);
+            lastNameErrorLabel.Name = "lastNameErrorLabel";
+            lastNameErrorLabel.Size = new Size(0, 15);
+            lastNameErrorLabel.TabIndex = 31;
+            // 
+            // firstNameErrorLabel
+            // 
+            firstNameErrorLabel.AutoSize = true;
+            firstNameErrorLabel.Location = new Point(643, 30);
+            firstNameErrorLabel.Name = "firstNameErrorLabel";
+            firstNameErrorLabel.Size = new Size(0, 15);
+            firstNameErrorLabel.TabIndex = 32;
+            // 
+            // zipCodeErrorLabel
+            // 
+            zipCodeErrorLabel.AutoSize = true;
+            zipCodeErrorLabel.Location = new Point(643, 296);
+            zipCodeErrorLabel.Name = "zipCodeErrorLabel";
+            zipCodeErrorLabel.Size = new Size(0, 15);
+            zipCodeErrorLabel.TabIndex = 33;
+            // 
+            // phoneErrorLabel
+            // 
+            phoneErrorLabel.AutoSize = true;
+            phoneErrorLabel.Location = new Point(643, 334);
+            phoneErrorLabel.Name = "phoneErrorLabel";
+            phoneErrorLabel.Size = new Size(0, 15);
+            phoneErrorLabel.TabIndex = 34;
+            // 
+            // passwordErrorLabel
+            // 
+            passwordErrorLabel.AutoSize = true;
+            passwordErrorLabel.Location = new Point(643, 372);
+            passwordErrorLabel.Name = "passwordErrorLabel";
+            passwordErrorLabel.Size = new Size(0, 15);
+            passwordErrorLabel.TabIndex = 35;
+            // 
             // AddMemberForm
             // 
             AcceptButton = confirmButton;
@@ -404,10 +504,10 @@
             tableLayoutPanel2.ResumeLayout(false);
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.PerformLayout();
-            tableLayoutPanel3.ResumeLayout(false);
-            tableLayoutPanel3.PerformLayout();
             tableLayoutPanel4.ResumeLayout(false);
             tableLayoutPanel4.PerformLayout();
+            tableLayoutPanel3.ResumeLayout(false);
+            tableLayoutPanel3.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -444,5 +544,15 @@
         private TableLayoutPanel tableLayoutPanel3;
         private Label label1;
         private Label label2;
+        private Label stateErrorLabel;
+        private Label cityErrorLabel;
+        private Label streetErrorLabel;
+        private Label DOBErrorLabel;
+        private Label sexErrorLabel;
+        private Label lastNameErrorLabel;
+        private Label firstNameErrorLabel;
+        private Label zipCodeErrorLabel;
+        private Label phoneErrorLabel;
+        private Label passwordErrorLabel;
     }
 }
