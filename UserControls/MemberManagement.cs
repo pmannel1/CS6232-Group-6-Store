@@ -35,15 +35,21 @@ namespace CS6232_Group_6_Store.UserControls
         /// <param name="searchParameter">The search parameter.</param>
         public void DisplayMembers(string searchItem)
         {
-                if (!int.TryParse(searchItem, out int searchInt))
-                {
-                    memberErrorLabel.Text = "Invalid search item. Please enter a valid integer ID.";
-                    memberErrorLabel.ForeColor = Color.Red;
-                    memberErrorLabel.Visible = true;
-                    return;
-                }
+            var method = searchMethodBox.Text;
+            var search = memberSearchBox.Text;
+            var searchToInt = 0;
 
-                memberErrorLabel.Visible = false;
+            if (searchMethodBox.Text.Equals("ID") && !int.TryParse(search, out searchToInt))
+            {
+                memberErrorLabel.Text = "Invalid search item. Please enter a valid integer ID.";
+                memberErrorLabel.ForeColor = Color.Red;
+                memberErrorLabel.Visible = true;
+                return;
+            }
+
+            List<Member> searchResult = _memberController.SearchMember(method, search);
+
+            memberErrorLabel.Visible = false;
 
                 memberListView.Clear();
                 memberListView.View = System.Windows.Forms.View.Details;
@@ -58,8 +64,6 @@ namespace CS6232_Group_6_Store.UserControls
                 memberListView.Columns.Add("ZipCode", 100);
                 memberListView.Columns.Add("Country", 150);
                 memberListView.Columns.Add("Phone", 150);
-
-                List<Member> searchResult = _memberController.ReturnMembersSearch(searchInt);
 
                 if (searchResult.Count == 0)
                 {

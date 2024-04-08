@@ -170,7 +170,7 @@
             // 
             searchMethodBox.DropDownStyle = ComboBoxStyle.DropDownList;
             searchMethodBox.FormattingEnabled = true;
-            searchMethodBox.Items.AddRange(new object[] { "Name", "Id", "Phone" });
+            searchMethodBox.Items.AddRange(new object[] { "Name", "ID" });
             searchMethodBox.Location = new Point(141, 2);
             searchMethodBox.Margin = new Padding(3, 2, 3, 2);
             searchMethodBox.Name = "searchMethodBox";
