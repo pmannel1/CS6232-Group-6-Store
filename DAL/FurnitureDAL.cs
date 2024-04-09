@@ -3,14 +3,24 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Xml.Linq;
 using CS6232_Group_6_Store.Model;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+
 
 namespace CS6232_Group_6_Store.DAL
 {
+    /// <summary>
+    /// furniture table data access layer
+    /// </summary>
     public class FurnitureDAL
     {
 
 
+        /// <summary>
+        /// Returns the furnitures search.
+        /// </summary>
+        /// <param name="searchMethod">The search method.</param>
+        /// <param name="searchItem">The search item.</param>
+        /// <returns></returns>
+        /// <exception cref="System.ArgumentException">Invalid search method.</exception>
         public List<Furniture> ReturnFurnituresSearch(string searchMethod, string searchItem)
         {
             List<Furniture> furnitureList = new List<Furniture>();
@@ -71,6 +81,11 @@ namespace CS6232_Group_6_Store.DAL
             return furnitureList;
         }
 
+        /// <summary>
+        /// Gets the furniture.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         public Furniture GetFurniture(int id)
         {
             Furniture furniture = null;
@@ -109,6 +124,30 @@ namespace CS6232_Group_6_Store.DAL
                 }
             }
             return furniture;
+        }
+
+
+        /// <summary>
+        /// Updates the inventory.
+        /// </summary>
+        /// <param name="furnitureQuantities">The furniture quantities.</param>
+        public void UpdateInventory(Dictionary<int,int> furnitureQuantities)
+        {
+            string updateStatement = "UPDATE furniture SET instockNumber = instockNumber - @Quantity WHERE id = @FurnitureId";
+
+            using (SqlConnection connection = DBConnection.GetConnection())
+            {
+                connection.Open();
+                foreach (KeyValuePair<int, int> entry in furnitureQuantities)
+                {
+                    using (SqlCommand updateCommand = new SqlCommand(updateStatement, connection))
+                    {
+                        updateCommand.Parameters.AddWithValue("@Quantity", entry.Value);
+                        updateCommand.Parameters.AddWithValue("@FurnitureId", entry.Key);
+                        updateCommand.ExecuteNonQuery();
+                    }
+                }
+            }
         }
 
     }

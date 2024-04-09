@@ -28,9 +28,23 @@ namespace CS6232_Group_6_Store.Controller
             return this.furnitureDAL.ReturnFurnituresSearch(searchMethod, searchItem);
         }
 
+        /// <summary>
+        /// Gets the furniture.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         public Furniture GetFurniture(int id)
         {
             return this.furnitureDAL.GetFurniture(id);
+        }
+
+        /// <summary>
+        /// Updates the inventory.
+        /// </summary>
+        /// <param name="furnitureQuantities">The furniture quantities.</param>
+        public void UpdateInventory(Dictionary<int, int> furnitureQuantities)
+        {
+            this.furnitureDAL.UpdateInventory(furnitureQuantities);
         }
     }
 }

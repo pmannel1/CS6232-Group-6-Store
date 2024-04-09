@@ -382,6 +382,15 @@ namespace CS6232_Group_6_Store.UserControls
                     _rentalItemController.AddRentalItem(item);
                 }
 
+                Dictionary<int, int> furnitureQuantities = new Dictionary<int, int>();
+                foreach (var item in cart)
+                {
+                    if (furnitureQuantities.ContainsKey(item.FurnitureId))
+                        furnitureQuantities[item.FurnitureId] += item.Quantity;
+                    else
+                        furnitureQuantities[item.FurnitureId] = item.Quantity;
+                }
+
                 // Proceed to the summary form if validation passes
                 RentalSummary summaryForm = new RentalSummary(cart, transaction);
                 var dialogResult = summaryForm.ShowDialog();
@@ -394,6 +403,7 @@ namespace CS6232_Group_6_Store.UserControls
                     this.furnitureSearchBox.Clear();
                     this.memberSearchBox.Clear();
                     MessageBox.Show("Transaction completed successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this._furnitureController.UpdateInventory(furnitureQuantities);
                 }
             }
             catch (Exception ex)

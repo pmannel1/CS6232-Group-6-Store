@@ -31,6 +31,10 @@ namespace CS6232_Group_6_Store.Controller
             return _rentalItemDAL.GetMemberRentalItemHistory(id);
         }
 
+        /// <summary>
+        /// Adds the rental item.
+        /// </summary>
+        /// <param name="rental">The rental.</param>
         public void AddRentalItem(RentalItem rental)
         {
             this._rentalItemDAL.AddRentalItem(rental);

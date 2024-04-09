@@ -19,16 +19,6 @@ namespace CS6232_Group_6_Store.Controller
         }
 
         /// <summary>
-        /// Retruns the members.
-        /// </summary>
-        /// <returns></returns>
-        public List<Member> ReturnMembers()
-        {
-            return this.memeberDAL.ReturnMembers();
-        }
-
-
-        /// <summary>
         /// Adds the member.
         /// </summary>
         /// <param name="member">The member.</param>

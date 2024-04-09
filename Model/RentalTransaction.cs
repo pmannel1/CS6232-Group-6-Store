@@ -62,6 +62,13 @@
             DueDate = dueDate;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RentalTransaction"/> class.
+        /// </summary>
+        /// <param name="employeeId">The employee identifier.</param>
+        /// <param name="memberId">The member identifier.</param>
+        /// <param name="rentalDate">The rental date.</param>
+        /// <param name="dueDate">The due date.</param>
         public RentalTransaction( int employeeId, int memberId, DateTime rentalDate, DateTime dueDate)
         {
            

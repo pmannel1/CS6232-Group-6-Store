@@ -55,6 +55,10 @@ namespace CS6232_Group_6_Store.DAL
             return rentalItems;
         }
 
+        /// <summary>
+        /// Adds the rental item.
+        /// </summary>
+        /// <param name="rental">The rental.</param>
         public void AddRentalItem(RentalItem rental)
         {
             string insertStatement = @"
