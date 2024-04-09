@@ -26,6 +26,7 @@ namespace CS6232_Group_6_Store.UserControls
             memberSearchBox.TextChanged += MemberSearchBox_TextChanged;
             memberListView.SelectedIndexChanged += memberListView_SelectedIndexChanged; 
             memberListView.ItemChecked += memberListView_ItemChecked;
+            this.searchMethodBox.SelectedIndex = 0;
         }
 
         /// <summary>
@@ -232,8 +233,9 @@ namespace CS6232_Group_6_Store.UserControls
         private void Clear()
         {
             this.memberListView.Clear();
-            this.searchMethodBox.SelectedIndex = -1;
+            this.searchMethodBox.SelectedIndex = 0;
             this.MemberSelection();
+            this.memberSearchBox.Clear();
        
             this.searchButton.Enabled = false;
 

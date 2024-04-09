@@ -55,53 +55,7 @@ namespace CS6232_Group_6_Store.DAL
 
             return memberList;
         }
-        /// <summary>
-        /// Returns the Members.
-        /// </summary>
-        /// <returns></returns>
-        public List<Member> ReturnMembersSearch(int searchItem)
-        {
-            List<Member> memberList = new List<Member>();
-            string selectStatement =
-                "SELECT members.* " +
-                "FROM members " +
-                "WHERE members.id = @searchItem ";
-
-
-            using (SqlConnection connection = DBConnection.GetConnection())
-            {
-                connection.Open();
-
-                using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
-                {
-                    selectCommand.Parameters.Add("@searchItem", SqlDbType.Int);
-                    selectCommand.Parameters["@searchItem"].Value = searchItem;
-                    
-                    using (SqlDataReader reader = selectCommand.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            var id = int.Parse(reader["id"].ToString());
-                            var firstName = reader["firstName"].ToString();
-                            var lastName = reader["lastName"].ToString();
-                            var sex = reader["sex"].ToString();
-                            var dateOfBirth = (DateTime)reader["dob"];
-                            var street = reader["street"].ToString();
-                            var city = reader["city"].ToString();
-                            var state = reader["state"].ToString();
-                            var zipCode = Convert.ToInt32(reader["zipCode"]);
-                            var country = reader["country"].ToString();
-                            var contactPhone = reader["contactPhone"].ToString();
-                            var password = reader["password"].ToString();
-                            Member member = new Member(id, lastName, firstName, dateOfBirth, street, city, state, zipCode, country, contactPhone, password, sex);
-                            memberList.Add(member);
-                        }
-                    }
-                }
-            }
-
-            return memberList;
-        }
+        
 
         /// <summary>
         /// Adds the member.
@@ -219,6 +173,12 @@ namespace CS6232_Group_6_Store.DAL
         }
 
 
+        /// <summary>
+        /// Searches the member.
+        /// </summary>
+        /// <param name="method">The method.</param>
+        /// <param name="search">The search.</param>
+        /// <returns></returns>
         public List<Member> SearchMember(string method, string search)
         {
             List<Member> memberList = new List<Member>();
@@ -252,7 +212,7 @@ namespace CS6232_Group_6_Store.DAL
                         selectStatement =
                             "SELECT members.* " +
                             "FROM members " +
-                            "WHERE firstName = @FirstName AND lastName LIKE @LastName + '%'";
+                            "WHERE firstName = @FirstName AND lastName = @LastName";
                     }
 
                     selectCommand = new SqlCommand(selectStatement, connection);
@@ -280,7 +240,7 @@ namespace CS6232_Group_6_Store.DAL
 
                     selectCommand = new SqlCommand(selectStatement, connection);
                     selectCommand.Parameters.Add("@SearchTerm", SqlDbType.NVarChar);
-                    selectCommand.Parameters["@SearchTerm"].Value = "%" + search.Trim() + "%";
+                    selectCommand.Parameters["@SearchTerm"].Value = search;
                 }
                 using (SqlDataReader reader = selectCommand.ExecuteReader())
                 {

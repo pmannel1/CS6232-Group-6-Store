@@ -41,12 +41,12 @@
             tableLayoutPanel4 = new TableLayoutPanel();
             memberHistorySearchButton = new Button();
             clearMemberSearchButton = new Button();
+            transactionErrorLabel = new Label();
             tableLayoutPanel5 = new TableLayoutPanel();
             tableLayoutPanel6 = new TableLayoutPanel();
             clearMemberHistorySearchButton = new Button();
             memberHistoryLabel = new Label();
             memberHistoryListView = new ListView();
-            transactionErrorLabel = new Label();
             tableLayoutPanel1.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
             tableLayoutPanel3.SuspendLayout();
@@ -125,7 +125,7 @@
             // 
             memberSearchMethodComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
             memberSearchMethodComboBox.FormattingEnabled = true;
-            memberSearchMethodComboBox.Items.AddRange(new object[] { "ID", "Name" });
+            memberSearchMethodComboBox.Items.AddRange(new object[] { "ID", "Name", "Phone" });
             memberSearchMethodComboBox.Location = new Point(148, 3);
             memberSearchMethodComboBox.Name = "memberSearchMethodComboBox";
             memberSearchMethodComboBox.Size = new Size(121, 23);
@@ -163,7 +163,6 @@
             memberSearchBox.Name = "memberSearchBox";
             memberSearchBox.Size = new Size(100, 23);
             memberSearchBox.TabIndex = 1;
-           
             // 
             // memberListView
             // 
@@ -210,6 +209,14 @@
             clearMemberSearchButton.Text = "Clear Search";
             clearMemberSearchButton.UseVisualStyleBackColor = true;
             clearMemberSearchButton.Click += clearMemberSearchButton_Click;
+            // 
+            // transactionErrorLabel
+            // 
+            transactionErrorLabel.AutoSize = true;
+            transactionErrorLabel.Location = new Point(3, 168);
+            transactionErrorLabel.Name = "transactionErrorLabel";
+            transactionErrorLabel.Size = new Size(0, 15);
+            transactionErrorLabel.TabIndex = 7;
             // 
             // tableLayoutPanel5
             // 
@@ -271,14 +278,6 @@
             memberHistoryListView.Size = new Size(688, 99);
             memberHistoryListView.TabIndex = 2;
             memberHistoryListView.UseCompatibleStateImageBehavior = false;
-            // 
-            // transactionErrorLabel
-            // 
-            transactionErrorLabel.AutoSize = true;
-            transactionErrorLabel.Location = new Point(3, 168);
-            transactionErrorLabel.Name = "transactionErrorLabel";
-            transactionErrorLabel.Size = new Size(0, 15);
-            transactionErrorLabel.TabIndex = 7;
             // 
             // TransactionManagement
             // 

@@ -76,7 +76,7 @@
             // 
             memberSelectionComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
             memberSelectionComboBox.FormattingEnabled = true;
-            memberSelectionComboBox.Items.AddRange(new object[] { "Name", "ID" });
+            memberSelectionComboBox.Items.AddRange(new object[] { "Name", "ID", "Phone" });
             memberSelectionComboBox.Location = new Point(147, 3);
             memberSelectionComboBox.Name = "memberSelectionComboBox";
             memberSelectionComboBox.Size = new Size(121, 23);

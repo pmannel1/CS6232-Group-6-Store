@@ -27,16 +27,6 @@ namespace CS6232_Group_6_Store.Controller
             return this.memeberDAL.ReturnMembers();
         }
 
-        /// <summary>
-        /// Retruns the members.
-        /// </summary>
-        /// <param name="searchMethod">The search method.</param>
-        /// <param name="searchField">The search field.</param>
-        /// <returns></returns>
-        public List<Member> ReturnMembersSearch(int searchItem)
-        {
-            return this.memeberDAL.ReturnMembersSearch(searchItem);
-        }
 
         /// <summary>
         /// Adds the member.
@@ -66,6 +56,12 @@ namespace CS6232_Group_6_Store.Controller
             this.memeberDAL.UpdateMember(member);
         }
 
+        /// <summary>
+        /// Searches the member.
+        /// </summary>
+        /// <param name="method">The method.</param>
+        /// <param name="search">The search.</param>
+        /// <returns></returns>
         public List<Member> SearchMember(string method, string search)
         {
             return this.memeberDAL.SearchMember(method, search);
