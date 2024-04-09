@@ -25,7 +25,20 @@ namespace CS6232_Group_6_Store.UserControls
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void memberSearchButton_Click(object sender, EventArgs e)
         {
-            this.populateMemberListView();
+            try
+            {
+                if (String.IsNullOrEmpty(memberSearchBox.Text))
+                {
+                    throw new Exception();
+                }
+                this.populateMemberListView();
+            } catch (Exception ex)
+            {
+                transactionErrorLabel.Text = "Please input a number for ID/Name for Name";
+                transactionErrorLabel.ForeColor = Color.Red;
+                transactionErrorLabel.Visible = true;
+            }
+
         }
 
         /// <summary>
@@ -33,10 +46,12 @@ namespace CS6232_Group_6_Store.UserControls
         /// </summary>
         private void populateMemberListView()
         {
+            string transactionError = null;
             transactionErrorLabel.Visible = false; // Hide error label initially
 
             try
             {
+                
                 this.memberListView.Clear();
                 memberListView.View = System.Windows.Forms.View.Details;
                 memberListView.GridLines = true;
@@ -50,26 +65,19 @@ namespace CS6232_Group_6_Store.UserControls
 
                 if (memberSearchMethodComboBox.Text.Equals("ID") && !int.TryParse(search, out searchToInt))
                 {
-                    this.transactionErrorLabel.Text = "Input valid data for ID";
-                    return;
+                    transactionError = "Input valid data for ID";
+                    throw new Exception();
                 }
                 this.transactionErrorLabel.Text = "";
                 List<Member> searchResult = _memberController.SearchMember(method, search);
 
                 if (searchResult.Count == 0)
                 {
-                    transactionErrorLabel.Text = "No matching records found.";
-                    transactionErrorLabel.ForeColor = Color.Red;
-                    transactionErrorLabel.Visible = true;
-                    return;
+                    transactionError = "No matching records found.";
+                    throw new Exception();
                 }
 
-                if (memberSearchBox.Text.Length > 0) 
-                {
-                    transactionErrorLabel.Text = "Please input a number for ID/Name for Name";
-                    transactionErrorLabel.ForeColor = Color.Red;
-                    transactionErrorLabel.Visible = true;
-                }
+                
 
                 foreach (var dr in searchResult)
                 {
@@ -80,7 +88,7 @@ namespace CS6232_Group_6_Store.UserControls
             }
             catch (Exception ex)
             {
-                transactionErrorLabel.Text = $"An error occurred: {ex.Message}";
+                transactionErrorLabel.Text = transactionError;
                 transactionErrorLabel.ForeColor = Color.Red;
                 transactionErrorLabel.Visible = true;
             }

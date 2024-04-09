@@ -42,14 +42,31 @@ namespace CS6232_Group_6_Store.UserControls
 
         private void memberSearchButton_Click(object sender, EventArgs e)
         {
-            this.populateMemberListView();
-            this.clearButton_Click(sender, e);
+            this.errorLabel.Visible = false;
+            try
+            {
+                if (String.IsNullOrEmpty(this.memberSearchBox.Text)){
+                    throw new Exception();
+                }
+                this.populateMemberListView();
+                this.clearButton_Click(sender, e);
+            }
+            catch (Exception ex)
+            {
+                this.errorLabel.Visible = true;
+                this.errorLabel.ForeColor = Color.Red;
+                this.errorLabel.Text = "Search cannot be blank";
+            }
+            
         }
 
         private void populateMemberListView()
         {
+            this.errorLabel.Visible = false;
+            string errorMessage = null;
             try
             {
+                errorMessage = "invalid search";
                 this.memberListView.Clear();
                 memberListView.View = System.Windows.Forms.View.Details;
                 memberListView.GridLines = true;
@@ -60,16 +77,26 @@ namespace CS6232_Group_6_Store.UserControls
                 var method = memberSelectionComboBox.Text;
                 var search = memberSearchBox.Text;
                 List<Member> searchResult = _memberController.SearchMember(method, search);
-                foreach (var dr in searchResult)
+                if (searchResult.Count == 0) 
                 {
-                    var membersList = memberListView.Items.Add(dr.Id.ToString());
-                    membersList.SubItems.Add(dr.LastName.ToString());
-                    membersList.SubItems.Add(dr.FirstName.ToString());
+                    errorMessage = "No results found";
+                    throw new Exception();
                 }
+                else
+                {
+                    foreach (var dr in searchResult)
+                    {
+                        var membersList = memberListView.Items.Add(dr.Id.ToString());
+                        membersList.SubItems.Add(dr.LastName.ToString());
+                        membersList.SubItems.Add(dr.FirstName.ToString());
+                    }
+                } 
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.errorLabel.Visible = true;
+                this.errorLabel.ForeColor = Color.Red;
+                this.errorLabel.Text = errorMessage;
             }
 
         }
@@ -78,7 +105,7 @@ namespace CS6232_Group_6_Store.UserControls
         {
             var method = selectionMethodComboBox.Text.Trim();
             var search = furnitureSearchBox.Text.Trim();
-            string message = "Please select search Method";
+            string message = "invalid search";
             if (method == "")
             {
                 MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -98,15 +125,18 @@ namespace CS6232_Group_6_Store.UserControls
                 {
                     message = "Please specify Style to search";
                 }
-                MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.errorLabel.Visible = true;
+                this.errorLabel.ForeColor = Color.Red;
+                this.errorLabel.Text = message;
                 return;
             }
             if (selectionMethodComboBox.Text == "ID")
             {
                 if (int.TryParse(furnitureSearchBox.Text, out _) == false)
                 {
-                    message = "Please specify numeric value for ID to search";
-                    MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    this.errorLabel.Visible = true;
+                    this.errorLabel.ForeColor = Color.Red;
+                    this.errorLabel.Text = message;
                     return;
                 }
             }
@@ -115,8 +145,11 @@ namespace CS6232_Group_6_Store.UserControls
 
         private void populateFurnitureListView()
         {
+            this.errorLabel.Visible = false;
+            string errorMessage = null;
             try
             {
+                errorMessage = "invalid search";
                 this.furnitureListView.Clear();
                 furnitureListView.View = System.Windows.Forms.View.Details;
                 furnitureListView.GridLines = true;
@@ -130,20 +163,31 @@ namespace CS6232_Group_6_Store.UserControls
                 var method = selectionMethodComboBox.Text;
                 var search = furnitureSearchBox.Text;
                 List<Furniture> searchResult = _furnitureController.SearchFurniture(method, search);
-                foreach (var dr in searchResult)
+                if (searchResult.Count == 0)
                 {
-                    var furnitureList = furnitureListView.Items.Add(dr.Id.ToString());
-                    furnitureList.SubItems.Add(dr.Name.ToString());
-                    furnitureList.SubItems.Add(dr.Description.ToString());
-                    furnitureList.SubItems.Add(dr.Style.ToString());
-                    furnitureList.SubItems.Add(dr.Category.ToString());
-                    furnitureList.SubItems.Add("$" + dr.RentalRate.ToString());
+                    errorMessage = "No results found";
+                    throw new Exception();
                 }
-                this.clearFurnitureButton.Enabled = true;
+                else
+                {
+                    foreach (var dr in searchResult)
+                    {
+                        var furnitureList = furnitureListView.Items.Add(dr.Id.ToString());
+                        furnitureList.SubItems.Add(dr.Name.ToString());
+                        furnitureList.SubItems.Add(dr.Description.ToString());
+                        furnitureList.SubItems.Add(dr.Style.ToString());
+                        furnitureList.SubItems.Add(dr.Category.ToString());
+                        furnitureList.SubItems.Add("$" + dr.RentalRate.ToString());
+                    }
+                    this.clearFurnitureButton.Enabled = true;
+                }
+
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.errorLabel.Visible = true;
+                this.errorLabel.ForeColor = Color.Red;
+                this.errorLabel.Text = errorMessage;
                 this.clearFurnitureButton.Enabled = false;
             }
 
@@ -293,6 +337,7 @@ namespace CS6232_Group_6_Store.UserControls
 
         private void cartListView_ItemChecked(object sender, ItemCheckedEventArgs e)
         {
+            this.errorLabel.Visible = false;
             if (e.Item.Checked)
             {
                 foreach (ListViewItem item in cartListView.Items)
@@ -383,10 +428,17 @@ namespace CS6232_Group_6_Store.UserControls
                 ListViewItem checkedItem = cartListView.CheckedItems[0];
                 cart.RemoveAt(checkedItem.Index);
                 refreshCartView();
+                if(cart.Count == 0) 
+                {
+                    this.checkoutButton.Enabled = false;
+                }
             }
             else
             {
-                MessageBox.Show("Please select an item to remove.", "Selection Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.errorLabel.Visible = true;
+                this.errorLabel.ForeColor = Color.Red;
+                this.errorLabel.Text = "Please select an item to remove";
+                this.clearFurnitureButton.Enabled = false;
             }
         }
 

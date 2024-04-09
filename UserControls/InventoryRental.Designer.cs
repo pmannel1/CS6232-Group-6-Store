@@ -55,6 +55,7 @@
             memberListView = new ListView();
             furnitureListViewLabel = new Label();
             cartLabel = new Label();
+            errorLabel = new Label();
             tableLayoutPanel1.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
             tableLayoutPanel3.SuspendLayout();
@@ -174,6 +175,7 @@
             tableLayoutPanel1.Controls.Add(memberListView, 1, 2);
             tableLayoutPanel1.Controls.Add(furnitureListViewLabel, 0, 5);
             tableLayoutPanel1.Controls.Add(cartLabel, 0, 7);
+            tableLayoutPanel1.Controls.Add(errorLabel, 0, 6);
             tableLayoutPanel1.Dock = DockStyle.Fill;
             tableLayoutPanel1.Location = new Point(0, 0);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -371,6 +373,14 @@
             cartLabel.TabIndex = 22;
             cartLabel.Text = "Cart";
             // 
+            // errorLabel
+            // 
+            errorLabel.AutoSize = true;
+            errorLabel.Location = new Point(3, 264);
+            errorLabel.Name = "errorLabel";
+            errorLabel.Size = new Size(0, 15);
+            errorLabel.TabIndex = 23;
+            // 
             // InventoryRental
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -419,5 +429,6 @@
         private Label cartLabel;
         private Button removeItemButton;
         private Button updateQuantity;
+        private Label errorLabel;
     }
 }
