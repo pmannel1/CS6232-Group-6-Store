@@ -76,16 +76,16 @@ namespace CS6232_Group_6_Store.View
 
             if (idTextBox.Text.Trim() == "" || passwordTextBox.Text.Trim() == "")
             {
-                this.errorLabel.Text = "UserName and/or password is required";
-                this.errorLabel.Visible = true;
-                this.errorLabel.ForeColor = Color.Red;
+                this.errorLoginLabel.Text = "UserName and/or password is required";
+                this.errorLoginLabel.Visible = true;
+                this.errorLoginLabel.ForeColor = Color.Red;
                 return;
             }
             if (!int.TryParse(idTextBox.Text, out int id) || id <= 0)
             {
-                this.errorLabel.Text = "Invalid user name, only positive integers.";
-                this.errorLabel.ForeColor = Color.Red;
-                this.errorLabel.Show();
+                this.errorLoginLabel.Text = "Invalid user name, only positive integers.";
+                this.errorLoginLabel.ForeColor = Color.Red;
+                this.errorLoginLabel.Show();
                 return;
             }
 
@@ -102,9 +102,9 @@ namespace CS6232_Group_6_Store.View
             }
             else
             {
-                this.errorLabel.Text = "incorrect username/password";
-                this.errorLabel.ForeColor = Color.Red;
-                this.errorLabel.Show();
+                this.errorLoginLabel.Text = "incorrect username/password";
+                this.errorLoginLabel.ForeColor = Color.Red;
+                this.errorLoginLabel.Show();
                 return;
             }
 
@@ -128,7 +128,7 @@ namespace CS6232_Group_6_Store.View
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void idTextBox_TextChanged(object sender, EventArgs e)
         {
-            this.errorLabel.Hide();
+            this.errorLoginLabel.Hide();
         }
 
         /// <summary>
@@ -138,7 +138,7 @@ namespace CS6232_Group_6_Store.View
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void passwordTextBox_TextChanged(object sender, EventArgs e)
         {
-            this.errorLabel.Hide();
+            this.errorLoginLabel.Hide();
         }
 
         private void clearButton_Click(object sender, EventArgs e)
