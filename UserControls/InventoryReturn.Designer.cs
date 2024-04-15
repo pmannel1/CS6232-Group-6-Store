@@ -34,6 +34,7 @@
             tableLayoutPanel4 = new TableLayoutPanel();
             memberSearchBox = new TextBox();
             memberSearchButton = new Button();
+            errorMemberLabel = new Label();
             memberListViewLabel = new Label();
             memberListView = new ListView();
             memberSelectionComboBox = new ComboBox();
@@ -108,11 +109,13 @@
             // 
             // tableLayoutPanel4
             // 
-            tableLayoutPanel4.ColumnCount = 2;
-            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel4.ColumnCount = 3;
+            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 66.82927F));
+            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.17073F));
+            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 254F));
             tableLayoutPanel4.Controls.Add(memberSearchBox, 0, 0);
             tableLayoutPanel4.Controls.Add(memberSearchButton, 1, 0);
+            tableLayoutPanel4.Controls.Add(errorMemberLabel, 2, 0);
             tableLayoutPanel4.Dock = DockStyle.Fill;
             tableLayoutPanel4.Location = new Point(147, 37);
             tableLayoutPanel4.Name = "tableLayoutPanel4";
@@ -125,17 +128,27 @@
             // 
             memberSearchBox.Location = new Point(3, 3);
             memberSearchBox.Name = "memberSearchBox";
-            memberSearchBox.Size = new Size(100, 23);
+            memberSearchBox.Size = new Size(146, 23);
             memberSearchBox.TabIndex = 0;
             // 
             // memberSearchButton
             // 
-            memberSearchButton.Location = new Point(278, 3);
+            memberSearchButton.Location = new Point(200, 3);
             memberSearchButton.Name = "memberSearchButton";
             memberSearchButton.Size = new Size(75, 22);
             memberSearchButton.TabIndex = 1;
             memberSearchButton.Text = "Search";
             memberSearchButton.UseVisualStyleBackColor = true;
+            memberSearchButton.Click += memberSearchButton_Click;
+            // 
+            // errorMemberLabel
+            // 
+            errorMemberLabel.AutoSize = true;
+            errorMemberLabel.ForeColor = Color.Red;
+            errorMemberLabel.Location = new Point(298, 0);
+            errorMemberLabel.Name = "errorMemberLabel";
+            errorMemberLabel.Size = new Size(0, 15);
+            errorMemberLabel.TabIndex = 2;
             // 
             // memberListViewLabel
             // 
@@ -187,8 +200,8 @@
             // tableLayoutPanel2
             // 
             tableLayoutPanel2.ColumnCount = 2;
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 34.727272F));
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 65.27273F));
             tableLayoutPanel2.Controls.Add(addFurnitureButton, 0, 0);
             tableLayoutPanel2.Controls.Add(clearFurnitureButton, 1, 0);
             tableLayoutPanel2.Dock = DockStyle.Fill;
@@ -210,7 +223,7 @@
             // 
             // clearFurnitureButton
             // 
-            clearFurnitureButton.Location = new Point(278, 3);
+            clearFurnitureButton.Location = new Point(194, 3);
             clearFurnitureButton.Name = "clearFurnitureButton";
             clearFurnitureButton.Size = new Size(100, 20);
             clearFurnitureButton.TabIndex = 7;
@@ -328,5 +341,6 @@
         private Label cartLabel;
         private ComboBox memberSelectionComboBox;
         private Label furnitureListViewLabel;
+        private Label errorMemberLabel;
     }
 }
