@@ -29,30 +29,30 @@
         private void InitializeComponent()
         {
             tableLayoutPanel1 = new TableLayoutPanel();
-            checkoutButton = new Button();
             memberSearchMethod = new Label();
-            cartListView = new ListView();
-            furnitureListView = new ListView();
-            tableLayoutPanel2 = new TableLayoutPanel();
-            addFurnitureButton = new Button();
-            clearFurnitureButton = new Button();
-            tableLayoutPanel3 = new TableLayoutPanel();
-            clearButton = new Button();
-            removeItemButton = new Button();
-            updateQuantity = new Button();
             memberSearchLabel = new Label();
             tableLayoutPanel4 = new TableLayoutPanel();
             memberSearchBox = new TextBox();
             memberSearchButton = new Button();
             memberListViewLabel = new Label();
             memberListView = new ListView();
-            cartLabel = new Label();
             memberSelectionComboBox = new ComboBox();
+            furnitureListView = new ListView();
             furnitureListViewLabel = new Label();
+            tableLayoutPanel2 = new TableLayoutPanel();
+            addFurnitureButton = new Button();
+            clearFurnitureButton = new Button();
+            cartLabel = new Label();
+            cartListView = new ListView();
+            checkoutButton = new Button();
+            tableLayoutPanel3 = new TableLayoutPanel();
+            clearButton = new Button();
+            removeItemButton = new Button();
+            updateQuantity = new Button();
             tableLayoutPanel1.SuspendLayout();
+            tableLayoutPanel4.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
             tableLayoutPanel3.SuspendLayout();
-            tableLayoutPanel4.SuspendLayout();
             SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -88,15 +88,6 @@
             tableLayoutPanel1.Size = new Size(700, 400);
             tableLayoutPanel1.TabIndex = 12;
             // 
-            // checkoutButton
-            // 
-            checkoutButton.Location = new Point(3, 368);
-            checkoutButton.Name = "checkoutButton";
-            checkoutButton.Size = new Size(111, 21);
-            checkoutButton.TabIndex = 8;
-            checkoutButton.Text = "Complete Return";
-            checkoutButton.UseVisualStyleBackColor = true;
-            // 
             // memberSearchMethod
             // 
             memberSearchMethod.AutoSize = true;
@@ -105,103 +96,6 @@
             memberSearchMethod.Size = new Size(138, 15);
             memberSearchMethod.TabIndex = 0;
             memberSearchMethod.Text = "Member Search Method: ";
-            // 
-            // cartListView
-            // 
-            cartListView.CheckBoxes = true;
-            cartListView.Dock = DockStyle.Fill;
-            cartListView.Location = new Point(147, 259);
-            cartListView.Name = "cartListView";
-            cartListView.Size = new Size(550, 103);
-            cartListView.TabIndex = 10;
-            cartListView.UseCompatibleStateImageBehavior = false;
-            // 
-            // furnitureListView
-            // 
-            furnitureListView.CheckBoxes = true;
-            furnitureListView.Dock = DockStyle.Fill;
-            furnitureListView.Location = new Point(147, 121);
-            furnitureListView.Name = "furnitureListView";
-            furnitureListView.Size = new Size(550, 100);
-            furnitureListView.TabIndex = 4;
-            furnitureListView.UseCompatibleStateImageBehavior = false;
-            // 
-            // tableLayoutPanel2
-            // 
-            tableLayoutPanel2.ColumnCount = 2;
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel2.Controls.Add(addFurnitureButton, 0, 0);
-            tableLayoutPanel2.Controls.Add(clearFurnitureButton, 1, 0);
-            tableLayoutPanel2.Dock = DockStyle.Fill;
-            tableLayoutPanel2.Location = new Point(147, 227);
-            tableLayoutPanel2.Name = "tableLayoutPanel2";
-            tableLayoutPanel2.RowCount = 1;
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel2.Size = new Size(550, 26);
-            tableLayoutPanel2.TabIndex = 11;
-            // 
-            // addFurnitureButton
-            // 
-            addFurnitureButton.Location = new Point(3, 3);
-            addFurnitureButton.Name = "addFurnitureButton";
-            addFurnitureButton.Size = new Size(100, 20);
-            addFurnitureButton.TabIndex = 6;
-            addFurnitureButton.Text = "Add to Return";
-            addFurnitureButton.UseVisualStyleBackColor = true;
-            // 
-            // clearFurnitureButton
-            // 
-            clearFurnitureButton.Location = new Point(278, 3);
-            clearFurnitureButton.Name = "clearFurnitureButton";
-            clearFurnitureButton.Size = new Size(100, 20);
-            clearFurnitureButton.TabIndex = 7;
-            clearFurnitureButton.Text = "Clear Search";
-            clearFurnitureButton.UseVisualStyleBackColor = true;
-            // 
-            // tableLayoutPanel3
-            // 
-            tableLayoutPanel3.ColumnCount = 3;
-            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
-            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
-            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
-            tableLayoutPanel3.Controls.Add(clearButton, 2, 0);
-            tableLayoutPanel3.Controls.Add(removeItemButton, 1, 0);
-            tableLayoutPanel3.Controls.Add(updateQuantity, 0, 0);
-            tableLayoutPanel3.Dock = DockStyle.Fill;
-            tableLayoutPanel3.Location = new Point(147, 368);
-            tableLayoutPanel3.Name = "tableLayoutPanel3";
-            tableLayoutPanel3.RowCount = 1;
-            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel3.Size = new Size(550, 29);
-            tableLayoutPanel3.TabIndex = 12;
-            // 
-            // clearButton
-            // 
-            clearButton.Location = new Point(369, 3);
-            clearButton.Name = "clearButton";
-            clearButton.Size = new Size(100, 21);
-            clearButton.TabIndex = 9;
-            clearButton.Text = "Clear All Items";
-            clearButton.UseVisualStyleBackColor = true;
-            // 
-            // removeItemButton
-            // 
-            removeItemButton.Location = new Point(186, 3);
-            removeItemButton.Name = "removeItemButton";
-            removeItemButton.Size = new Size(100, 21);
-            removeItemButton.TabIndex = 10;
-            removeItemButton.Text = "Remove Item";
-            removeItemButton.UseVisualStyleBackColor = true;
-            // 
-            // updateQuantity
-            // 
-            updateQuantity.Location = new Point(3, 3);
-            updateQuantity.Name = "updateQuantity";
-            updateQuantity.Size = new Size(118, 21);
-            updateQuantity.TabIndex = 11;
-            updateQuantity.Text = "Update Quantity";
-            updateQuantity.UseVisualStyleBackColor = true;
             // 
             // memberSearchLabel
             // 
@@ -261,15 +155,6 @@
             memberListView.TabIndex = 20;
             memberListView.UseCompatibleStateImageBehavior = false;
             // 
-            // cartLabel
-            // 
-            cartLabel.AutoSize = true;
-            cartLabel.Location = new Point(3, 256);
-            cartLabel.Name = "cartLabel";
-            cartLabel.Size = new Size(74, 15);
-            cartLabel.TabIndex = 22;
-            cartLabel.Text = "Return Items";
-            // 
             // memberSelectionComboBox
             // 
             memberSelectionComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -280,14 +165,129 @@
             memberSelectionComboBox.Size = new Size(121, 23);
             memberSelectionComboBox.TabIndex = 1;
             // 
+            // furnitureListView
+            // 
+            furnitureListView.CheckBoxes = true;
+            furnitureListView.Dock = DockStyle.Fill;
+            furnitureListView.Location = new Point(147, 121);
+            furnitureListView.Name = "furnitureListView";
+            furnitureListView.Size = new Size(550, 100);
+            furnitureListView.TabIndex = 4;
+            furnitureListView.UseCompatibleStateImageBehavior = false;
+            // 
             // furnitureListViewLabel
             // 
             furnitureListViewLabel.AutoSize = true;
             furnitureListViewLabel.Location = new Point(3, 118);
             furnitureListViewLabel.Name = "furnitureListViewLabel";
-            furnitureListViewLabel.Size = new Size(111, 15);
+            furnitureListViewLabel.Size = new Size(122, 15);
             furnitureListViewLabel.TabIndex = 21;
-            furnitureListViewLabel.Text = "Select Items to Rent";
+            furnitureListViewLabel.Text = "Select Items to Return";
+            // 
+            // tableLayoutPanel2
+            // 
+            tableLayoutPanel2.ColumnCount = 2;
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel2.Controls.Add(addFurnitureButton, 0, 0);
+            tableLayoutPanel2.Controls.Add(clearFurnitureButton, 1, 0);
+            tableLayoutPanel2.Dock = DockStyle.Fill;
+            tableLayoutPanel2.Location = new Point(147, 227);
+            tableLayoutPanel2.Name = "tableLayoutPanel2";
+            tableLayoutPanel2.RowCount = 1;
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel2.Size = new Size(550, 26);
+            tableLayoutPanel2.TabIndex = 11;
+            // 
+            // addFurnitureButton
+            // 
+            addFurnitureButton.Location = new Point(3, 3);
+            addFurnitureButton.Name = "addFurnitureButton";
+            addFurnitureButton.Size = new Size(100, 20);
+            addFurnitureButton.TabIndex = 6;
+            addFurnitureButton.Text = "Add to Return";
+            addFurnitureButton.UseVisualStyleBackColor = true;
+            // 
+            // clearFurnitureButton
+            // 
+            clearFurnitureButton.Location = new Point(278, 3);
+            clearFurnitureButton.Name = "clearFurnitureButton";
+            clearFurnitureButton.Size = new Size(100, 20);
+            clearFurnitureButton.TabIndex = 7;
+            clearFurnitureButton.Text = "Clear Search";
+            clearFurnitureButton.UseVisualStyleBackColor = true;
+            // 
+            // cartLabel
+            // 
+            cartLabel.AutoSize = true;
+            cartLabel.Location = new Point(3, 256);
+            cartLabel.Name = "cartLabel";
+            cartLabel.Size = new Size(74, 15);
+            cartLabel.TabIndex = 22;
+            cartLabel.Text = "Return Items";
+            // 
+            // cartListView
+            // 
+            cartListView.CheckBoxes = true;
+            cartListView.Dock = DockStyle.Fill;
+            cartListView.Location = new Point(147, 259);
+            cartListView.Name = "cartListView";
+            cartListView.Size = new Size(550, 103);
+            cartListView.TabIndex = 10;
+            cartListView.UseCompatibleStateImageBehavior = false;
+            // 
+            // checkoutButton
+            // 
+            checkoutButton.Location = new Point(3, 368);
+            checkoutButton.Name = "checkoutButton";
+            checkoutButton.Size = new Size(111, 21);
+            checkoutButton.TabIndex = 8;
+            checkoutButton.Text = "Complete Return";
+            checkoutButton.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel3
+            // 
+            tableLayoutPanel3.ColumnCount = 3;
+            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
+            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
+            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
+            tableLayoutPanel3.Controls.Add(clearButton, 2, 0);
+            tableLayoutPanel3.Controls.Add(removeItemButton, 1, 0);
+            tableLayoutPanel3.Controls.Add(updateQuantity, 0, 0);
+            tableLayoutPanel3.Dock = DockStyle.Fill;
+            tableLayoutPanel3.Location = new Point(147, 368);
+            tableLayoutPanel3.Name = "tableLayoutPanel3";
+            tableLayoutPanel3.RowCount = 1;
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel3.Size = new Size(550, 29);
+            tableLayoutPanel3.TabIndex = 12;
+            // 
+            // clearButton
+            // 
+            clearButton.Location = new Point(369, 3);
+            clearButton.Name = "clearButton";
+            clearButton.Size = new Size(100, 21);
+            clearButton.TabIndex = 9;
+            clearButton.Text = "Clear All Items";
+            clearButton.UseVisualStyleBackColor = true;
+            // 
+            // removeItemButton
+            // 
+            removeItemButton.Location = new Point(186, 3);
+            removeItemButton.Name = "removeItemButton";
+            removeItemButton.Size = new Size(100, 21);
+            removeItemButton.TabIndex = 10;
+            removeItemButton.Text = "Remove Item";
+            removeItemButton.UseVisualStyleBackColor = true;
+            // 
+            // updateQuantity
+            // 
+            updateQuantity.Location = new Point(3, 3);
+            updateQuantity.Name = "updateQuantity";
+            updateQuantity.Size = new Size(118, 21);
+            updateQuantity.TabIndex = 11;
+            updateQuantity.Text = "Update Quantity";
+            updateQuantity.UseVisualStyleBackColor = true;
             // 
             // InventoryReturn
             // 
@@ -298,10 +298,10 @@
             Size = new Size(700, 400);
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.PerformLayout();
-            tableLayoutPanel2.ResumeLayout(false);
-            tableLayoutPanel3.ResumeLayout(false);
             tableLayoutPanel4.ResumeLayout(false);
             tableLayoutPanel4.PerformLayout();
+            tableLayoutPanel2.ResumeLayout(false);
+            tableLayoutPanel3.ResumeLayout(false);
             ResumeLayout(false);
         }
 
