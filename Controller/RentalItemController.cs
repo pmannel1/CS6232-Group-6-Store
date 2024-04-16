@@ -46,7 +46,7 @@ namespace CS6232_Group_6_Store.Controller
         /// <param name="memberId">The member identifier.</param>
         /// <returns></returns>
         /// <exception cref="System.ArgumentException">memberId cannot be less than 1.</exception>
-        public List<RentalItem> getOutstandingRentalItemsById(int memberId)
+        public List<RentalItem> GetOutstandingRentalItemsById(int memberId)
         {
             if (memberId < 1)
             {
@@ -55,7 +55,7 @@ namespace CS6232_Group_6_Store.Controller
 
             List<RentalItem> rentalItems = new List<RentalItem>();
 
-            rentalItems = this._rentalItemDAL.getOutstandingRentalItemsById(memberId);
+            rentalItems = this._rentalItemDAL.GetOutstandingRentalItemsById(memberId);
 
             return rentalItems;
         }

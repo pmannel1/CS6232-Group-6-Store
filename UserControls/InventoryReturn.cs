@@ -113,7 +113,7 @@ namespace CS6232_Group_6_Store.UserControls
                 _currentMember = _memberController.RetrieveMember(memberId);
                 this.errorMemberLabel.Text = "Name: " + _currentMember.FullName;
                 this.errorMemberLabel.Visible = true;
-                this._currentRentalItemList = this._rentalItemController.getOutstandingRentalItemsById(memberId);
+                this._currentRentalItemList = this._rentalItemController.GetOutstandingRentalItemsById(memberId);
             }
             else if (this.memberListView.CheckedItems.Count > 1)
             {

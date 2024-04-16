@@ -401,7 +401,8 @@
         private Label memberSelectLabel;
         private Button memberSelectButton;
         private TableLayoutPanel tableLayoutPanel6;
-        private Label furnitureListViewLabel;
         private ComboBox returnItemNumberComboBox;
+        private Label furnitureListViewLabel;
+        private Button selectFurnitureItemButton;
     }
 }

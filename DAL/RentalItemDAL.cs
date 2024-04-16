@@ -105,7 +105,7 @@ namespace CS6232_Group_6_Store.DAL
         /// <param name="memberId">The member identifier.</param>
         /// <returns></returns>
         /// <exception cref="System.ArgumentException">memberId cannot be less than 1.</exception>
-        public List<RentalItem> getOutstandingRentalItemsById(int memberId)
+        public List<RentalItem> GetOutstandingRentalItemsById(int memberId)
         {
             if (memberId < 1)
             {
@@ -113,8 +113,52 @@ namespace CS6232_Group_6_Store.DAL
             }
 
             List<RentalItem> rentalItems = new List<RentalItem>();
+            string query = "  SELECT rt.dueDate, ri.*, f.name, f.rentalRate "
+                + "FROM rental_transactions as rt " 
+                + "JOIN rental_items as ri ON rt.id = ri.transactionId  " 
+                + "JOIN furniture as f ON f.id = ri.furnitureId "
+                + "WHERE rt.memberId = @mid AND ri.quantityReturned < ri.quantity;";
 
+            using (var connection = DBConnection.GetConnection())
+            {
+                connection.Open();
 
+                using (var command = connection.CreateCommand())
+                {
+                    command.CommandText = query;
+                    command.Connection = connection;
+                    command.Parameters.Add("@mid", SqlDbType.Int);
+                    command.Parameters["@mid"].Value = memberId;
+
+                    using (var reader = command.ExecuteReader())
+                    {
+                        int dueDateOrdinal = reader.GetOrdinal("dueDate");
+                        int itemIdOrdinal = reader.GetOrdinal("id");
+                        int transactionIdOrdinal = reader.GetOrdinal("transactionId");
+                        int furnitureIdOrdinal = reader.GetOrdinal("furnitureId");
+                        int quantityOrdinal = reader.GetOrdinal("quantity");
+                        int quantityReturnedOrdinal = reader.GetOrdinal("quantityReturned");
+                        int furnitureNameOrdinal = reader.GetOrdinal("name");
+                        int furnitureRentalRateOrdinal = reader.GetOrdinal("rentalRate");
+                        
+                        while (reader.Read())
+                        {
+                            RentalItem rentalItem = new RentalItem();
+
+                            rentalItem.DueDate = reader.GetDateTime(dueDateOrdinal);
+                            rentalItem.Id = reader.GetInt32(itemIdOrdinal);
+                            rentalItem.TransactionId = reader.GetInt32(transactionIdOrdinal);
+                            rentalItem.FurnitureId = reader.GetInt32(furnitureIdOrdinal);              
+                            rentalItem.Quantity = reader.GetInt32(quantityOrdinal);
+                            rentalItem.QuantityReturned = reader.GetInt32(quantityReturnedOrdinal);
+                            rentalItem.FurnitureName = reader.GetString(furnitureNameOrdinal);
+                            rentalItem.RentalRate = reader.GetDecimal(furnitureRentalRateOrdinal);
+
+                            rentalItems.Add(rentalItem);
+                        }
+                    }
+                }
+            }
 
             return rentalItems;
         }
