@@ -7,8 +7,9 @@ namespace CS6232_Group_6_Store.UserControls
     public partial class InventoryReturn : UserControl
     {
         private MemberController _memberController;
-        private ReturnItemController _returnItemController;
+        private RentalItemController _rentalItemController;
         private Member _currentMember;
+        private List<RentalItem> _currentRentalItemList;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="InventoryReturn"/> class.
@@ -17,6 +18,7 @@ namespace CS6232_Group_6_Store.UserControls
         {
             InitializeComponent();
             this._memberController = new MemberController();
+            this._currentRentalItemList = new List<RentalItem>();
 
             this.memberSelectionComboBox.SelectedIndex = 0;
             this.memberListView.CheckBoxes = true;
@@ -111,7 +113,7 @@ namespace CS6232_Group_6_Store.UserControls
                 _currentMember = _memberController.RetrieveMember(memberId);
                 this.errorMemberLabel.Text = "Name: " + _currentMember.FullName;
                 this.errorMemberLabel.Visible = true;
-                this._returnItemController.getOutstandingReturnItemsById(memberId);
+                this._currentRentalItemList = this._rentalItemController.getOutstandingRentalItemsById(memberId);
             }
             else if (this.memberListView.CheckedItems.Count > 1)
             {

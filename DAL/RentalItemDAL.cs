@@ -98,5 +98,26 @@ namespace CS6232_Group_6_Store.DAL
                 }
             }
         }
+
+        /// <summary>
+        /// Gets the outstanding rental items by identifier.
+        /// </summary>
+        /// <param name="memberId">The member identifier.</param>
+        /// <returns></returns>
+        /// <exception cref="System.ArgumentException">memberId cannot be less than 1.</exception>
+        public List<RentalItem> getOutstandingRentalItemsById(int memberId)
+        {
+            if (memberId < 1)
+            {
+                throw new ArgumentException("memberId cannot be less than 1.");
+            }
+
+            List<RentalItem> rentalItems = new List<RentalItem>();
+
+
+
+            return rentalItems;
+        }
+
     }
 }
