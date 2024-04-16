@@ -7,6 +7,8 @@ namespace CS6232_Group_6_Store.UserControls
     public partial class InventoryReturn : UserControl
     {
         private MemberController _memberController;
+        private ReturnItemController _returnItemController;
+        private Member _currentMember;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="InventoryReturn"/> class.
@@ -102,12 +104,18 @@ namespace CS6232_Group_6_Store.UserControls
         private void memberSelectButton_Click(object sender, EventArgs e)
         {
 
-            if (this.memberListView.CheckedItems.Count > 0)
+            if (this.memberListView.CheckedItems.Count == 1)
             {
                 ListViewItem checkedItem = memberListView.CheckedItems[0];
                 int memberId = int.Parse(checkedItem.Text);
-                Member tempMember = _memberController.RetrieveMember(memberId);
-                this.errorMemberLabel.Text = "Name: " + tempMember.FullName;
+                _currentMember = _memberController.RetrieveMember(memberId);
+                this.errorMemberLabel.Text = "Name: " + _currentMember.FullName;
+                this.errorMemberLabel.Visible = true;
+                this._returnItemController.getOutstandingReturnItemsById(memberId);
+            }
+            else if (this.memberListView.CheckedItems.Count > 1)
+            {
+                this.errorMemberLabel.Text = "Please selet only ONE member at a time.";
                 this.errorMemberLabel.Visible = true;
             }
             else
@@ -115,7 +123,6 @@ namespace CS6232_Group_6_Store.UserControls
                 this.errorMemberLabel.Text = "You must select a member.";
                 this.errorMemberLabel.Visible = true;
             }
-            // Furniture selectedFurniture = _furnitureController.GetFurniture(furnitureId);
         }
     }
 }
