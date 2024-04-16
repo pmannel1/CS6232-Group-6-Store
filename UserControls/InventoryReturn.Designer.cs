@@ -35,11 +35,9 @@
             memberSearchBox = new TextBox();
             memberSearchButton = new Button();
             errorMemberLabel = new Label();
-            memberListViewLabel = new Label();
             memberListView = new ListView();
             memberSelectionComboBox = new ComboBox();
             furnitureListView = new ListView();
-            furnitureListViewLabel = new Label();
             tableLayoutPanel2 = new TableLayoutPanel();
             addFurnitureButton = new Button();
             clearFurnitureButton = new Button();
@@ -50,10 +48,18 @@
             clearButton = new Button();
             removeItemButton = new Button();
             updateQuantity = new Button();
+            tableLayoutPanel5 = new TableLayoutPanel();
+            memberSelectLabel = new Label();
+            memberSelectButton = new Button();
+            tableLayoutPanel6 = new TableLayoutPanel();
+            furnitureListViewLabel = new Label();
+            returnItemNumberComboBox = new ComboBox();
             tableLayoutPanel1.SuspendLayout();
             tableLayoutPanel4.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
             tableLayoutPanel3.SuspendLayout();
+            tableLayoutPanel5.SuspendLayout();
+            tableLayoutPanel6.SuspendLayout();
             SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -64,26 +70,26 @@
             tableLayoutPanel1.Controls.Add(memberSearchMethod, 0, 0);
             tableLayoutPanel1.Controls.Add(memberSearchLabel, 0, 1);
             tableLayoutPanel1.Controls.Add(tableLayoutPanel4, 1, 1);
-            tableLayoutPanel1.Controls.Add(memberListViewLabel, 0, 2);
             tableLayoutPanel1.Controls.Add(memberListView, 1, 2);
             tableLayoutPanel1.Controls.Add(memberSelectionComboBox, 1, 0);
             tableLayoutPanel1.Controls.Add(furnitureListView, 1, 3);
-            tableLayoutPanel1.Controls.Add(furnitureListViewLabel, 0, 3);
             tableLayoutPanel1.Controls.Add(tableLayoutPanel2, 1, 4);
             tableLayoutPanel1.Controls.Add(cartLabel, 0, 5);
             tableLayoutPanel1.Controls.Add(cartListView, 1, 5);
             tableLayoutPanel1.Controls.Add(checkoutButton, 0, 6);
             tableLayoutPanel1.Controls.Add(tableLayoutPanel3, 1, 6);
+            tableLayoutPanel1.Controls.Add(tableLayoutPanel5, 0, 2);
+            tableLayoutPanel1.Controls.Add(tableLayoutPanel6, 0, 3);
             tableLayoutPanel1.Dock = DockStyle.Fill;
             tableLayoutPanel1.Location = new Point(0, 0);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 7;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 8.634539F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 8.634539F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 12.5F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 26.5F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 13.5F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 26.25F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 8F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 27.25F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 26.5F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 8F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             tableLayoutPanel1.Size = new Size(700, 400);
@@ -150,21 +156,13 @@
             errorMemberLabel.Size = new Size(0, 15);
             errorMemberLabel.TabIndex = 2;
             // 
-            // memberListViewLabel
-            // 
-            memberListViewLabel.AutoSize = true;
-            memberListViewLabel.Location = new Point(3, 68);
-            memberListViewLabel.Name = "memberListViewLabel";
-            memberListViewLabel.Size = new Size(92, 15);
-            memberListViewLabel.TabIndex = 19;
-            memberListViewLabel.Text = "Select Member: ";
-            // 
             // memberListView
             // 
+            memberListView.CheckBoxes = true;
             memberListView.Dock = DockStyle.Fill;
             memberListView.Location = new Point(147, 71);
             memberListView.Name = "memberListView";
-            memberListView.Size = new Size(550, 44);
+            memberListView.Size = new Size(550, 48);
             memberListView.TabIndex = 20;
             memberListView.UseCompatibleStateImageBehavior = false;
             // 
@@ -182,20 +180,11 @@
             // 
             furnitureListView.CheckBoxes = true;
             furnitureListView.Dock = DockStyle.Fill;
-            furnitureListView.Location = new Point(147, 121);
+            furnitureListView.Location = new Point(147, 125);
             furnitureListView.Name = "furnitureListView";
-            furnitureListView.Size = new Size(550, 100);
+            furnitureListView.Size = new Size(550, 99);
             furnitureListView.TabIndex = 4;
             furnitureListView.UseCompatibleStateImageBehavior = false;
-            // 
-            // furnitureListViewLabel
-            // 
-            furnitureListViewLabel.AutoSize = true;
-            furnitureListViewLabel.Location = new Point(3, 118);
-            furnitureListViewLabel.Name = "furnitureListViewLabel";
-            furnitureListViewLabel.Size = new Size(122, 15);
-            furnitureListViewLabel.TabIndex = 21;
-            furnitureListViewLabel.Text = "Select Items to Return";
             // 
             // tableLayoutPanel2
             // 
@@ -205,7 +194,7 @@
             tableLayoutPanel2.Controls.Add(addFurnitureButton, 0, 0);
             tableLayoutPanel2.Controls.Add(clearFurnitureButton, 1, 0);
             tableLayoutPanel2.Dock = DockStyle.Fill;
-            tableLayoutPanel2.Location = new Point(147, 227);
+            tableLayoutPanel2.Location = new Point(147, 230);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
             tableLayoutPanel2.RowCount = 1;
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
@@ -233,7 +222,7 @@
             // cartLabel
             // 
             cartLabel.AutoSize = true;
-            cartLabel.Location = new Point(3, 256);
+            cartLabel.Location = new Point(3, 259);
             cartLabel.Name = "cartLabel";
             cartLabel.Size = new Size(74, 15);
             cartLabel.TabIndex = 22;
@@ -243,9 +232,9 @@
             // 
             cartListView.CheckBoxes = true;
             cartListView.Dock = DockStyle.Fill;
-            cartListView.Location = new Point(147, 259);
+            cartListView.Location = new Point(147, 262);
             cartListView.Name = "cartListView";
-            cartListView.Size = new Size(550, 103);
+            cartListView.Size = new Size(550, 100);
             cartListView.TabIndex = 10;
             cartListView.UseCompatibleStateImageBehavior = false;
             // 
@@ -302,6 +291,70 @@
             updateQuantity.Text = "Update Quantity";
             updateQuantity.UseVisualStyleBackColor = true;
             // 
+            // tableLayoutPanel5
+            // 
+            tableLayoutPanel5.ColumnCount = 1;
+            tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel5.Controls.Add(memberSelectLabel, 0, 0);
+            tableLayoutPanel5.Controls.Add(memberSelectButton, 0, 1);
+            tableLayoutPanel5.Location = new Point(3, 71);
+            tableLayoutPanel5.Name = "tableLayoutPanel5";
+            tableLayoutPanel5.RowCount = 2;
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Absolute, 29F));
+            tableLayoutPanel5.Size = new Size(138, 48);
+            tableLayoutPanel5.TabIndex = 23;
+            // 
+            // memberSelectLabel
+            // 
+            memberSelectLabel.AutoSize = true;
+            memberSelectLabel.Location = new Point(3, 0);
+            memberSelectLabel.Name = "memberSelectLabel";
+            memberSelectLabel.Size = new Size(89, 15);
+            memberSelectLabel.TabIndex = 0;
+            memberSelectLabel.Text = "Select Member:";
+            // 
+            // memberSelectButton
+            // 
+            memberSelectButton.Location = new Point(3, 22);
+            memberSelectButton.Name = "memberSelectButton";
+            memberSelectButton.Size = new Size(75, 23);
+            memberSelectButton.TabIndex = 1;
+            memberSelectButton.Text = "Select";
+            memberSelectButton.UseVisualStyleBackColor = true;
+            memberSelectButton.Click += memberSelectButton_Click;
+            // 
+            // tableLayoutPanel6
+            // 
+            tableLayoutPanel6.ColumnCount = 1;
+            tableLayoutPanel6.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel6.Controls.Add(furnitureListViewLabel, 0, 0);
+            tableLayoutPanel6.Controls.Add(returnItemNumberComboBox, 0, 1);
+            tableLayoutPanel6.Location = new Point(3, 125);
+            tableLayoutPanel6.Name = "tableLayoutPanel6";
+            tableLayoutPanel6.RowCount = 2;
+            tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Absolute, 64F));
+            tableLayoutPanel6.Size = new Size(138, 99);
+            tableLayoutPanel6.TabIndex = 24;
+            // 
+            // furnitureListViewLabel
+            // 
+            furnitureListViewLabel.AutoSize = true;
+            furnitureListViewLabel.Location = new Point(3, 0);
+            furnitureListViewLabel.Name = "furnitureListViewLabel";
+            furnitureListViewLabel.Size = new Size(73, 15);
+            furnitureListViewLabel.TabIndex = 0;
+            furnitureListViewLabel.Text = "Select Items:";
+            // 
+            // returnItemNumberComboBox
+            // 
+            returnItemNumberComboBox.FormattingEnabled = true;
+            returnItemNumberComboBox.Location = new Point(3, 38);
+            returnItemNumberComboBox.Name = "returnItemNumberComboBox";
+            returnItemNumberComboBox.Size = new Size(121, 23);
+            returnItemNumberComboBox.TabIndex = 1;
+            // 
             // InventoryReturn
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -315,6 +368,10 @@
             tableLayoutPanel4.PerformLayout();
             tableLayoutPanel2.ResumeLayout(false);
             tableLayoutPanel3.ResumeLayout(false);
+            tableLayoutPanel5.ResumeLayout(false);
+            tableLayoutPanel5.PerformLayout();
+            tableLayoutPanel6.ResumeLayout(false);
+            tableLayoutPanel6.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -336,11 +393,15 @@
         private TableLayoutPanel tableLayoutPanel4;
         private TextBox memberSearchBox;
         private Button memberSearchButton;
-        private Label memberListViewLabel;
         private ListView memberListView;
         private Label cartLabel;
         private ComboBox memberSelectionComboBox;
-        private Label furnitureListViewLabel;
         private Label errorMemberLabel;
+        private TableLayoutPanel tableLayoutPanel5;
+        private Label memberSelectLabel;
+        private Button memberSelectButton;
+        private TableLayoutPanel tableLayoutPanel6;
+        private Label furnitureListViewLabel;
+        private ComboBox returnItemNumberComboBox;
     }
 }

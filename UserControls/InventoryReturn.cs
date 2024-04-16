@@ -8,12 +8,32 @@ namespace CS6232_Group_6_Store.UserControls
     {
         private MemberController _memberController;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="InventoryReturn"/> class.
+        /// </summary>
         public InventoryReturn()
         {
             InitializeComponent();
             this._memberController = new MemberController();
+
+            this.memberSelectionComboBox.SelectedIndex = 0;
+            this.memberListView.CheckBoxes = true;
+            this.furnitureListView.CheckBoxes = true;
+            this.addFurnitureButton.Enabled = false;
+            this.clearButton.Enabled = false;
+            this.cartListView.Enabled = false;
+            this.checkoutButton.Enabled = false;
+            this.clearFurnitureButton.Enabled = false;
+            this.removeItemButton.Enabled = false;
+            this.memberSelectButton.Enabled = false;
         }
 
+        /// <summary>
+        /// Handles the Click event of the memberSearchButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <exception cref="System.Exception"></exception>
         private void memberSearchButton_Click(object sender, EventArgs e)
         {
             this.errorMemberLabel.Visible = false;
@@ -24,6 +44,7 @@ namespace CS6232_Group_6_Store.UserControls
                     throw new Exception();
                 }
                 this.populateMemberListView();
+                this.memberSelectButton.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -33,6 +54,10 @@ namespace CS6232_Group_6_Store.UserControls
             }
         }
 
+        /// <summary>
+        /// Populates the member ListView.
+        /// </summary>
+        /// <exception cref="System.Exception"></exception>
         private void populateMemberListView()
         {
             this.errorMemberLabel.Visible = false;
@@ -72,6 +97,25 @@ namespace CS6232_Group_6_Store.UserControls
                 this.errorMemberLabel.Text = errorMessage;
             }
 
+        }
+
+        private void memberSelectButton_Click(object sender, EventArgs e)
+        {
+
+            if (this.memberListView.CheckedItems.Count > 0)
+            {
+                ListViewItem checkedItem = memberListView.CheckedItems[0];
+                int memberId = int.Parse(checkedItem.Text);
+                Member tempMember = _memberController.RetrieveMember(memberId);
+                this.errorMemberLabel.Text = "Name: " + tempMember.FullName;
+                this.errorMemberLabel.Visible = true;
+            }
+            else
+            {
+                this.errorMemberLabel.Text = "You must select a member.";
+                this.errorMemberLabel.Visible = true;
+            }
+            // Furniture selectedFurniture = _furnitureController.GetFurniture(furnitureId);
         }
     }
 }
