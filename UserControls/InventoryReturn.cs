@@ -1,6 +1,7 @@
 ﻿
 using CS6232_Group_6_Store.Controller;
 using CS6232_Group_6_Store.Model;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace CS6232_Group_6_Store.UserControls
 {
@@ -278,11 +279,15 @@ namespace CS6232_Group_6_Store.UserControls
         {
             try
             {
-                this._returnCartList.Add(returnItem);
+                if (returnItem != null)
+                {
+                    this._returnCartList.Add(returnItem);
+                }
 
                 this.returnListView.Clear();
                 this.returnListView.View = System.Windows.Forms.View.Details;
                 this.returnListView.GridLines = true;
+
                 this.returnListView.Columns.Add("EmpID", 50);
                 this.returnListView.Columns.Add("MemID", 50);
                 this.returnListView.Columns.Add("Due Date", 100);
@@ -321,6 +326,27 @@ namespace CS6232_Group_6_Store.UserControls
             this.removeItemButton.Enabled = false;
             this.updateQuantityButton.Enabled = false;
             this.checkoutButton.Enabled = false;
+        }
+
+        private void removeItemButton_Click(object sender, EventArgs e)
+        {
+            if (returnListView.CheckedItems.Count == 1)
+            {
+                ListViewItem checkedItem = returnListView.CheckedItems[0];
+                this._returnCartList.RemoveAt(checkedItem.Index);
+                this.refreshReturnListView(null);
+                if (this._returnCartList.Count == 0)
+                {
+                    this.checkoutButton.Enabled = false;
+                }
+            }
+            else
+            {
+                this.selectItemErrorLabel.Visible = true;
+                this.selectItemErrorLabel.ForeColor = Color.Red;
+                this.selectItemErrorLabel.Text = "Please select an item to remove";
+                this.clearFurnitureButton.Enabled = false;
+            }
         }
     }
 }

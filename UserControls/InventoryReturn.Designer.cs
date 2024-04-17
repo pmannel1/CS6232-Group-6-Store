@@ -297,6 +297,7 @@
             removeItemButton.TabIndex = 10;
             removeItemButton.Text = "Remove Item";
             removeItemButton.UseVisualStyleBackColor = true;
+            removeItemButton.Click += removeItemButton_Click;
             // 
             // updateQuantityButton
             // 
