@@ -41,13 +41,14 @@
             tableLayoutPanel2 = new TableLayoutPanel();
             addFurnitureButton = new Button();
             clearFurnitureButton = new Button();
+            selectItemErrorLabel = new Label();
             cartLabel = new Label();
             returnListView = new ListView();
             checkoutButton = new Button();
             tableLayoutPanel3 = new TableLayoutPanel();
-            clearButton = new Button();
+            clearReturnButton = new Button();
             removeItemButton = new Button();
-            updateQuantity = new Button();
+            updateQuantityButton = new Button();
             tableLayoutPanel5 = new TableLayoutPanel();
             memberSelectLabel = new Label();
             memberSelectButton = new Button();
@@ -189,11 +190,13 @@
             // 
             // tableLayoutPanel2
             // 
-            tableLayoutPanel2.ColumnCount = 2;
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 34.727272F));
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 65.27273F));
+            tableLayoutPanel2.ColumnCount = 3;
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 57.53012F));
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 42.46988F));
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 217F));
             tableLayoutPanel2.Controls.Add(addFurnitureButton, 0, 0);
             tableLayoutPanel2.Controls.Add(clearFurnitureButton, 1, 0);
+            tableLayoutPanel2.Controls.Add(selectItemErrorLabel, 2, 0);
             tableLayoutPanel2.Dock = DockStyle.Fill;
             tableLayoutPanel2.Location = new Point(147, 230);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -221,6 +224,15 @@
             clearFurnitureButton.Text = "Clear Search";
             clearFurnitureButton.UseVisualStyleBackColor = true;
             clearFurnitureButton.Click += clearFurnitureButton_Click;
+            // 
+            // selectItemErrorLabel
+            // 
+            selectItemErrorLabel.AutoSize = true;
+            selectItemErrorLabel.ForeColor = Color.Red;
+            selectItemErrorLabel.Location = new Point(335, 0);
+            selectItemErrorLabel.Name = "selectItemErrorLabel";
+            selectItemErrorLabel.Size = new Size(0, 15);
+            selectItemErrorLabel.TabIndex = 8;
             // 
             // cartLabel
             // 
@@ -256,9 +268,9 @@
             tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
             tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
             tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
-            tableLayoutPanel3.Controls.Add(clearButton, 2, 0);
+            tableLayoutPanel3.Controls.Add(clearReturnButton, 2, 0);
             tableLayoutPanel3.Controls.Add(removeItemButton, 1, 0);
-            tableLayoutPanel3.Controls.Add(updateQuantity, 0, 0);
+            tableLayoutPanel3.Controls.Add(updateQuantityButton, 0, 0);
             tableLayoutPanel3.Dock = DockStyle.Fill;
             tableLayoutPanel3.Location = new Point(147, 368);
             tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -267,14 +279,15 @@
             tableLayoutPanel3.Size = new Size(550, 29);
             tableLayoutPanel3.TabIndex = 12;
             // 
-            // clearButton
+            // clearReturnButton
             // 
-            clearButton.Location = new Point(369, 3);
-            clearButton.Name = "clearButton";
-            clearButton.Size = new Size(100, 21);
-            clearButton.TabIndex = 9;
-            clearButton.Text = "Clear All Items";
-            clearButton.UseVisualStyleBackColor = true;
+            clearReturnButton.Location = new Point(369, 3);
+            clearReturnButton.Name = "clearReturnButton";
+            clearReturnButton.Size = new Size(100, 21);
+            clearReturnButton.TabIndex = 9;
+            clearReturnButton.Text = "Clear All Items";
+            clearReturnButton.UseVisualStyleBackColor = true;
+            clearReturnButton.Click += clearReturnButton_Click;
             // 
             // removeItemButton
             // 
@@ -285,14 +298,14 @@
             removeItemButton.Text = "Remove Item";
             removeItemButton.UseVisualStyleBackColor = true;
             // 
-            // updateQuantity
+            // updateQuantityButton
             // 
-            updateQuantity.Location = new Point(3, 3);
-            updateQuantity.Name = "updateQuantity";
-            updateQuantity.Size = new Size(118, 21);
-            updateQuantity.TabIndex = 11;
-            updateQuantity.Text = "Update Quantity";
-            updateQuantity.UseVisualStyleBackColor = true;
+            updateQuantityButton.Location = new Point(3, 3);
+            updateQuantityButton.Name = "updateQuantityButton";
+            updateQuantityButton.Size = new Size(118, 21);
+            updateQuantityButton.TabIndex = 11;
+            updateQuantityButton.Text = "Update Quantity";
+            updateQuantityButton.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel5
             // 
@@ -370,6 +383,7 @@
             tableLayoutPanel4.ResumeLayout(false);
             tableLayoutPanel4.PerformLayout();
             tableLayoutPanel2.ResumeLayout(false);
+            tableLayoutPanel2.PerformLayout();
             tableLayoutPanel3.ResumeLayout(false);
             tableLayoutPanel5.ResumeLayout(false);
             tableLayoutPanel5.PerformLayout();
@@ -389,9 +403,9 @@
         private Button addFurnitureButton;
         private Button clearFurnitureButton;
         private TableLayoutPanel tableLayoutPanel3;
-        private Button clearButton;
+        private Button clearReturnButton;
         private Button removeItemButton;
-        private Button updateQuantity;
+        private Button updateQuantityButton;
         private Label memberSearchLabel;
         private TableLayoutPanel tableLayoutPanel4;
         private TextBox memberSearchBox;
@@ -407,5 +421,6 @@
         private ComboBox returnItemNumberComboBox;
         private Label furnitureListViewLabel;
         private Button selectFurnitureItemButton;
+        private Label selectItemErrorLabel;
     }
 }

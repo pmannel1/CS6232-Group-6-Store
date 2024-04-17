@@ -1,10 +1,6 @@
 ﻿
 using CS6232_Group_6_Store.Controller;
 using CS6232_Group_6_Store.Model;
-using CS6232_Group_6_Store.View;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
-using System.Transactions;
-using System.Data.Common;
 
 namespace CS6232_Group_6_Store.UserControls
 {
@@ -34,19 +30,15 @@ namespace CS6232_Group_6_Store.UserControls
             this.memberListView.CheckBoxes = true;
             this.furnitureListView.CheckBoxes = true;
             this.addFurnitureButton.Enabled = false;
-            this.clearButton.Enabled = false;
+            this.clearReturnButton.Enabled = false;
             this.returnListView.Enabled = false;
             this.checkoutButton.Enabled = false;
             this.clearFurnitureButton.Enabled = false;
             this.removeItemButton.Enabled = false;
             this.memberSelectButton.Enabled = false;
             this.returnItemNumberComboBox.Enabled = false;
+            this.updateQuantityButton.Enabled = false;
 
-            MainDashBoard parentForm = this.FindForm() as MainDashBoard;
-            if (parentForm != null)
-            {
-                this.employeeId = parentForm.EmployeeId;
-            }
         }
 
         /// <summary>
@@ -241,14 +233,14 @@ namespace CS6232_Group_6_Store.UserControls
 
         private void addFurnitureButton_Click(object sender, EventArgs e)
         {
-            
+
             if (string.IsNullOrEmpty(this.returnItemNumberComboBox.Text) || this.furnitureListView.CheckedItems.Count < 1)
-            { 
-                   
+            {
+                this.selectItemErrorLabel.Text = "Select Item/Quantity.";
             }
             else
             {
-                
+
                 int returnComboBoxValue = int.Parse(this.returnItemNumberComboBox.Text);
                 RentalItem currentRentalItem = new RentalItem();
 
@@ -262,6 +254,13 @@ namespace CS6232_Group_6_Store.UserControls
                 currentRentalItem.QuantityReturned = returnComboBoxValue;
 
                 ReturnItem returnItem = new ReturnItem();
+
+                MainDashBoard parentForm = this.FindForm() as MainDashBoard;
+                if (parentForm != null)
+                {
+                    this.employeeId = parentForm.EmployeeId;
+                }
+
                 returnItem.EmployeeId = this.employeeId;
                 returnItem.MemberId = this.memberId;
                 returnItem.DueDate = currentRentalItem.DueDate;
@@ -270,7 +269,8 @@ namespace CS6232_Group_6_Store.UserControls
 
 
                 this.refreshReturnListView(returnItem);
-            }       
+                this.selectItemErrorLabel.Text = "";
+            }
 
         }
 
@@ -278,8 +278,8 @@ namespace CS6232_Group_6_Store.UserControls
         {
             try
             {
-                this._returnCartList.Add( returnItem );
-                
+                this._returnCartList.Add(returnItem);
+
                 this.returnListView.Clear();
                 this.returnListView.View = System.Windows.Forms.View.Details;
                 this.returnListView.GridLines = true;
@@ -301,11 +301,26 @@ namespace CS6232_Group_6_Store.UserControls
                 this.returnListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
                 this.returnListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
                 this.returnListView.Enabled = true;
+                this.clearReturnButton.Enabled = true;
+                this.updateQuantityButton.Enabled = true;
+                this.checkoutButton.Enabled = true;
+                this.removeItemButton.Enabled = true;
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void clearReturnButton_Click(object sender, EventArgs e)
+        {
+            this.returnListView.Clear();
+            this.returnListView.Enabled = false;
+            this._returnCartList.Clear();
+            this.clearReturnButton.Enabled = false;
+            this.removeItemButton.Enabled = false;
+            this.updateQuantityButton.Enabled = false;
+            this.checkoutButton.Enabled = false;
         }
     }
 }
