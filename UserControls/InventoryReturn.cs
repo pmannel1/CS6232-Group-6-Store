@@ -10,6 +10,7 @@ namespace CS6232_Group_6_Store.UserControls
         private RentalItemController _rentalItemController;
         private Member _currentMember;
         private List<RentalItem> _currentRentalItemList;
+        int furnitureId;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="InventoryReturn"/> class.
@@ -31,6 +32,7 @@ namespace CS6232_Group_6_Store.UserControls
             this.clearFurnitureButton.Enabled = false;
             this.removeItemButton.Enabled = false;
             this.memberSelectButton.Enabled = false;
+            this.returnItemNumberComboBox.Enabled = false;
         }
 
         /// <summary>
@@ -115,6 +117,7 @@ namespace CS6232_Group_6_Store.UserControls
                 this._currentRentalItemList = this._rentalItemController.GetOutstandingRentalItemsById(memberId);
                 this.PopulateFurnitureListView();
                 this.clearFurnitureButton.Enabled = true;
+                this.returnItemNumberComboBox.Enabled = true;
             }
             else if (this.memberListView.CheckedItems.Count > 1)
             {
@@ -184,6 +187,40 @@ namespace CS6232_Group_6_Store.UserControls
             this.memberListView.Clear();
             this.memberSearchBox.Text = "";
             this.clearFurnitureButton.Enabled = false;
+            this.returnItemNumberComboBox.Enabled = false;
+            this.returnItemNumberComboBox.Items.Clear();
+        }
+
+        private void furnitureListView_ItemChecked(object sender, ItemCheckedEventArgs e)
+        {
+            if (e.Item.Checked)
+            {
+                furnitureId = int.Parse(e.Item.Text);
+                foreach (ListViewItem item in furnitureListView.Items)
+                {
+                    if (item != e.Item)
+                    {
+                        item.Checked = false;
+                    }
+                }
+
+            }
+            if (furnitureListView.CheckedItems.Count > 0 && memberListView.CheckedItems.Count > 0)
+            {
+                this.returnItemNumberComboBox.Items.Clear();
+                this.addFurnitureButton.Enabled = true;
+                this.returnItemNumberComboBox.Enabled= true;
+                for (int index = 1; index <= int.Parse(e.Item.SubItems[4].Text); index++)
+                {
+                    this.returnItemNumberComboBox.Items.Add(index.ToString());
+                }
+            }
+            else
+            {
+                this.addFurnitureButton.Enabled = false;
+                this.returnItemNumberComboBox.Enabled = false;
+            }
+
         }
     }
 }

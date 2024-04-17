@@ -185,6 +185,7 @@
             furnitureListView.Size = new Size(550, 99);
             furnitureListView.TabIndex = 4;
             furnitureListView.UseCompatibleStateImageBehavior = false;
+            furnitureListView.ItemChecked += furnitureListView_ItemChecked;
             // 
             // tableLayoutPanel2
             // 
