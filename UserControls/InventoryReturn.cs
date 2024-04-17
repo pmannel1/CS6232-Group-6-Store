@@ -106,8 +106,6 @@ namespace CS6232_Group_6_Store.UserControls
 
         private void memberSelectButton_Click(object sender, EventArgs e)
         {
-
-            MessageBox.Show("IF INSIDE MemberSelectButton");
             if (this.memberListView.CheckedItems.Count == 1)
             {
                 ListViewItem checkedItem = memberListView.CheckedItems[0];
@@ -116,6 +114,7 @@ namespace CS6232_Group_6_Store.UserControls
                 this.errorMemberLabel.Visible = true;
                 this._currentRentalItemList = this._rentalItemController.GetOutstandingRentalItemsById(memberId);
                 this.PopulateFurnitureListView();
+                this.clearFurnitureButton.Enabled = true;
             }
             else if (this.memberListView.CheckedItems.Count > 1)
             {
@@ -131,7 +130,6 @@ namespace CS6232_Group_6_Store.UserControls
 
         private void PopulateFurnitureListView()
         {
-            MessageBox.Show("PopulateFurnitureListView Method Called");
             this.errorMemberLabel.Text = "";
             this.errorMemberLabel.Visible = false;
             string errorMessage = null;
@@ -165,9 +163,10 @@ namespace CS6232_Group_6_Store.UserControls
                         int outstanding = dr.Quantity - dr.QuantityReturned;
                         furnitureList.SubItems.Add(outstanding.ToString());
                         furnitureList.SubItems.Add(dr.DueDate.ToString());
-                        this.errorMemberLabel.Text = "Furniture Name: " + dr.FurnitureName;
-                        this.errorMemberLabel.Visible = true;
                     }
+                    this.furnitureListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+                    this.furnitureListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+
                 }
             }
             catch (Exception ex)
@@ -177,6 +176,14 @@ namespace CS6232_Group_6_Store.UserControls
                 this.errorMemberLabel.Text = errorMessage;
             }
 
+        }
+
+        private void clearFurnitureButton_Click(object sender, EventArgs e)
+        {
+            this.furnitureListView.Clear();
+            this.memberListView.Clear();
+            this.memberSearchBox.Text = "";
+            this.clearFurnitureButton.Enabled = false;
         }
     }
 }

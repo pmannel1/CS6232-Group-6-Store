@@ -218,6 +218,7 @@
             clearFurnitureButton.TabIndex = 7;
             clearFurnitureButton.Text = "Clear Search";
             clearFurnitureButton.UseVisualStyleBackColor = true;
+            clearFurnitureButton.Click += clearFurnitureButton_Click;
             // 
             // cartLabel
             // 
