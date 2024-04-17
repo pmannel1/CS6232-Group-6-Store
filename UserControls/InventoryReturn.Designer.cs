@@ -210,6 +210,7 @@
             addFurnitureButton.TabIndex = 6;
             addFurnitureButton.Text = "Add to Return";
             addFurnitureButton.UseVisualStyleBackColor = true;
+            addFurnitureButton.Click += addFurnitureButton_Click;
             // 
             // clearFurnitureButton
             // 

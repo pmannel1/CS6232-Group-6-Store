@@ -37,5 +37,29 @@
         /// </value>
         public int Quantity { get; set; }
 
+        /// <summary>
+        /// Gets or sets the member identifier.
+        /// </summary>
+        /// <value>
+        /// The member identifier.
+        /// </value>
+        public int MemberId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the employee identifier.
+        /// </summary>
+        /// <value>
+        /// The employee identifier.
+        /// </value>
+        public int EmployeeId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the due date.
+        /// </summary>
+        /// <value>
+        /// The due date.
+        /// </value>
+        public DateTime DueDate { get; set; }
+
     }
 }
