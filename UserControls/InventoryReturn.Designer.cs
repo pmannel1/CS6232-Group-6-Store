@@ -42,7 +42,7 @@
             addFurnitureButton = new Button();
             clearFurnitureButton = new Button();
             cartLabel = new Label();
-            cartListView = new ListView();
+            returnListView = new ListView();
             checkoutButton = new Button();
             tableLayoutPanel3 = new TableLayoutPanel();
             clearButton = new Button();
@@ -75,7 +75,7 @@
             tableLayoutPanel1.Controls.Add(furnitureListView, 1, 3);
             tableLayoutPanel1.Controls.Add(tableLayoutPanel2, 1, 4);
             tableLayoutPanel1.Controls.Add(cartLabel, 0, 5);
-            tableLayoutPanel1.Controls.Add(cartListView, 1, 5);
+            tableLayoutPanel1.Controls.Add(returnListView, 1, 5);
             tableLayoutPanel1.Controls.Add(checkoutButton, 0, 6);
             tableLayoutPanel1.Controls.Add(tableLayoutPanel3, 1, 6);
             tableLayoutPanel1.Controls.Add(tableLayoutPanel5, 0, 2);
@@ -228,15 +228,15 @@
             cartLabel.TabIndex = 22;
             cartLabel.Text = "Return Items";
             // 
-            // cartListView
+            // returnListView
             // 
-            cartListView.CheckBoxes = true;
-            cartListView.Dock = DockStyle.Fill;
-            cartListView.Location = new Point(147, 262);
-            cartListView.Name = "cartListView";
-            cartListView.Size = new Size(550, 100);
-            cartListView.TabIndex = 10;
-            cartListView.UseCompatibleStateImageBehavior = false;
+            returnListView.CheckBoxes = true;
+            returnListView.Dock = DockStyle.Fill;
+            returnListView.Location = new Point(147, 262);
+            returnListView.Name = "returnListView";
+            returnListView.Size = new Size(550, 100);
+            returnListView.TabIndex = 10;
+            returnListView.UseCompatibleStateImageBehavior = false;
             // 
             // checkoutButton
             // 
@@ -380,7 +380,7 @@
         private TableLayoutPanel tableLayoutPanel1;
         private Button checkoutButton;
         private Label memberSearchMethod;
-        private ListView cartListView;
+        private ListView returnListView;
         private ListView furnitureListView;
         private TableLayoutPanel tableLayoutPanel2;
         private Button addFurnitureButton;

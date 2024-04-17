@@ -19,13 +19,14 @@ namespace CS6232_Group_6_Store.UserControls
             InitializeComponent();
             this._memberController = new MemberController();
             this._currentRentalItemList = new List<RentalItem>();
+            this._rentalItemController = new RentalItemController();
 
             this.memberSelectionComboBox.SelectedIndex = 0;
             this.memberListView.CheckBoxes = true;
             this.furnitureListView.CheckBoxes = true;
             this.addFurnitureButton.Enabled = false;
             this.clearButton.Enabled = false;
-            this.cartListView.Enabled = false;
+            this.returnListView.Enabled = false;
             this.checkoutButton.Enabled = false;
             this.clearFurnitureButton.Enabled = false;
             this.removeItemButton.Enabled = false;
@@ -106,14 +107,15 @@ namespace CS6232_Group_6_Store.UserControls
         private void memberSelectButton_Click(object sender, EventArgs e)
         {
 
+            MessageBox.Show("IF INSIDE MemberSelectButton");
             if (this.memberListView.CheckedItems.Count == 1)
             {
                 ListViewItem checkedItem = memberListView.CheckedItems[0];
                 int memberId = int.Parse(checkedItem.Text);
                 _currentMember = _memberController.RetrieveMember(memberId);
-                this.errorMemberLabel.Text = "Name: " + _currentMember.FullName;
                 this.errorMemberLabel.Visible = true;
                 this._currentRentalItemList = this._rentalItemController.GetOutstandingRentalItemsById(memberId);
+                this.PopulateFurnitureListView();
             }
             else if (this.memberListView.CheckedItems.Count > 1)
             {
@@ -125,6 +127,56 @@ namespace CS6232_Group_6_Store.UserControls
                 this.errorMemberLabel.Text = "You must select a member.";
                 this.errorMemberLabel.Visible = true;
             }
+        }
+
+        private void PopulateFurnitureListView()
+        {
+            MessageBox.Show("PopulateFurnitureListView Method Called");
+            this.errorMemberLabel.Text = "";
+            this.errorMemberLabel.Visible = false;
+            string errorMessage = null;
+            try
+            {
+                errorMessage = "invalid search";
+                this.furnitureListView.Clear();
+                this.furnitureListView.View = System.Windows.Forms.View.Details;
+                this.furnitureListView.GridLines = true;
+                this.furnitureListView.Columns.Add("TransactionID", 50);
+                this.furnitureListView.Columns.Add("LineItemID", 50);
+                this.furnitureListView.Columns.Add("Furniture Name", 100);
+                this.furnitureListView.Columns.Add("Rental Rate", 100);
+                this.furnitureListView.Columns.Add("Outstanding", 50);
+                this.furnitureListView.Columns.Add("Due Date", 100);
+
+                if (this._currentRentalItemList.Count == 0)
+                {
+                    errorMessage = "No results found";
+                    throw new Exception();
+                }
+                else
+                {
+                    foreach (RentalItem dr in this._currentRentalItemList)
+                    {
+                        var furnitureList = furnitureListView.Items.Add(dr.TransactionId.ToString());
+                        furnitureList.SubItems.Add(dr.Id.ToString());
+                        furnitureList.SubItems.Add(dr.FurnitureName);
+                        furnitureList.SubItems.Add(dr.RentalRate.ToString());
+
+                        int outstanding = dr.Quantity - dr.QuantityReturned;
+                        furnitureList.SubItems.Add(outstanding.ToString());
+                        furnitureList.SubItems.Add(dr.DueDate.ToString());
+                        this.errorMemberLabel.Text = "Furniture Name: " + dr.FurnitureName;
+                        this.errorMemberLabel.Visible = true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.errorMemberLabel.Visible = true;
+                this.errorMemberLabel.ForeColor = Color.Red;
+                this.errorMemberLabel.Text = errorMessage;
+            }
+
         }
     }
 }
