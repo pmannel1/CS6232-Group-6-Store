@@ -151,7 +151,7 @@ namespace CS6232_Group_6_Store.UserControls
                 this.furnitureListView.View = System.Windows.Forms.View.Details;
                 this.furnitureListView.GridLines = true;
                 this.furnitureListView.Columns.Add("TransactionID", 50);
-                this.furnitureListView.Columns.Add("LineItemID", 50);
+                this.furnitureListView.Columns.Add("RentalItemID", 50);
                 this.furnitureListView.Columns.Add("FurnitureID", 100);
                 this.furnitureListView.Columns.Add("Furniture Name", 100);
                 this.furnitureListView.Columns.Add("Rental Rate", 100);
@@ -221,7 +221,7 @@ namespace CS6232_Group_6_Store.UserControls
                 this.addFurnitureButton.Enabled = true;
                 this.returnItemNumberComboBox.Enabled = true;
                 this.returnItemNumberComboBox.Text = "";
-                
+
                 int quantityInReturnCart = 0;
                 var itemFoundInCart = this._returnCartList.Find(x => x.RentalItemId == int.Parse(e.Item.SubItems[1].Text));
                 if (itemFoundInCart != null)
@@ -278,7 +278,7 @@ namespace CS6232_Group_6_Store.UserControls
                 this._returnItem.MemberId = this.memberId;
                 this._returnItem.DueDate = currentRentalItem.DueDate;
                 this._returnItem.RentalItemId = currentRentalItem.Id;
-                
+
 
                 var itemFoundInCart = this._returnCartList.Find(x => x.RentalItemId == this._returnItem.RentalItemId);
                 if (itemFoundInCart != null)
@@ -373,8 +373,33 @@ namespace CS6232_Group_6_Store.UserControls
             {
                 this.selectItemErrorLabel.Visible = true;
                 this.selectItemErrorLabel.ForeColor = Color.Red;
-                this.selectItemErrorLabel.Text = "Please select an item to remove";
+                this.selectItemErrorLabel.Text = "Please select ONE item to remove";
                 this.clearFurnitureButton.Enabled = false;
+            }
+        }
+
+        private void updateQuantityButton_Click(object sender, EventArgs e)
+        {
+            if (returnListView.CheckedItems.Count == 1)
+            {
+                ListViewItem checkedItem = returnListView.CheckedItems[0];
+                this._returnCartList[checkedItem.Index].Quantity--;
+                if (this._returnCartList[checkedItem.Index].Quantity == 0)
+                {
+                    this._returnCartList.RemoveAt(checkedItem.Index);
+                }
+                this._returnItem = null;
+                this.refreshReturnListView();
+                if (this._returnCartList.Count == 0)
+                {
+                    this.checkoutButton.Enabled = false;
+                }
+            }
+            else
+            {
+                this.selectItemErrorLabel.Visible = true;
+                this.selectItemErrorLabel.ForeColor = Color.Red;
+                this.selectItemErrorLabel.Text = "Please select ONE item to update";
             }
         }
     }

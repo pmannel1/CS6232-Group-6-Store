@@ -305,8 +305,9 @@
             updateQuantityButton.Name = "updateQuantityButton";
             updateQuantityButton.Size = new Size(118, 21);
             updateQuantityButton.TabIndex = 11;
-            updateQuantityButton.Text = "Update Quantity";
+            updateQuantityButton.Text = "Remove 1 Quantity";
             updateQuantityButton.UseVisualStyleBackColor = true;
+            updateQuantityButton.Click += updateQuantityButton_Click;
             // 
             // tableLayoutPanel5
             // 
