@@ -12,6 +12,7 @@ namespace CS6232_Group_6_Store.UserControls
         private Member _currentMember;
         private List<RentalItem> _currentRentalItemList;
         private List<ReturnItem> _returnCartList;
+        private ReturnItem _returnItem;
         private int furnitureId;
         private int employeeId;
         private int memberId;
@@ -219,7 +220,16 @@ namespace CS6232_Group_6_Store.UserControls
                 this.returnItemNumberComboBox.Items.Clear();
                 this.addFurnitureButton.Enabled = true;
                 this.returnItemNumberComboBox.Enabled = true;
-                for (int index = 1; index <= int.Parse(e.Item.SubItems[5].Text); index++)
+                this.returnItemNumberComboBox.Text = "";
+                
+                int quantityInReturnCart = 0;
+                var itemFoundInCart = this._returnCartList.Find(x => x.RentalItemId == int.Parse(e.Item.SubItems[1].Text));
+                if (itemFoundInCart != null)
+                {
+                    quantityInReturnCart = itemFoundInCart.Quantity;
+                }
+
+                for (int index = 1; index <= int.Parse(e.Item.SubItems[5].Text) - quantityInReturnCart; index++)
                 {
                     this.returnItemNumberComboBox.Items.Add(index.ToString());
                 }
@@ -228,6 +238,7 @@ namespace CS6232_Group_6_Store.UserControls
             {
                 this.addFurnitureButton.Enabled = false;
                 this.returnItemNumberComboBox.Enabled = false;
+                this._returnItem = null;
             }
 
         }
@@ -254,7 +265,8 @@ namespace CS6232_Group_6_Store.UserControls
                 currentRentalItem.DueDate = DateTime.Parse(this.furnitureListView.CheckedItems[0].SubItems[6].Text);
                 currentRentalItem.QuantityReturned = returnComboBoxValue;
 
-                ReturnItem returnItem = new ReturnItem();
+                this._returnItem = null;
+                this._returnItem = new ReturnItem();
 
                 MainDashBoard parentForm = this.FindForm() as MainDashBoard;
                 if (parentForm != null)
@@ -262,26 +274,41 @@ namespace CS6232_Group_6_Store.UserControls
                     this.employeeId = parentForm.EmployeeId;
                 }
 
-                returnItem.EmployeeId = this.employeeId;
-                returnItem.MemberId = this.memberId;
-                returnItem.DueDate = currentRentalItem.DueDate;
-                returnItem.RentalItemId = currentRentalItem.TransactionId;
-                returnItem.Quantity = currentRentalItem.QuantityReturned;
+                this._returnItem.EmployeeId = this.employeeId;
+                this._returnItem.MemberId = this.memberId;
+                this._returnItem.DueDate = currentRentalItem.DueDate;
+                this._returnItem.RentalItemId = currentRentalItem.Id;
+                
 
-
-                this.refreshReturnListView(returnItem);
+                var itemFoundInCart = this._returnCartList.Find(x => x.RentalItemId == this._returnItem.RentalItemId);
+                if (itemFoundInCart != null)
+                {
+                    itemFoundInCart.Quantity += int.Parse(this.returnItemNumberComboBox.Text);
+                    this._returnItem = null;
+                }
+                else
+                {
+                    this._returnItem.Quantity = currentRentalItem.QuantityReturned;
+                }
+                this.refreshReturnListView();
                 this.selectItemErrorLabel.Text = "";
+                this.returnItemNumberComboBox.Text = "";
+                this.returnItemNumberComboBox.Enabled = false;
+                foreach (ListViewItem item in this.furnitureListView.CheckedItems)
+                {
+                    item.Checked = false;
+                }
             }
 
         }
 
-        private void refreshReturnListView(ReturnItem returnItem)
+        private void refreshReturnListView()
         {
             try
             {
-                if (returnItem != null)
+                if (this._returnItem != null)
                 {
-                    this._returnCartList.Add(returnItem);
+                    this._returnCartList.Add(this._returnItem);
                 }
 
                 this.returnListView.Clear();
@@ -291,7 +318,7 @@ namespace CS6232_Group_6_Store.UserControls
                 this.returnListView.Columns.Add("EmpID", 50);
                 this.returnListView.Columns.Add("MemID", 50);
                 this.returnListView.Columns.Add("Due Date", 100);
-                this.returnListView.Columns.Add("RentTransID", 50);
+                this.returnListView.Columns.Add("RentalItemID", 50);
                 this.returnListView.Columns.Add("Quantity", 50);
 
                 foreach (ReturnItem dr in this._returnCartList)
@@ -326,6 +353,7 @@ namespace CS6232_Group_6_Store.UserControls
             this.removeItemButton.Enabled = false;
             this.updateQuantityButton.Enabled = false;
             this.checkoutButton.Enabled = false;
+            this._returnItem = null;
         }
 
         private void removeItemButton_Click(object sender, EventArgs e)
@@ -334,7 +362,8 @@ namespace CS6232_Group_6_Store.UserControls
             {
                 ListViewItem checkedItem = returnListView.CheckedItems[0];
                 this._returnCartList.RemoveAt(checkedItem.Index);
-                this.refreshReturnListView(null);
+                this._returnItem = null;
+                this.refreshReturnListView();
                 if (this._returnCartList.Count == 0)
                 {
                     this.checkoutButton.Enabled = false;
