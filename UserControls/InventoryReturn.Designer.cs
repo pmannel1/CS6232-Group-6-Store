@@ -261,6 +261,7 @@
             checkoutButton.TabIndex = 8;
             checkoutButton.Text = "Complete Return";
             checkoutButton.UseVisualStyleBackColor = true;
+            checkoutButton.Click += checkoutButton_Click;
             // 
             // tableLayoutPanel3
             // 

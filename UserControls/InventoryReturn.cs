@@ -1,7 +1,6 @@
 ﻿
 using CS6232_Group_6_Store.Controller;
 using CS6232_Group_6_Store.Model;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace CS6232_Group_6_Store.UserControls
 {
@@ -9,6 +8,8 @@ namespace CS6232_Group_6_Store.UserControls
     {
         private MemberController _memberController;
         private RentalItemController _rentalItemController;
+        private FurnitureController _furnitureController;
+        private ReturnTransactionController _returnTransactionController;
         private Member _currentMember;
         private List<RentalItem> _currentRentalItemList;
         private List<ReturnItem> _returnCartList;
@@ -24,6 +25,8 @@ namespace CS6232_Group_6_Store.UserControls
         {
             InitializeComponent();
             this._memberController = new MemberController();
+            this._furnitureController = new FurnitureController();
+            this._returnTransactionController = new ReturnTransactionController();
             this._currentRentalItemList = new List<RentalItem>();
             this._rentalItemController = new RentalItemController();
             this._returnCartList = new List<ReturnItem>();
@@ -114,6 +117,11 @@ namespace CS6232_Group_6_Store.UserControls
 
         }
 
+        /// <summary>
+        /// Handles the Click event of the memberSelectButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void memberSelectButton_Click(object sender, EventArgs e)
         {
             if (this.memberListView.CheckedItems.Count == 1)
@@ -139,6 +147,10 @@ namespace CS6232_Group_6_Store.UserControls
             }
         }
 
+        /// <summary>
+        /// Populates the furniture ListView.
+        /// </summary>
+        /// <exception cref="System.Exception"></exception>
         private void PopulateFurnitureListView()
         {
             this.errorMemberLabel.Text = "";
@@ -191,6 +203,11 @@ namespace CS6232_Group_6_Store.UserControls
 
         }
 
+        /// <summary>
+        /// Handles the Click event of the clearFurnitureButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void clearFurnitureButton_Click(object sender, EventArgs e)
         {
             this.furnitureListView.Clear();
@@ -201,6 +218,11 @@ namespace CS6232_Group_6_Store.UserControls
             this.returnItemNumberComboBox.Items.Clear();
         }
 
+        /// <summary>
+        /// Handles the ItemChecked event of the furnitureListView control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="ItemCheckedEventArgs"/> instance containing the event data.</param>
         private void furnitureListView_ItemChecked(object sender, ItemCheckedEventArgs e)
         {
             if (e.Item.Checked)
@@ -243,6 +265,11 @@ namespace CS6232_Group_6_Store.UserControls
 
         }
 
+        /// <summary>
+        /// Handles the Click event of the addFurnitureButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void addFurnitureButton_Click(object sender, EventArgs e)
         {
 
@@ -278,6 +305,7 @@ namespace CS6232_Group_6_Store.UserControls
                 this._returnItem.MemberId = this.memberId;
                 this._returnItem.DueDate = currentRentalItem.DueDate;
                 this._returnItem.RentalItemId = currentRentalItem.Id;
+                this._returnItem.FurnitureId = currentRentalItem.FurnitureId;
 
 
                 var itemFoundInCart = this._returnCartList.Find(x => x.RentalItemId == this._returnItem.RentalItemId);
@@ -302,6 +330,9 @@ namespace CS6232_Group_6_Store.UserControls
 
         }
 
+        /// <summary>
+        /// Refreshes the return ListView.
+        /// </summary>
         private void refreshReturnListView()
         {
             try
@@ -344,18 +375,21 @@ namespace CS6232_Group_6_Store.UserControls
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the clearReturnButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void clearReturnButton_Click(object sender, EventArgs e)
         {
-            this.returnListView.Clear();
-            this.returnListView.Enabled = false;
-            this._returnCartList.Clear();
-            this.clearReturnButton.Enabled = false;
-            this.removeItemButton.Enabled = false;
-            this.updateQuantityButton.Enabled = false;
-            this.checkoutButton.Enabled = false;
-            this._returnItem = null;
+            this.ClearReturnItems();
         }
 
+        /// <summary>
+        /// Handles the Click event of the removeItemButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void removeItemButton_Click(object sender, EventArgs e)
         {
             if (returnListView.CheckedItems.Count == 1)
@@ -368,6 +402,7 @@ namespace CS6232_Group_6_Store.UserControls
                 {
                     this.checkoutButton.Enabled = false;
                 }
+                this.selectItemErrorLabel.Text = "";
             }
             else
             {
@@ -378,6 +413,11 @@ namespace CS6232_Group_6_Store.UserControls
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the updateQuantityButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void updateQuantityButton_Click(object sender, EventArgs e)
         {
             if (returnListView.CheckedItems.Count == 1)
@@ -392,8 +432,9 @@ namespace CS6232_Group_6_Store.UserControls
                 this.refreshReturnListView();
                 if (this._returnCartList.Count == 0)
                 {
-                    this.checkoutButton.Enabled = false;
+                    this.ClearReturnItems();
                 }
+                this.selectItemErrorLabel.Text = "";
             }
             else
             {
@@ -401,6 +442,74 @@ namespace CS6232_Group_6_Store.UserControls
                 this.selectItemErrorLabel.ForeColor = Color.Red;
                 this.selectItemErrorLabel.Text = "Please select ONE item to update";
             }
+        }
+
+        /// <summary>
+        /// Handles the Click event of the checkoutButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void checkoutButton_Click(object sender, EventArgs e)
+        {
+            decimal fines = 0.0m;
+            decimal refunds = 0.0m;
+
+            try
+            {
+                foreach (ReturnItem item in this._returnCartList)
+                {
+                    Furniture furniture = this._furnitureController.GetFurniture(item.FurnitureId);
+                    DateTime tempDate = new DateTime(2022, 12, 10);
+                    int days = (int)Math.Ceiling((tempDate - item.DueDate).TotalDays);
+
+                    if (days >= 0)
+                    {
+                        fines += days * item.Quantity * furniture.RentalRate;
+                    }
+                    else
+                    {
+                        days *= -1;
+                        refunds += days * item.Quantity * furniture.RentalRate;
+                    }
+                }
+
+
+
+                MessageBox.Show("Fines: " + fines + ", Refunds: " + refunds);
+                ReturnTransaction returnTransaction = new ReturnTransaction();
+                returnTransaction.EmployeeId = this.employeeId;
+                returnTransaction.MemberId = this.memberId;
+                returnTransaction.Refund = refunds;
+                returnTransaction.Fine = fines;
+
+                List<ReturnItem> returnItems = this._returnCartList;
+
+                // this is the start of the transaction scope for the return
+                // int value = this._returnTransactionController.CreateReturnTransactionScope(returnTransaction, returnItems);
+
+
+                this.ClearReturnItems();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred during checkout: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>
+        /// Clears the return items.
+        /// </summary>
+        private void ClearReturnItems()
+        {
+            this.returnListView.Clear();
+            this.returnListView.Enabled = false;
+            this._returnCartList.Clear();
+            this.clearReturnButton.Enabled = false;
+            this.removeItemButton.Enabled = false;
+            this.updateQuantityButton.Enabled = false;
+            this.checkoutButton.Enabled = false;
+            this._returnItem = null;
+            this.selectItemErrorLabel.Text = "";
         }
     }
 }

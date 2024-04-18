@@ -61,5 +61,12 @@
         /// </value>
         public DateTime DueDate { get; set; }
 
+        /// <summary>
+        /// Gets the furniture identifier.
+        /// </summary>
+        /// <value>
+        /// The furniture identifier.
+        /// </value>
+        public int FurnitureId { get; set; }
     }
 }
