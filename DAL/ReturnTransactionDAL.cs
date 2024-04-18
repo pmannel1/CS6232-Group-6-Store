@@ -21,11 +21,14 @@ namespace CS6232_Group_6_Store.DAL
             string insertReturnTransactionStatement = "INSERT INTO return_transactions (employeeId, memberId, returnDate, refund, fine) "
                 + "OUTPUT INSERTED.id "
                 + "VALUES (@employeeId, @memberId, GETDATE(), @refund, @fine);";
+
             string insertReturnItemStatement = "INSERT INTO return_items (returnId, rentalItemId, quantity) " 
                 + "VALUES (@returnId, @rentalItemId, @quantity);";
+
             string updateInstockNumberFurnitureStatement = "UPDATE furniture "
                 + "SET instockNumber = instockNumber + @quantity " 
                 + "WHERE id = @furnitureId;";
+
             string updateQuantityReturnedRentalItemStatement = "UPDATE rental_items "
                 + "SET quantityReturned = quantityReturned + @quantity " 
                 + "WHERE id = @rentalItemId;";
@@ -61,10 +64,23 @@ namespace CS6232_Group_6_Store.DAL
                         command.Parameters["@fine"].Value = returnTransaction.Fine;
 
                         transactionId = (int)command.ExecuteScalar();
+                        command.Parameters["@returnId"].Value = transactionId;
 
+                        foreach(ReturnItem item in returnItems)
+                        {
+                            command.CommandText = insertReturnItemStatement;
+                            command.Parameters["@rentalItemId"].Value = item.RentalItemId;
+                            command.Parameters["@quantity"].Value = item.Quantity;
+                            command.ExecuteNonQuery();
 
+                            command.CommandText = updateInstockNumberFurnitureStatement;
+                            command.Parameters["@furnitureId"].Value= item.FurnitureId;
+                            command.ExecuteNonQuery();
 
+                            command.CommandText = updateQuantityReturnedRentalItemStatement;
+                            command.ExecuteNonQuery();
 
+                        }
 
                         transaction.Commit();
                     }
