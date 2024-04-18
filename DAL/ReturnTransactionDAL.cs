@@ -15,7 +15,7 @@ namespace CS6232_Group_6_Store.DAL
         /// <returns></returns>
         /// <exception cref="System.NotImplementedException"></exception>
         public int CreateReturnTransactionScope(ReturnTransaction returnTransaction, List<ReturnItem> returnItems)
-        {
+        {            
             int transactionId = 0;
             
             string insertReturnTransactionStatement = "INSERT INTO return_transactions (employeeId, memberId, returnDate, refund, fine) "
@@ -32,17 +32,16 @@ namespace CS6232_Group_6_Store.DAL
             string updateQuantityReturnedRentalItemStatement = "UPDATE rental_items "
                 + "SET quantityReturned = quantityReturned + @quantity " 
                 + "WHERE id = @rentalItemId;";
-
+            
             using (var connection = DBConnection.GetConnection())
-            {
-                var transaction = connection.BeginTransaction();
+            {                
                 connection.Open();
+                var transaction = connection.BeginTransaction();
 
-                using(var command = connection.CreateCommand())
+                using (var command = connection.CreateCommand())
                 {
                     command.Transaction = transaction;
                     command.Connection = connection;
-
                     try
                     {
                         command.CommandText = insertReturnTransactionStatement;
@@ -51,11 +50,7 @@ namespace CS6232_Group_6_Store.DAL
                             new SqlParameter("@employeeId", SqlDbType.Int), 
                             new SqlParameter("@memberId", SqlDbType.Int), 
                             new SqlParameter("@refund", SqlDbType.Decimal), 
-                            new SqlParameter("@fine", SqlDbType.Decimal),
-                            new SqlParameter("@returnId", SqlDbType.Int),
-                            new SqlParameter("@rentalItemId", SqlDbType.Int),
-                            new SqlParameter("@quantity", SqlDbType.Int),
-                            new SqlParameter("@furnitureId", SqlDbType.Int)
+                            new SqlParameter("@fine", SqlDbType.Decimal)                            
                         });
 
                         command.Parameters["@employeeId"].Value = returnTransaction.EmployeeId;
@@ -64,16 +59,31 @@ namespace CS6232_Group_6_Store.DAL
                         command.Parameters["@fine"].Value = returnTransaction.Fine;
 
                         transactionId = (int)command.ExecuteScalar();
-                        command.Parameters["@returnId"].Value = transactionId;
 
+                        command.Parameters.AddRange(new SqlParameter[]
+                        {
+                            new SqlParameter("@returnId", SqlDbType.Int),
+                            new SqlParameter("@rentalItemId", SqlDbType.Int),
+                            new SqlParameter("@quantity", SqlDbType.Int)
+                        });
+
+                        int count = 0;
                         foreach(ReturnItem item in returnItems)
                         {
                             command.CommandText = insertReturnItemStatement;
+                            command.Parameters["@returnId"].Value = transactionId;
                             command.Parameters["@rentalItemId"].Value = item.RentalItemId;
                             command.Parameters["@quantity"].Value = item.Quantity;
                             command.ExecuteNonQuery();
 
                             command.CommandText = updateInstockNumberFurnitureStatement;
+
+                            if (count == 0) 
+                            { 
+                                command.Parameters.Add("@furnitureId", SqlDbType.Int);
+                                count++;
+                            }
+
                             command.Parameters["@furnitureId"].Value= item.FurnitureId;
                             command.ExecuteNonQuery();
 
@@ -86,8 +96,8 @@ namespace CS6232_Group_6_Store.DAL
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show(ex.Message);
-                        MessageBox.Show(ex.StackTrace);
+                        MessageBox.Show($"An error occurred during checkout: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"An error occurred during checkout: {ex.StackTrace}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         transaction.Rollback();
                     }
                 }

@@ -55,6 +55,7 @@
             tableLayoutPanel6 = new TableLayoutPanel();
             furnitureListViewLabel = new Label();
             returnItemNumberComboBox = new ComboBox();
+            furnitureListViewQuantityLabel = new Label();
             tableLayoutPanel1.SuspendLayout();
             tableLayoutPanel4.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
@@ -348,12 +349,14 @@
             tableLayoutPanel6.ColumnCount = 1;
             tableLayoutPanel6.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel6.Controls.Add(furnitureListViewLabel, 0, 0);
-            tableLayoutPanel6.Controls.Add(returnItemNumberComboBox, 0, 1);
+            tableLayoutPanel6.Controls.Add(returnItemNumberComboBox, 0, 2);
+            tableLayoutPanel6.Controls.Add(furnitureListViewQuantityLabel, 0, 1);
             tableLayoutPanel6.Location = new Point(3, 125);
             tableLayoutPanel6.Name = "tableLayoutPanel6";
-            tableLayoutPanel6.RowCount = 2;
+            tableLayoutPanel6.RowCount = 3;
             tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Absolute, 64F));
+            tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Absolute, 21F));
+            tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Absolute, 41F));
             tableLayoutPanel6.Size = new Size(138, 99);
             tableLayoutPanel6.TabIndex = 24;
             // 
@@ -369,10 +372,19 @@
             // returnItemNumberComboBox
             // 
             returnItemNumberComboBox.FormattingEnabled = true;
-            returnItemNumberComboBox.Location = new Point(3, 38);
+            returnItemNumberComboBox.Location = new Point(3, 61);
             returnItemNumberComboBox.Name = "returnItemNumberComboBox";
             returnItemNumberComboBox.Size = new Size(121, 23);
             returnItemNumberComboBox.TabIndex = 1;
+            // 
+            // furnitureListViewQuantityLabel
+            // 
+            furnitureListViewQuantityLabel.AutoSize = true;
+            furnitureListViewQuantityLabel.Location = new Point(3, 37);
+            furnitureListViewQuantityLabel.Name = "furnitureListViewQuantityLabel";
+            furnitureListViewQuantityLabel.Size = new Size(90, 15);
+            furnitureListViewQuantityLabel.TabIndex = 2;
+            furnitureListViewQuantityLabel.Text = "Select Quantity:";
             // 
             // InventoryReturn
             // 
@@ -425,5 +437,6 @@
         private Label furnitureListViewLabel;
         private Button selectFurnitureItemButton;
         private Label selectItemErrorLabel;
+        private Label furnitureListViewQuantityLabel;
     }
 }

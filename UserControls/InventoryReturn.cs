@@ -210,6 +210,14 @@ namespace CS6232_Group_6_Store.UserControls
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void clearFurnitureButton_Click(object sender, EventArgs e)
         {
+            this.ClearFurnitureItems();
+        }
+
+        /// <summary>
+        /// Clears the furniture items.
+        /// </summary>
+        private void ClearFurnitureItems()
+        {
             this.furnitureListView.Clear();
             this.memberListView.Clear();
             this.memberSearchBox.Text = "";
@@ -459,7 +467,7 @@ namespace CS6232_Group_6_Store.UserControls
                 foreach (ReturnItem item in this._returnCartList)
                 {
                     Furniture furniture = this._furnitureController.GetFurniture(item.FurnitureId);
-                    DateTime tempDate = new DateTime(2022, 12, 10);
+                    DateTime tempDate = DateTime.Now;
                     int days = (int)Math.Ceiling((tempDate - item.DueDate).TotalDays);
 
                     if (days >= 0)
@@ -472,23 +480,20 @@ namespace CS6232_Group_6_Store.UserControls
                         refunds += days * item.Quantity * furniture.RentalRate;
                     }
                 }
-
-
-
-                MessageBox.Show("Fines: " + fines + ", Refunds: " + refunds);
+                
                 ReturnTransaction returnTransaction = new ReturnTransaction();
                 returnTransaction.EmployeeId = this.employeeId;
                 returnTransaction.MemberId = this.memberId;
                 returnTransaction.Refund = refunds;
                 returnTransaction.Fine = fines;
 
-                List<ReturnItem> returnItems = this._returnCartList;
+                List<ReturnItem> returnItems = this._returnCartList;            
 
-                // this is the start of the transaction scope for the return
-                // int value = this._returnTransactionController.CreateReturnTransactionScope(returnTransaction, returnItems);
-
+                // Newly created ReturnTransaction ID
+                int newReturnTransactionId = this._returnTransactionController.CreateReturnTransactionScope(returnTransaction, returnItems);
 
                 this.ClearReturnItems();
+                this.ClearFurnitureItems();
             }
             catch (Exception ex)
             {
