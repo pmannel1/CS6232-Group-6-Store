@@ -14,7 +14,25 @@ namespace CS6232_Group_6_Store.DAL
         /// <exception cref="System.NotImplementedException"></exception>
         public int CreateReturnTransactionScope(ReturnTransaction returnTransaction, List<ReturnItem> returnItems)
         {
-            throw new NotImplementedException();
+            int transactionId = 0;
+            
+            string insertReturnTransactionStatement = "INSERT INTO return_transactions (employeeId, memberId, returnDate, refund, fine) "
+                + "OUTPUT INSERTED.id "
+                + "VALUES (@employeeId, @memberId, GETDATE(), @refund, @fine);";
+
+            string insertReturnItemStatement = "INSERT INTO return_items (returnId, rentalItemId, quantity) " 
+                + "VALUES (@returnId, @rentalItemId, @quantity);";
+
+            string updateInstockNumberFurnitureStatement = "UPDATE furniture "
+                + "SET instockNumber = instockNumber + @quantity " 
+                + "WHERE id = @furnitureId;";
+
+            string updateQuantityReturnedRentalItemStatement = "UPDATE rental_items "
+                + "SET quantityReturned = quantityReturned + @quantity " 
+                + "WHERE id = @rentalItemId;";
+
+            return transactionId;
+
         }
     }
 }
