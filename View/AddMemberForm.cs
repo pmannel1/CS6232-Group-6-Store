@@ -110,7 +110,7 @@ namespace CS6232_Group_6_Store.View
             }
 
 
-            if (this.phoneNumberTextBox.Text.Length < 6 && this.phoneNumberTextBox.Text.Length > 11)
+            if (this.phoneNumberTextBox.Text.Length < 6 || this.phoneNumberTextBox.Text.Length > 11)
             {
                 phoneErrorLabel.Text = "Phone Number must be 7 digits-11 digits";
                 phoneErrorLabel.ForeColor = Color.Red;
