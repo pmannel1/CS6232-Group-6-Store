@@ -75,7 +75,7 @@
             customerTabPage.Padding = new Padding(3, 4, 3, 4);
             customerTabPage.Size = new Size(1198, 624);
             customerTabPage.TabIndex = 0;
-            customerTabPage.Text = "Customer";
+            customerTabPage.Text = "Member Management";
             customerTabPage.UseVisualStyleBackColor = true;
             // 
             // memberManagement2
