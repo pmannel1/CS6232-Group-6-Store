@@ -16,6 +16,21 @@ namespace CS6232_Group_6_Store.DAL
         /// <exception cref="System.NotImplementedException"></exception>
         public int CreateReturnTransactionScope(ReturnTransaction returnTransaction, List<ReturnItem> returnItems)
         {            
+            if (returnTransaction == null)
+            {
+                throw new ArgumentException("returnTransaction cannot be null.");
+            }
+
+            if (returnItems == null)
+            {
+                throw new ArgumentException("returnItems cannot be null");
+            }
+
+            if (returnItems.Count == 0)
+            {
+                throw new ArgumentException("returnItems cannot be empty");
+            }
+            
             int transactionId = 0;
             
             string insertReturnTransactionStatement = "INSERT INTO return_transactions (employeeId, memberId, returnDate, refund, fine) "

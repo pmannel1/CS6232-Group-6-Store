@@ -44,6 +44,7 @@ namespace CS6232_Group_6_Store.UserControls
             this.returnItemNumberComboBox.Enabled = false;
             this.updateQuantityButton.Enabled = false;
 
+            this.returnItemNumberComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
         /// <summary>
