@@ -1,4 +1,5 @@
 
+using CS6232_Group_6_Store.Controller;
 using CS6232_Group_6_Store.View;
 
 namespace CS6232_Group_6_Store
@@ -9,6 +10,7 @@ namespace CS6232_Group_6_Store
     /// <seealso cref="System.Windows.Forms.Form" />
     public partial class MainDashBoard : Form
     {
+        private readonly EmployeeController _employeeController;
         bool logout;
         readonly LoginForm _loginForm;
         /// <summary>
@@ -42,8 +44,14 @@ namespace CS6232_Group_6_Store
             InitializeComponent();
             this._loginForm = newLogin;
             Account = "User Account: " + this._loginForm.UserName;
-            Employee = "Empolyee Name: " + this._loginForm.EmployeeName;
+            Employee = "Employee Name: " + this._loginForm.EmployeeName;
             EmployeeId = this._loginForm.Id;
+            _employeeController = new EmployeeController();
+            bool isAdmin = _employeeController.IsAdmin(EmployeeId);
+            if (!isAdmin)
+            {
+                this.mainTabControl.TabPages.Remove(adminReportTab);
+            }
             this.employeeNameLebel.Text = Employee;
             this.userNameLabel.Text = Account;
             this.logout = false;

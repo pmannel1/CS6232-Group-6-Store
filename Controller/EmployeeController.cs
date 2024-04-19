@@ -26,5 +26,11 @@ namespace CS6232_Group_6_Store.Controller
         {
             return this._employeeDal.ValidateEmployee(id, password);
         }
+
+        public bool IsAdmin(int id)
+        {
+            return _employeeDal.IsAdmin(id);
+        }
+
     }
 }

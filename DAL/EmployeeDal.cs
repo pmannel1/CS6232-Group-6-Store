@@ -41,5 +41,39 @@ namespace CS6232_Group_6_Store.DAL
             }
         }
 
+        /// <summary>
+        /// Determines whether the specified identifier is admin.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified identifier is admin; otherwise, <c>false</c>.
+        /// </returns>
+        public bool IsAdmin (int id)
+        {
+            string selectStatement =
+                         "SELECT isAdmin FROM employees " +
+                         "Where id = @userName";
+            using (SqlConnection connection = DBConnection.GetConnection())
+            {
+                connection.Open();
+
+                using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
+                {
+                    selectCommand.Parameters.Add("@userName", SqlDbType.Int).Value = id;
+
+                    object result = selectCommand.ExecuteScalar();
+
+                    if (result != null)
+                    {
+                        return Convert.ToBoolean(result);
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+        }
+
     }
 }

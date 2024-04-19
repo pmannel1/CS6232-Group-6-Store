@@ -17,12 +17,10 @@ namespace CS6232_Group_6_Store.DAL
                 {
                     command.CommandType = CommandType.StoredProcedure;
 
-                    // Correct parameter types to SqlDbType.Date
                     command.Parameters.Add("@startDate", SqlDbType.Date).Value = parameter1;
                     command.Parameters.Add("@endDate", SqlDbType.Date).Value = parameter2;
 
                     connection.Open();
-                    // Execute the command and fill the DataTable
                     SqlDataAdapter adapter = new SqlDataAdapter(command);
                     adapter.Fill(dataTable);
                 }
