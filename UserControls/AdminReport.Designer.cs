@@ -36,6 +36,7 @@
             adminReportButton = new Button();
             startDatePicker = new DateTimePicker();
             endDatePicker = new DateTimePicker();
+            adminErrorLabel = new Label();
             tableLayoutPanel1.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
             SuspendLayout();
@@ -74,6 +75,7 @@
             tableLayoutPanel2.Controls.Add(adminReportButton, 1, 2);
             tableLayoutPanel2.Controls.Add(startDatePicker, 1, 0);
             tableLayoutPanel2.Controls.Add(endDatePicker, 1, 1);
+            tableLayoutPanel2.Controls.Add(adminErrorLabel, 0, 2);
             tableLayoutPanel2.Dock = DockStyle.Fill;
             tableLayoutPanel2.Location = new Point(3, 3);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -115,6 +117,7 @@
             adminReportButton.TabIndex = 2;
             adminReportButton.Text = "Generate Report";
             adminReportButton.UseVisualStyleBackColor = true;
+            adminReportButton.Click += adminReportButton_Click;
             // 
             // startDatePicker
             // 
@@ -131,6 +134,14 @@
             endDatePicker.Name = "endDatePicker";
             endDatePicker.Size = new Size(383, 27);
             endDatePicker.TabIndex = 4;
+            // 
+            // adminErrorLabel
+            // 
+            adminErrorLabel.AutoSize = true;
+            adminErrorLabel.Location = new Point(3, 134);
+            adminErrorLabel.Name = "adminErrorLabel";
+            adminErrorLabel.Size = new Size(0, 20);
+            adminErrorLabel.TabIndex = 5;
             // 
             // AdminReport
             // 
@@ -155,5 +166,6 @@
         private Button adminReportButton;
         private DateTimePicker startDatePicker;
         private DateTimePicker endDatePicker;
+        private Label adminErrorLabel;
     }
 }

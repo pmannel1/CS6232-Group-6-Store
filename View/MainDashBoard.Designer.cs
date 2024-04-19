@@ -151,7 +151,7 @@
             adminReportTab.Controls.Add(adminReport1);
             adminReportTab.Location = new Point(4, 29);
             adminReportTab.Name = "adminReportTab";
-            adminReportTab.Size = new Size(1198, 624);
+            adminReportTab.Size = new Size(192, 67);
             adminReportTab.TabIndex = 4;
             adminReportTab.Text = "Admin Report";
             adminReportTab.UseVisualStyleBackColor = true;
@@ -161,7 +161,7 @@
             adminReport1.Dock = DockStyle.Fill;
             adminReport1.Location = new Point(0, 0);
             adminReport1.Name = "adminReport1";
-            adminReport1.Size = new Size(1198, 624);
+            adminReport1.Size = new Size(192, 67);
             adminReport1.TabIndex = 0;
             // 
             // greetingLabel
