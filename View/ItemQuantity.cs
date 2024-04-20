@@ -100,8 +100,22 @@ namespace CS6232_Group_6_Store.View
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void confirmButton_Click(object sender, EventArgs e)
         {
-            SelectedQuantity = int.Parse(quantityComboBox.SelectedItem.ToString());
-            this.DialogResult = DialogResult.OK;
+            if (dateOfReturnPicker.Value <= DateTime.Now)
+
+            {
+                this.DialogResult = DialogResult.Cancel;
+                MessageBox.Show("Due date should be greater than current date", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            else
+
+            {
+                SelectedQuantity = int.Parse(quantityComboBox.SelectedItem.ToString());
+                selectedDueDate = dateOfReturnPicker.Value;
+                this.DialogResult = DialogResult.OK;
+
+            }
         }
 
         /// <summary>

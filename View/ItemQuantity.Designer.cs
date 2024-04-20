@@ -32,12 +32,12 @@
             nameLabel = new Label();
             descriptionLabel = new Label();
             quantityLabel = new Label();
-            confirmButton = new Button();
-            cancelButton = new Button();
             nameBox = new TextBox();
             descriptionBox = new TextBox();
             quantityComboBox = new ComboBox();
             tableLayoutPanel3 = new TableLayoutPanel();
+            confirmButton = new Button();
+            cancelButton = new Button();
             dateOfReturnPicker = new DateTimePicker();
             tableLayoutPanel1.SuspendLayout();
             tableLayoutPanel3.SuspendLayout();
@@ -95,26 +95,6 @@
             quantityLabel.TabIndex = 2;
             quantityLabel.Text = "Quantity: ";
             // 
-            // confirmButton
-            // 
-            confirmButton.Location = new Point(3, 3);
-            confirmButton.Name = "confirmButton";
-            confirmButton.Size = new Size(75, 23);
-            confirmButton.TabIndex = 0;
-            confirmButton.Text = "Confirm";
-            confirmButton.UseVisualStyleBackColor = true;
-            confirmButton.Click += confirmButton_Click;
-            // 
-            // cancelButton
-            // 
-            cancelButton.Location = new Point(103, 3);
-            cancelButton.Name = "cancelButton";
-            cancelButton.Size = new Size(75, 23);
-            cancelButton.TabIndex = 1;
-            cancelButton.Text = "Cancel";
-            cancelButton.UseVisualStyleBackColor = true;
-            cancelButton.Click += cancelButton_Click;
-            // 
             // nameBox
             // 
             nameBox.Dock = DockStyle.Fill;
@@ -156,6 +136,26 @@
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel3.Size = new Size(200, 38);
             tableLayoutPanel3.TabIndex = 7;
+            // 
+            // confirmButton
+            // 
+            confirmButton.Location = new Point(3, 3);
+            confirmButton.Name = "confirmButton";
+            confirmButton.Size = new Size(75, 23);
+            confirmButton.TabIndex = 0;
+            confirmButton.Text = "Confirm";
+            confirmButton.UseVisualStyleBackColor = true;
+            confirmButton.Click += confirmButton_Click;
+            // 
+            // cancelButton
+            // 
+            cancelButton.Location = new Point(103, 3);
+            cancelButton.Name = "cancelButton";
+            cancelButton.Size = new Size(75, 23);
+            cancelButton.TabIndex = 1;
+            cancelButton.Text = "Cancel";
+            cancelButton.UseVisualStyleBackColor = true;
+            cancelButton.Click += cancelButton_Click;
             // 
             // dateOfReturnPicker
             // 
