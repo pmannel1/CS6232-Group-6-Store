@@ -292,6 +292,7 @@ namespace CS6232_Group_6_Store.UserControls
                         TransactionId = transaction.Id,
                         FurnitureId = furnitureId,
                         Quantity = selectedQuantity,
+                        DueDate = dueDate,
                         QuantityReturned = 0
                     };
 
