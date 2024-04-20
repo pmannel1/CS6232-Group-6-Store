@@ -101,6 +101,13 @@ namespace CS6232_Group_6_Store.View
                 isValid = false;
             }
 
+            if (int.Parse(this.zipCodeTextBox.Text) < 10000 || int.Parse(this.zipCodeTextBox.Text) > 99999)
+            {
+
+                zipCodeErrorLabel.Text = "Zipcode is out of range";
+                zipCodeErrorLabel.ForeColor = Color.Red;
+                isValid = false;
+            }
 
             if (string.IsNullOrWhiteSpace(this.phoneNumberTextBox.Text) || !System.Text.RegularExpressions.Regex.IsMatch(this.phoneNumberTextBox.Text, @"^\d+$"))
             {
