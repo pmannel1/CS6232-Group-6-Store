@@ -24,7 +24,7 @@ namespace CS6232_Group_6_Store.UserControls
             InitializeComponent();
             this._memberController = new MemberController();
             memberSearchBox.TextChanged += MemberSearchBox_TextChanged;
-            memberListView.SelectedIndexChanged += memberListView_SelectedIndexChanged; 
+            memberListView.SelectedIndexChanged += memberListView_SelectedIndexChanged;
             memberListView.ItemChecked += memberListView_ItemChecked;
             this.searchMethodBox.SelectedIndex = 0;
         }
@@ -52,51 +52,51 @@ namespace CS6232_Group_6_Store.UserControls
 
             memberErrorLabel.Visible = false;
 
-                memberListView.Clear();
-                memberListView.View = System.Windows.Forms.View.Details;
-                memberListView.GridLines = true;
-                memberListView.Columns.Add("ID", 50);
-                memberListView.Columns.Add("Last Name", 150);
-                memberListView.Columns.Add("First Name", 150);
-                memberListView.Columns.Add("Date Of Birth", 100);
-                memberListView.Columns.Add("Address", 150);
-                memberListView.Columns.Add("City", 100);
-                memberListView.Columns.Add("State", 50);
-                memberListView.Columns.Add("ZipCode", 100);
-                memberListView.Columns.Add("Country", 150);
-                memberListView.Columns.Add("Phone", 150);
+            memberListView.Clear();
+            memberListView.View = System.Windows.Forms.View.Details;
+            memberListView.GridLines = true;
+            memberListView.Columns.Add("ID", 50);
+            memberListView.Columns.Add("Last Name", 150);
+            memberListView.Columns.Add("First Name", 150);
+            memberListView.Columns.Add("Date Of Birth", 100);
+            memberListView.Columns.Add("Address", 150);
+            memberListView.Columns.Add("City", 100);
+            memberListView.Columns.Add("State", 50);
+            memberListView.Columns.Add("ZipCode", 100);
+            memberListView.Columns.Add("Country", 150);
+            memberListView.Columns.Add("Phone", 150);
 
-                if (searchResult.Count == 0)
-                {
-                    memberErrorLabel.Text = "No member found matching the search criteria.";
-                    memberErrorLabel.ForeColor = Color.Red;
-                    memberErrorLabel.Visible = true;
-                    return;
-                }
-
-                foreach (var dr in searchResult)
-                {
-                    var membersList = memberListView.Items.Add(dr.Id.ToString());
-                    membersList.SubItems.Add(dr.LastName ?? "");
-                    membersList.SubItems.Add(dr.FirstName ?? "");
-                    membersList.SubItems.Add(dr.DateOfBirth.ToString("MM/dd/yyyy") ?? "");
-                    membersList.SubItems.Add(dr.StreetAddress ?? "");
-                    membersList.SubItems.Add(dr.City ?? "");
-                    membersList.SubItems.Add(dr.State ?? "");
-                    membersList.SubItems.Add(dr.ZipCode.ToString() ?? "");
-                    membersList.SubItems.Add(dr.Country ?? "");
-                    membersList.SubItems.Add(dr.ContactPhone ?? "");
-                }
+            if (searchResult.Count == 0)
+            {
+                memberErrorLabel.Text = "No member found matching the search criteria.";
+                memberErrorLabel.ForeColor = Color.Red;
+                memberErrorLabel.Visible = true;
+                return;
             }
 
+            foreach (var dr in searchResult)
+            {
+                var membersList = memberListView.Items.Add(dr.Id.ToString());
+                membersList.SubItems.Add(dr.LastName ?? "");
+                membersList.SubItems.Add(dr.FirstName ?? "");
+                membersList.SubItems.Add(dr.DateOfBirth.ToString("MM/dd/yyyy") ?? "");
+                membersList.SubItems.Add(dr.StreetAddress ?? "");
+                membersList.SubItems.Add(dr.City ?? "");
+                membersList.SubItems.Add(dr.State ?? "");
+                membersList.SubItems.Add(dr.ZipCode.ToString() ?? "");
+                membersList.SubItems.Add(dr.Country ?? "");
+                membersList.SubItems.Add(dr.ContactPhone ?? "");
+            }
+        }
 
 
-            /// <summary>
-            /// Handles the SelectedIndexChanged event of the customerListBox control.
-            /// </summary>
-            /// <param name="sender">The source of the event.</param>
-            /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-            private void customerListBox_SelectedIndexChanged(object sender, EventArgs e)
+
+        /// <summary>
+        /// Handles the SelectedIndexChanged event of the customerListBox control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void customerListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             memberListView.Items.Clear();
         }
@@ -125,10 +125,10 @@ namespace CS6232_Group_6_Store.UserControls
                 return;
             }
 
-           
+
             DisplayMembers(memberSearchBox.Text);
-                this.MemberSelection();
-          
+            this.MemberSelection();
+
 
         }
 
@@ -148,10 +148,10 @@ namespace CS6232_Group_6_Store.UserControls
                 this.Clear();
             }
             else
-            { 
+            {
                 memberErrorLabel.Text = "No Member Selected";
-            memberErrorLabel.ForeColor = Color.Red;
-            memberErrorLabel.Visible = true;
+                memberErrorLabel.ForeColor = Color.Red;
+                memberErrorLabel.Visible = true;
             }
 
         }
@@ -224,7 +224,7 @@ namespace CS6232_Group_6_Store.UserControls
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void memberListView_SelectedIndexChanged(object sender, EventArgs e)
         {
-          //  this.Clear();
+            //  this.Clear();
         }
 
         /// <summary>
@@ -236,7 +236,7 @@ namespace CS6232_Group_6_Store.UserControls
             this.searchMethodBox.SelectedIndex = 0;
             this.MemberSelection();
             this.memberSearchBox.Clear();
-       
+
             this.searchButton.Enabled = false;
 
         }
