@@ -121,5 +121,54 @@ namespace CS6232_Group_6_Store.DAL
             return transactionId;
 
         }
+
+
+        /// <summary>
+        /// Gets retal transaction summery.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
+        /// <exception cref="System.ArgumentOutOfRangeException">id must be greater than 0</exception>
+        public List<RentalReturnTransactionSummary> GetRentalReturnTransactionsummary(int id)
+        {
+            List<RentalReturnTransactionSummary> rentalReturnTransactions = new List<RentalReturnTransactionSummary>();
+            string selectStatement = "select T.id[TransactionId], R.Id, R.id[ReturnId] , R.rentalItemId[RentalItemId], F.name[FurnitureName],R.quantity,M.firstName + ' ' + M.lastName[MemeberName], E.firstName + ' ' + E.lastName[EmployeeName], T.returnDate " +
+                "from return_transactions T inner join return_items R  on T.id=R.returnId inner join rental_items RI on R.rentalItemId=RI.id  LEFT join furniture F on RI.furnitureId=F.id  inner join members M on T.memberId=M.id left join employees E on T.employeeId=E.id" +
+                " where R.returnId=@transactionId";
+
+            using (SqlConnection connection = DBConnection.GetConnection())
+            {
+                connection.Open();
+                using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
+                {
+                    selectCommand.Parameters.Add("@transactionId", SqlDbType.Int);
+                    selectCommand.Parameters["@transactionId"].Value = id;
+
+                    using (SqlDataReader reader = selectCommand.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            RentalReturnTransactionSummary rentalReturnItem = new RentalReturnTransactionSummary
+                            {
+                                TransactionId = int.Parse(reader["TransactionId"].ToString()),
+                                Id = int.Parse(reader["Id"].ToString()),
+                                ReturnId= int.Parse(reader["ReturnId"].ToString()),
+                                RentalItemId   = int.Parse(reader["RentalItemId"].ToString()),
+                                FurnitureName = reader["FurnitureName"].ToString(),
+                                Quantity = int.Parse(reader["quantity"].ToString()),
+                                MemberName= reader["MemeberName"].ToString(),
+                                EmployeeName = reader["EmployeeName"].ToString(),
+                                DueDate = DateTime.Parse(reader["returnDate"].ToString())
+                               
+                               
+                            };
+                            rentalReturnTransactions.Add(rentalReturnItem);
+                        }
+                    }
+                }
+            }
+
+            return rentalReturnTransactions;
+        }
     }
 }
