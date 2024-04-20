@@ -94,20 +94,28 @@ namespace CS6232_Group_6_Store.View
             }
 
             int zipCode;
-            if (!int.TryParse(this.zipCodeTextBox.Text, out zipCode))
+            // Check if the zip code text box is empty
+            if (string.IsNullOrWhiteSpace(this.zipCodeTextBox.Text))
+            {
+                zipCodeErrorLabel.Text = "Zip Code cannot be empty";
+                zipCodeErrorLabel.ForeColor = Color.Red;
+                isValid = false;
+            }
+            // If the text box is not empty, try parsing the zip code
+            else if (!int.TryParse(this.zipCodeTextBox.Text, out zipCode))
             {
                 zipCodeErrorLabel.Text = "Zip Code must be a number";
                 zipCodeErrorLabel.ForeColor = Color.Red;
                 isValid = false;
             }
-
-            if (int.Parse(this.zipCodeTextBox.Text) < 10000 || int.Parse(this.zipCodeTextBox.Text) > 99999)
+            // If the zip code is within the valid range
+            else if (zipCode < 10000 || zipCode > 99999)
             {
-
-                zipCodeErrorLabel.Text = "Zipcode is out of range";
+                zipCodeErrorLabel.Text = "Zip code is out of range";
                 zipCodeErrorLabel.ForeColor = Color.Red;
                 isValid = false;
             }
+
 
             if (string.IsNullOrWhiteSpace(this.phoneNumberTextBox.Text) || !System.Text.RegularExpressions.Regex.IsMatch(this.phoneNumberTextBox.Text, @"^\d+$"))
             {
