@@ -32,14 +32,15 @@
             nameLabel = new Label();
             descriptionLabel = new Label();
             quantityLabel = new Label();
-            tableLayoutPanel2 = new TableLayoutPanel();
             confirmButton = new Button();
             cancelButton = new Button();
             nameBox = new TextBox();
             descriptionBox = new TextBox();
             quantityComboBox = new ComboBox();
+            tableLayoutPanel3 = new TableLayoutPanel();
+            dateOfReturnPicker = new DateTimePicker();
             tableLayoutPanel1.SuspendLayout();
-            tableLayoutPanel2.SuspendLayout();
+            tableLayoutPanel3.SuspendLayout();
             SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -50,10 +51,11 @@
             tableLayoutPanel1.Controls.Add(nameLabel, 0, 0);
             tableLayoutPanel1.Controls.Add(descriptionLabel, 0, 1);
             tableLayoutPanel1.Controls.Add(quantityLabel, 0, 2);
-            tableLayoutPanel1.Controls.Add(tableLayoutPanel2, 1, 3);
             tableLayoutPanel1.Controls.Add(nameBox, 1, 0);
             tableLayoutPanel1.Controls.Add(descriptionBox, 1, 1);
             tableLayoutPanel1.Controls.Add(quantityComboBox, 1, 2);
+            tableLayoutPanel1.Controls.Add(tableLayoutPanel3, 1, 4);
+            tableLayoutPanel1.Controls.Add(dateOfReturnPicker, 1, 3);
             tableLayoutPanel1.Dock = DockStyle.Fill;
             tableLayoutPanel1.Location = new Point(0, 0);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -93,21 +95,6 @@
             quantityLabel.TabIndex = 2;
             quantityLabel.Text = "Quantity: ";
             // 
-            // tableLayoutPanel2
-            // 
-            tableLayoutPanel2.ColumnCount = 2;
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel2.Controls.Add(confirmButton, 0, 0);
-            tableLayoutPanel2.Controls.Add(cancelButton, 1, 0);
-            tableLayoutPanel2.Dock = DockStyle.Fill;
-            tableLayoutPanel2.Location = new Point(91, 207);
-            tableLayoutPanel2.Name = "tableLayoutPanel2";
-            tableLayoutPanel2.RowCount = 1;
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel2.Size = new Size(348, 114);
-            tableLayoutPanel2.TabIndex = 3;
-            // 
             // confirmButton
             // 
             confirmButton.Location = new Point(3, 3);
@@ -120,7 +107,7 @@
             // 
             // cancelButton
             // 
-            cancelButton.Location = new Point(177, 3);
+            cancelButton.Location = new Point(103, 3);
             cancelButton.Name = "cancelButton";
             cancelButton.Size = new Size(75, 23);
             cancelButton.TabIndex = 1;
@@ -156,6 +143,27 @@
             quantityComboBox.Size = new Size(121, 23);
             quantityComboBox.TabIndex = 6;
             // 
+            // tableLayoutPanel3
+            // 
+            tableLayoutPanel3.ColumnCount = 2;
+            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel3.Controls.Add(confirmButton, 0, 0);
+            tableLayoutPanel3.Controls.Add(cancelButton, 1, 0);
+            tableLayoutPanel3.Location = new Point(91, 327);
+            tableLayoutPanel3.Name = "tableLayoutPanel3";
+            tableLayoutPanel3.RowCount = 1;
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel3.Size = new Size(200, 38);
+            tableLayoutPanel3.TabIndex = 7;
+            // 
+            // dateOfReturnPicker
+            // 
+            dateOfReturnPicker.Location = new Point(91, 207);
+            dateOfReturnPicker.Name = "dateOfReturnPicker";
+            dateOfReturnPicker.Size = new Size(200, 23);
+            dateOfReturnPicker.TabIndex = 8;
+            // 
             // ItemQuantity
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -169,7 +177,7 @@
             Text = "Item";
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.PerformLayout();
-            tableLayoutPanel2.ResumeLayout(false);
+            tableLayoutPanel3.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -179,11 +187,12 @@
         private Label nameLabel;
         private Label descriptionLabel;
         private Label quantityLabel;
-        private TableLayoutPanel tableLayoutPanel2;
         private Button confirmButton;
         private Button cancelButton;
         private TextBox nameBox;
         private TextBox descriptionBox;
         private ComboBox quantityComboBox;
+        private TableLayoutPanel tableLayoutPanel3;
+        private DateTimePicker dateOfReturnPicker;
     }
 }
