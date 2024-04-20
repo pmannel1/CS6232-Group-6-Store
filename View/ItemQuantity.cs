@@ -132,5 +132,10 @@ namespace CS6232_Group_6_Store.View
         {
 
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
