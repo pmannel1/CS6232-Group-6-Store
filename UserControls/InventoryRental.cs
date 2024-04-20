@@ -263,19 +263,20 @@ namespace CS6232_Group_6_Store.UserControls
                 int selectedQuantity = detailsForm.SelectedQuantity;
                 DateTime dueDate = detailsForm.selectedDueDate;
                 if (cartListView.Items.Count < 1)
+
                 {
                     MainDashBoard parentForm = this.FindForm() as MainDashBoard;
                     if (parentForm != null)
+
                     {
                         employeeId = parentForm.EmployeeId;
                     }
                     var now = DateTime.Now;
-                    var threeWeeksFromNow = DateTime.Now.AddDays(21);
-
+                    var dateofReturn = dueDate;
                     transaction = null;
-                    transaction = new RentalTransaction(employeeId, memberId, now, threeWeeksFromNow);
+                    transaction = new RentalTransaction(employeeId, memberId, now, dateofReturn);
+
                 }
-               
                 // Check if the item is already in the cart
                 var existingCartItem = cart.FirstOrDefault(ci => ci.FurnitureId == furnitureId);
                 if (existingCartItem != null)
