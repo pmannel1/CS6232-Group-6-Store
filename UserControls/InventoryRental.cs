@@ -317,7 +317,7 @@ namespace CS6232_Group_6_Store.UserControls
                 cartListView.Columns.Add("Quantity", 150);
                 cartListView.Columns.Add("Price", 150);
                 cartListView.Columns.Add("Rental Date", 150);
-                cartListView.Columns.Add("Due Date", 150);
+                cartListView.Columns.Add("Return Date", 150);
 
                 foreach (var dr in cart)
                 {
