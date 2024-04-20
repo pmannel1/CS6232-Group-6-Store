@@ -20,7 +20,7 @@ namespace CS6232_Group_6_Store.View
             InitializeComponent();
             _cart = cart;
             _transaction = transaction;
-           
+
             _furnitureController = new FurnitureController();
 
             PopulateTotalCostBox();
@@ -83,11 +83,11 @@ namespace CS6232_Group_6_Store.View
 
         private void confirmButton_Click(object sender, EventArgs e)
         {
-            
+
 
             this.DialogResult = DialogResult.OK;
         }
 
-       
+
     }
 }
