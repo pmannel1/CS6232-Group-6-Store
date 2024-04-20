@@ -8,6 +8,7 @@ namespace CS6232_Group_6_Store.View
     public partial class ItemQuantity : Form
     {
         public int SelectedQuantity { get; private set; }
+        public DateTime selectedDueDate { get; private set; }
         private Furniture _furniture;
         private RentalItem _rentalItem;
         private readonly FurnitureController furnitureController;
@@ -34,7 +35,7 @@ namespace CS6232_Group_6_Store.View
             InitializeComponent();
             _rentalItem = rental;
             DisplayRentalDetails();
-            
+
         }
 
         /// <summary>
@@ -110,7 +111,12 @@ namespace CS6232_Group_6_Store.View
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void cancelButton_Click(object sender, EventArgs e)
         {
-            this.DialogResult= DialogResult.Cancel;
+            this.DialogResult = DialogResult.Cancel;
+        }
+
+        private void dateOfReturnPicker_ValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -163,6 +163,7 @@
             dateOfReturnPicker.Name = "dateOfReturnPicker";
             dateOfReturnPicker.Size = new Size(200, 23);
             dateOfReturnPicker.TabIndex = 8;
+            dateOfReturnPicker.ValueChanged += dateOfReturnPicker_ValueChanged;
             // 
             // ItemQuantity
             // 
