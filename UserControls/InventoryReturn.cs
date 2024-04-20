@@ -1,6 +1,7 @@
 ﻿
 using CS6232_Group_6_Store.Controller;
 using CS6232_Group_6_Store.Model;
+using CS6232_Group_6_Store.View;
 
 namespace CS6232_Group_6_Store.UserControls
 {
@@ -13,6 +14,7 @@ namespace CS6232_Group_6_Store.UserControls
         private Member _currentMember;
         private List<RentalItem> _currentRentalItemList;
         private List<ReturnItem> _returnCartList;
+        private List<RentalReturnTransactionSummary> _rentalReturnTransactionSummaries;
         private ReturnItem _returnItem;
         private int furnitureId;
         private int employeeId;
@@ -45,6 +47,7 @@ namespace CS6232_Group_6_Store.UserControls
             this.updateQuantityButton.Enabled = false;
 
             this.returnItemNumberComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            this._rentalReturnTransactionSummaries = new List<RentalReturnTransactionSummary>();
         }
 
         /// <summary>
@@ -460,46 +463,54 @@ namespace CS6232_Group_6_Store.UserControls
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void checkoutButton_Click(object sender, EventArgs e)
         {
-            decimal fines = 0.0m;
-            decimal refunds = 0.0m;
-
-            try
+            DialogResult dialogResult = MessageBox.Show("Do you want to return items", "Invetory Return", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dialogResult == DialogResult.Yes)
             {
-                foreach (ReturnItem item in this._returnCartList)
+
+                decimal fines = 0.0m;
+                decimal refunds = 0.0m;
+
+                try
                 {
-                    Furniture furniture = this._furnitureController.GetFurniture(item.FurnitureId);
-                    DateTime tempDate = DateTime.Now;
-                    int days = (int)Math.Ceiling((tempDate - item.DueDate).TotalDays);
+                    foreach (ReturnItem item in this._returnCartList)
+                    {
+                        Furniture furniture = this._furnitureController.GetFurniture(item.FurnitureId);
+                        DateTime tempDate = DateTime.Now;
+                        int days = (int)Math.Ceiling((tempDate - item.DueDate).TotalDays);
 
-                    if (days >= 0)
-                    {
-                        fines += days * item.Quantity * furniture.RentalRate;
+                        if (days >= 0)
+                        {
+                            fines += days * item.Quantity * furniture.RentalRate;
+                        }
+                        else
+                        {
+                            days *= -1;
+                            refunds += days * item.Quantity * furniture.RentalRate;
+                        }
                     }
-                    else
-                    {
-                        days *= -1;
-                        refunds += days * item.Quantity * furniture.RentalRate;
-                    }
+
+                    ReturnTransaction returnTransaction = new ReturnTransaction();
+                    returnTransaction.EmployeeId = this.employeeId;
+                    returnTransaction.MemberId = this.memberId;
+                    returnTransaction.Refund = refunds;
+                    returnTransaction.Fine = fines;
+
+                    List<ReturnItem> returnItems = this._returnCartList;
+
+                    // Newly created ReturnTransaction ID
+                    int newReturnTransactionId = this._returnTransactionController.CreateReturnTransactionScope(returnTransaction, returnItems);
+                    List<RentalReturnTransactionSummary> transactionsummary = this._returnTransactionController.GetReturnTransactionSummary(newReturnTransactionId);
+                    ReturnSummary returnSummary = new ReturnSummary(transactionsummary);
+                    returnSummary.ShowDialog();
+                    this.ClearReturnItems();
+                    this.ClearFurnitureItems();
                 }
-                
-                ReturnTransaction returnTransaction = new ReturnTransaction();
-                returnTransaction.EmployeeId = this.employeeId;
-                returnTransaction.MemberId = this.memberId;
-                returnTransaction.Refund = refunds;
-                returnTransaction.Fine = fines;
-
-                List<ReturnItem> returnItems = this._returnCartList;            
-
-                // Newly created ReturnTransaction ID
-                int newReturnTransactionId = this._returnTransactionController.CreateReturnTransactionScope(returnTransaction, returnItems);
-
-                this.ClearReturnItems();
-                this.ClearFurnitureItems();
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"An error occurred during checkout: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"An error occurred during checkout: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+
         }
 
         /// <summary>
