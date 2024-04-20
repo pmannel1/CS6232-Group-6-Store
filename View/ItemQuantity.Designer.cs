@@ -64,8 +64,8 @@
             tableLayoutPanel1.RowCount = 5;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 12.9683F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 36.8876076F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 13.18328F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 36.65595F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 56F));
             tableLayoutPanel1.Size = new Size(442, 368);
             tableLayoutPanel1.TabIndex = 0;
@@ -161,7 +161,7 @@
             // 
             // dateOfReturnPicker
             // 
-            dateOfReturnPicker.Location = new Point(91, 199);
+            dateOfReturnPicker.Location = new Point(91, 200);
             dateOfReturnPicker.Name = "dateOfReturnPicker";
             dateOfReturnPicker.Size = new Size(200, 23);
             dateOfReturnPicker.TabIndex = 8;
@@ -170,11 +170,11 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(3, 196);
+            label1.Location = new Point(3, 197);
             label1.Name = "label1";
-            label1.Size = new Size(69, 15);
+            label1.Size = new Size(72, 15);
             label1.TabIndex = 9;
-            label1.Text = "Return Date";
+            label1.Text = "Return Date:";
             label1.TextAlign = ContentAlignment.BottomCenter;
             label1.Click += label1_Click;
             // 
