@@ -27,5 +27,17 @@ namespace CS6232_Group_6_Store.Controller
         {
             return this._returnTransactionDAL.CreateReturnTransactionScope(returnTransaction, returnItems);
         }
+
+        /// <summary>
+        /// return  transaction summary.
+        /// </summary>
+        /// <param name="returnTransaction">The return transaction.</param>
+        /// <param name="returnItems">The return items.</param>
+        /// <returns></returns>
+        /// <exception cref="System.NotImplementedException"></exception>
+        public List<RentalReturnTransactionSummary> GetReturnTransactionSummary(int transactionId)
+        {
+            return this._returnTransactionDAL.GetRentalReturnTransactionsummary(transactionId);
+        }
     }
 }
