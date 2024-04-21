@@ -73,6 +73,7 @@
             ClientSize = new Size(895, 352);
             Controls.Add(tableLayoutPanel1);
             Name = "ReturnSummary";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "ReturnSummary";
             tableLayoutPanel1.ResumeLayout(false);
             ResumeLayout(false);
