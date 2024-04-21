@@ -88,6 +88,9 @@ namespace CS6232_Group_6_Store.View
             this.DialogResult = DialogResult.OK;
         }
 
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
 
+        }
     }
 }
