@@ -14,46 +14,82 @@ namespace CS6232_Group_6_Store.DAL
         /// </summary>
         /// <param name="rTransaction">The r transaction.</param>
         /// <returns></returns>
-        public int CreateRentalTransaction(RentalTransaction rTransaction)
+        public string CreateRentalTransaction(RentalTransaction rTransaction,  List<RentalItem> rental)
         {
-            string insertStatement = "INSERT INTO rental_transactions (employeeId, memberId, rentalDate, dueDate) " +
+            string message = "Transaction is succcesful";
+            string insertTransactionStatement = "INSERT INTO rental_transactions (employeeId, memberId, rentalDate, dueDate) " +
                                      "OUTPUT INSERTED.id " +
                                      "VALUES (@EmployeeId, @MemberId, @RentalDate, @DueDate);";
+            string insertItemStatement = @"
+        INSERT INTO rental_items (transactionId, furnitureId, quantity, quantityReturned)
+        VALUES (@TransactionId, @ItemId, @Quantity, @QuantityReturned);";
+
+            string updateStatement = "UPDATE furniture SET instockNumber = instockNumber - @Quantity WHERE id =  @ItemId";
+
 
             using (SqlConnection connection = DBConnection.GetConnection())
             {
                 connection.Open();
-                using (var transaction = connection.BeginTransaction())
+                var transaction = connection.BeginTransaction();
+
+                using (var command = connection.CreateCommand())
                 {
+                    command.Transaction = transaction;
+                    command.Connection = connection;
                     try
                     {
-                        using (SqlCommand command = new SqlCommand(insertStatement, connection, transaction))
+                        command.CommandText = insertTransactionStatement;
+                        command.Parameters.AddRange(new SqlParameter[]
                         {
-                            command.Parameters.Add("@EmployeeId", SqlDbType.Int);
-                            command.Parameters["@EmployeeId"].Value = rTransaction.EmployeeId;
+                            new SqlParameter("@employeeId", SqlDbType.Int),
+                            new SqlParameter("@memberId", SqlDbType.Int),
+                            new SqlParameter("@RentalDate", SqlDbType.DateTime2),
+                            new SqlParameter("@DueDate", SqlDbType.DateTime2)
 
-                            command.Parameters.Add("@MemberId", SqlDbType.Int);
-                            command.Parameters["@MemberId"].Value = rTransaction.MemberId;
+                        });
+                        command.Parameters["@EmployeeId"].Value = rTransaction.EmployeeId;
+                        command.Parameters["@MemberId"].Value = rTransaction.MemberId;
+                        command.Parameters["@RentalDate"].Value = rTransaction.RentalDate;
+                        command.Parameters["@DueDate"].Value = rTransaction.DueDate;
 
-                            command.Parameters.Add("@RentalDate", SqlDbType.DateTime2);
-                            command.Parameters["@RentalDate"].Value = rTransaction.RentalDate;
 
-                            command.Parameters.Add("@DueDate", SqlDbType.DateTime2);
-                            command.Parameters["@DueDate"].Value = rTransaction.DueDate;
+                        int transactionId = (int)command.ExecuteScalar();
 
-                            // ExecuteScalar returns the first column of the first row in the result set
-                            int transactionId = (int)command.ExecuteScalar();
-                            transaction.Commit();
-                            return transactionId;
+
+                        command.Parameters.AddRange(new SqlParameter[]
+                       {
+                            new SqlParameter("@TransactionId", SqlDbType.Int),
+                            new SqlParameter("@ItemId", SqlDbType.Int),
+                            new SqlParameter("@Quantity", SqlDbType.Int),
+                             new SqlParameter("@QuantityReturned", SqlDbType.Int)
+                       });
+                        foreach (RentalItem item in rental)
+                        {
+                            command.CommandText = insertItemStatement;
+                            command.Parameters["@TransactionId"].Value = transactionId;
+                            command.Parameters["@ItemId"].Value = item.FurnitureId;
+                            command.Parameters["@Quantity"].Value = item.Quantity;
+                            command.Parameters["@QuantityReturned"].Value = item.QuantityReturned;
+                            command.ExecuteNonQuery();
+
+                            command.CommandText = updateStatement;
+                            command.ExecuteNonQuery();
                         }
+
+                        transaction.Commit();
+
+
+
+
                     }
-                    catch
+                    catch (Exception ex)
                     {
+                        message = "An error occurred during transaction Error message:" + ex.Message + " addtional error message " + ex.StackTrace;
                         transaction.Rollback();
-                        throw;
                     }
                 }
             }
+            return message;
         }
 
 
