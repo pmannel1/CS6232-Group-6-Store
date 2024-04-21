@@ -9,6 +9,7 @@ namespace CS6232_Group_6_Store.View
         private List<RentalItem> _cart;
         private RentalTransaction _transaction;
         private readonly FurnitureController _furnitureController;
+        private DialogResult _dialogResult;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RentalSummary"/> class.
@@ -37,7 +38,7 @@ namespace CS6232_Group_6_Store.View
                 this.rentalSummaryList.Clear();
                 rentalSummaryList.View = System.Windows.Forms.View.Details;
                 rentalSummaryList.GridLines = true;
-                rentalSummaryList.Columns.Add("Transaction ID", 150);
+                rentalSummaryList.Columns.Add("Transaction ID", 1);
                 rentalSummaryList.Columns.Add("Furniture ID", 150);
                 rentalSummaryList.Columns.Add("Furniture Name", 150);
                 rentalSummaryList.Columns.Add("Quantity", 150);
@@ -51,6 +52,7 @@ namespace CS6232_Group_6_Store.View
                     furniture = this._furnitureController.GetFurniture(dr.FurnitureId);
                     var cartList = rentalSummaryList.Items.Add(_transaction.Id.ToString());
                     cartList.SubItems.Add(furniture.Id.ToString());
+                    cartList.SubItems.Add(furniture.Name.ToString());
                     cartList.SubItems.Add(dr.Quantity.ToString());
                     TimeSpan timespan = _transaction.DueDate.Subtract(_transaction.RentalDate);
                     int time = (int)timespan.TotalDays;
@@ -84,13 +86,18 @@ namespace CS6232_Group_6_Store.View
         private void confirmButton_Click(object sender, EventArgs e)
         {
 
-
+            this._dialogResult = DialogResult.OK;
             this.DialogResult = DialogResult.OK;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-
+            this._dialogResult = DialogResult.Cancel;
+            this.DialogResult = DialogResult.Cancel;
+        }
+        private void RentalSummary_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.DialogResult = this._dialogResult;
         }
     }
 }
