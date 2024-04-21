@@ -23,9 +23,9 @@ namespace CS6232_Group_6_Store.Controller
         /// </summary>
         /// <param name="transaction">The transaction.</param>
         /// <returns></returns>
-        public int StartNewTransaction(RentalTransaction transaction)
+        public string  StartNewTransaction(RentalTransaction transaction,  List<RentalItem> rental)
         {
-            return this.rentalTransactionDal.CreateRentalTransaction(transaction);
+            return this.rentalTransactionDal.CreateRentalTransaction(transaction, rental);
         }
 
         
