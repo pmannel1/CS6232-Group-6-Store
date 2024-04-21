@@ -377,37 +377,27 @@ namespace CS6232_Group_6_Store.UserControls
                         return; // Stop processing the checkout
                     }
                 }
-
-                transaction.Id = _transactionController.StartNewTransaction(transaction);
-
-                foreach (var item in cart)
-                {
-                    item.TransactionId = transaction.Id;
-                    _rentalItemController.AddRentalItem(item);
-                }
-
-                Dictionary<int, int> furnitureQuantities = new Dictionary<int, int>();
-                foreach (var item in cart)
-                {
-                    if (furnitureQuantities.ContainsKey(item.FurnitureId))
-                        furnitureQuantities[item.FurnitureId] += item.Quantity;
-                    else
-                        furnitureQuantities[item.FurnitureId] = item.Quantity;
-                }
-
                 // Proceed to the summary form if validation passes
                 RentalSummary summaryForm = new RentalSummary(cart, transaction);
                 var dialogResult = summaryForm.ShowDialog();
 
                 if (dialogResult == DialogResult.OK)
                 {
-                    this.clearButton_Click(sender, e);
+
+                string message= _transactionController.StartNewTransaction(transaction, cart);
+
+              
+                 this.clearButton_Click(sender, e);
                     this.clearFurnitureButton_Click(sender, e);
                     this.memberListView.Clear();
                     this.furnitureSearchBox.Clear();
                     this.memberSearchBox.Clear();
-                    MessageBox.Show("Transaction completed successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this._furnitureController.UpdateInventory(furnitureQuantities);
+                    MessageBox.Show(message, "Transaction", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    
+                }
+                else
+                {
+                    MessageBox.Show("Transaction canceled .", "Canceled", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)
