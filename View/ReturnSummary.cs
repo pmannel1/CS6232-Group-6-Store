@@ -18,7 +18,10 @@ namespace CS6232_Group_6_Store.View
 
         private readonly List<RentalReturnTransactionSummary> _transactionSummary;
 
-
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ReturnSummary"/> class.
+        /// </summary>
+        /// <param name="transactionSummary">The transaction summary.</param>
         public ReturnSummary(List<RentalReturnTransactionSummary> transactionSummary)
         {
             InitializeComponent();
@@ -27,6 +30,9 @@ namespace CS6232_Group_6_Store.View
 
         }
 
+        /// <summary>
+        /// populate transaction summary on the list view
+        /// </summary>
         public void Populate()
         {
             try
@@ -48,7 +54,7 @@ namespace CS6232_Group_6_Store.View
                 {
 
                     var returnList = transactionSummarylistView.Items.Add(dr.TransactionId.ToString());
-                    returnList.SubItems.Add(dr.Id.ToString());
+                    returnList.SubItems.Add(dr.ReturnId.ToString());
                     returnList.SubItems.Add(dr.RentalItemId.ToString());
                     returnList.SubItems.Add(dr.FurnitureName.ToString());
                     returnList.SubItems.Add(dr.Quantity.ToString());
