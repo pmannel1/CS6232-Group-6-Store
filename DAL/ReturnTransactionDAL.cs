@@ -8,6 +8,13 @@ namespace CS6232_Group_6_Store.DAL
 {
     internal class ReturnTransactionDAL
     {
+        private ReturnItemDAL _returnItemDAL;
+
+        public ReturnTransactionDAL()
+        {
+            _returnItemDAL = new ReturnItemDAL();
+        }
+
         /// <summary>
         /// Creates the return transaction scope.
         /// </summary>
@@ -37,17 +44,6 @@ namespace CS6232_Group_6_Store.DAL
             string insertReturnTransactionStatement = "INSERT INTO return_transactions (employeeId, memberId, returnDate, refund, fine) "
                 + "OUTPUT INSERTED.id "
                 + "VALUES (@employeeId, @memberId, GETDATE(), @refund, @fine);";
-
-            string insertReturnItemStatement = "INSERT INTO return_items (returnId, rentalItemId, quantity) " 
-                + "VALUES (@returnId, @rentalItemId, @quantity);";
-
-            string updateInstockNumberFurnitureStatement = "UPDATE furniture "
-                + "SET instockNumber = instockNumber + @quantity " 
-                + "WHERE id = @furnitureId;";
-
-            string updateQuantityReturnedRentalItemStatement = "UPDATE rental_items "
-                + "SET quantityReturned = quantityReturned + @quantity " 
-                + "WHERE id = @rentalItemId;";
             
             using (var connection = DBConnection.GetConnection())
             {                
@@ -77,32 +73,19 @@ namespace CS6232_Group_6_Store.DAL
                         int returnValue = (int)command.ExecuteScalar();
                         transactionId = "" + returnValue;
 
-                        command.Parameters.AddRange(new SqlParameter[]
+                        SqlParameter[] parameters = new SqlParameter[]
                         {
                             new SqlParameter("@returnId", SqlDbType.Int),
                             new SqlParameter("@rentalItemId", SqlDbType.Int),
-                            new SqlParameter("@quantity", SqlDbType.Int)
-                        });
+                            new SqlParameter("@quantity", SqlDbType.Int),
+                            new SqlParameter("@furnitureId", SqlDbType.Int)
+                        };
+                        
+                        command.Parameters.AddRange(parameters);
 
-                        command.Parameters.Add("@furnitureId", SqlDbType.Int);
                         command.Parameters["@furnitureId"].Value = -1;
-                        foreach (ReturnItem item in returnItems)
-                        {
-                            command.CommandText = insertReturnItemStatement;
-                            command.Parameters["@returnId"].Value = transactionId;
-                            command.Parameters["@rentalItemId"].Value = item.RentalItemId;
-                            command.Parameters["@quantity"].Value = item.Quantity;
-                            command.ExecuteNonQuery();
 
-                            command.CommandText = updateInstockNumberFurnitureStatement;
-
-                            command.Parameters["@furnitureId"].Value = item.FurnitureId;
-                            command.ExecuteNonQuery();
-
-                            command.CommandText = updateQuantityReturnedRentalItemStatement;
-                            command.ExecuteNonQuery();
-
-                        }
+                        this._returnItemDAL.ReturnItemByRentalReturnTransaction(returnItems, parameters, transactionId, command);
 
                         transaction.Commit();
                     }

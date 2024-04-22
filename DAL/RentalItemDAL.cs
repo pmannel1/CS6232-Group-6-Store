@@ -163,5 +163,15 @@ namespace CS6232_Group_6_Store.DAL
             return rentalItems;
         }
 
+        public void UpdateRentalItemQuantityReturnedByRentalReturnTransaction(SqlParameter[] parameters, string transactionId, SqlCommand command)
+        {
+            string updateQuantityReturnedRentalItemStatement = "UPDATE rental_items "
+                + "SET quantityReturned = quantityReturned + @quantity "
+                + "WHERE id = @rentalItemId;";
+
+                command.CommandText = updateQuantityReturnedRentalItemStatement;
+                command.ExecuteNonQuery();
+
+        }
     }
 }
