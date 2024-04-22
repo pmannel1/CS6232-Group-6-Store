@@ -163,6 +163,12 @@ namespace CS6232_Group_6_Store.DAL
             return rentalItems;
         }
 
+        /// <summary>
+        /// Updates the rental item quantity returned by rental return transaction.
+        /// </summary>
+        /// <param name="parameters">The parameters.</param>
+        /// <param name="transactionId">The transaction identifier.</param>
+        /// <param name="command">The command.</param>
         public void UpdateRentalItemQuantityReturnedByRentalReturnTransaction(SqlParameter[] parameters, string transactionId, SqlCommand command)
         {
             string updateQuantityReturnedRentalItemStatement = "UPDATE rental_items "

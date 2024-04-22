@@ -10,6 +10,9 @@ namespace CS6232_Group_6_Store.DAL
     {
         private ReturnItemDAL _returnItemDAL;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ReturnTransactionDAL"/> class.
+        /// </summary>
         public ReturnTransactionDAL()
         {
             _returnItemDAL = new ReturnItemDAL();

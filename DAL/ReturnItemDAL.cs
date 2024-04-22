@@ -9,11 +9,21 @@ namespace CS6232_Group_6_Store.DAL
     {
         private FurnitureDAL _furnitureDAL;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ReturnItemDAL"/> class.
+        /// </summary>
         public ReturnItemDAL()
         {
             this._furnitureDAL = new FurnitureDAL();
         }
-        
+
+        /// <summary>
+        /// Returns the item by rental return transaction.
+        /// </summary>
+        /// <param name="returnItems">The return items.</param>
+        /// <param name="parameters">The parameters.</param>
+        /// <param name="transactionId">The transaction identifier.</param>
+        /// <param name="command">The command.</param>
         public void ReturnItemByRentalReturnTransaction(List<ReturnItem> returnItems, SqlParameter[] parameters, string transactionId, SqlCommand command)
         {
             string insertReturnItemStatement = "INSERT INTO return_items (returnId, rentalItemId, quantity) "

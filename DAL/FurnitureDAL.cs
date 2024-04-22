@@ -16,10 +16,14 @@ namespace CS6232_Group_6_Store.DAL
 
         private RentalItemDAL _itemDAL;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FurnitureDAL"/> class.
+        /// </summary>
         public FurnitureDAL()
         {
             this._itemDAL = new RentalItemDAL();
         }
+
         /// <summary>
         /// Returns the furnitures search.
         /// </summary>
@@ -156,6 +160,13 @@ namespace CS6232_Group_6_Store.DAL
             }
         }
 
+        /// <summary>
+        /// Updates the furniture quantity by rental return transaction.
+        /// </summary>
+        /// <param name="item">The item.</param>
+        /// <param name="parameters">The parameters.</param>
+        /// <param name="transactionId">The transaction identifier.</param>
+        /// <param name="command">The command.</param>
         public void UpdateFurnitureQuantityByRentalReturnTransaction(ReturnItem item, SqlParameter[] parameters, string transactionId, SqlCommand command)
         {
             string updateInstockNumberFurnitureStatement = "UPDATE furniture "
