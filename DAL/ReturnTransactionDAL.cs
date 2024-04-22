@@ -84,8 +84,9 @@ namespace CS6232_Group_6_Store.DAL
                             new SqlParameter("@quantity", SqlDbType.Int)
                         });
 
-                        int count = 0;
-                        foreach(ReturnItem item in returnItems)
+                        command.Parameters.Add("@furnitureId", SqlDbType.Int);
+                        command.Parameters["@furnitureId"].Value = -1;
+                        foreach (ReturnItem item in returnItems)
                         {
                             command.CommandText = insertReturnItemStatement;
                             command.Parameters["@returnId"].Value = transactionId;
@@ -95,13 +96,7 @@ namespace CS6232_Group_6_Store.DAL
 
                             command.CommandText = updateInstockNumberFurnitureStatement;
 
-                            if (count == 0) 
-                            { 
-                                command.Parameters.Add("@furnitureId", SqlDbType.Int);
-                                count++;
-                            }
-
-                            command.Parameters["@furnitureId"].Value= item.FurnitureId;
+                            command.Parameters["@furnitureId"].Value = item.FurnitureId;
                             command.ExecuteNonQuery();
 
                             command.CommandText = updateQuantityReturnedRentalItemStatement;

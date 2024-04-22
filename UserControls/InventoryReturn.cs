@@ -509,7 +509,7 @@ namespace CS6232_Group_6_Store.UserControls
                     }
                     else
                     {
-                        MessageBox.Show("Transaction canceled .", "Canceled", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Transaction canceled.", "Canceled", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     this.ClearReturnItems();
                     this.ClearFurnitureItems();
