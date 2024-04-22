@@ -17,17 +17,20 @@ namespace CS6232_Group_6_Store.View
     {
 
         private readonly List<RentalReturnTransactionSummary> _transactionSummary;
+        private decimal fines;
+        private decimal refunds;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ReturnSummary"/> class.
         /// </summary>
         /// <param name="transactionSummary">The transaction summary.</param>
-        public ReturnSummary(List<RentalReturnTransactionSummary> transactionSummary)
+        public ReturnSummary(List<RentalReturnTransactionSummary> transactionSummary, decimal fines, decimal refunds)
         {
             InitializeComponent();
             _transactionSummary = transactionSummary;
+            this.fines = fines;
+            this.refunds = refunds;
             Populate();
-
         }
 
         /// <summary>
@@ -62,6 +65,23 @@ namespace CS6232_Group_6_Store.View
                     returnList.SubItems.Add(dr.EmployeeName.ToString());
                     returnList.SubItems.Add(dr.DueDate.ToShortDateString());
                 }
+
+                this.transactionSummarylistView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+                this.transactionSummarylistView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+
+                if (refunds > fines)
+                {
+                    this.fineCreditLabel.Text = "Credit: " + refunds.ToString();
+                }
+                else if (refunds < fines)
+                {
+                    this.fineCreditLabel.Text = "Fine: " + fines.ToString();
+                }
+                else
+                {
+                    this.fineCreditLabel.Text = "";
+                }
+
             }
             catch (Exception ex)
             {

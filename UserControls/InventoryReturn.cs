@@ -504,7 +504,7 @@ namespace CS6232_Group_6_Store.UserControls
                     if (int.TryParse(transactionIdReturn, out newReturnTransactionId))
                     {
                         List<RentalReturnTransactionSummary> transactionsummary = this._returnTransactionController.GetReturnTransactionSummary(newReturnTransactionId);
-                        ReturnSummary returnSummary = new ReturnSummary(transactionsummary);
+                        ReturnSummary returnSummary = new ReturnSummary(transactionsummary, fines, refunds);
                         returnSummary.ShowDialog();
                     }
                     else
