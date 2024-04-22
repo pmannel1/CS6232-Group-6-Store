@@ -2,6 +2,7 @@
 using CS6232_Group_6_Store.Model;
 using System.Data;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace CS6232_Group_6_Store.DAL
 {
@@ -14,7 +15,7 @@ namespace CS6232_Group_6_Store.DAL
         /// <param name="returnItems">The return items.</param>
         /// <returns></returns>
         /// <exception cref="System.NotImplementedException"></exception>
-        public int CreateReturnTransactionScope(ReturnTransaction returnTransaction, List<ReturnItem> returnItems)
+        public string CreateReturnTransactionScope(ReturnTransaction returnTransaction, List<ReturnItem> returnItems)
         {            
             if (returnTransaction == null)
             {
@@ -31,7 +32,7 @@ namespace CS6232_Group_6_Store.DAL
                 throw new ArgumentException("returnItems cannot be empty");
             }
             
-            int transactionId = 0;
+            string transactionId = "";
             
             string insertReturnTransactionStatement = "INSERT INTO return_transactions (employeeId, memberId, returnDate, refund, fine) "
                 + "OUTPUT INSERTED.id "
@@ -73,7 +74,8 @@ namespace CS6232_Group_6_Store.DAL
                         command.Parameters["@refund"].Value = returnTransaction.Refund;
                         command.Parameters["@fine"].Value = returnTransaction.Fine;
 
-                        transactionId = (int)command.ExecuteScalar();
+                        int returnValue = (int)command.ExecuteScalar();
+                        transactionId = "" + returnValue;
 
                         command.Parameters.AddRange(new SqlParameter[]
                         {
@@ -111,8 +113,7 @@ namespace CS6232_Group_6_Store.DAL
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show($"An error occurred during checkout: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        MessageBox.Show($"An error occurred during checkout: {ex.StackTrace}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        transactionId = "An error occurred during transaction Error message:" + ex.Message + " addtional error message " + ex.StackTrace;
                         transaction.Rollback();
                     }
                 }

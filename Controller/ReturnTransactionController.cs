@@ -23,7 +23,7 @@ namespace CS6232_Group_6_Store.Controller
         /// <param name="returnItems">The return items.</param>
         /// <returns></returns>
         /// <exception cref="System.NotImplementedException"></exception>
-        public int CreateReturnTransactionScope(ReturnTransaction returnTransaction, List<ReturnItem> returnItems)
+        public string CreateReturnTransactionScope(ReturnTransaction returnTransaction, List<ReturnItem> returnItems)
         {
             return this._returnTransactionDAL.CreateReturnTransactionScope(returnTransaction, returnItems);
         }

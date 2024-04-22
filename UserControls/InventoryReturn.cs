@@ -498,10 +498,19 @@ namespace CS6232_Group_6_Store.UserControls
                     List<ReturnItem> returnItems = this._returnCartList;
 
                     // Newly created ReturnTransaction ID
-                    int newReturnTransactionId = this._returnTransactionController.CreateReturnTransactionScope(returnTransaction, returnItems);
-                    List<RentalReturnTransactionSummary> transactionsummary = this._returnTransactionController.GetReturnTransactionSummary(newReturnTransactionId);
-                    ReturnSummary returnSummary = new ReturnSummary(transactionsummary);
-                    returnSummary.ShowDialog();
+                    string transactionIdReturn = this._returnTransactionController.CreateReturnTransactionScope(returnTransaction, returnItems);
+                    int newReturnTransactionId = 0;
+
+                    if (int.TryParse(transactionIdReturn, out newReturnTransactionId))
+                    {
+                        List<RentalReturnTransactionSummary> transactionsummary = this._returnTransactionController.GetReturnTransactionSummary(newReturnTransactionId);
+                        ReturnSummary returnSummary = new ReturnSummary(transactionsummary);
+                        returnSummary.ShowDialog();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Transaction canceled .", "Canceled", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                     this.ClearReturnItems();
                     this.ClearFurnitureItems();
                 }
