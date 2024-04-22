@@ -1,4 +1,5 @@
 ﻿
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Xml.Linq;
@@ -13,6 +14,15 @@ namespace CS6232_Group_6_Store.DAL
     public class FurnitureDAL
     {
 
+        private RentalItemDAL _itemDAL;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FurnitureDAL"/> class.
+        /// </summary>
+        public FurnitureDAL()
+        {
+            this._itemDAL = new RentalItemDAL();
+        }
 
         /// <summary>
         /// Returns the furnitures search.
@@ -148,6 +158,28 @@ namespace CS6232_Group_6_Store.DAL
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// Updates the furniture quantity by rental return transaction.
+        /// </summary>
+        /// <param name="item">The item.</param>
+        /// <param name="parameters">The parameters.</param>
+        /// <param name="transactionId">The transaction identifier.</param>
+        /// <param name="command">The command.</param>
+        public void UpdateFurnitureQuantityByRentalReturnTransaction(ReturnItem item, SqlParameter[] parameters, string transactionId, SqlCommand command)
+        {
+            string updateInstockNumberFurnitureStatement = "UPDATE furniture "
+                + "SET instockNumber = instockNumber + @quantity "
+                + "WHERE id = @furnitureId;";
+
+                command.CommandText = updateInstockNumberFurnitureStatement;
+
+                command.Parameters["@furnitureId"].Value = item.FurnitureId;
+                command.ExecuteNonQuery();
+
+                this._itemDAL.UpdateRentalItemQuantityReturnedByRentalReturnTransaction(parameters, transactionId, command);
+            
         }
 
     }
