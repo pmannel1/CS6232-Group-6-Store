@@ -5,7 +5,7 @@ using CS6232_Group_6_Store.View;
 namespace CS6232_Group_6_Store
 {
     /// <summary>
-    /// Main Dashboard for program
+    /// Main Dashboard for program.
     /// </summary>
     /// <seealso cref="System.Windows.Forms.Form" />
     public partial class MainDashBoard : Form
