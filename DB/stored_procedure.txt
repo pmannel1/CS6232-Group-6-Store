@@ -1,0 +1,49 @@
+﻿/****** Object:  StoredProcedure [dbo].[getMostPopularFurnitureDuringDates]    Script Date: 4/19/2024 5:37:38 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[getMostPopularFurnitureDuringDates]
+    @startDate DATE,
+    @endDate DATE
+AS
+BEGIN
+    -- Validate input parameters
+    IF @startDate IS NULL OR @endDate IS NULL OR @startDate >= @endDate
+    BEGIN
+        RAISERROR ('Invalid input parameters: Start date should be before end date.', 16, 1);
+        RETURN;
+    END
+
+    -- Get the most popular furniture during the specified period of time
+    SELECT 
+        f.id,
+        f.categoryName,
+        f.description,
+        COUNT(rt.id) AS totalRentalTransactions,
+        (SELECT COUNT(*) FROM rental_transactions WHERE rentalDate BETWEEN @startDate AND @endDate) AS totalAllRentalTransactions,
+        (COUNT(rt.id) * 100.0 / (SELECT COUNT(*) FROM rental_transactions WHERE rentalDate BETWEEN @startDate AND @endDate)) AS percentageOfTotal,
+        (SUM(CASE WHEN m.dob BETWEEN DATEADD(YEAR, -29, rt.rentalDate) AND DATEADD(YEAR, -18, rt.rentalDate) THEN 1 ELSE 0 END) * 100.0 / COUNT(rt.id)) AS percentage18To29,
+        ((COUNT(rt.id) - SUM(CASE WHEN m.dob BETWEEN DATEADD(YEAR, -29, rt.rentalDate) AND DATEADD(YEAR, -18, rt.rentalDate) THEN 1 ELSE 0 END)) * 100.0 / COUNT(rt.id)) AS percentageOutside18To29
+    FROM
+        rental_items ri
+    INNER JOIN
+        rental_transactions rt ON ri.transactionId = rt.id
+    INNER JOIN
+        furniture f ON ri.furnitureId = f.id
+    INNER JOIN
+        members m ON rt.memberID = m.id
+    WHERE
+        rt.rentalDate BETWEEN @startDate AND @endDate
+    GROUP BY
+        ri.furnitureID, f.id, f.categoryName, f.description
+    HAVING
+        COUNT(rt.id) >= 2
+    ORDER BY
+        totalRentalTransactions DESC, ri.furnitureID DESC;
+END
+GO
+USE [master]
+GO
+ALTER DATABASE [cs6232-6] SET  READ_WRITE 
+GO
