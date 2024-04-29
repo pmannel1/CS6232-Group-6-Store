@@ -46,6 +46,7 @@ namespace CS6232_Group_6_Store.View
                 transactionSummarylistView.Columns.Add("Transaction ID", 150);
                 transactionSummarylistView.Columns.Add("Return ID", 50);
                 transactionSummarylistView.Columns.Add("Return Item ID", 50);
+                transactionSummarylistView.Columns.Add("Furniture ID", 50);
                 transactionSummarylistView.Columns.Add("Furniture Name", 150);
                 transactionSummarylistView.Columns.Add("Quantity", 150);
                 transactionSummarylistView.Columns.Add("Members Name", 150);
@@ -59,6 +60,7 @@ namespace CS6232_Group_6_Store.View
                     var returnList = transactionSummarylistView.Items.Add(dr.TransactionId.ToString());
                     returnList.SubItems.Add(dr.ReturnId.ToString());
                     returnList.SubItems.Add(dr.RentalItemId.ToString());
+                    returnList.SubItems.Add(dr.FurnitureId.ToString());
                     returnList.SubItems.Add(dr.FurnitureName.ToString());
                     returnList.SubItems.Add(dr.Quantity.ToString());
                     returnList.SubItems.Add(dr.MemberName.ToString());
@@ -71,11 +73,11 @@ namespace CS6232_Group_6_Store.View
 
                 if (refunds > fines)
                 {
-                    this.fineCreditLabel.Text = "Credit: " + refunds.ToString();
+                    this.fineCreditLabel.Text = "Credit: " + (refunds - fines).ToString();
                 }
                 else if (refunds < fines)
                 {
-                    this.fineCreditLabel.Text = "Fine: " + fines.ToString();
+                    this.fineCreditLabel.Text = "Fine: " + (fines - refunds).ToString();
                 }
                 else
                 {

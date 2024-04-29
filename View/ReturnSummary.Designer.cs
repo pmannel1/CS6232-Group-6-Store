@@ -113,7 +113,6 @@
             fineCreditLabel.Name = "fineCreditLabel";
             fineCreditLabel.Size = new Size(771, 28);
             fineCreditLabel.TabIndex = 0;
-            fineCreditLabel.Text = "test";
             fineCreditLabel.TextAlign = ContentAlignment.TopCenter;
             // 
             // ReturnSummary

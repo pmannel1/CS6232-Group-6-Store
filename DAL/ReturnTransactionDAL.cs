@@ -114,7 +114,7 @@ namespace CS6232_Group_6_Store.DAL
         public List<RentalReturnTransactionSummary> GetRentalReturnTransactionsummary(int id)
         {
             List<RentalReturnTransactionSummary> rentalReturnTransactions = new List<RentalReturnTransactionSummary>();
-            string selectStatement = "select T.id[TransactionId],  R.id[ReturnId] , R.rentalItemId[RentalItemId], F.name[FurnitureName],R.quantity,M.firstName + ' ' + M.lastName[MemeberName], E.firstName + ' ' + E.lastName[EmployeeName], T.returnDate " +
+            string selectStatement = "select T.id[TransactionId],  R.id[ReturnId] , R.rentalItemId[RentalItemId], F.name[FurnitureName],R.quantity,M.firstName + ' ' + M.lastName[MemeberName], E.firstName + ' ' + E.lastName[EmployeeName], T.returnDate, RI.furnitureId[FurnitureID] " +
                 "from return_transactions T inner join return_items R  on T.id=R.returnId inner join rental_items RI on R.rentalItemId=RI.id  LEFT join furniture F on RI.furnitureId=F.id  inner join members M on T.memberId=M.id left join employees E on T.employeeId=E.id" +
                 " where R.returnId=@transactionId";
 
@@ -139,8 +139,9 @@ namespace CS6232_Group_6_Store.DAL
                             var memberName = reader["MemeberName"].ToString();
                             var employeeName = reader["EmployeeName"].ToString();
                             var dueDate = DateTime.Parse(reader["returnDate"].ToString());
+                            var furnitureId = int.Parse(reader["FurnitureID"].ToString());
                             
-                            RentalReturnTransactionSummary rentalReturnItem = new RentalReturnTransactionSummary(transactionId, returnId, rentalItemId, furnitureName, quantity, memberName, employeeName, dueDate);
+                            RentalReturnTransactionSummary rentalReturnItem = new RentalReturnTransactionSummary(transactionId, returnId, rentalItemId, furnitureName, quantity, memberName, employeeName, dueDate, furnitureId);
                             rentalReturnTransactions.Add(rentalReturnItem);
                         }
                     }

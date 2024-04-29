@@ -362,6 +362,7 @@ namespace CS6232_Group_6_Store.UserControls
                 this.returnListView.Columns.Add("MemID", 50);
                 this.returnListView.Columns.Add("Due Date", 100);
                 this.returnListView.Columns.Add("RentalItemID", 50);
+                this.returnListView.Columns.Add("FurnitureID", 50);
                 this.returnListView.Columns.Add("Quantity", 50);
 
                 foreach (ReturnItem dr in this._returnCartList)
@@ -370,6 +371,7 @@ namespace CS6232_Group_6_Store.UserControls
                     cartList.SubItems.Add(dr.MemberId.ToString());
                     cartList.SubItems.Add(dr.DueDate.ToString());
                     cartList.SubItems.Add(dr.RentalItemId.ToString());
+                    cartList.SubItems.Add(dr.FurnitureId.ToString());
                     cartList.SubItems.Add(dr.Quantity.ToString());
                 }
 

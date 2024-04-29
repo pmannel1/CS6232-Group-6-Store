@@ -72,6 +72,14 @@ namespace CS6232_Group_6_Store.Model
         public DateTime DueDate { get; set; }
 
         /// <summary>
+        /// Gets or sets the furniture identifier.
+        /// </summary>
+        /// <value>
+        /// The furniture identifier.
+        /// </value>
+        public int FurnitureId { get; set; }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="RentalReturnTransactionSummary"/> class.
         /// </summary>
         /// <param name="transactionId">The transaction identifier.</param>
@@ -81,7 +89,8 @@ namespace CS6232_Group_6_Store.Model
         /// <param name="memberName">The member identifier.</param>
         /// <param name="employeeName">The employee name.</param>
         /// <param name="dueDate">The due date.</param>
-        public RentalReturnTransactionSummary(int transactionId, int returnId, int rentalItemId, string furnitureName, int quantity,string  memberName, string  employeeName, DateTime dueDate)
+        /// <param name="furnitureId">The due date.</param>
+        public RentalReturnTransactionSummary(int transactionId, int returnId, int rentalItemId, string furnitureName, int quantity,string  memberName, string  employeeName, DateTime dueDate, int furnitureId)
         {
             TransactionId = transactionId;
             ReturnId = returnId;
@@ -91,6 +100,7 @@ namespace CS6232_Group_6_Store.Model
             MemberName = memberName;
             EmployeeName = employeeName;
             DueDate = dueDate;
+            FurnitureId = furnitureId;
         }
     }
 }
