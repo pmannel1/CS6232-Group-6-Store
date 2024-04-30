@@ -70,7 +70,7 @@
             customerTabPage.Controls.Add(memberManagement2);
             customerTabPage.Location = new Point(4, 24);
             customerTabPage.Name = "customerTabPage";
-            customerTabPage.Padding = new Padding(3, 3, 3, 3);
+            customerTabPage.Padding = new Padding(3);
             customerTabPage.Size = new Size(1047, 465);
             customerTabPage.TabIndex = 0;
             customerTabPage.Text = "Member Management";
@@ -91,7 +91,7 @@
             inventoryAndRentTabPage.Location = new Point(4, 24);
             inventoryAndRentTabPage.Margin = new Padding(3, 2, 3, 2);
             inventoryAndRentTabPage.Name = "inventoryAndRentTabPage";
-            inventoryAndRentTabPage.Size = new Size(1047, 465);
+            inventoryAndRentTabPage.Size = new Size(192, 72);
             inventoryAndRentTabPage.TabIndex = 1;
             inventoryAndRentTabPage.Text = "Inventory and Rental Processing ";
             inventoryAndRentTabPage.UseVisualStyleBackColor = true;
@@ -102,7 +102,7 @@
             inventoryRental1.Location = new Point(0, 0);
             inventoryRental1.Margin = new Padding(3, 4, 3, 4);
             inventoryRental1.Name = "inventoryRental1";
-            inventoryRental1.Size = new Size(1047, 465);
+            inventoryRental1.Size = new Size(192, 72);
             inventoryRental1.TabIndex = 0;
             // 
             // returnTabPage
@@ -110,7 +110,7 @@
             returnTabPage.Controls.Add(inventoryReturn1);
             returnTabPage.Location = new Point(4, 24);
             returnTabPage.Name = "returnTabPage";
-            returnTabPage.Size = new Size(1047, 465);
+            returnTabPage.Size = new Size(192, 72);
             returnTabPage.TabIndex = 3;
             returnTabPage.Text = "Return Processing";
             returnTabPage.UseVisualStyleBackColor = true;
@@ -121,7 +121,7 @@
             inventoryReturn1.Location = new Point(0, 0);
             inventoryReturn1.Margin = new Padding(3, 4, 3, 4);
             inventoryReturn1.Name = "inventoryReturn1";
-            inventoryReturn1.Size = new Size(1047, 465);
+            inventoryReturn1.Size = new Size(192, 72);
             inventoryReturn1.TabIndex = 0;
             // 
             // transactionManagementTab
@@ -129,8 +129,8 @@
             transactionManagementTab.Controls.Add(transactionManagement1);
             transactionManagementTab.Location = new Point(4, 24);
             transactionManagementTab.Name = "transactionManagementTab";
-            transactionManagementTab.Padding = new Padding(3, 3, 3, 3);
-            transactionManagementTab.Size = new Size(1047, 465);
+            transactionManagementTab.Padding = new Padding(3);
+            transactionManagementTab.Size = new Size(192, 72);
             transactionManagementTab.TabIndex = 2;
             transactionManagementTab.Text = "Transaction Management";
             transactionManagementTab.UseVisualStyleBackColor = true;
@@ -141,7 +141,7 @@
             transactionManagement1.Location = new Point(3, 3);
             transactionManagement1.Margin = new Padding(3, 4, 3, 4);
             transactionManagement1.Name = "transactionManagement1";
-            transactionManagement1.Size = new Size(1041, 459);
+            transactionManagement1.Size = new Size(186, 66);
             transactionManagement1.TabIndex = 0;
             // 
             // adminReportTab
@@ -150,7 +150,7 @@
             adminReportTab.Location = new Point(4, 24);
             adminReportTab.Margin = new Padding(3, 2, 3, 2);
             adminReportTab.Name = "adminReportTab";
-            adminReportTab.Size = new Size(1047, 465);
+            adminReportTab.Size = new Size(192, 72);
             adminReportTab.TabIndex = 4;
             adminReportTab.Text = "Admin Report";
             adminReportTab.UseVisualStyleBackColor = true;
@@ -161,7 +161,7 @@
             adminReport1.Location = new Point(0, 0);
             adminReport1.Margin = new Padding(3, 2, 3, 2);
             adminReport1.Name = "adminReport1";
-            adminReport1.Size = new Size(1047, 465);
+            adminReport1.Size = new Size(192, 72);
             adminReport1.TabIndex = 0;
             // 
             // greetingLabel
