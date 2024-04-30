@@ -87,6 +87,8 @@ namespace CS6232_Group_6_Store.UserControls
                 membersList.SubItems.Add(dr.Country ?? "");
                 membersList.SubItems.Add(dr.ContactPhone ?? "");
             }
+            this.memberListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            this.memberListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
 
 
