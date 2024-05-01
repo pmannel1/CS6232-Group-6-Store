@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            selectionMethodLabel = new Label();
             furnitureListView = new ListView();
             addFurnitureButton = new Button();
             clearFurnitureButton = new Button();
@@ -48,20 +47,12 @@
             furnitureListViewLabel = new Label();
             cartLabel = new Label();
             errorLabel = new Label();
+            selectionMethodLabel = new Label();
             tableLayoutPanel1.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
             tableLayoutPanel3.SuspendLayout();
             tableLayoutPanel5.SuspendLayout();
             SuspendLayout();
-            // 
-            // selectionMethodLabel
-            // 
-            selectionMethodLabel.AutoSize = true;
-            selectionMethodLabel.Location = new Point(3, 0);
-            selectionMethodLabel.Name = "selectionMethodLabel";
-            selectionMethodLabel.Size = new Size(138, 15);
-            selectionMethodLabel.TabIndex = 2;
-            selectionMethodLabel.Text = "Furniture Search Method";
             // 
             // furnitureListView
             // 
@@ -287,6 +278,15 @@
             errorLabel.Size = new Size(0, 15);
             errorLabel.TabIndex = 23;
             // 
+            // selectionMethodLabel
+            // 
+            selectionMethodLabel.AutoSize = true;
+            selectionMethodLabel.Location = new Point(3, 0);
+            selectionMethodLabel.Name = "selectionMethodLabel";
+            selectionMethodLabel.Size = new Size(138, 15);
+            selectionMethodLabel.TabIndex = 2;
+            selectionMethodLabel.Text = "Furniture Search Method";
+            // 
             // InventoryRental
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -305,7 +305,6 @@
         }
 
         #endregion
-        private Label selectionMethodLabel;
         private ListView furnitureListView;
         private Button addFurnitureButton;
         private Button clearFurnitureButton;
@@ -325,5 +324,6 @@
         private Button removeItemButton;
         private Button updateQuantity;
         private Label errorLabel;
+        private Label selectionMethodLabel;
     }
 }
