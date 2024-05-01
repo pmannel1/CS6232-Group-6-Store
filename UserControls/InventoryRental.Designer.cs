@@ -47,8 +47,6 @@
             tableLayoutPanel5 = new TableLayoutPanel();
             furnitureSearchBox = new TextBox();
             furnitureSearchButton = new Button();
-            memberListViewLabel = new Label();
-            memberListView = new ListView();
             furnitureListViewLabel = new Label();
             cartLabel = new Label();
             errorLabel = new Label();
@@ -145,8 +143,6 @@
             tableLayoutPanel1.Controls.Add(furnitureSearchLabel, 0, 4);
             tableLayoutPanel1.Controls.Add(tableLayoutPanel4, 1, 1);
             tableLayoutPanel1.Controls.Add(tableLayoutPanel5, 1, 4);
-            tableLayoutPanel1.Controls.Add(memberListViewLabel, 0, 2);
-            tableLayoutPanel1.Controls.Add(memberListView, 1, 2);
             tableLayoutPanel1.Controls.Add(furnitureListViewLabel, 0, 5);
             tableLayoutPanel1.Controls.Add(cartLabel, 0, 7);
             tableLayoutPanel1.Controls.Add(errorLabel, 0, 6);
@@ -293,25 +289,6 @@
             furnitureSearchButton.UseVisualStyleBackColor = true;
             furnitureSearchButton.Click += furnitureSearchButton_Click;
             // 
-            // memberListViewLabel
-            // 
-            memberListViewLabel.AutoSize = true;
-            memberListViewLabel.Location = new Point(3, 68);
-            memberListViewLabel.Name = "memberListViewLabel";
-            memberListViewLabel.Size = new Size(92, 15);
-            memberListViewLabel.TabIndex = 19;
-            memberListViewLabel.Text = "Select Member: ";
-            // 
-            // memberListView
-            // 
-            memberListView.Dock = DockStyle.Fill;
-            memberListView.Location = new Point(147, 71);
-            memberListView.Name = "memberListView";
-            memberListView.Size = new Size(550, 58);
-            memberListView.TabIndex = 20;
-            memberListView.UseCompatibleStateImageBehavior = false;
-            memberListView.ItemChecked += memberListView_ItemChecked;
-            // 
             // furnitureListViewLabel
             // 
             furnitureListViewLabel.AutoSize = true;
@@ -374,8 +351,6 @@
         private Button memberSearchButton;
         private TextBox furnitureSearchBox;
         private Button furnitureSearchButton;
-        private Label memberListViewLabel;
-        private ListView memberListView;
         private Label furnitureListViewLabel;
         private Label cartLabel;
         private Button removeItemButton;

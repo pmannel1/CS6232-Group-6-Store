@@ -28,7 +28,6 @@ namespace CS6232_Group_6_Store.UserControls
             this._furnitureController = new FurnitureController();
             this._rentalItemController = new RentalItemController();
 
-            this.memberListView.CheckBoxes = true;
             this.furnitureListView.CheckBoxes = true;
             this.selectionMethodComboBox.SelectedIndex = 0;
             this.addFurnitureButton.Enabled = false;
@@ -154,38 +153,7 @@ namespace CS6232_Group_6_Store.UserControls
 
         }
 
-        private void memberListView_ItemChecked(object sender, ItemCheckedEventArgs e)
-        {
-            if (e.Item.Checked)
-            {
-                memberId = int.Parse(e.Item.Text);
-                foreach (ListViewItem item in memberListView.Items)
-                {
-                    // Uncheck all other items
-                    if (item != e.Item)
-                    {
-                        item.Checked = false;
-                    }
-                }
-
-                this.clearButton.Enabled = true;
-            }
-            else
-            {
-                this.checkoutButton.Enabled = false;
-                this.clearButton.Enabled = false;
-            }
-            if (furnitureListView.CheckedItems.Count > 0 && 
-                memberListView.CheckedItems.Count > 0)
-            {
-                this.addFurnitureButton.Enabled = true;
-            }
-            else
-            {
-                this.addFurnitureButton.Enabled = false;
-            }
-        }
-
+        
         private void furnitureListView_ItemChecked(object sender, ItemCheckedEventArgs e)
         {
             if (e.Item.Checked)
@@ -202,7 +170,7 @@ namespace CS6232_Group_6_Store.UserControls
 
             }
             if (furnitureListView.CheckedItems.Count > 0 &&
-             (memberListView.CheckedItems.Count > 0 || MainDashBoard.selectedMemberId != 0))
+             (MainDashBoard.selectedMemberId != 0))
             {
                 this.addFurnitureButton.Enabled = true;
             }
@@ -353,7 +321,6 @@ namespace CS6232_Group_6_Store.UserControls
               
                  this.clearButton_Click(sender, e);
                     this.clearFurnitureButton_Click(sender, e);
-                    this.memberListView.Clear();
                     this.furnitureSearchBox.Clear();
                     MessageBox.Show(message, "Transaction", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     
@@ -430,7 +397,6 @@ namespace CS6232_Group_6_Store.UserControls
         {
             this.clearButton_Click(sender, e);
             this.clearFurnitureButton_Click(sender, e);
-            this.memberListView.Clear();
             this.furnitureSearchBox.Clear();
         }
     }
