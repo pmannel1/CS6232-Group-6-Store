@@ -5,6 +5,7 @@ namespace CS6232_Group_6_Store.UserControls
 {
     public partial class TransactionManagement : UserControl
     {
+        public MainDashBoard MainDashBoard { get; set; }
 
         private readonly MemberController _memberController;
         private readonly RentalItemController _rentalItemController;
@@ -15,7 +16,7 @@ namespace CS6232_Group_6_Store.UserControls
             this._memberController = new MemberController();
             this._rentalItemController = new RentalItemController();
 
-            this.memberHistorySearchButton.Enabled = false;
+            this.memberHistorySearchButton.Enabled = true;
         }
 
         /// <summary>
@@ -126,10 +127,10 @@ namespace CS6232_Group_6_Store.UserControls
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void memberHistorySearchButton_Click(object sender, EventArgs e)
         {
-
+            int memberID = MainDashBoard.selectedMemberId;
             
-            try
-            {
+
+           
                 this.memberHistoryListView.Clear();
                 this.memberHistoryListView.View = System.Windows.Forms.View.Details;
                 this.memberHistoryListView.GridLines = true;
@@ -141,8 +142,7 @@ namespace CS6232_Group_6_Store.UserControls
                 this.memberHistoryListView.Columns.Add("Rental Rate", 100);
                 this.memberHistoryListView.Columns.Add("Quantity Returned", 50);
 
-                ListViewItem checkedItem = memberListView.CheckedItems[0];
-                int id = int.Parse(checkedItem.Text);
+                int id = memberID;
                 List<RentalItem> searchResult = this._rentalItemController.GetMemberRentalItemHistory(id);
                 foreach (var dr in searchResult)
                 {
@@ -156,11 +156,7 @@ namespace CS6232_Group_6_Store.UserControls
                 }
                 this.memberHistoryListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
                 this.memberHistoryListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+           
         }
 
         /// <summary>

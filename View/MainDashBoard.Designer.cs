@@ -146,6 +146,7 @@
             // 
             transactionManagement1.Dock = DockStyle.Fill;
             transactionManagement1.Location = new Point(3, 3);
+            transactionManagement1.MainDashBoard = null;
             transactionManagement1.Margin = new Padding(3, 4, 3, 4);
             transactionManagement1.Name = "transactionManagement1";
             transactionManagement1.Size = new Size(186, 66);

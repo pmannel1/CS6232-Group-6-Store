@@ -65,6 +65,8 @@ namespace CS6232_Group_6_Store
             inventoryRental.MainDashBoard = this;
             InventoryReturn inventoryReturn = (InventoryReturn)mainTabControl.TabPages[2].Controls[0];
             inventoryReturn.MainDashBoard = this;
+            TransactionManagement transactionManagement = (TransactionManagement)mainTabControl.TabPages[3].Controls[0];
+            transactionManagement.MainDashBoard = this;
         }
 
         
