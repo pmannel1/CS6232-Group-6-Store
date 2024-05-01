@@ -7,6 +7,8 @@ namespace CS6232_Group_6_Store.UserControls
 {
     public partial class InventoryReturn : UserControl
     {
+        public MainDashBoard MainDashBoard { get; set; }
+
         private MemberController _memberController;
         private RentalItemController _rentalItemController;
         private FurnitureController _furnitureController;
@@ -42,7 +44,8 @@ namespace CS6232_Group_6_Store.UserControls
             this.checkoutButton.Enabled = false;
             this.clearFurnitureButton.Enabled = false;
             this.removeItemButton.Enabled = false;
-            this.memberSelectButton.Enabled = false;
+           
+            this.memberSelectButton.Enabled = true;
             this.returnItemNumberComboBox.Enabled = false;
             this.updateQuantityButton.Enabled = false;
 
@@ -128,27 +131,16 @@ namespace CS6232_Group_6_Store.UserControls
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void memberSelectButton_Click(object sender, EventArgs e)
         {
-            if (this.memberListView.CheckedItems.Count == 1)
-            {
-                ListViewItem checkedItem = memberListView.CheckedItems[0];
-                memberId = int.Parse(checkedItem.Text);
+            
+                memberId = MainDashBoard.selectedMemberId;
                 _currentMember = _memberController.RetrieveMember(memberId);
                 this.errorMemberLabel.Visible = true;
                 this._currentRentalItemList = this._rentalItemController.GetOutstandingRentalItemsById(memberId);
                 this.PopulateFurnitureListView();
                 this.clearFurnitureButton.Enabled = true;
                 this.returnItemNumberComboBox.Enabled = true;
-            }
-            else if (this.memberListView.CheckedItems.Count > 1)
-            {
-                this.errorMemberLabel.Text = "Please selet only ONE member at a time.";
-                this.errorMemberLabel.Visible = true;
-            }
-            else
-            {
-                this.errorMemberLabel.Text = "You must select a member.";
-                this.errorMemberLabel.Visible = true;
-            }
+            
+            
         }
 
         /// <summary>
@@ -249,7 +241,7 @@ namespace CS6232_Group_6_Store.UserControls
                 }
 
             }
-            if (furnitureListView.CheckedItems.Count > 0 && memberListView.CheckedItems.Count > 0)
+            if (furnitureListView.CheckedItems.Count > 0 )
             {
                 this.returnItemNumberComboBox.Items.Clear();
                 this.addFurnitureButton.Enabled = true;

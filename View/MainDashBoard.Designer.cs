@@ -125,6 +125,7 @@
             // 
             inventoryReturn1.Dock = DockStyle.Fill;
             inventoryReturn1.Location = new Point(0, 0);
+            inventoryReturn1.MainDashBoard = null;
             inventoryReturn1.Margin = new Padding(3, 4, 3, 4);
             inventoryReturn1.Name = "inventoryReturn1";
             inventoryReturn1.Size = new Size(192, 72);

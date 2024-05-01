@@ -63,6 +63,8 @@ namespace CS6232_Group_6_Store
             memberManagement.MainDashBoard = this;
             InventoryRental inventoryRental = (InventoryRental)mainTabControl.TabPages[1].Controls[0];
             inventoryRental.MainDashBoard = this;
+            InventoryReturn inventoryReturn = (InventoryReturn)mainTabControl.TabPages[2].Controls[0];
+            inventoryReturn.MainDashBoard = this;
         }
 
         
