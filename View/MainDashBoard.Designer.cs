@@ -45,6 +45,8 @@
             employeeNameLebel = new Label();
             selectedCustomerLabel = new Label();
             selectedCustomerDisplay = new Label();
+            selectedCustomerNameLabel = new Label();
+            selectedCustomerNameDisplay = new Label();
             mainTabControl.SuspendLayout();
             customerTabPage.SuspendLayout();
             inventoryAndRentTabPage.SuspendLayout();
@@ -223,11 +225,30 @@
             selectedCustomerDisplay.Size = new Size(0, 15);
             selectedCustomerDisplay.TabIndex = 8;
             // 
+            // selectedCustomerNameLabel
+            // 
+            selectedCustomerNameLabel.AutoSize = true;
+            selectedCustomerNameLabel.Location = new Point(12, 24);
+            selectedCustomerNameLabel.Name = "selectedCustomerNameLabel";
+            selectedCustomerNameLabel.Size = new Size(141, 15);
+            selectedCustomerNameLabel.TabIndex = 9;
+            selectedCustomerNameLabel.Text = "Selected Customer Name";
+            // 
+            // selectedCustomerNameDisplay
+            // 
+            selectedCustomerNameDisplay.AutoSize = true;
+            selectedCustomerNameDisplay.Location = new Point(164, 29);
+            selectedCustomerNameDisplay.Name = "selectedCustomerNameDisplay";
+            selectedCustomerNameDisplay.Size = new Size(0, 15);
+            selectedCustomerNameDisplay.TabIndex = 10;
+            // 
             // MainDashBoard
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1055, 622);
+            Controls.Add(selectedCustomerNameDisplay);
+            Controls.Add(selectedCustomerNameLabel);
             Controls.Add(selectedCustomerDisplay);
             Controls.Add(selectedCustomerLabel);
             Controls.Add(userNameLabel);
@@ -269,5 +290,7 @@
         private UserControls.AdminReport adminReport1;
         private Label selectedCustomerLabel;
         private Label selectedCustomerDisplay;
+        private Label selectedCustomerNameLabel;
+        private Label selectedCustomerNameDisplay;
     }
 }

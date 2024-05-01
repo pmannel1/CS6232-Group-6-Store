@@ -29,6 +29,7 @@ namespace CS6232_Group_6_Store.UserControls
             memberListView.SelectedIndexChanged += memberListView_SelectedIndexChanged;
             memberListView.ItemChecked += memberListView_ItemChecked;
             this.searchMethodBox.SelectedIndex = 0;
+            
            
         }
 
