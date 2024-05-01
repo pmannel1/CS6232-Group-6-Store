@@ -42,7 +42,6 @@
             updateQuantity = new Button();
             selectionMethodComboBox = new ComboBox();
             furnitureSearchLabel = new Label();
-            tableLayoutPanel4 = new TableLayoutPanel();
             tableLayoutPanel5 = new TableLayoutPanel();
             furnitureSearchBox = new TextBox();
             furnitureSearchButton = new Button();
@@ -58,7 +57,7 @@
             // selectionMethodLabel
             // 
             selectionMethodLabel.AutoSize = true;
-            selectionMethodLabel.Location = new Point(3, 132);
+            selectionMethodLabel.Location = new Point(3, 0);
             selectionMethodLabel.Name = "selectionMethodLabel";
             selectionMethodLabel.Size = new Size(138, 15);
             selectionMethodLabel.TabIndex = 2;
@@ -68,9 +67,9 @@
             // 
             furnitureListView.CheckBoxes = true;
             furnitureListView.Dock = DockStyle.Fill;
-            furnitureListView.Location = new Point(147, 203);
+            furnitureListView.Location = new Point(147, 105);
             furnitureListView.Name = "furnitureListView";
-            furnitureListView.Size = new Size(550, 58);
+            furnitureListView.Size = new Size(550, 90);
             furnitureListView.TabIndex = 4;
             furnitureListView.UseCompatibleStateImageBehavior = false;
             furnitureListView.ItemChecked += furnitureListView_ItemChecked;
@@ -97,7 +96,7 @@
             // 
             // checkoutButton
             // 
-            checkoutButton.Location = new Point(3, 365);
+            checkoutButton.Location = new Point(3, 348);
             checkoutButton.Name = "checkoutButton";
             checkoutButton.Size = new Size(100, 21);
             checkoutButton.TabIndex = 8;
@@ -119,9 +118,9 @@
             // 
             cartListView.CheckBoxes = true;
             cartListView.Dock = DockStyle.Fill;
-            cartListView.Location = new Point(147, 301);
+            cartListView.Location = new Point(147, 252);
             cartListView.Name = "cartListView";
-            cartListView.Size = new Size(550, 58);
+            cartListView.Size = new Size(550, 90);
             cartListView.TabIndex = 10;
             cartListView.UseCompatibleStateImageBehavior = false;
             cartListView.ItemChecked += cartListView_ItemChecked;
@@ -131,32 +130,31 @@
             tableLayoutPanel1.ColumnCount = 2;
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20.57143F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 79.42857F));
-            tableLayoutPanel1.Controls.Add(checkoutButton, 0, 8);
-            tableLayoutPanel1.Controls.Add(cartListView, 1, 7);
-            tableLayoutPanel1.Controls.Add(selectionMethodLabel, 0, 3);
-            tableLayoutPanel1.Controls.Add(furnitureListView, 1, 5);
-            tableLayoutPanel1.Controls.Add(tableLayoutPanel2, 1, 6);
-            tableLayoutPanel1.Controls.Add(tableLayoutPanel3, 1, 8);
-            tableLayoutPanel1.Controls.Add(selectionMethodComboBox, 1, 3);
-            tableLayoutPanel1.Controls.Add(furnitureSearchLabel, 0, 4);
-            tableLayoutPanel1.Controls.Add(tableLayoutPanel4, 1, 1);
-            tableLayoutPanel1.Controls.Add(tableLayoutPanel5, 1, 4);
-            tableLayoutPanel1.Controls.Add(furnitureListViewLabel, 0, 5);
-            tableLayoutPanel1.Controls.Add(cartLabel, 0, 7);
-            tableLayoutPanel1.Controls.Add(errorLabel, 0, 6);
+            tableLayoutPanel1.Controls.Add(checkoutButton, 0, 5);
+            tableLayoutPanel1.Controls.Add(cartListView, 1, 4);
+            tableLayoutPanel1.Controls.Add(selectionMethodLabel, 0, 0);
+            tableLayoutPanel1.Controls.Add(furnitureListView, 1, 2);
+            tableLayoutPanel1.Controls.Add(tableLayoutPanel2, 1, 3);
+            tableLayoutPanel1.Controls.Add(tableLayoutPanel3, 1, 5);
+            tableLayoutPanel1.Controls.Add(selectionMethodComboBox, 1, 0);
+            tableLayoutPanel1.Controls.Add(furnitureSearchLabel, 0, 1);
+            tableLayoutPanel1.Controls.Add(tableLayoutPanel5, 1, 1);
+            tableLayoutPanel1.Controls.Add(furnitureListViewLabel, 0, 2);
+            tableLayoutPanel1.Controls.Add(cartLabel, 0, 4);
+            tableLayoutPanel1.Controls.Add(errorLabel, 0, 3);
             tableLayoutPanel1.Dock = DockStyle.Fill;
             tableLayoutPanel1.Location = new Point(0, 0);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
-            tableLayoutPanel1.RowCount = 9;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 8.634539F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 8.634539F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 16.0642567F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 8.634539F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 8.634539F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 16.0642567F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 8.634539F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 16.0642567F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 8.634539F));
+            tableLayoutPanel1.RowCount = 6;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 12.951808F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 12.951808F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 24.096386F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 12.951808F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 24.096386F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 12.951808F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             tableLayoutPanel1.Size = new Size(700, 400);
             tableLayoutPanel1.TabIndex = 11;
             // 
@@ -168,11 +166,11 @@
             tableLayoutPanel2.Controls.Add(addFurnitureButton, 0, 0);
             tableLayoutPanel2.Controls.Add(clearFurnitureButton, 1, 0);
             tableLayoutPanel2.Dock = DockStyle.Fill;
-            tableLayoutPanel2.Location = new Point(147, 267);
+            tableLayoutPanel2.Location = new Point(147, 201);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
             tableLayoutPanel2.RowCount = 1;
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel2.Size = new Size(550, 28);
+            tableLayoutPanel2.Size = new Size(550, 45);
             tableLayoutPanel2.TabIndex = 11;
             // 
             // tableLayoutPanel3
@@ -185,11 +183,11 @@
             tableLayoutPanel3.Controls.Add(removeItemButton, 1, 0);
             tableLayoutPanel3.Controls.Add(updateQuantity, 0, 0);
             tableLayoutPanel3.Dock = DockStyle.Fill;
-            tableLayoutPanel3.Location = new Point(147, 365);
+            tableLayoutPanel3.Location = new Point(147, 348);
             tableLayoutPanel3.Name = "tableLayoutPanel3";
             tableLayoutPanel3.RowCount = 1;
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel3.Size = new Size(550, 32);
+            tableLayoutPanel3.Size = new Size(550, 49);
             tableLayoutPanel3.TabIndex = 12;
             // 
             // removeItemButton
@@ -217,7 +215,7 @@
             selectionMethodComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
             selectionMethodComboBox.FormattingEnabled = true;
             selectionMethodComboBox.Items.AddRange(new object[] { "ID", "Category", "Style" });
-            selectionMethodComboBox.Location = new Point(147, 135);
+            selectionMethodComboBox.Location = new Point(147, 3);
             selectionMethodComboBox.Name = "selectionMethodComboBox";
             selectionMethodComboBox.Size = new Size(121, 23);
             selectionMethodComboBox.TabIndex = 13;
@@ -225,24 +223,11 @@
             // furnitureSearchLabel
             // 
             furnitureSearchLabel.AutoSize = true;
-            furnitureSearchLabel.Location = new Point(3, 166);
+            furnitureSearchLabel.Location = new Point(3, 51);
             furnitureSearchLabel.Name = "furnitureSearchLabel";
             furnitureSearchLabel.Size = new Size(99, 15);
             furnitureSearchLabel.TabIndex = 15;
             furnitureSearchLabel.Text = "Furniture Search: ";
-            // 
-            // tableLayoutPanel4
-            // 
-            tableLayoutPanel4.ColumnCount = 2;
-            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel4.Dock = DockStyle.Fill;
-            tableLayoutPanel4.Location = new Point(147, 37);
-            tableLayoutPanel4.Name = "tableLayoutPanel4";
-            tableLayoutPanel4.RowCount = 1;
-            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel4.Size = new Size(550, 28);
-            tableLayoutPanel4.TabIndex = 16;
             // 
             // tableLayoutPanel5
             // 
@@ -252,11 +237,11 @@
             tableLayoutPanel5.Controls.Add(furnitureSearchBox, 0, 0);
             tableLayoutPanel5.Controls.Add(furnitureSearchButton, 1, 0);
             tableLayoutPanel5.Dock = DockStyle.Fill;
-            tableLayoutPanel5.Location = new Point(147, 169);
+            tableLayoutPanel5.Location = new Point(147, 54);
             tableLayoutPanel5.Name = "tableLayoutPanel5";
             tableLayoutPanel5.RowCount = 1;
             tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel5.Size = new Size(550, 28);
+            tableLayoutPanel5.Size = new Size(550, 45);
             tableLayoutPanel5.TabIndex = 17;
             // 
             // furnitureSearchBox
@@ -279,7 +264,7 @@
             // furnitureListViewLabel
             // 
             furnitureListViewLabel.AutoSize = true;
-            furnitureListViewLabel.Location = new Point(3, 200);
+            furnitureListViewLabel.Location = new Point(3, 102);
             furnitureListViewLabel.Name = "furnitureListViewLabel";
             furnitureListViewLabel.Size = new Size(130, 15);
             furnitureListViewLabel.TabIndex = 21;
@@ -288,7 +273,7 @@
             // cartLabel
             // 
             cartLabel.AutoSize = true;
-            cartLabel.Location = new Point(3, 298);
+            cartLabel.Location = new Point(3, 249);
             cartLabel.Name = "cartLabel";
             cartLabel.Size = new Size(29, 15);
             cartLabel.TabIndex = 22;
@@ -297,7 +282,7 @@
             // errorLabel
             // 
             errorLabel.AutoSize = true;
-            errorLabel.Location = new Point(3, 264);
+            errorLabel.Location = new Point(3, 198);
             errorLabel.Name = "errorLabel";
             errorLabel.Size = new Size(0, 15);
             errorLabel.TabIndex = 23;
@@ -332,7 +317,6 @@
         private TableLayoutPanel tableLayoutPanel3;
         private ComboBox selectionMethodComboBox;
         private Label furnitureSearchLabel;
-        private TableLayoutPanel tableLayoutPanel4;
         private TableLayoutPanel tableLayoutPanel5;
         private TextBox furnitureSearchBox;
         private Button furnitureSearchButton;
