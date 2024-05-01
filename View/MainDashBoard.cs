@@ -38,6 +38,7 @@ namespace CS6232_Group_6_Store
         public int EmployeeId { get; set; }
 
         public int selectedMemberId { get; set; }
+        public string selectedMemberName { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MainDashBoard"/> class.
@@ -65,9 +66,12 @@ namespace CS6232_Group_6_Store
         }
 
         
-        public void UpdateSelectedCustomer(int selectedMemberId)
+        public void UpdateSelectedCustomer(int selectedMemberId, string selectedMemberName)
         {
             selectedCustomerDisplay.Text = selectedMemberId.ToString();
+            selectedCustomerNameDisplay.Text = selectedMemberName.ToString();   
+            this.selectedMemberId = selectedMemberId;
+            this.selectedMemberName = selectedMemberName;
 
         }
         /// <summary>

@@ -168,9 +168,14 @@ namespace CS6232_Group_6_Store.UserControls
         private void memberListView_ItemChecked(object sender, ItemCheckedEventArgs e)
         {
             int selectedMemberId = int.Parse(e.Item.Text);
+            List<Member> searchResult = _memberController.SearchMember("ID", e.Item.Text);
 
+            var dr = searchResult[0];
+
+            string selectedMemberName = dr.FullName;
            
-            if (e.Item.Checked)
+
+          if (e.Item.Checked)
             {
                 foreach (ListViewItem item in memberListView.Items)
                 {
@@ -183,8 +188,7 @@ namespace CS6232_Group_6_Store.UserControls
                 }
                 if (MainDashBoard != null)
                 {
-                    MainDashBoard.selectedMemberId = selectedMemberId;
-                    MainDashBoard.UpdateSelectedCustomer(selectedMemberId);
+                    MainDashBoard.UpdateSelectedCustomer(selectedMemberId, selectedMemberName);
 
                 }
                 this.editButton.Enabled = true;
