@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            memberSearchMethod = new Label();
-            memberSelectionComboBox = new ComboBox();
             selectionMethodLabel = new Label();
             furnitureListView = new ListView();
             addFurnitureButton = new Button();
@@ -62,25 +60,6 @@
             tableLayoutPanel4.SuspendLayout();
             tableLayoutPanel5.SuspendLayout();
             SuspendLayout();
-            // 
-            // memberSearchMethod
-            // 
-            memberSearchMethod.AutoSize = true;
-            memberSearchMethod.Location = new Point(3, 0);
-            memberSearchMethod.Name = "memberSearchMethod";
-            memberSearchMethod.Size = new Size(138, 15);
-            memberSearchMethod.TabIndex = 0;
-            memberSearchMethod.Text = "Member Search Method: ";
-            // 
-            // memberSelectionComboBox
-            // 
-            memberSelectionComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
-            memberSelectionComboBox.FormattingEnabled = true;
-            memberSelectionComboBox.Items.AddRange(new object[] { "Name", "ID", "Phone" });
-            memberSelectionComboBox.Location = new Point(147, 3);
-            memberSelectionComboBox.Name = "memberSelectionComboBox";
-            memberSelectionComboBox.Size = new Size(121, 23);
-            memberSelectionComboBox.TabIndex = 1;
             // 
             // selectionMethodLabel
             // 
@@ -159,10 +138,8 @@
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20.57143F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 79.42857F));
             tableLayoutPanel1.Controls.Add(checkoutButton, 0, 8);
-            tableLayoutPanel1.Controls.Add(memberSearchMethod, 0, 0);
             tableLayoutPanel1.Controls.Add(cartListView, 1, 7);
             tableLayoutPanel1.Controls.Add(selectionMethodLabel, 0, 3);
-            tableLayoutPanel1.Controls.Add(memberSelectionComboBox, 1, 0);
             tableLayoutPanel1.Controls.Add(furnitureListView, 1, 5);
             tableLayoutPanel1.Controls.Add(tableLayoutPanel2, 1, 6);
             tableLayoutPanel1.Controls.Add(tableLayoutPanel3, 1, 8);
@@ -401,9 +378,6 @@
         }
 
         #endregion
-
-        private Label memberSearchMethod;
-        private ComboBox memberSelectionComboBox;
         private Label selectionMethodLabel;
         private ListView furnitureListView;
         private Button addFurnitureButton;

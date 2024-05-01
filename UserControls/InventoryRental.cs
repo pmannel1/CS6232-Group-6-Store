@@ -28,7 +28,6 @@ namespace CS6232_Group_6_Store.UserControls
             this._furnitureController = new FurnitureController();
             this._rentalItemController = new RentalItemController();
 
-            this.memberSelectionComboBox.SelectedIndex = 0;
             this.memberListView.CheckBoxes = true;
             this.furnitureListView.CheckBoxes = true;
             this.selectionMethodComboBox.SelectedIndex = 0;
@@ -50,7 +49,6 @@ namespace CS6232_Group_6_Store.UserControls
                 if (String.IsNullOrEmpty(this.memberSearchBox.Text)){
                     throw new Exception();
                 }
-                this.populateMemberListView();
                 this.clearButton_Click(sender, e);
             }
             catch (Exception ex)
@@ -63,57 +61,6 @@ namespace CS6232_Group_6_Store.UserControls
         }
 
         
-
-        /// <summary>
-        /// Populates the member ListView.
-        /// </summary>
-        /// <exception cref="System.Exception"></exception>
-        public void populateMemberListView(string storedMethod = null, string storedID = null)
-        {
-
-            this.errorLabel.Visible = false;
-            string errorMessage = null;
-            try
-            {
-                errorMessage = "invalid search";
-                this.memberListView.Clear();
-                memberListView.View = System.Windows.Forms.View.Details;
-                memberListView.GridLines = true;
-                memberListView.Columns.Add("ID", 50);
-                memberListView.Columns.Add("Last Name", 150);
-                memberListView.Columns.Add("First Name", 150);
-
-                if (storedID != null)
-                {
-                    memberSearchBox.Text = storedID;
-
-                }
-                var method = storedMethod == null ? memberSelectionComboBox.Text : storedMethod;
-                var search = storedID == null ? memberSearchBox.Text : storedID;
-                List<Member> searchResult = _memberController.SearchMember(method, search);
-                if (searchResult.Count == 0) 
-                {
-                    errorMessage = "No results found";
-                    throw new Exception();
-                }
-                else
-                {
-                    foreach (var dr in searchResult)
-                    {
-                        var membersList = memberListView.Items.Add(dr.Id.ToString());
-                        membersList.SubItems.Add(dr.LastName.ToString());
-                        membersList.SubItems.Add(dr.FirstName.ToString());
-                    }
-                } 
-            }
-            catch (Exception ex)
-            {
-                this.errorLabel.Visible = true;
-                this.errorLabel.ForeColor = Color.Red;
-                this.errorLabel.Text = errorMessage;
-            }
-
-        }
 
         private void furnitureSearchButton_Click(object sender, EventArgs e)
         {

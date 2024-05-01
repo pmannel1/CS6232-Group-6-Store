@@ -62,15 +62,9 @@ namespace CS6232_Group_6_Store
             memberManagement.MainDashBoard = this;
             InventoryRental inventoryRental = (InventoryRental)mainTabControl.TabPages[1].Controls[0];
             inventoryRental.MainDashBoard = this;
-            mainTabControl.Selected += MainTabControl_Selected;
         }
 
-        public void MainTabControl_Selected(object sender, EventArgs e)
-        {
-            InventoryRental inventoryRental = (InventoryRental)mainTabControl.TabPages[1].Controls[0];
-            inventoryRental.populateMemberListView("ID", selectedMemberId.ToString());
-
-        }
+        
         public void UpdateSelectedCustomer(int selectedMemberId)
         {
             selectedCustomerDisplay.Text = selectedMemberId.ToString();
