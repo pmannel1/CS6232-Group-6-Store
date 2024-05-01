@@ -43,7 +43,6 @@
             selectionMethodComboBox = new ComboBox();
             furnitureSearchLabel = new Label();
             tableLayoutPanel4 = new TableLayoutPanel();
-            memberSearchButton = new Button();
             tableLayoutPanel5 = new TableLayoutPanel();
             furnitureSearchBox = new TextBox();
             furnitureSearchButton = new Button();
@@ -53,7 +52,6 @@
             tableLayoutPanel1.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
             tableLayoutPanel3.SuspendLayout();
-            tableLayoutPanel4.SuspendLayout();
             tableLayoutPanel5.SuspendLayout();
             SuspendLayout();
             // 
@@ -238,7 +236,6 @@
             tableLayoutPanel4.ColumnCount = 2;
             tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel4.Controls.Add(memberSearchButton, 1, 0);
             tableLayoutPanel4.Dock = DockStyle.Fill;
             tableLayoutPanel4.Location = new Point(147, 37);
             tableLayoutPanel4.Name = "tableLayoutPanel4";
@@ -246,16 +243,6 @@
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel4.Size = new Size(550, 28);
             tableLayoutPanel4.TabIndex = 16;
-            // 
-            // memberSearchButton
-            // 
-            memberSearchButton.Location = new Point(278, 3);
-            memberSearchButton.Name = "memberSearchButton";
-            memberSearchButton.Size = new Size(75, 22);
-            memberSearchButton.TabIndex = 1;
-            memberSearchButton.Text = "Search";
-            memberSearchButton.UseVisualStyleBackColor = true;
-            memberSearchButton.Click += memberSearchButton_Click;
             // 
             // tableLayoutPanel5
             // 
@@ -327,7 +314,6 @@
             tableLayoutPanel1.PerformLayout();
             tableLayoutPanel2.ResumeLayout(false);
             tableLayoutPanel3.ResumeLayout(false);
-            tableLayoutPanel4.ResumeLayout(false);
             tableLayoutPanel5.ResumeLayout(false);
             tableLayoutPanel5.PerformLayout();
             ResumeLayout(false);
@@ -348,7 +334,6 @@
         private Label furnitureSearchLabel;
         private TableLayoutPanel tableLayoutPanel4;
         private TableLayoutPanel tableLayoutPanel5;
-        private Button memberSearchButton;
         private TextBox furnitureSearchBox;
         private Button furnitureSearchButton;
         private Label furnitureListViewLabel;
