@@ -7,6 +7,7 @@ namespace CS6232_Group_6_Store.UserControls
 {
     public partial class InventoryRental : UserControl
     {
+        public MainDashBoard MainDashBoard { get; set; }
 
         private readonly RentalTransactionController _transactionController;
         private readonly MemberController _memberController;
@@ -37,9 +38,10 @@ namespace CS6232_Group_6_Store.UserControls
             this.checkoutButton.Enabled = false;
             this.clearFurnitureButton.Enabled = false;
             this.removeItemButton.Enabled = false;
-
+            
         }
 
+       
         private void memberSearchButton_Click(object sender, EventArgs e)
         {
             this.errorLabel.Visible = false;
@@ -60,8 +62,15 @@ namespace CS6232_Group_6_Store.UserControls
             
         }
 
-        private void populateMemberListView()
+        
+
+        /// <summary>
+        /// Populates the member ListView.
+        /// </summary>
+        /// <exception cref="System.Exception"></exception>
+        public void populateMemberListView(string storedMethod = null, string storedID = null)
         {
+
             this.errorLabel.Visible = false;
             string errorMessage = null;
             try
@@ -74,8 +83,13 @@ namespace CS6232_Group_6_Store.UserControls
                 memberListView.Columns.Add("Last Name", 150);
                 memberListView.Columns.Add("First Name", 150);
 
-                var method = memberSelectionComboBox.Text;
-                var search = memberSearchBox.Text;
+                if (storedID != null)
+                {
+                    memberSearchBox.Text = storedID;
+
+                }
+                var method = storedMethod == null ? memberSelectionComboBox.Text : storedMethod;
+                var search = storedID == null ? memberSearchBox.Text : storedID;
                 List<Member> searchResult = _memberController.SearchMember(method, search);
                 if (searchResult.Count == 0) 
                 {
@@ -103,6 +117,8 @@ namespace CS6232_Group_6_Store.UserControls
 
         private void furnitureSearchButton_Click(object sender, EventArgs e)
         {
+            int memberID = MainDashBoard.selectedMemberId;
+
             var method = selectionMethodComboBox.Text.Trim();
             var search = furnitureSearchBox.Text.Trim();
             string message = "invalid search";
@@ -214,7 +230,8 @@ namespace CS6232_Group_6_Store.UserControls
                 this.checkoutButton.Enabled = false;
                 this.clearButton.Enabled = false;
             }
-            if (furnitureListView.CheckedItems.Count > 0 && memberListView.CheckedItems.Count > 0)
+            if (furnitureListView.CheckedItems.Count > 0 && 
+                memberListView.CheckedItems.Count > 0)
             {
                 this.addFurnitureButton.Enabled = true;
             }
@@ -239,7 +256,8 @@ namespace CS6232_Group_6_Store.UserControls
                 }
 
             }
-            if (furnitureListView.CheckedItems.Count > 0 && memberListView.CheckedItems.Count > 0)
+            if (furnitureListView.CheckedItems.Count > 0 &&
+             (memberListView.CheckedItems.Count > 0 || MainDashBoard.selectedMemberId != 0))
             {
                 this.addFurnitureButton.Enabled = true;
             }
@@ -252,6 +270,7 @@ namespace CS6232_Group_6_Store.UserControls
 
         private void addFurnitureButton_Click(object sender, EventArgs e)
         {
+            int memberID = MainDashBoard.selectedMemberId;
             ListViewItem checkedItem = furnitureListView.CheckedItems[0];
             int furnitureId = int.Parse(checkedItem.Text);
             Furniture selectedFurniture = _furnitureController.GetFurniture(furnitureId);
@@ -274,7 +293,7 @@ namespace CS6232_Group_6_Store.UserControls
                     var now = DateTime.Now;
                     var dateofReturn = dueDate;
                     transaction = null;
-                    transaction = new RentalTransaction(employeeId, memberId, now, dateofReturn);
+                    transaction = new RentalTransaction(employeeId, MainDashBoard.selectedMemberId, now, dateofReturn);
 
                 }
                 // Check if the item is already in the cart

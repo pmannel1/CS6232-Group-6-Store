@@ -105,6 +105,7 @@
             // 
             inventoryRental1.Dock = DockStyle.Fill;
             inventoryRental1.Location = new Point(0, 0);
+            inventoryRental1.MainDashBoard = null;
             inventoryRental1.Margin = new Padding(3, 4, 3, 4);
             inventoryRental1.Name = "inventoryRental1";
             inventoryRental1.Size = new Size(192, 72);

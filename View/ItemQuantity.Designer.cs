@@ -60,15 +60,14 @@
             tableLayoutPanel1.Controls.Add(label1, 0, 3);
             tableLayoutPanel1.Dock = DockStyle.Fill;
             tableLayoutPanel1.Location = new Point(0, 0);
-            tableLayoutPanel1.Margin = new Padding(3, 4, 3, 4);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 5;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 13.18328F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 36.65595F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 75F));
-            tableLayoutPanel1.Size = new Size(505, 491);
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 56F));
+            tableLayoutPanel1.Size = new Size(442, 368);
             tableLayoutPanel1.TabIndex = 0;
             // 
             // nameLabel
@@ -76,25 +75,25 @@
             nameLabel.AutoSize = true;
             nameLabel.Location = new Point(3, 0);
             nameLabel.Name = "nameLabel";
-            nameLabel.Size = new Size(56, 20);
+            nameLabel.Size = new Size(45, 15);
             nameLabel.TabIndex = 0;
             nameLabel.Text = "Name: ";
             // 
             // descriptionLabel
             // 
             descriptionLabel.AutoSize = true;
-            descriptionLabel.Location = new Point(3, 104);
+            descriptionLabel.Location = new Point(3, 78);
             descriptionLabel.Name = "descriptionLabel";
-            descriptionLabel.Size = new Size(92, 20);
+            descriptionLabel.Size = new Size(73, 15);
             descriptionLabel.TabIndex = 1;
             descriptionLabel.Text = "Description: ";
             // 
             // quantityLabel
             // 
             quantityLabel.AutoSize = true;
-            quantityLabel.Location = new Point(3, 208);
+            quantityLabel.Location = new Point(3, 156);
             quantityLabel.Name = "quantityLabel";
-            quantityLabel.Size = new Size(72, 20);
+            quantityLabel.Size = new Size(59, 15);
             quantityLabel.TabIndex = 2;
             quantityLabel.Text = "Quantity: ";
             // 
@@ -102,31 +101,28 @@
             // 
             nameBox.Dock = DockStyle.Fill;
             nameBox.Enabled = false;
-            nameBox.Location = new Point(104, 4);
-            nameBox.Margin = new Padding(3, 4, 3, 4);
+            nameBox.Location = new Point(91, 3);
             nameBox.Name = "nameBox";
-            nameBox.Size = new Size(398, 27);
+            nameBox.Size = new Size(348, 23);
             nameBox.TabIndex = 4;
             // 
             // descriptionBox
             // 
             descriptionBox.Dock = DockStyle.Fill;
             descriptionBox.Enabled = false;
-            descriptionBox.Location = new Point(104, 108);
-            descriptionBox.Margin = new Padding(3, 4, 3, 4);
+            descriptionBox.Location = new Point(91, 81);
             descriptionBox.Multiline = true;
             descriptionBox.Name = "descriptionBox";
-            descriptionBox.Size = new Size(398, 96);
+            descriptionBox.Size = new Size(348, 72);
             descriptionBox.TabIndex = 5;
             // 
             // quantityComboBox
             // 
             quantityComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
             quantityComboBox.FormattingEnabled = true;
-            quantityComboBox.Location = new Point(104, 212);
-            quantityComboBox.Margin = new Padding(3, 4, 3, 4);
+            quantityComboBox.Location = new Point(91, 159);
             quantityComboBox.Name = "quantityComboBox";
-            quantityComboBox.Size = new Size(138, 28);
+            quantityComboBox.Size = new Size(121, 23);
             quantityComboBox.TabIndex = 6;
             // 
             // tableLayoutPanel3
@@ -136,20 +132,18 @@
             tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel3.Controls.Add(confirmButton, 0, 0);
             tableLayoutPanel3.Controls.Add(cancelButton, 1, 0);
-            tableLayoutPanel3.Location = new Point(104, 418);
-            tableLayoutPanel3.Margin = new Padding(3, 4, 3, 4);
+            tableLayoutPanel3.Location = new Point(91, 314);
             tableLayoutPanel3.Name = "tableLayoutPanel3";
             tableLayoutPanel3.RowCount = 1;
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel3.Size = new Size(229, 51);
+            tableLayoutPanel3.Size = new Size(200, 38);
             tableLayoutPanel3.TabIndex = 7;
             // 
             // confirmButton
             // 
-            confirmButton.Location = new Point(3, 4);
-            confirmButton.Margin = new Padding(3, 4, 3, 4);
+            confirmButton.Location = new Point(3, 3);
             confirmButton.Name = "confirmButton";
-            confirmButton.Size = new Size(86, 31);
+            confirmButton.Size = new Size(75, 23);
             confirmButton.TabIndex = 0;
             confirmButton.Text = "Confirm";
             confirmButton.UseVisualStyleBackColor = true;
@@ -157,10 +151,9 @@
             // 
             // cancelButton
             // 
-            cancelButton.Location = new Point(117, 4);
-            cancelButton.Margin = new Padding(3, 4, 3, 4);
+            cancelButton.Location = new Point(103, 3);
             cancelButton.Name = "cancelButton";
-            cancelButton.Size = new Size(86, 31);
+            cancelButton.Size = new Size(75, 23);
             cancelButton.TabIndex = 1;
             cancelButton.Text = "Cancel";
             cancelButton.UseVisualStyleBackColor = true;
@@ -168,19 +161,18 @@
             // 
             // dateOfReturnPicker
             // 
-            dateOfReturnPicker.Location = new Point(104, 266);
-            dateOfReturnPicker.Margin = new Padding(3, 4, 3, 4);
+            dateOfReturnPicker.Location = new Point(91, 200);
             dateOfReturnPicker.Name = "dateOfReturnPicker";
-            dateOfReturnPicker.Size = new Size(228, 27);
+            dateOfReturnPicker.Size = new Size(200, 23);
             dateOfReturnPicker.TabIndex = 8;
             dateOfReturnPicker.ValueChanged += dateOfReturnPicker_ValueChanged;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(3, 262);
+            label1.Location = new Point(3, 197);
             label1.Name = "label1";
-            label1.Size = new Size(91, 20);
+            label1.Size = new Size(72, 15);
             label1.TabIndex = 9;
             label1.Text = "Return Date:";
             label1.TextAlign = ContentAlignment.BottomCenter;
@@ -188,11 +180,10 @@
             // 
             // ItemQuantity
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(505, 491);
+            ClientSize = new Size(442, 368);
             Controls.Add(tableLayoutPanel1);
-            Margin = new Padding(3, 4, 3, 4);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "ItemQuantity";
