@@ -41,10 +41,8 @@
             removeItemButton = new Button();
             updateQuantity = new Button();
             selectionMethodComboBox = new ComboBox();
-            memberSearchLabel = new Label();
             furnitureSearchLabel = new Label();
             tableLayoutPanel4 = new TableLayoutPanel();
-            memberSearchBox = new TextBox();
             memberSearchButton = new Button();
             tableLayoutPanel5 = new TableLayoutPanel();
             furnitureSearchBox = new TextBox();
@@ -144,7 +142,6 @@
             tableLayoutPanel1.Controls.Add(tableLayoutPanel2, 1, 6);
             tableLayoutPanel1.Controls.Add(tableLayoutPanel3, 1, 8);
             tableLayoutPanel1.Controls.Add(selectionMethodComboBox, 1, 3);
-            tableLayoutPanel1.Controls.Add(memberSearchLabel, 0, 1);
             tableLayoutPanel1.Controls.Add(furnitureSearchLabel, 0, 4);
             tableLayoutPanel1.Controls.Add(tableLayoutPanel4, 1, 1);
             tableLayoutPanel1.Controls.Add(tableLayoutPanel5, 1, 4);
@@ -231,15 +228,6 @@
             selectionMethodComboBox.Size = new Size(121, 23);
             selectionMethodComboBox.TabIndex = 13;
             // 
-            // memberSearchLabel
-            // 
-            memberSearchLabel.AutoSize = true;
-            memberSearchLabel.Location = new Point(3, 34);
-            memberSearchLabel.Name = "memberSearchLabel";
-            memberSearchLabel.Size = new Size(96, 15);
-            memberSearchLabel.TabIndex = 14;
-            memberSearchLabel.Text = "Member Search: ";
-            // 
             // furnitureSearchLabel
             // 
             furnitureSearchLabel.AutoSize = true;
@@ -254,7 +242,6 @@
             tableLayoutPanel4.ColumnCount = 2;
             tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel4.Controls.Add(memberSearchBox, 0, 0);
             tableLayoutPanel4.Controls.Add(memberSearchButton, 1, 0);
             tableLayoutPanel4.Dock = DockStyle.Fill;
             tableLayoutPanel4.Location = new Point(147, 37);
@@ -263,13 +250,6 @@
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel4.Size = new Size(550, 28);
             tableLayoutPanel4.TabIndex = 16;
-            // 
-            // memberSearchBox
-            // 
-            memberSearchBox.Location = new Point(3, 3);
-            memberSearchBox.Name = "memberSearchBox";
-            memberSearchBox.Size = new Size(100, 23);
-            memberSearchBox.TabIndex = 0;
             // 
             // memberSearchButton
             // 
@@ -371,7 +351,6 @@
             tableLayoutPanel2.ResumeLayout(false);
             tableLayoutPanel3.ResumeLayout(false);
             tableLayoutPanel4.ResumeLayout(false);
-            tableLayoutPanel4.PerformLayout();
             tableLayoutPanel5.ResumeLayout(false);
             tableLayoutPanel5.PerformLayout();
             ResumeLayout(false);
@@ -389,11 +368,9 @@
         private TableLayoutPanel tableLayoutPanel2;
         private TableLayoutPanel tableLayoutPanel3;
         private ComboBox selectionMethodComboBox;
-        private Label memberSearchLabel;
         private Label furnitureSearchLabel;
         private TableLayoutPanel tableLayoutPanel4;
         private TableLayoutPanel tableLayoutPanel5;
-        private TextBox memberSearchBox;
         private Button memberSearchButton;
         private TextBox furnitureSearchBox;
         private Button furnitureSearchButton;

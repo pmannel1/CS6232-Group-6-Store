@@ -46,9 +46,7 @@ namespace CS6232_Group_6_Store.UserControls
             this.errorLabel.Visible = false;
             try
             {
-                if (String.IsNullOrEmpty(this.memberSearchBox.Text)){
-                    throw new Exception();
-                }
+              
                 this.clearButton_Click(sender, e);
             }
             catch (Exception ex)
@@ -357,7 +355,6 @@ namespace CS6232_Group_6_Store.UserControls
                     this.clearFurnitureButton_Click(sender, e);
                     this.memberListView.Clear();
                     this.furnitureSearchBox.Clear();
-                    this.memberSearchBox.Clear();
                     MessageBox.Show(message, "Transaction", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     
                 }
@@ -435,7 +432,6 @@ namespace CS6232_Group_6_Store.UserControls
             this.clearFurnitureButton_Click(sender, e);
             this.memberListView.Clear();
             this.furnitureSearchBox.Clear();
-            this.memberSearchBox.Clear();
         }
     }
 }
