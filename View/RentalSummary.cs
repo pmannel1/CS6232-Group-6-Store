@@ -4,11 +4,27 @@ using CS6232_Group_6_Store.Model;
 
 namespace CS6232_Group_6_Store.View
 {
+    /// <summary>
+    /// Rental summary form
+    /// </summary>
+    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class RentalSummary : Form
     {
+        /// <summary>
+        /// RentalItem list variable  declaration
+        /// </summary>
         private List<RentalItem> _cart;
+        /// <summary>
+        /// RentalTransaction variable  declaration
+        /// </summary>
         private RentalTransaction _transaction;
+        /// <summary>
+        /// Declare FurnitureController controller class.
+        /// </summary>
         private readonly FurnitureController _furnitureController;
+        /// <summary>
+        /// Declare DialogResult variable.
+        /// </summary>
         private DialogResult _dialogResult;
 
         /// <summary>
@@ -61,6 +77,9 @@ namespace CS6232_Group_6_Store.View
                     cartList.SubItems.Add(_transaction.RentalDate.ToShortDateString());
                     cartList.SubItems.Add(_transaction.DueDate.ToShortDateString());
                 }
+                this.rentalSummaryList.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+                this.rentalSummaryList.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+                this.rentalSummaryList.Columns[0].Width = 1;
             }
             catch (Exception ex)
             {
@@ -68,6 +87,9 @@ namespace CS6232_Group_6_Store.View
             }
         }
 
+        /// <summary>
+        /// calculate total cost and set the value in totalcostBox.
+        /// </summary>
         private void PopulateTotalCostBox()
         {
             decimal totalCost = 0;
@@ -83,6 +105,11 @@ namespace CS6232_Group_6_Store.View
             totalCostBox.Text = totalCost.ToString("C");
         }
 
+        /// <summary>
+        /// Handles the Click event of the confirmButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void confirmButton_Click(object sender, EventArgs e)
         {
 
@@ -90,11 +117,22 @@ namespace CS6232_Group_6_Store.View
             this.DialogResult = DialogResult.OK;
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnCancel control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this._dialogResult = DialogResult.Cancel;
             this.DialogResult = DialogResult.Cancel;
         }
+
+        /// <summary>
+        /// Handles the FormClosed event of the RentalSummary form.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="FormClosedEventArgs"/> instance containing the event data.</param>
         private void RentalSummary_FormClosed(object sender, FormClosedEventArgs e)
         {
             this.DialogResult = this._dialogResult;

@@ -5,12 +5,31 @@ using CS6232_Group_6_Store.Controller;
 
 namespace CS6232_Group_6_Store.View
 {
+    /// <summary>
+    /// Item Quantity form
+    /// </summary>
+    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class ItemQuantity : Form
     {
+        /// <summary>
+        /// Gets or sets the Selected Quantity.
+        /// </summary>
         public int SelectedQuantity { get; private set; }
+        /// <summary>
+        /// Gets or sets the Selected date.
+        /// </summary>
         public DateTime selectedDueDate { get; private set; }
+        /// <summary>
+        /// Declare Furniture model class.
+        /// </summary>
         private Furniture _furniture;
+        /// <summary>
+        /// Declare RentalItem model class.
+        /// </summary>
         private RentalItem _rentalItem;
+        /// <summary>
+        /// Declare FurnitureController controller class.
+        /// </summary>
         private readonly FurnitureController furnitureController;
 
         /// <summary>
