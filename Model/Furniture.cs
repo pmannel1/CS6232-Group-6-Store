@@ -60,7 +60,15 @@
         /// The in stock number.
         /// </value>
         public int InStockNumber { get; set; }
-
+       
+        /// <summary>
+        /// Gets or sets the in stock number.
+        /// </summary>
+        /// <value>
+        /// The total stock number.
+        /// </value>
+       
+        public int TotalStockNumber { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="Furniture"/> class.
         /// </summary>
