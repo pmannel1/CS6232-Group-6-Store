@@ -23,12 +23,13 @@ namespace CS6232_Group_6_Store.UserControls
 
             DateTime startDate = startDatePicker.Value;
             DateTime endDate = endDatePicker.Value;
-            if (startDate.Date >= endDate.Date) {
-         
+            if (startDate.Date >= endDate.Date)
+            {
+
                 adminErrorLabel.Text = "Start Date must be before End Date";
                 adminErrorLabel.ForeColor = Color.Red;
 
-            } 
+            }
             else
             {
                 this.adminErrorLabel.Text = string.Empty;

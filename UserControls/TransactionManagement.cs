@@ -3,12 +3,24 @@ using CS6232_Group_6_Store.Model;
 
 namespace CS6232_Group_6_Store.UserControls
 {
+    /// <summary>
+    /// Transaction Management form
+    /// </summary>
+    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class TransactionManagement : UserControl
     {
-
+        /// <summary>
+        /// Declare MemberController controller class.
+        /// </summary>
         private readonly MemberController _memberController;
+        /// <summary>
+        /// Declare RentalItemController controller class.
+        /// </summary>
         private readonly RentalItemController _rentalItemController;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TransactionManagement"/> class.
+        /// </summary>
         public TransactionManagement()
         {
             InitializeComponent();

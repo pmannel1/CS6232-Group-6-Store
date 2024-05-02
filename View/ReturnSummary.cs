@@ -13,11 +13,24 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace CS6232_Group_6_Store.View
 {
+    /// <summary>
+    /// Return Summary form
+    /// </summary>
+    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class ReturnSummary : Form
     {
 
+        /// <summary>
+        /// RentalReturnTransactionSummary list variable  declaration
+        /// </summary>
         private readonly List<RentalReturnTransactionSummary> _transactionSummary;
+        /// <summary>
+        /// fines variable  declaration
+        /// </summary>
         private decimal fines;
+        /// <summary>
+        /// refunds variable  declaration
+        /// </summary>
         private decimal refunds;
 
         /// <summary>
@@ -51,7 +64,7 @@ namespace CS6232_Group_6_Store.View
                 transactionSummarylistView.Columns.Add("Quantity", 150);
                 transactionSummarylistView.Columns.Add("Members Name", 150);
                 transactionSummarylistView.Columns.Add("Employee Name", 150);
-                transactionSummarylistView.Columns.Add("Rental Date", 150);
+                transactionSummarylistView.Columns.Add("Return Date", 150);
 
 
                 foreach (var dr in _transactionSummary)
@@ -91,6 +104,11 @@ namespace CS6232_Group_6_Store.View
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the closeButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void closeButton_Click(object sender, EventArgs e)
         {
             this.Close();

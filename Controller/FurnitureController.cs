@@ -29,6 +29,17 @@ namespace CS6232_Group_6_Store.Controller
         }
 
         /// <summary>
+        ///Returns the furnitures category or style list.
+        /// </summary>
+        /// <param name="searchMethod">The search method.</param>
+        /// <returns>category or style list</returns>
+        public List<string> ReturnFurnituresCategoyOrStyle(string searchMethod)
+        {
+            return this.furnitureDAL.ReturnFurnituresCategoyOrStyle(searchMethod);
+        }
+
+
+        /// <summary>
         /// Gets the furniture.
         /// </summary>
         /// <param name="id">The identifier.</param>

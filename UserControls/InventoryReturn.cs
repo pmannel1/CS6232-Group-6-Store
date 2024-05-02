@@ -5,19 +5,59 @@ using CS6232_Group_6_Store.View;
 
 namespace CS6232_Group_6_Store.UserControls
 {
+    /// <summary>
+    /// InventoryReturn form
+    /// </summary>
+    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class InventoryReturn : UserControl
     {
+        /// <summary>
+        /// Declare MemberController controller class.
+        /// </summary>
         private MemberController _memberController;
+        /// <summary>
+        /// Declare RentalItemController controller class.
+        /// </summary>
         private RentalItemController _rentalItemController;
+        /// <summary>
+        /// Declare FurnitureController controller class.
+        /// </summary>
         private FurnitureController _furnitureController;
+        /// <summary>
+        /// Declare ReturnTransactionController controller class.
+        /// </summary>
         private ReturnTransactionController _returnTransactionController;
+        /// <summary>
+        /// Declare Member model class.
+        /// </summary>
         private Member _currentMember;
+        /// <summary>
+        /// Declare Member model class list.
+        /// </summary>
         private List<RentalItem> _currentRentalItemList;
+        /// <summary>
+        /// Declare ReturnItem model class list.
+        /// </summary>
         private List<ReturnItem> _returnCartList;
+        /// <summary>
+        /// Declare RentalReturnTransactionSummary model class list.
+        /// </summary>
         private List<RentalReturnTransactionSummary> _rentalReturnTransactionSummaries;
+        /// <summary>
+        /// Declare ReturnItem model class.
+        /// </summary>
         private ReturnItem _returnItem;
+        /// <summary>
+        /// The Furniture Id variable  declaration
+        /// </summary>
         private int furnitureId;
+        /// <summary>
+        /// The Employee Id variable  declaration
+        /// </summary>
         private int employeeId;
+        /// <summary>
+        /// The Member Id variable  declaration
+        /// </summary>
         private int memberId;
 
         /// <summary>
