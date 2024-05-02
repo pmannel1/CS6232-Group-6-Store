@@ -47,8 +47,8 @@
             // tableLayoutPanel1
             // 
             tableLayoutPanel1.ColumnCount = 2;
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 80F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 23.7006245F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 76.29938F));
             tableLayoutPanel1.Controls.Add(nameLabel, 0, 0);
             tableLayoutPanel1.Controls.Add(descriptionLabel, 0, 1);
             tableLayoutPanel1.Controls.Add(quantityLabel, 0, 2);
@@ -64,11 +64,11 @@
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 5;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 13.18328F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 36.65595F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 31.48936F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 20.4255314F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 22.9787235F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 75F));
-            tableLayoutPanel1.Size = new Size(505, 491);
+            tableLayoutPanel1.Size = new Size(536, 319);
             tableLayoutPanel1.TabIndex = 0;
             // 
             // nameLabel
@@ -83,7 +83,7 @@
             // descriptionLabel
             // 
             descriptionLabel.AutoSize = true;
-            descriptionLabel.Location = new Point(3, 104);
+            descriptionLabel.Location = new Point(3, 61);
             descriptionLabel.Name = "descriptionLabel";
             descriptionLabel.Size = new Size(92, 20);
             descriptionLabel.TabIndex = 1;
@@ -92,7 +92,7 @@
             // quantityLabel
             // 
             quantityLabel.AutoSize = true;
-            quantityLabel.Location = new Point(3, 208);
+            quantityLabel.Location = new Point(3, 137);
             quantityLabel.Name = "quantityLabel";
             quantityLabel.Size = new Size(72, 20);
             quantityLabel.TabIndex = 2;
@@ -102,28 +102,28 @@
             // 
             nameBox.Dock = DockStyle.Fill;
             nameBox.Enabled = false;
-            nameBox.Location = new Point(104, 4);
+            nameBox.Location = new Point(130, 4);
             nameBox.Margin = new Padding(3, 4, 3, 4);
             nameBox.Name = "nameBox";
-            nameBox.Size = new Size(398, 27);
+            nameBox.Size = new Size(403, 27);
             nameBox.TabIndex = 4;
             // 
             // descriptionBox
             // 
             descriptionBox.Dock = DockStyle.Fill;
             descriptionBox.Enabled = false;
-            descriptionBox.Location = new Point(104, 108);
+            descriptionBox.Location = new Point(130, 65);
             descriptionBox.Margin = new Padding(3, 4, 3, 4);
             descriptionBox.Multiline = true;
             descriptionBox.Name = "descriptionBox";
-            descriptionBox.Size = new Size(398, 96);
+            descriptionBox.Size = new Size(403, 68);
             descriptionBox.TabIndex = 5;
             // 
             // quantityComboBox
             // 
             quantityComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
             quantityComboBox.FormattingEnabled = true;
-            quantityComboBox.Location = new Point(104, 212);
+            quantityComboBox.Location = new Point(130, 141);
             quantityComboBox.Margin = new Padding(3, 4, 3, 4);
             quantityComboBox.Name = "quantityComboBox";
             quantityComboBox.Size = new Size(138, 28);
@@ -136,7 +136,7 @@
             tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel3.Controls.Add(confirmButton, 0, 0);
             tableLayoutPanel3.Controls.Add(cancelButton, 1, 0);
-            tableLayoutPanel3.Location = new Point(104, 418);
+            tableLayoutPanel3.Location = new Point(130, 246);
             tableLayoutPanel3.Margin = new Padding(3, 4, 3, 4);
             tableLayoutPanel3.Name = "tableLayoutPanel3";
             tableLayoutPanel3.RowCount = 1;
@@ -168,17 +168,17 @@
             // 
             // dateOfReturnPicker
             // 
-            dateOfReturnPicker.Location = new Point(104, 266);
+            dateOfReturnPicker.Location = new Point(130, 190);
             dateOfReturnPicker.Margin = new Padding(3, 4, 3, 4);
             dateOfReturnPicker.Name = "dateOfReturnPicker";
-            dateOfReturnPicker.Size = new Size(228, 27);
+            dateOfReturnPicker.Size = new Size(273, 27);
             dateOfReturnPicker.TabIndex = 8;
             dateOfReturnPicker.ValueChanged += dateOfReturnPicker_ValueChanged;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(3, 262);
+            label1.Location = new Point(3, 186);
             label1.Name = "label1";
             label1.Size = new Size(91, 20);
             label1.TabIndex = 9;
@@ -190,7 +190,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(505, 491);
+            ClientSize = new Size(536, 319);
             Controls.Add(tableLayoutPanel1);
             Margin = new Padding(3, 4, 3, 4);
             MaximizeBox = false;
