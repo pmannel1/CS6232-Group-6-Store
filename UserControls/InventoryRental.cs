@@ -11,9 +11,8 @@ namespace CS6232_Group_6_Store.UserControls
     /// <seealso cref="System.Windows.Forms.UserControl" />
     public partial class InventoryRental : UserControl
     {
-        /// <summary>
-        /// The RentalTransactionController controller class declaration
-        /// </summary>
+        public MainDashBoard MainDashBoard { get; set; }
+
         private readonly RentalTransactionController _transactionController;
         /// <summary>
         /// The MemberController controller class  declaration
@@ -59,8 +58,6 @@ namespace CS6232_Group_6_Store.UserControls
             this._furnitureController = new FurnitureController();
             this._rentalItemController = new RentalItemController();
 
-            this.memberSelectionComboBox.SelectedIndex = 0;
-            this.memberListView.CheckBoxes = true;
             this.furnitureListView.CheckBoxes = true;
 
             this.addFurnitureButton.Enabled = false;
@@ -69,25 +66,16 @@ namespace CS6232_Group_6_Store.UserControls
             this.checkoutButton.Enabled = false;
             this.clearFurnitureButton.Enabled = false;
             this.removeItemButton.Enabled = false;
-
+            
         }
 
-
-        /// <summary>
-        /// Handles the Click event of the memberSearchButton control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+       
         private void memberSearchButton_Click(object sender, EventArgs e)
         {
             this.errorLabel.Visible = false;
             try
             {
-                if (String.IsNullOrEmpty(this.memberSearchBox.Text))
-                {
-                    throw new Exception();
-                }
-                this.populateMemberListView();
+              
                 this.clearButton_Click(sender, e);
             }
             catch (Exception ex)
@@ -99,53 +87,7 @@ namespace CS6232_Group_6_Store.UserControls
 
         }
 
-        /// <summary>
-        /// Populate  members to the list view.
-        /// </summary>
-        private void populateMemberListView()
-        {
-            this.errorLabel.Visible = false;
-            string errorMessage = null;
-            try
-            {
-                errorMessage = "invalid search";
-                this.memberListView.Clear();
-                memberListView.View = System.Windows.Forms.View.Details;
-                memberListView.GridLines = true;
-                memberListView.Columns.Add("ID", 50);
-                memberListView.Columns.Add("Last Name", 150);
-                memberListView.Columns.Add("First Name", 150);
-                memberListView.Columns.Add("Phone", 50);
-
-                var method = memberSelectionComboBox.Text;
-                var search = memberSearchBox.Text;
-                List<Member> searchResult = _memberController.SearchMember(method, search);
-                if (searchResult.Count == 0)
-                {
-                    errorMessage = "No results found";
-                    throw new Exception();
-                }
-                else
-                {
-                    foreach (var dr in searchResult)
-                    {
-                        var membersList = memberListView.Items.Add(dr.Id.ToString());
-                        membersList.SubItems.Add(dr.LastName.ToString());
-                        membersList.SubItems.Add(dr.FirstName.ToString());
-                        membersList.SubItems.Add(dr.ContactPhone.ToString());
-                    }
-                    this.memberListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
-                    this.memberListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
-                }
-            }
-            catch (Exception ex)
-            {
-                this.errorLabel.Visible = true;
-                this.errorLabel.ForeColor = Color.Red;
-                this.errorLabel.Text = errorMessage;
-            }
-
-        }
+        
 
         /// <summary>
         /// Handles the Click event of the furnitureSearchButton control.
@@ -222,50 +164,18 @@ namespace CS6232_Group_6_Store.UserControls
 
         }
 
-        /// <summary>
-        /// Handles the ItemChecked event of the memberListView control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="ItemCheckedEventArgs"/> instance containing the event data.</param>
-        private void memberListView_ItemChecked(object sender, ItemCheckedEventArgs e)
-        {
-            if (e.Item.Checked)
-            {
-                memberId = int.Parse(e.Item.Text);
-                foreach (ListViewItem item in memberListView.Items)
-                {
-                    // Uncheck all other items
-                    if (item != e.Item)
-                    {
-                        item.Checked = false;
-                    }
-                }
 
-                this.clearButton.Enabled = true;
-            }
-            else
-            {
-                this.checkoutButton.Enabled = false;
-                this.clearButton.Enabled = false;
-            }
-            if (furnitureListView.CheckedItems.Count > 0 && memberListView.CheckedItems.Count > 0)
-            {
-                this.addFurnitureButton.Enabled = true;
-            }
-            else
-            {
-                this.addFurnitureButton.Enabled = false;
-            }
-        }
-
-        /// <summary>
-        /// Handles the ItemChecked event of the furnitureListView control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="ItemCheckedEventArgs"/> instance containing the event data.</param>
+        
         private void furnitureListView_ItemChecked(object sender, ItemCheckedEventArgs e)
         {
-            if (e.Item.Checked)
+            int memberID = MainDashBoard.selectedMemberId;
+
+            var method = selectionMethodComboBox.Text.Trim();
+            var search = furnitureSearchBox.Text.Trim();
+            string message = "invalid search";
+
+            if (method == "")
+                if (e.Item.Checked)
             {
                 furnitureId = int.Parse(e.Item.Text);
                 foreach (ListViewItem item in furnitureListView.Items)
@@ -278,7 +188,8 @@ namespace CS6232_Group_6_Store.UserControls
                 }
 
             }
-            if (furnitureListView.CheckedItems.Count > 0 && memberListView.CheckedItems.Count > 0)
+            if (furnitureListView.CheckedItems.Count > 0 &&
+             (MainDashBoard.selectedMemberId != 0))
             {
                 this.addFurnitureButton.Enabled = true;
             }
@@ -296,6 +207,7 @@ namespace CS6232_Group_6_Store.UserControls
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void addFurnitureButton_Click(object sender, EventArgs e)
         {
+            int memberID = MainDashBoard.selectedMemberId;
             ListViewItem checkedItem = furnitureListView.CheckedItems[0];
             int furnitureId = int.Parse(checkedItem.Text);
             Furniture selectedFurniture = _furnitureController.GetFurniture(furnitureId);
@@ -318,7 +230,7 @@ namespace CS6232_Group_6_Store.UserControls
                     var now = DateTime.Now;
                     var dateofReturn = dueDate;
                     transaction = null;
-                    transaction = new RentalTransaction(employeeId, memberId, now, dateofReturn);
+                    transaction = new RentalTransaction(employeeId, MainDashBoard.selectedMemberId, now, dateofReturn);
 
                 }
                 // Check if the item is already in the cart
@@ -449,9 +361,7 @@ namespace CS6232_Group_6_Store.UserControls
 
                     this.clearButton_Click(sender, e);
                     this.clearFurnitureButton_Click(sender, e);
-                    this.memberListView.Clear();
-
-                    this.memberSearchBox.Clear();
+                    this.furnitureSearchBox.Clear();
                     MessageBox.Show(message, "Transaction", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 }
@@ -551,8 +461,7 @@ namespace CS6232_Group_6_Store.UserControls
         {
             this.clearButton_Click(sender, e);
             this.clearFurnitureButton_Click(sender, e);
-            this.memberListView.Clear();
-            this.memberSearchBox.Clear();
+            this.furnitureSearchBox.Clear();
         }
     }
 }

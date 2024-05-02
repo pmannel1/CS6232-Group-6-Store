@@ -1,5 +1,6 @@
 
 using CS6232_Group_6_Store.Controller;
+using CS6232_Group_6_Store.UserControls;
 using CS6232_Group_6_Store.View;
 
 namespace CS6232_Group_6_Store
@@ -36,6 +37,9 @@ namespace CS6232_Group_6_Store
         /// </value>
         public int EmployeeId { get; set; }
 
+        public int selectedMemberId { get; set; }
+        public string selectedMemberName { get; set; }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="MainDashBoard"/> class.
         /// </summary>
@@ -55,8 +59,25 @@ namespace CS6232_Group_6_Store
             this.employeeNameLebel.Text = Employee;
             this.userNameLabel.Text = Account;
             this.logout = false;
+            MemberManagement memberManagement = (MemberManagement)mainTabControl.TabPages[0].Controls[0];
+            memberManagement.MainDashBoard = this;
+            InventoryRental inventoryRental = (InventoryRental)mainTabControl.TabPages[1].Controls[0];
+            inventoryRental.MainDashBoard = this;
+            InventoryReturn inventoryReturn = (InventoryReturn)mainTabControl.TabPages[2].Controls[0];
+            inventoryReturn.MainDashBoard = this;
+            TransactionManagement transactionManagement = (TransactionManagement)mainTabControl.TabPages[3].Controls[0];
+            transactionManagement.MainDashBoard = this;
         }
 
+        
+        public void UpdateSelectedCustomer(int selectedMemberId, string selectedMemberName)
+        {
+            selectedCustomerDisplay.Text = selectedMemberId.ToString();
+            selectedCustomerNameDisplay.Text = selectedMemberName.ToString();   
+            this.selectedMemberId = selectedMemberId;
+            this.selectedMemberName = selectedMemberName;
+
+        }
         /// <summary>
         /// Handles the LinkClicked event of the logoutLinkLabel control.
         /// </summary>

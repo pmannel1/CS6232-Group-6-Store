@@ -43,6 +43,10 @@
             logoutLinkLabel = new LinkLabel();
             userNameLabel = new Label();
             employeeNameLebel = new Label();
+            selectedCustomerLabel = new Label();
+            selectedCustomerDisplay = new Label();
+            selectedCustomerNameLabel = new Label();
+            selectedCustomerNameDisplay = new Label();
             mainTabControl.SuspendLayout();
             customerTabPage.SuspendLayout();
             inventoryAndRentTabPage.SuspendLayout();
@@ -80,6 +84,7 @@
             // 
             memberManagement2.Dock = DockStyle.Fill;
             memberManagement2.Location = new Point(3, 3);
+            memberManagement2.MainDashBoard = null;
             memberManagement2.Margin = new Padding(3, 2, 3, 2);
             memberManagement2.Name = "memberManagement2";
             memberManagement2.Size = new Size(1041, 459);
@@ -100,6 +105,7 @@
             // 
             inventoryRental1.Dock = DockStyle.Fill;
             inventoryRental1.Location = new Point(0, 0);
+            inventoryRental1.MainDashBoard = null;
             inventoryRental1.Margin = new Padding(3, 4, 3, 4);
             inventoryRental1.Name = "inventoryRental1";
             inventoryRental1.Size = new Size(192, 72);
@@ -119,6 +125,7 @@
             // 
             inventoryReturn1.Dock = DockStyle.Fill;
             inventoryReturn1.Location = new Point(0, 0);
+            inventoryReturn1.MainDashBoard = null;
             inventoryReturn1.Margin = new Padding(3, 4, 3, 4);
             inventoryReturn1.Name = "inventoryReturn1";
             inventoryReturn1.Size = new Size(192, 72);
@@ -139,6 +146,7 @@
             // 
             transactionManagement1.Dock = DockStyle.Fill;
             transactionManagement1.Location = new Point(3, 3);
+            transactionManagement1.MainDashBoard = null;
             transactionManagement1.Margin = new Padding(3, 4, 3, 4);
             transactionManagement1.Name = "transactionManagement1";
             transactionManagement1.Size = new Size(186, 66);
@@ -203,11 +211,49 @@
             employeeNameLebel.TabIndex = 5;
             employeeNameLebel.Text = "EmployeeName";
             // 
+            // selectedCustomerLabel
+            // 
+            selectedCustomerLabel.AutoSize = true;
+            selectedCustomerLabel.Location = new Point(12, 9);
+            selectedCustomerLabel.Name = "selectedCustomerLabel";
+            selectedCustomerLabel.Size = new Size(106, 15);
+            selectedCustomerLabel.TabIndex = 7;
+            selectedCustomerLabel.Text = "Selected Customer";
+            // 
+            // selectedCustomerDisplay
+            // 
+            selectedCustomerDisplay.AutoSize = true;
+            selectedCustomerDisplay.Location = new Point(129, 11);
+            selectedCustomerDisplay.Name = "selectedCustomerDisplay";
+            selectedCustomerDisplay.Size = new Size(0, 15);
+            selectedCustomerDisplay.TabIndex = 8;
+            // 
+            // selectedCustomerNameLabel
+            // 
+            selectedCustomerNameLabel.AutoSize = true;
+            selectedCustomerNameLabel.Location = new Point(12, 24);
+            selectedCustomerNameLabel.Name = "selectedCustomerNameLabel";
+            selectedCustomerNameLabel.Size = new Size(141, 15);
+            selectedCustomerNameLabel.TabIndex = 9;
+            selectedCustomerNameLabel.Text = "Selected Customer Name";
+            // 
+            // selectedCustomerNameDisplay
+            // 
+            selectedCustomerNameDisplay.AutoSize = true;
+            selectedCustomerNameDisplay.Location = new Point(164, 29);
+            selectedCustomerNameDisplay.Name = "selectedCustomerNameDisplay";
+            selectedCustomerNameDisplay.Size = new Size(0, 15);
+            selectedCustomerNameDisplay.TabIndex = 10;
+            // 
             // MainDashBoard
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1055, 622);
+            Controls.Add(selectedCustomerNameDisplay);
+            Controls.Add(selectedCustomerNameLabel);
+            Controls.Add(selectedCustomerDisplay);
+            Controls.Add(selectedCustomerLabel);
             Controls.Add(userNameLabel);
             Controls.Add(employeeNameLebel);
             Controls.Add(logoutLinkLabel);
@@ -245,5 +291,9 @@
         private UserControls.InventoryReturn inventoryReturn1;
         private TabPage adminReportTab;
         private UserControls.AdminReport adminReport1;
+        private Label selectedCustomerLabel;
+        private Label selectedCustomerDisplay;
+        private Label selectedCustomerNameLabel;
+        private Label selectedCustomerNameDisplay;
     }
 }

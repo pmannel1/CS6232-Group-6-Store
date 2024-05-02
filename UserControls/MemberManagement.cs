@@ -1,6 +1,7 @@
 ﻿using CS6232_Group_6_Store.Controller;
 using CS6232_Group_6_Store.Model;
 using CS6232_Group_6_Store.View;
+using System.Security.Cryptography.X509Certificates;
 
 
 namespace CS6232_Group_6_Store.UserControls
@@ -16,6 +17,7 @@ namespace CS6232_Group_6_Store.UserControls
         /// </summary>
         public int selectedMember;
         private readonly MemberController _memberController;
+        public MainDashBoard MainDashBoard { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="MemberManagement"/> class.
         /// </summary>
@@ -27,6 +29,8 @@ namespace CS6232_Group_6_Store.UserControls
             memberListView.SelectedIndexChanged += memberListView_SelectedIndexChanged;
             memberListView.ItemChecked += memberListView_ItemChecked;
             this.searchMethodBox.SelectedIndex = 0;
+            
+           
         }
 
         /// <summary>
@@ -165,7 +169,15 @@ namespace CS6232_Group_6_Store.UserControls
         /// <param name="e">The <see cref="ItemCheckedEventArgs"/> instance containing the event data.</param>
         private void memberListView_ItemChecked(object sender, ItemCheckedEventArgs e)
         {
-            if (e.Item.Checked)
+            int selectedMemberId = int.Parse(e.Item.Text);
+            List<Member> searchResult = _memberController.SearchMember("ID", e.Item.Text);
+
+            var dr = searchResult[0];
+
+            string selectedMemberName = dr.FullName;
+           
+
+          if (e.Item.Checked)
             {
                 foreach (ListViewItem item in memberListView.Items)
                 {
@@ -173,6 +185,13 @@ namespace CS6232_Group_6_Store.UserControls
                     {
                         item.Checked = false;
                     }
+                   
+
+                }
+                if (MainDashBoard != null)
+                {
+                    MainDashBoard.UpdateSelectedCustomer(selectedMemberId, selectedMemberName);
+
                 }
                 this.editButton.Enabled = true;
             }
@@ -180,6 +199,7 @@ namespace CS6232_Group_6_Store.UserControls
             {
                 this.editButton.Enabled = false;
             }
+            
 
         }
 
