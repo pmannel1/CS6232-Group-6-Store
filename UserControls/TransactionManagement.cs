@@ -26,75 +26,16 @@ namespace CS6232_Group_6_Store.UserControls
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void memberSearchButton_Click(object sender, EventArgs e)
         {
-            try
-            {
-                if (String.IsNullOrEmpty(memberSearchBox.Text))
-                {
-                    throw new Exception();
-                }
-                this.populateMemberListView();
-            } catch (Exception ex)
-            {
+           
+            
                 transactionErrorLabel.Text = "Please input a number for ID/Name for Name";
                 transactionErrorLabel.ForeColor = Color.Red;
                 transactionErrorLabel.Visible = true;
-            }
+           
 
         }
 
-        /// <summary>
-        /// Populates the member ListView.
-        /// </summary>
-        private void populateMemberListView()
-        {
-            string transactionError = null;
-            transactionErrorLabel.Visible = false; // Hide error label initially
-
-            try
-            {
-                
-                this.memberListView.Clear();
-                memberListView.View = System.Windows.Forms.View.Details;
-                memberListView.GridLines = true;
-                memberListView.Columns.Add("ID", 50);
-                memberListView.Columns.Add("Last Name", 150);
-                memberListView.Columns.Add("First Name", 150);
-
-                var method = memberSearchMethodComboBox.Text;
-                var search = memberSearchBox.Text;
-                var searchToInt = 0;
-
-                if (memberSearchMethodComboBox.Text.Equals("ID") && !int.TryParse(search, out searchToInt))
-                {
-                    transactionError = "Input valid data for ID";
-                    throw new Exception();
-                }
-                this.transactionErrorLabel.Text = "";
-                List<Member> searchResult = _memberController.SearchMember(method, search);
-
-                if (searchResult.Count == 0)
-                {
-                    transactionError = "No matching records found.";
-                    throw new Exception();
-                }
-
-                
-
-                foreach (var dr in searchResult)
-                {
-                    var membersList = memberListView.Items.Add(dr.Id.ToString());
-                    membersList.SubItems.Add(dr.LastName.ToString());
-                    membersList.SubItems.Add(dr.FirstName.ToString());
-                }
-            }
-            catch (Exception ex)
-            {
-                transactionErrorLabel.Text = transactionError;
-                transactionErrorLabel.ForeColor = Color.Red;
-                transactionErrorLabel.Visible = true;
-            }
-        }
-
+        
         /// <summary>
         /// Handles the ItemChecked event of the memberListView control.
         /// </summary>
@@ -104,15 +45,7 @@ namespace CS6232_Group_6_Store.UserControls
         {
             if (e.Item.Checked)
             {
-                foreach (ListViewItem item in memberListView.Items)
-                {
-                    // Uncheck all other items
-                    if (item != e.Item)
-                    {
-                        item.Checked = false;
-                    }
-                }
-                this.memberHistorySearchButton.Enabled = true;
+                
             }
             else
             {
@@ -166,8 +99,6 @@ namespace CS6232_Group_6_Store.UserControls
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void clearMemberSearchButton_Click(object sender, EventArgs e)
         {
-            this.memberListView.Clear();
-            this.memberSearchBox.Clear();
             this.memberHistorySearchButton.Enabled = false;
             this.memberHistoryListView.Clear();
         }

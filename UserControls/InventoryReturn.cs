@@ -7,17 +7,17 @@ namespace CS6232_Group_6_Store.UserControls
 {
     public partial class InventoryReturn : UserControl
     {
-        public MainDashBoard MainDashBoard { get; set; }
+        public MainDashBoard? MainDashBoard { get; set; }
 
         private MemberController _memberController;
         private RentalItemController _rentalItemController;
         private FurnitureController _furnitureController;
         private ReturnTransactionController _returnTransactionController;
-        private Member _currentMember;
+        private Member? _currentMember;
         private List<RentalItem> _currentRentalItemList;
         private List<ReturnItem> _returnCartList;
         private List<RentalReturnTransactionSummary> _rentalReturnTransactionSummaries;
-        private ReturnItem _returnItem;
+        private ReturnItem? _returnItem;
         private int furnitureId;
         private int employeeId;
         private int memberId;
