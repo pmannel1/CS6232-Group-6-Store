@@ -183,6 +183,8 @@ namespace CS6232_Group_6_Store.UserControls
                         furnitureList.SubItems.Add(dr.Category.ToString());
                         furnitureList.SubItems.Add("$" + dr.RentalRate.ToString());
                     }
+                    this.furnitureListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+                    this.furnitureListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
                     this.clearFurnitureButton.Enabled = true;
                 }
 
@@ -336,6 +338,8 @@ namespace CS6232_Group_6_Store.UserControls
                     cartList.SubItems.Add(transaction.RentalDate.ToShortDateString());
                     cartList.SubItems.Add(transaction.DueDate.ToShortDateString());
                 }
+                this.cartListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+                this.cartListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
             }
             catch (Exception ex)
             {
