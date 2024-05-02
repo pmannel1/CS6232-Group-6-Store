@@ -88,7 +88,7 @@
             tableLayoutPanel3.Controls.Add(editButton, 2, 0);
             tableLayoutPanel3.Controls.Add(addButton, 0, 0);
             tableLayoutPanel3.Controls.Add(clearButton, 1, 0);
-            tableLayoutPanel3.Location = new Point(3, 359);
+            tableLayoutPanel3.Location = new Point(3, 478);
             tableLayoutPanel3.Name = "tableLayoutPanel3";
             tableLayoutPanel3.RowCount = 1;
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
@@ -97,7 +97,7 @@
             // 
             // editButton
             // 
-            editButton.Location = new Point(553, 4);
+            editButton.Location = new Point(455, 4);
             editButton.Margin = new Padding(3, 4, 3, 4);
             editButton.Name = "editButton";
             editButton.Size = new Size(93, 23);
@@ -118,7 +118,7 @@
             // 
             // clearButton
             // 
-            clearButton.Location = new Point(278, 4);
+            clearButton.Location = new Point(229, 4);
             clearButton.Margin = new Padding(3, 4, 3, 4);
             clearButton.Name = "clearButton";
             clearButton.Size = new Size(93, 23);
@@ -163,7 +163,7 @@
             // memberSearchListViewLabel
             // 
             memberSearchListViewLabel.AutoSize = true;
-            memberSearchListViewLabel.Location = new Point(3, 80);
+            memberSearchListViewLabel.Location = new Point(3, 108);
             memberSearchListViewLabel.Name = "memberSearchListViewLabel";
             memberSearchListViewLabel.Size = new Size(50, 15);
             memberSearchListViewLabel.TabIndex = 7;
@@ -184,14 +184,14 @@
             memberSelectionMethodLabel.AutoSize = true;
             memberSelectionMethodLabel.Location = new Point(3, 0);
             memberSelectionMethodLabel.Name = "memberSelectionMethodLabel";
-            memberSelectionMethodLabel.Size = new Size(169, 20);
+            memberSelectionMethodLabel.Size = new Size(135, 15);
             memberSelectionMethodLabel.TabIndex = 3;
             memberSelectionMethodLabel.Text = "Member Search Method";
             // 
             // memberSearchLabel
             // 
             memberSearchLabel.AutoSize = true;
-            memberSearchLabel.Location = new Point(3, 40);
+            memberSearchLabel.Location = new Point(3, 54);
             memberSearchLabel.Name = "memberSearchLabel";
             memberSearchLabel.Size = new Size(48, 15);
             memberSearchLabel.TabIndex = 4;
@@ -235,7 +235,7 @@
             // memberErrorLabel
             // 
             memberErrorLabel.AutoSize = true;
-            memberErrorLabel.Location = new Point(3, 303);
+            memberErrorLabel.Location = new Point(3, 405);
             memberErrorLabel.Name = "memberErrorLabel";
             memberErrorLabel.Size = new Size(0, 15);
             memberErrorLabel.TabIndex = 28;

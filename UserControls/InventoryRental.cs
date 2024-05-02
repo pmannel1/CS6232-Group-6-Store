@@ -171,7 +171,10 @@ namespace CS6232_Group_6_Store.UserControls
             int memberID = MainDashBoard.selectedMemberId;
 
             var method = selectionMethodComboBox.Text.Trim();
-            var search = furnitureSearchBox.Text.Trim();
+            if (furnitureSearchBox != null)
+            {
+                var search = furnitureSearchBox.Text.Trim();
+            }
             string message = "invalid search";
 
             if (method == "")
@@ -361,7 +364,7 @@ namespace CS6232_Group_6_Store.UserControls
 
                     this.clearButton_Click(sender, e);
                     this.clearFurnitureButton_Click(sender, e);
-                    this.furnitureSearchBox.Clear();
+
                     MessageBox.Show(message, "Transaction", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 }
@@ -461,7 +464,7 @@ namespace CS6232_Group_6_Store.UserControls
         {
             this.clearButton_Click(sender, e);
             this.clearFurnitureButton_Click(sender, e);
-            this.furnitureSearchBox.Clear();
+            
         }
     }
 }
