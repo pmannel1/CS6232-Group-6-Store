@@ -3,12 +3,24 @@ using CS6232_Group_6_Store.Model;
 
 namespace CS6232_Group_6_Store.UserControls
 {
+    /// <summary>
+    /// Transaction Management form
+    /// </summary>
+    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class TransactionManagement : UserControl
     {
-
+        /// <summary>
+        /// Declare MemberController controller class.
+        /// </summary>
         private readonly MemberController _memberController;
+        /// <summary>
+        /// Declare RentalItemController controller class.
+        /// </summary>
         private readonly RentalItemController _rentalItemController;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TransactionManagement"/> class.
+        /// </summary>
         public TransactionManagement()
         {
             InitializeComponent();
@@ -58,6 +70,7 @@ namespace CS6232_Group_6_Store.UserControls
                 memberListView.Columns.Add("ID", 50);
                 memberListView.Columns.Add("Last Name", 150);
                 memberListView.Columns.Add("First Name", 150);
+                memberListView.Columns.Add("Phone", 50);
 
                 var method = memberSearchMethodComboBox.Text;
                 var search = memberSearchBox.Text;
@@ -84,7 +97,10 @@ namespace CS6232_Group_6_Store.UserControls
                     var membersList = memberListView.Items.Add(dr.Id.ToString());
                     membersList.SubItems.Add(dr.LastName.ToString());
                     membersList.SubItems.Add(dr.FirstName.ToString());
+                    membersList.SubItems.Add(dr.ContactPhone.ToString());
                 }
+                this.memberListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+                this.memberListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
             }
             catch (Exception ex)
             {

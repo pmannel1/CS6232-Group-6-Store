@@ -5,19 +5,59 @@ using CS6232_Group_6_Store.View;
 
 namespace CS6232_Group_6_Store.UserControls
 {
+    /// <summary>
+    /// InventoryReturn form
+    /// </summary>
+    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class InventoryReturn : UserControl
     {
+        /// <summary>
+        /// Declare MemberController controller class.
+        /// </summary>
         private MemberController _memberController;
+        /// <summary>
+        /// Declare RentalItemController controller class.
+        /// </summary>
         private RentalItemController _rentalItemController;
+        /// <summary>
+        /// Declare FurnitureController controller class.
+        /// </summary>
         private FurnitureController _furnitureController;
+        /// <summary>
+        /// Declare ReturnTransactionController controller class.
+        /// </summary>
         private ReturnTransactionController _returnTransactionController;
+        /// <summary>
+        /// Declare Member model class.
+        /// </summary>
         private Member _currentMember;
+        /// <summary>
+        /// Declare Member model class list.
+        /// </summary>
         private List<RentalItem> _currentRentalItemList;
+        /// <summary>
+        /// Declare ReturnItem model class list.
+        /// </summary>
         private List<ReturnItem> _returnCartList;
+        /// <summary>
+        /// Declare RentalReturnTransactionSummary model class list.
+        /// </summary>
         private List<RentalReturnTransactionSummary> _rentalReturnTransactionSummaries;
+        /// <summary>
+        /// Declare ReturnItem model class.
+        /// </summary>
         private ReturnItem _returnItem;
+        /// <summary>
+        /// The Furniture Id variable  declaration
+        /// </summary>
         private int furnitureId;
+        /// <summary>
+        /// The Employee Id variable  declaration
+        /// </summary>
         private int employeeId;
+        /// <summary>
+        /// The Member Id variable  declaration
+        /// </summary>
         private int memberId;
 
         /// <summary>
@@ -93,6 +133,7 @@ namespace CS6232_Group_6_Store.UserControls
                 memberListView.Columns.Add("ID", 50);
                 memberListView.Columns.Add("Last Name", 150);
                 memberListView.Columns.Add("First Name", 150);
+                memberListView.Columns.Add("Phone", 50);
 
                 var method = memberSelectionComboBox.Text;
                 var search = memberSearchBox.Text;
@@ -109,7 +150,10 @@ namespace CS6232_Group_6_Store.UserControls
                         var membersList = memberListView.Items.Add(dr.Id.ToString());
                         membersList.SubItems.Add(dr.LastName.ToString());
                         membersList.SubItems.Add(dr.FirstName.ToString());
+                        membersList.SubItems.Add(dr.ContactPhone.ToString());
                     }
+                    this.memberListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+                    this.memberListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
                 }
             }
             catch (Exception ex)

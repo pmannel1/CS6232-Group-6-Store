@@ -68,15 +68,15 @@
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 9.523809F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 3.75939846F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 10.4712048F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel2.Size = new Size(700, 399);
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 27F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 27F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 27F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 27F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 27F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 27F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 27F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 27F));
+            tableLayoutPanel2.Size = new Size(1189, 532);
             tableLayoutPanel2.TabIndex = 26;
             // 
             // tableLayoutPanel3
@@ -84,7 +84,7 @@
             tableLayoutPanel3.ColumnCount = 3;
             tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 211F));
+            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 242F));
             tableLayoutPanel3.Controls.Add(editButton, 2, 0);
             tableLayoutPanel3.Controls.Add(addButton, 0, 0);
             tableLayoutPanel3.Controls.Add(clearButton, 1, 0);
@@ -97,7 +97,8 @@
             // 
             // editButton
             // 
-            editButton.Location = new Point(485, 3);
+            editButton.Location = new Point(553, 4);
+            editButton.Margin = new Padding(3, 4, 3, 4);
             editButton.Name = "editButton";
             editButton.Size = new Size(93, 23);
             editButton.TabIndex = 4;
@@ -117,7 +118,8 @@
             // 
             // clearButton
             // 
-            clearButton.Location = new Point(244, 3);
+            clearButton.Location = new Point(278, 4);
+            clearButton.Margin = new Padding(3, 4, 3, 4);
             clearButton.Name = "clearButton";
             clearButton.Size = new Size(93, 23);
             clearButton.TabIndex = 6;
@@ -142,16 +144,17 @@
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 15F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 15F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 70F));
-            tableLayoutPanel1.Size = new Size(694, 270);
+            tableLayoutPanel1.Size = new Size(1182, 360);
             tableLayoutPanel1.TabIndex = 22;
             // 
             // memberListView
             // 
             memberListView.CheckBoxes = true;
             memberListView.Dock = DockStyle.Fill;
-            memberListView.Location = new Point(141, 83);
+            memberListView.Location = new Point(239, 112);
+            memberListView.Margin = new Padding(3, 4, 3, 4);
             memberListView.Name = "memberListView";
-            memberListView.Size = new Size(550, 184);
+            memberListView.Size = new Size(940, 244);
             memberListView.TabIndex = 8;
             memberListView.UseCompatibleStateImageBehavior = false;
             memberListView.SelectedIndexChanged += memberListView_SelectedIndexChanged;
@@ -171,8 +174,7 @@
             searchMethodBox.DropDownStyle = ComboBoxStyle.DropDownList;
             searchMethodBox.FormattingEnabled = true;
             searchMethodBox.Items.AddRange(new object[] { "Name", "ID", "Phone" });
-            searchMethodBox.Location = new Point(141, 2);
-            searchMethodBox.Margin = new Padding(3, 2, 3, 2);
+            searchMethodBox.Location = new Point(239, 3);
             searchMethodBox.Name = "searchMethodBox";
             searchMethodBox.Size = new Size(154, 23);
             searchMethodBox.TabIndex = 0;
@@ -182,7 +184,7 @@
             memberSelectionMethodLabel.AutoSize = true;
             memberSelectionMethodLabel.Location = new Point(3, 0);
             memberSelectionMethodLabel.Name = "memberSelectionMethodLabel";
-            memberSelectionMethodLabel.Size = new Size(93, 30);
+            memberSelectionMethodLabel.Size = new Size(169, 20);
             memberSelectionMethodLabel.TabIndex = 3;
             memberSelectionMethodLabel.Text = "Member Search Method";
             // 
@@ -202,7 +204,8 @@
             tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel5.Controls.Add(memberSearchBox, 0, 0);
             tableLayoutPanel5.Controls.Add(searchButton, 1, 0);
-            tableLayoutPanel5.Location = new Point(141, 43);
+            tableLayoutPanel5.Location = new Point(239, 58);
+            tableLayoutPanel5.Margin = new Padding(3, 4, 3, 4);
             tableLayoutPanel5.Name = "tableLayoutPanel5";
             tableLayoutPanel5.RowCount = 1;
             tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
@@ -244,7 +247,7 @@
             Controls.Add(tableLayoutPanel2);
             Margin = new Padding(3, 2, 3, 2);
             Name = "MemberManagement";
-            Size = new Size(700, 400);
+            Size = new Size(1189, 533);
             VisibleChanged += MemberManagement_VisibleChanged;
             tableLayoutPanel2.ResumeLayout(false);
             tableLayoutPanel2.PerformLayout();
