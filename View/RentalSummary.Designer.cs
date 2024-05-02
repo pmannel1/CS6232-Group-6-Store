@@ -56,7 +56,7 @@
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 60F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
-            tableLayoutPanel1.Size = new Size(475, 295);
+            tableLayoutPanel1.Size = new Size(861, 295);
             tableLayoutPanel1.TabIndex = 0;
             // 
             // tableLayoutPanel2
@@ -72,7 +72,7 @@
             tableLayoutPanel2.Name = "tableLayoutPanel2";
             tableLayoutPanel2.RowCount = 1;
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel2.Size = new Size(469, 51);
+            tableLayoutPanel2.Size = new Size(855, 51);
             tableLayoutPanel2.TabIndex = 0;
             // 
             // totalCostLabel
@@ -81,7 +81,7 @@
             totalCostLabel.Dock = DockStyle.Fill;
             totalCostLabel.Location = new Point(3, 0);
             totalCostLabel.Name = "totalCostLabel";
-            totalCostLabel.Size = new Size(87, 51);
+            totalCostLabel.Size = new Size(165, 51);
             totalCostLabel.TabIndex = 0;
             totalCostLabel.Text = "Total Cost: ";
             totalCostLabel.TextAlign = ContentAlignment.MiddleLeft;
@@ -90,10 +90,10 @@
             // 
             totalCostBox.Dock = DockStyle.Fill;
             totalCostBox.Enabled = false;
-            totalCostBox.Location = new Point(96, 4);
+            totalCostBox.Location = new Point(174, 4);
             totalCostBox.Margin = new Padding(3, 4, 3, 4);
             totalCostBox.Name = "totalCostBox";
-            totalCostBox.Size = new Size(370, 27);
+            totalCostBox.Size = new Size(678, 27);
             totalCostBox.TabIndex = 1;
             totalCostBox.TextAlign = HorizontalAlignment.Center;
             // 
@@ -103,7 +103,7 @@
             rentalSummaryList.Location = new Point(3, 4);
             rentalSummaryList.Margin = new Padding(3, 4, 3, 4);
             rentalSummaryList.Name = "rentalSummaryList";
-            rentalSummaryList.Size = new Size(469, 169);
+            rentalSummaryList.Size = new Size(855, 169);
             rentalSummaryList.TabIndex = 1;
             rentalSummaryList.UseCompatibleStateImageBehavior = false;
             // 
@@ -111,7 +111,7 @@
             // 
             tableLayoutPanel3.ColumnCount = 2;
             tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 193F));
+            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 680F));
             tableLayoutPanel3.Controls.Add(btnCancel, 0, 0);
             tableLayoutPanel3.Controls.Add(confirmButton, 0, 0);
             tableLayoutPanel3.Dock = DockStyle.Fill;
@@ -121,12 +121,12 @@
             tableLayoutPanel3.RowCount = 1;
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 27F));
-            tableLayoutPanel3.Size = new Size(469, 51);
+            tableLayoutPanel3.Size = new Size(855, 51);
             tableLayoutPanel3.TabIndex = 2;
             // 
             // btnCancel
             // 
-            btnCancel.Location = new Point(279, 3);
+            btnCancel.Location = new Point(178, 3);
             btnCancel.Name = "btnCancel";
             btnCancel.Size = new Size(94, 32);
             btnCancel.TabIndex = 2;
@@ -150,7 +150,7 @@
             AcceptButton = confirmButton;
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(475, 295);
+            ClientSize = new Size(861, 295);
             Controls.Add(tableLayoutPanel1);
             Margin = new Padding(3, 4, 3, 4);
             MaximizeBox = false;
