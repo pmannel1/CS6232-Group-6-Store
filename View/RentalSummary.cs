@@ -61,6 +61,9 @@ namespace CS6232_Group_6_Store.View
                     cartList.SubItems.Add(_transaction.RentalDate.ToShortDateString());
                     cartList.SubItems.Add(_transaction.DueDate.ToShortDateString());
                 }
+                this.rentalSummaryList.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+                this.rentalSummaryList.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+                this.rentalSummaryList.Columns[0].Width = 1;
             }
             catch (Exception ex)
             {
