@@ -64,10 +64,10 @@
             tableLayoutPanel2.Location = new Point(0, 1);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
             tableLayoutPanel2.RowCount = 4;
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 75.93985F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 9.523809F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 3.75939846F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 10.4712048F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 58.8345871F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 1.50375938F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 2.443609F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 37.7819557F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 27F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 27F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 27F));
@@ -88,7 +88,7 @@
             tableLayoutPanel3.Controls.Add(editButton, 2, 0);
             tableLayoutPanel3.Controls.Add(addButton, 0, 0);
             tableLayoutPanel3.Controls.Add(clearButton, 1, 0);
-            tableLayoutPanel3.Location = new Point(3, 478);
+            tableLayoutPanel3.Location = new Point(3, 333);
             tableLayoutPanel3.Name = "tableLayoutPanel3";
             tableLayoutPanel3.RowCount = 1;
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
@@ -144,17 +144,17 @@
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 15F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 15F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 70F));
-            tableLayoutPanel1.Size = new Size(1182, 360);
+            tableLayoutPanel1.Size = new Size(1182, 305);
             tableLayoutPanel1.TabIndex = 22;
             // 
             // memberListView
             // 
             memberListView.CheckBoxes = true;
             memberListView.Dock = DockStyle.Fill;
-            memberListView.Location = new Point(239, 112);
+            memberListView.Location = new Point(239, 94);
             memberListView.Margin = new Padding(3, 4, 3, 4);
             memberListView.Name = "memberListView";
-            memberListView.Size = new Size(940, 244);
+            memberListView.Size = new Size(940, 207);
             memberListView.TabIndex = 8;
             memberListView.UseCompatibleStateImageBehavior = false;
             memberListView.SelectedIndexChanged += memberListView_SelectedIndexChanged;
@@ -163,7 +163,7 @@
             // memberSearchListViewLabel
             // 
             memberSearchListViewLabel.AutoSize = true;
-            memberSearchListViewLabel.Location = new Point(3, 108);
+            memberSearchListViewLabel.Location = new Point(3, 90);
             memberSearchListViewLabel.Name = "memberSearchListViewLabel";
             memberSearchListViewLabel.Size = new Size(50, 15);
             memberSearchListViewLabel.TabIndex = 7;
@@ -191,7 +191,7 @@
             // memberSearchLabel
             // 
             memberSearchLabel.AutoSize = true;
-            memberSearchLabel.Location = new Point(3, 54);
+            memberSearchLabel.Location = new Point(3, 45);
             memberSearchLabel.Name = "memberSearchLabel";
             memberSearchLabel.Size = new Size(48, 15);
             memberSearchLabel.TabIndex = 4;
@@ -204,7 +204,7 @@
             tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel5.Controls.Add(memberSearchBox, 0, 0);
             tableLayoutPanel5.Controls.Add(searchButton, 1, 0);
-            tableLayoutPanel5.Location = new Point(239, 58);
+            tableLayoutPanel5.Location = new Point(239, 49);
             tableLayoutPanel5.Margin = new Padding(3, 4, 3, 4);
             tableLayoutPanel5.Name = "tableLayoutPanel5";
             tableLayoutPanel5.RowCount = 1;
@@ -235,9 +235,9 @@
             // memberErrorLabel
             // 
             memberErrorLabel.AutoSize = true;
-            memberErrorLabel.Location = new Point(3, 405);
+            memberErrorLabel.Location = new Point(3, 311);
             memberErrorLabel.Name = "memberErrorLabel";
-            memberErrorLabel.Size = new Size(0, 15);
+            memberErrorLabel.Size = new Size(0, 7);
             memberErrorLabel.TabIndex = 28;
             // 
             // MemberManagement
