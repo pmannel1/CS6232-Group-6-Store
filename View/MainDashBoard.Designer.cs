@@ -240,7 +240,7 @@
             // selectedCustomerNameDisplay
             // 
             selectedCustomerNameDisplay.AutoSize = true;
-            selectedCustomerNameDisplay.Location = new Point(164, 29);
+            selectedCustomerNameDisplay.Location = new Point(159, 24);
             selectedCustomerNameDisplay.Name = "selectedCustomerNameDisplay";
             selectedCustomerNameDisplay.Size = new Size(0, 15);
             selectedCustomerNameDisplay.TabIndex = 10;
