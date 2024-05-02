@@ -90,14 +90,21 @@ namespace CS6232_Group_6_Store.UserControls
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void memberSelectButton_Click(object sender, EventArgs e)
         {
-            
+            if (MainDashBoard.selectedMemberId == 0)
+            {
+                selectItemErrorLabel.Text = "Please Select A Member on the Member Management Page";
+                selectItemErrorLabel.ForeColor = Color.Red;
+            }
+            else
+            {
+                selectItemErrorLabel.Text = "";
                 memberId = MainDashBoard.selectedMemberId;
                 _currentMember = _memberController.RetrieveMember(memberId);
                 this._currentRentalItemList = this._rentalItemController.GetOutstandingRentalItemsById(memberId);
                 this.PopulateFurnitureListView();
                 this.clearFurnitureButton.Enabled = true;
                 this.returnItemNumberComboBox.Enabled = true;
-            
+            }
             
         }
 
