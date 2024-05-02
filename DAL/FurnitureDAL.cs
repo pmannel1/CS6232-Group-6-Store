@@ -34,7 +34,9 @@ namespace CS6232_Group_6_Store.DAL
         public List<Furniture> ReturnFurnituresSearch(string searchMethod, string searchItem)
         {
             List<Furniture> furnitureList = new List<Furniture>();
-            string selectStatement = "SELECT furniture.* FROM furniture";
+            string selectStatement =  "select F.id, F.name, F.description, F.styleName, F.categoryName,F.RentalRate, F.instockNumber,  F.instockNumber + G.OutStock[TotalStock]" +
+                " from furniture F inner join  (select furnitureId, sum(quantity) - sum(quantityReturned)[OutStock] from rental_items group by furnitureId) G on F.id=G.furnitureId";
+
             SqlCommand selectCommand;
 
             using (SqlConnection connection = DBConnection.GetConnection())
@@ -43,21 +45,21 @@ namespace CS6232_Group_6_Store.DAL
 
                 if (searchMethod == "ID")
                 {
-                    selectStatement += " WHERE id = @SearchTerm";
+                    selectStatement += " WHERE F.id = @SearchTerm";
                     selectCommand = new SqlCommand(selectStatement, connection);
                     selectCommand.Parameters.Add("@SearchTerm", SqlDbType.Int);
                     selectCommand.Parameters["@SearchTerm"].Value = int.Parse(searchItem);
                 }
                 else if (searchMethod == "Category")
                 {
-                    selectStatement += " WHERE categoryName = @SearchTerm";
+                    selectStatement += " WHERE F.categoryName = @SearchTerm";
                     selectCommand = new SqlCommand(selectStatement, connection);
                     selectCommand.Parameters.Add("@SearchTerm", SqlDbType.NVarChar);
                     selectCommand.Parameters["@SearchTerm"].Value = searchItem;
                 }
                 else if (searchMethod == "Style")
                 {
-                    selectStatement += " WHERE styleName = @SearchTerm";
+                    selectStatement += " WHERE F.styleName = @SearchTerm";
                     selectCommand = new SqlCommand(selectStatement, connection);
                     selectCommand.Parameters.Add("@SearchTerm", SqlDbType.NVarChar);
                     selectCommand.Parameters["@SearchTerm"].Value = searchItem;
@@ -80,7 +82,9 @@ namespace CS6232_Group_6_Store.DAL
                             Style = reader["styleName"].ToString(),
                             Category = reader["categoryName"].ToString(),
                             RentalRate = Convert.IsDBNull(reader["rentalRate"]) ? 0 : Convert.ToDecimal(reader["rentalRate"]),
-                            InStockNumber = Convert.IsDBNull(reader["instockNumber"]) ? 0 : int.Parse(reader["instockNumber"].ToString())
+                            InStockNumber = Convert.IsDBNull(reader["instockNumber"]) ? 0 : int.Parse(reader["instockNumber"].ToString()),
+                            TotalStockNumber = Convert.IsDBNull(reader["TotalStock"]) ? 0 : int.Parse(reader["TotalStock"].ToString())
+
                         };
 
                         furnitureList.Add(furniture);
@@ -90,6 +94,47 @@ namespace CS6232_Group_6_Store.DAL
 
             return furnitureList;
         }
+
+
+        /// <summary>
+        /// Returns the furnitures category or style.
+        /// </summary>
+        /// <param name="searchMethod">The search method.</param>
+        /// <returns></returns>
+        /// <exception cref="System.ArgumentException">Invalid search method.</exception>
+        public List<string> ReturnFurnituresCategoyOrStyle(string searchMethod)
+        {
+            List<string> dropdownList = new List<string>();
+            string selectStatement = "SELECT name FROM categories";
+            SqlCommand selectCommand;
+
+            using (SqlConnection connection = DBConnection.GetConnection())
+            {
+                connection.Open();
+
+                if (searchMethod == "Category")
+                {
+                    selectStatement = "SELECT name FROM categories";
+                }
+                else if (searchMethod == "Style")
+                {
+                    selectStatement = "SELECT name  FROM styles";
+                }
+
+                selectCommand = new SqlCommand(selectStatement, connection);
+                using (SqlDataReader reader = selectCommand.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        dropdownList.Add(reader[0].ToString());
+                    }
+                }
+            }
+
+            return dropdownList;
+        }
+
+
 
         /// <summary>
         /// Gets the furniture.
