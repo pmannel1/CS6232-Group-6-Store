@@ -96,17 +96,25 @@ namespace CS6232_Group_6_Store.UserControls
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void furnitureSearchButton_Click(object sender, EventArgs e)
         {
-            List<RentalItem> cartItems = cart;
-            FunitureSearch detailsfunitureForm = new FunitureSearch();
-
-            if (detailsfunitureForm.ShowDialog() == DialogResult.OK)
+            if (MainDashBoard.selectedMemberId == 0)
             {
-
-                List<Furniture> furnitureList = detailsfunitureForm.searchResult;
-                this.populateFurnitureListView(furnitureList);
-
+                memberSelectionErrorLabel.Text = "Please Select A Member on the Member Management Page";
+                memberSelectionErrorLabel.ForeColor = Color.Red;
             }
+            else
+            {
+                memberSelectionErrorLabel.Text = "";
+                List<RentalItem> cartItems = cart;
+                FunitureSearch detailsfunitureForm = new FunitureSearch();
 
+                if (detailsfunitureForm.ShowDialog() == DialogResult.OK)
+                {
+
+                    List<Furniture> furnitureList = detailsfunitureForm.searchResult;
+                    this.populateFurnitureListView(furnitureList);
+
+                }
+            }
         }
 
         /// <summary>
@@ -168,29 +176,7 @@ namespace CS6232_Group_6_Store.UserControls
         
         private void furnitureListView_ItemChecked(object sender, ItemCheckedEventArgs e)
         {
-            int memberID = MainDashBoard.selectedMemberId;
-
-            var method = selectionMethodComboBox.Text.Trim();
-            if (furnitureSearchBox != null)
-            {
-                var search = furnitureSearchBox.Text.Trim();
-            }
-            string message = "invalid search";
-
-            if (method == "")
-                if (e.Item.Checked)
-            {
-                furnitureId = int.Parse(e.Item.Text);
-                foreach (ListViewItem item in furnitureListView.Items)
-                {
-                    // Uncheck all other items
-                    if (item != e.Item)
-                    {
-                        item.Checked = false;
-                    }
-                }
-
-            }
+           
             if (furnitureListView.CheckedItems.Count > 0 &&
              (MainDashBoard.selectedMemberId != 0))
             {

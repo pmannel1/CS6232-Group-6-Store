@@ -74,9 +74,15 @@ namespace CS6232_Group_6_Store.UserControls
         private void memberHistorySearchButton_Click(object sender, EventArgs e)
         {
             int memberID = MainDashBoard.selectedMemberId;
-            
 
-           
+            if (MainDashBoard.selectedMemberId == 0)
+            {
+                transactionErrorLabel.Text = "Please Select A Member on the Member Management Page";
+                transactionErrorLabel.ForeColor= Color.Red;
+            }
+            else
+            {
+                transactionErrorLabel.Text = "";
                 this.memberHistoryListView.Clear();
                 this.memberHistoryListView.View = System.Windows.Forms.View.Details;
                 this.memberHistoryListView.GridLines = true;
@@ -102,7 +108,7 @@ namespace CS6232_Group_6_Store.UserControls
                 }
                 this.memberHistoryListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
                 this.memberHistoryListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
-           
+            }
         }
 
         /// <summary>
