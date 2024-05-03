@@ -58,6 +58,7 @@ namespace CS6232_Group_6_Store.View
                 rentalSummaryList.Columns.Add("Furniture ID", 150);
                 rentalSummaryList.Columns.Add("Furniture Name", 150);
                 rentalSummaryList.Columns.Add("Quantity", 150);
+                rentalSummaryList.Columns.Add("Daily Rental Rate", 150);
                 rentalSummaryList.Columns.Add("Price", 150);
                 rentalSummaryList.Columns.Add("Rental Date", 150);
                 rentalSummaryList.Columns.Add("Due Date", 150);
@@ -73,6 +74,7 @@ namespace CS6232_Group_6_Store.View
                     TimeSpan timespan = _transaction.DueDate.Subtract(_transaction.RentalDate);
                     int time = (int)timespan.TotalDays;
                     decimal quantityTime = dr.Quantity * time;
+                    cartList.SubItems.Add("$" + furniture.RentalRate.ToString());
                     cartList.SubItems.Add("$" + (Decimal.Multiply(furniture.RentalRate, quantityTime).ToString()));
                     cartList.SubItems.Add(_transaction.RentalDate.ToShortDateString());
                     cartList.SubItems.Add(_transaction.DueDate.ToShortDateString());
