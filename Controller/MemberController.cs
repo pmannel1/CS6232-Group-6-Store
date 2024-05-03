@@ -22,9 +22,9 @@ namespace CS6232_Group_6_Store.Controller
         /// Adds the member.
         /// </summary>
         /// <param name="member">The member.</param>
-        public void AddMember(Member member)
+        public int AddMember(Member member)
         {
-            this.memeberDAL.AddMember(member);
+          return this.memeberDAL.AddMember(member);
         }
 
         /// <summary>

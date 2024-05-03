@@ -61,7 +61,7 @@ namespace CS6232_Group_6_Store.DAL
         /// Adds the member.
         /// </summary>
         /// <param name="member">The member.</param>
-        public void AddMember(Member member)
+        public int AddMember(Member member)
         {
             string insertStatement =
                 "INSERT INTO members(lastName, firstName, sex, dob, street, city, state, zipCode, country, contactPhone, password) " +
@@ -87,8 +87,34 @@ namespace CS6232_Group_6_Store.DAL
                     insertCommand.ExecuteNonQuery();
                 }
             }
+            return getNewestMemberID();
         }
 
+        public int getNewestMemberID()
+        {
+            var maxId = 0;
+            string selectStatement =
+                "Select Max(id) as maxId FROM Members";
+            using (SqlConnection connection = DBConnection.GetConnection())
+            {
+                connection.Open();
+
+                using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
+                {
+                   
+
+                    using (SqlDataReader reader = selectCommand.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            
+                            maxId = Convert.ToInt32(reader["maxId"]);
+                        }
+                    }
+                }
+            }
+            return maxId;
+        }
 
         /// <summary>
         /// Gets the open incidents.

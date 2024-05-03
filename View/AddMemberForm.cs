@@ -149,9 +149,8 @@ namespace CS6232_Group_6_Store.View
                 if (ValidateFields())
                 {
                     SetMember();
-                    _memberController.AddMember(newMember);
+                   int memberId = _memberController.AddMember(newMember);
                 string fullName = $"{newMember.FirstName} {newMember.LastName}";
-                    int memberId = newMember.Id; 
                     string message = $"Registration successful!\nFull Name: {fullName}\nMember ID: {memberId}";
                     MessageBox.Show(message, "Registration Confirmation", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 DialogResult = DialogResult.OK;
