@@ -34,8 +34,8 @@ namespace CS6232_Group_6_Store.DAL
         public List<Furniture> ReturnFurnituresSearch(string searchMethod, string searchItem)
         {
             List<Furniture> furnitureList = new List<Furniture>();
-            string selectStatement =  "select F.id, F.name, F.description, F.styleName, F.categoryName,F.RentalRate, F.instockNumber,  F.instockNumber + G.OutStock[TotalStock]" +
-                " from furniture F inner join  (select furnitureId, sum(quantity) - sum(quantityReturned)[OutStock] from rental_items group by furnitureId) G on F.id=G.furnitureId";
+            string selectStatement = "select F.id, F.name, F.description, F.styleName, F.categoryName,F.RentalRate, F.instockNumber,  F.instockNumber + COALESCE(G.OutStock, 0) AS TotalStock" +
+                " from furniture F left join  (select furnitureId, sum(quantity) - sum(quantityReturned)[OutStock] from rental_items group by furnitureId) G on F.id=G.furnitureId";
 
             SqlCommand selectCommand;
 
